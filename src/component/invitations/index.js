@@ -65,3 +65,39 @@ export const Invitation = () => {
         </div>
     )
 }
+
+//             <div className='invitations-content'>
+//                 <div className='invitations-price-left'>
+//                     <div className='invitation-price-header'>Price Range filter</div>
+//                     {pricefilterList.map(price => (
+//                         <div key={price.id} className='invitation-price'>
+//                             {price.value}
+//                         </div>
+//                     ))}
+//                 </div>
+
+//                 <div className='invitations-content-header'>
+//                     <div className='invitation-content-text'>
+//                         Upload Your Design and get quote for the same
+//                     </div>
+
+//                     <div className='invitation-content-list'>
+//                         {invitationList?.map((ele) => (
+//                             <Link
+//                                 key={ele.id}
+//                                 to={`/invitation/${ele.id}`}
+//                                 className='invitation-content-img'
+//                             >
+//                                 <img src={ele?.img} alt={ele?.name} />
+//                                 <div className='decorations-name'>{ele?.name}</div>
+//                                 key={ele.discription}
+//                                 to={`/invitation/${ele.discription}`}
+
+//                             </Link>
+//                         ))}
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };

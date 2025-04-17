@@ -31,6 +31,9 @@ import { SweetsInfo } from './component/sweets/info';
 import { SignUp } from './component/signUp';
 import { useContext } from 'react';
 import { AuthContext } from './component/context';
+import { GuestList } from './component/invitations/GuestList';
+import { Invitationhome } from './component/invitations/Invitationhome';
+// import {GuestRow} from './component/invitations/GuestRow';
 
 function App() {
 
@@ -40,7 +43,6 @@ function App() {
       <>{token ? children : < Navigate to='/signup' />}</>
     )
   }
-
 
   return (
     <>
@@ -78,6 +80,14 @@ function App() {
         </BrowserRouter>
         <Footer />
         <ToastContainer />
+            {/* <Route path='/invitation-GuestList' element={<GuestList />} /> */}
+            {/* <Route path="/invitation" element={<Invitation />} />
+            <Route path="/invitation/:id" element={<Invitationhome />} />
+            
+
+          </Routes>
+        </BrowserRouter>
+        <Footer /> */}
       </div >
     </>
   );

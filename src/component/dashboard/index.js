@@ -10,6 +10,8 @@ import { Recent_view } from "../Recent_view"
 import { Review } from "../review"
 import { Shop } from "../shop"
 import { WeddingSpecial } from "../wedding_special"
+// import {guestList} from '../../utils/guestList'
+// import GuestList from "../GuestList"
 
 export const Dashboard = () => {
   return (
@@ -25,6 +27,7 @@ export const Dashboard = () => {
       <About />
       <Review />
       <Shop />
+      {/* <GuestList/> */}
     </>
   )
 }
