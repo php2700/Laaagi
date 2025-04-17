@@ -1,0 +1,14 @@
+.banner-img {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.icon-wrapper {
+      position: absolute;
+      bottom: 50px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+}

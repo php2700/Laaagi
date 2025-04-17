@@ -1,0 +1,44 @@
+.invitation-box {
+      padding: 10px 0;
+}
+.invitation-box-left-text {
+      font-weight: 600;
+      font-size: 32px;
+}
+
+.invitation-box-list {
+      display: flex;
+      justify-content: space-between;
+}
+
+.invitation-box-wrapper {
+      text-align: center;
+}
+.invitation-box-img {
+      height: 379px;
+      width: 424px;
+      border: 1px solid #ccc;
+}
+.invitation-box-img-text {
+      width: 100%;
+      bottom: 10px;
+      color: #5d4037;
+      font-weight: 600;
+      font-size: 20px;
+}
+
+@media (max-width: 500px) {
+      .invitation-box-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+      }
+      .invitation-box-left-text {
+            text-align: center;
+      }
+      .invitation-box-img {
+            width: 90%;
+            max-width: 424px;
+            height: auto;
+      }
+}

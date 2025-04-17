@@ -1,0 +1,101 @@
+.invitations {
+      margin: 20px 0;
+}
+.invitations-header {
+      display: flex;
+      justify-content: space-evenly;
+}
+
+.invitations-header div {
+      min-height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 225px;
+      background-color: #800000;
+      color: #ffd700;
+      font-size: 16px;
+      font-weight: 500;
+}
+
+.invitations-header div a {
+      color: #ffd700;
+      text-decoration: none;
+}
+
+.invitation-header-active-color {
+      background-color: #ffd700;
+}
+
+.invitations-price-left {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      height: 282px;
+      min-width: 213px;
+      box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+}
+
+.invitation-price-header {
+      margin-top: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1d1a1a;
+}
+.invitation-price {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1d1a1a;
+      cursor: pointer;
+}
+
+.invitation-price:hover {
+      color: #0562e3;
+}
+
+.invitations-content {
+      display: flex;
+      gap: 20px;
+      padding: 15px;
+}
+.invitations-content-header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+}
+.invitation-content-text {
+      text-align: center;
+      color: #ffd700;
+      background-color: #800000;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 10px;
+}
+
+.invitation-content-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 25px;
+}
+.invitation-content-img {
+      height: 319px;
+      width: 347px;
+      box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+      position: relative;
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+.invitation-content-img img {
+      height: 217px;
+      width: 342px;
+}
+
+.invitation-content-img div {
+      position: absolute;
+      bottom: 20px;
+}
