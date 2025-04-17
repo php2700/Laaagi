@@ -1,0 +1,98 @@
+.modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+}
+
+.model {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 70px;
+      gap: 15px;
+      background-color: white;
+      border-bottom-right-radius: 32px;
+      border-bottom-left-radius: 32px;
+      border-top-left-radius: 90px;
+      border-top-right-radius: 90px;
+}
+.close-model {
+      display: flex;
+      width: 100%;
+      justify-content: end;
+}
+
+.close-model button {
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+}
+
+.model-text {
+      font-size: 30px;
+      font-weight: 700;
+      color: #253d4e;
+}
+
+.model-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 50px;
+      border-radius: 10px;
+      background-color: #f6f6f6;
+      box-shadow: 0px 1px 5px #878585;
+}
+.model-name {
+      display: flex;
+      gap: 10px;
+}
+
+.model-name input {
+      min-height: 50px;
+      min-width: 100px;
+      border-radius: 10px;
+      border: 1px solid #b356c1;
+      font-size: 16px;
+      font-weight: 400;
+      padding-left: 10px;
+}
+
+.model-form input {
+      min-width: 250px;
+      border-radius: 10px;
+      border: 1px solid #b356c1;
+      min-height: 50px;
+      font-size: 16px;
+      font-weight: 400;
+      padding-left: 10px;
+}
+
+.model-desc {
+      min-height: 140px;
+      min-width: 465px;
+      font-size: 16px;
+      font-weight: 400;
+      border-radius: 10px;
+      border: 1px solid #b356c1;
+      padding-left: 10px;
+}
+
+.model-button {
+      margin-top: 20px;
+      background-color: #ffd700;
+      color: #800000;
+      font-size: 18px;
+      font-weight: 600;
+      min-height: 45px;
+      border-radius: 24px;
+      border: 1px solid #b356c1;
+}

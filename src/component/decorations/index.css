@@ -1,0 +1,59 @@
+.decorations {
+      margin: 20px 0;
+}
+.decorations-header {
+      display: flex;
+      justify-content: space-evenly;
+}
+
+.decorations-header div {
+      min-height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 225px;
+      background-color: #800000;
+      color: #ffd700;
+      font-size: 16px;
+      font-weight: 500;
+}
+
+.decorations-header div a {
+      color: #ffd700;
+      text-decoration: none;
+}
+.decorations-content {
+      display: flex;
+      gap: 20px;
+      padding: 15px;
+      justify-content: space-between;
+}
+
+.decorations-content-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 25px;
+}
+.decorations-content-img {
+      min-height: 444px;
+      min-width: 391px;
+      box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+      position: relative;
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+.decorations-content-img img {
+      height: 330px;
+      width: 389px;
+}
+
+.decorations-name {
+      position: absolute;
+      bottom: 50px;
+      color: #5d4037;
+      font-size: 20px;
+      font-weight: 700;
+}

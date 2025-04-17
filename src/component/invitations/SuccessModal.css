@@ -1,0 +1,72 @@
+/* src/components/Invitationhome/SuccessModal.css */
+
+.success-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; 
+    animation: successFadeIn 0.3s ease-out;
+  }
+  
+  .success-modal-container {
+    background-color: #fff;
+    padding: 30px 40px; 
+    border-radius: 16px; 
+    max-width: 450px; 
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center; 
+  }
+  
+  .success-modal-logo {
+      max-width: 50px; 
+      margin-bottom: 10px;
+  }
+  
+  .success-modal-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.4em;
+      color: #333;
+      font-weight: 600;
+  }
+  
+  .success-modal-text {
+    margin-bottom: 25px;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95em;
+  }
+  
+  .success-modal-button {
+    background-color: #ffd700; 
+    color: #333;
+    border: none;
+    padding: 10px 40px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 20px; 
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .success-modal-button:hover {
+    background-color: #e6c300;
+  }
+  
+  @keyframes successFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
