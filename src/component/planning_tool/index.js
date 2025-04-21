@@ -6,14 +6,58 @@ import { SignUp } from '../signUp'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context'
 import axios from 'axios'
+import rightIcon from "../../assets/icon/li_arrow-right.png"
+import leftIcon from "../../assets/icon/left_arrow-right.png"
+import { toast } from 'react-toastify'
 
 export const PlanningTool = () => {
-    const { token } = useContext(AuthContext)
+    const context = useContext(AuthContext);
+    const token = context?.token || localStorage.getItem('token')
     const [data, setData] = useState()
     const [checkedItems, setCheckedItems] = useState([]);
     const userId = localStorage.getItem("_id")
+    const [startIndex, setStartIndex] = useState(0)
+    const [lastIndex, setLastIndex] = useState(2)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
+    const [shouldSave, setShouldSave] = useState(false);
+
+    const handleCheck = (idx) => {
+        const isExist = checkedItems.includes(idx)
+        if (isExist) {
+            setCheckedItems(checkedItems.filter((ele) => (ele != idx)))
+        }
+        else {
+            setCheckedItems([...checkedItems, idx])
+        }
+    }
+
+    const handleForwardIcon = () => {
+        const totalItems = planningCategory?.length || 0;
+        const nextStart = lastIndex + 1;
+        const nextLast = lastIndex + 3;
+        if (nextStart < totalItems) {
+            setStartIndex(nextStart);
+            setLastIndex(Math.min(nextLast, totalItems - 1));
+        }
+    }
+
+    const handlePrev = () => {
+        setLastIndex(Math.max(2, startIndex - 1))
+        setStartIndex(Math.max(0, startIndex - 3))
+    };
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            console.log(window.innerWidth, "asssssssssssssssssssssssssssss")
+            setIsMobile(window.innerWidth <= 500);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const getPlanningData = () => {
+        console.log(token, "planninglist")
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -23,6 +67,7 @@ export const PlanningTool = () => {
             }
         })
             .then((res) => {
+                console.log(res.data)
                 console.log(res?.data)
                 setData(res?.data?.planningData);
                 setCheckedItems(res.data?.planningData?.checked)
@@ -35,23 +80,15 @@ export const PlanningTool = () => {
         getPlanningData()
     }, [])
 
-    const handleCheck = (idx) => {
-        const isExist = checkedItems.includes(idx)
-        if (isExist) {
-            setCheckedItems(checkedItems.filter((ele) => (ele != idx)))
-        }
-        else {
-            setCheckedItems([...checkedItems, idx])
-        }
-    }
 
-    const handleSave = (checkedItems) => {
+
+    const handleSave = () => {
         const historyData = {
             userId: userId,
             planningId: data?._id,
-            checked: checkedItems
+            checked: checkedItems || []
         }
-
+        console.log(historyData, 'aaaa')
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, historyData, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -59,29 +96,58 @@ export const PlanningTool = () => {
         })
             .then((res) => {
                 console.log(res)
+                toast.success('update_successfully', {
+                    position: 'top-right'
+                })
                 getPlanningData()
             }).catch((error) => {
                 console.log(error);
             })
     }
 
+
+    useEffect(() => {
+        if (shouldSave) {
+            handleSave();
+            setShouldSave(false);
+        }
+    }, [checkedItems]);
+
     const handleClear = () => {
-        const clear = [];
-        setCheckedItems(clear)
-        handleSave()
-    }
+        setCheckedItems([]);
+        setShouldSave(true)
+    };
+
 
     return (
         <div >
-            <div>
+            <div className='planning-img'>
                 <img src={planningImg} />
             </div>
             <div className='plannig-category'>
-                {
-                    planningCategory?.map((ele, index) => (
-                        <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
-                    ))
-                }
+                {isMobile ? (<>
+                    {startIndex > 0 &&
+                        <div onClick={handlePrev}><img className='planning-left-arrow' src={leftIcon} /></div>
+                    }
+
+                    {
+                        planningCategory?.slice(startIndex, lastIndex + 1)?.map((ele, index) => (
+                            <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
+                        ))
+                    }
+                    {(lastIndex < (planningCategory?.length || 0) - 1) &&
+                        <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
+                    }
+                </>) : (<>
+                    {
+                        planningCategory?.map((ele, index) => (
+                            <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
+                        ))
+                    }
+                </>
+                )}
+
+
             </div>
             <div className='planning-check-list'>
                 <div className='planning-check-header'>check List</div>

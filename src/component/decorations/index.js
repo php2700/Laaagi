@@ -1,18 +1,55 @@
 import { useEffect, useState } from 'react';
-import firstImg from '../../assets/invitations/image.png'
-import secondImg from '../../assets/invitations/image (1).png'
-import thirdImg from '../../assets/invitations/image (2).png'
-
+import rightIcon from "../../assets/icon/li_arrow-right.png"
+import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
 import { Link } from 'react-router-dom';
 import { Model } from './model';
 import { decorationCategory } from '../category';
 import axios from 'axios';
 
+
+
+const decorationType = [
+    { name: 'Marriage', url: '/decorations' },
+    { name: 'Birthday', url: '/bithday' },
+    { name: 'Mehndi', url: '/mehndi' },
+    { name: 'Room Decor', url: '/room-decor' },
+    { name: 'Party', url: '/party' },
+]
+
 export const Decorations = () => {
     const [open, setOpen] = useState(false)
     const [imgData, setImgData] = useState();
     const [data, setData] = useState([])
+    const [startIndex, setStartIndex] = useState(0)
+    const [lastIndex, setLastIndex] = useState(2)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
+
+    const handleForwardIcon = () => {
+        const totalItems = decorationType?.length || 0;
+        const nextStart = lastIndex + 1;
+        const nextLast = lastIndex + 3;
+        if (nextStart < totalItems) {
+            setStartIndex(nextStart);
+            setLastIndex(Math.min(nextLast, totalItems - 1));
+        }
+    }
+
+    const handlePrev = () => {
+        const prevStart = Math.max(0, startIndex - 3);
+        const prevLast = Math.max(2, startIndex - 1);
+        setStartIndex(prevStart);
+        setLastIndex(prevLast);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 500);
+        }
+        window.addEventListener('resize', handleResize)
+        return () => { window.removeEventListener('resize', handleResize) }
+    }, [])
+
 
     const decorationList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/decoration_list`, {
@@ -43,11 +80,25 @@ export const Decorations = () => {
     return (
         <div className='decorations' >
             <div className='decorations-header'>
-                <div><Link to='/decorations'>Marriage</Link></div>
-                <div><Link to='/bithday'>Birthday</Link></div>
-                <div><Link to='/mehndi'>Mehndi</Link></div>
-                <div><Link to='/room-decor'>Room Decor</Link></div>
-                <div><Link to='/party'>Party</Link></div>
+                {
+                    isMobile ?
+                        <>
+                            {startIndex > 0 &&
+                                <div onClick={handlePrev}><img src={leftIcon} /></div>
+                            }
+                            {decorationType?.slice(startIndex, lastIndex + 1)?.map((ele) => (
+                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            ))}
+                            {(lastIndex < (decorationType?.length || 0) - 1) &&
+                                <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
+                            }
+                        </> :
+                        <>
+                            {decorationType?.map((ele) => (
+                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            ))}
+                        </>
+                }
             </div>
             <div className='decorations-content'>
                 <div className='decorations-content-list'>

@@ -15,9 +15,50 @@ export const ContactUs = () => {
     const [lastName, setLastName] = useState()
     const [mobile, setMobile] = useState()
     const [desc, setDesc] = useState();
+    const [error, setError] = useState({})
+
+    const validate = () => {
+        let newError = {};
+
+        if (!name?.trim()) {
+            newError.name = 'name is required'
+        } else if (name?.length < 3) {
+            newError.name = 'minimum 3 character required'
+        }
+        if (!lastName?.trim()) {
+            newError.lastName = 'lastname is required'
+        } else if (lastName?.length < 3) {
+            newError.lastName = 'minimum 3 character required'
+        }
+        if (!email) {
+            newError.email = 'email is required'
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            newError.email = 'email not valid'
+        }
+
+        if (!desc?.trim()) {
+            newError.desc = 'message is required'
+        } else if (desc?.length < 3) {
+            newError.desc = 'minimum 5 character required'
+        }
+
+        if (!mobile) {
+            newError.mobile = 'mobile number required'
+        } else if (mobile?.length < 10) {
+            newError.mobile = 'minimum 10 number required'
+        } else if (mobile?.length > 12) {
+            newError.mobile = 'mobile max length'
+        }
+        setError(newError);
+        return (Object.keys(newError))?.length;
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (validate()) {
+            return
+        }
 
         const contactUsData = {
             firstName: name,
@@ -69,20 +110,42 @@ export const ContactUs = () => {
                     <form onSubmit={handleSubmit} className="contact-us-form">
                         <div className="contact-us-form-name">
                             <div>
-                                <input type="text" placeholder="First Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                <input type="text" placeholder="First Name" value={name} onChange={(e) => {
+                                    setName(e.target.value)
+                                    setError({ ...error, name: '' })
+                                }
+                                } />
+                                {error?.name && (<div className="error-color">{error?.name}</div>)}
                             </div>
                             <div>
-                                <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                                <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => {
+                                    setLastName(e.target.value)
+                                    setError({ ...error, lastName: '' })
+                                }} />
+                                {error?.lastName && (<div className="error-color">{error?.lastName}</div>)}
                             </div>
                         </div>
                         <div>
-                            <input type="email" placeholder="Email*" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="email" placeholder="Email*" value={email} onChange={(e) => {
+                                setEmail(e.target.value)
+                                setError({ ...error, email: '' })
+                            }} />
+                            {error?.email && (<div className="error-color">{error?.email}</div>)}
                         </div>
                         <div>
-                            <input type="number" placeholder="Phone Number*" value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                            <input type="number" placeholder="Phone Number*" value={mobile} onChange={(e) => {
+                                setMobile(e.target.value)
+                                setError({ ...error, mobile: '' })
+                            }
+                            } />
+                            {error?.mobile && (<div className="error-color">{error?.mobile}</div>)}
                         </div>
                         <div>
-                            <textarea value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Your Message" ></textarea>
+                            <textarea value={desc} onChange={(e) => {
+                                setDesc(e.target.value)
+                                setError({ ...error, desc: '' })
+                            }} placeholder="Your Message" ></textarea>
+                            {error?.desc && (<div className="error-color">{error?.desc}</div>)}
                         </div>
                         <div><button type="submit">Send Message</button></div>
                     </form >

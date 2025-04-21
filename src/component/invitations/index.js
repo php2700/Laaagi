@@ -1,13 +1,56 @@
 import { useEffect, useState } from 'react';
-
+import rightIcon from "../../assets/icon/li_arrow-right.png"
+import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
 import { Link } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
+import MenuIcon from '@mui/icons-material/Menu';
+
+
+const invitationHeader = [
+    { name: 'Only Invitation', url: '/invitation' },
+    { name: 'Invitation on Wooden Box', url: '/invitation-wooden' },
+    { name: 'Invitation on Box', url: '/invitation-box' },
+    { name: 'Invitation on Glass Box', url: '/invitation-glass' },
+    { name: 'Misc Invitation', url: '/invitation-misc' },
+]
 
 export const Invitation = () => {
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
+    const [startIndex, setStartIndex] = useState(0)
+    const [lastIndex, setLastIndex] = useState(1)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
+    const [menuOpen, setMenuOpen] = useState(false)
+
+    const handleForwardIcon = () => {
+        const totalItems = invitationHeader?.length || 0;
+        const nextStart = lastIndex + 1;
+        const nextLast = lastIndex + 2;
+        if (nextStart < totalItems) {
+            setStartIndex(nextStart);
+            setLastIndex(Math.min(nextLast, totalItems - 1));
+        }
+    }
+
+    const handlePrev = () => {
+        const prevStart = Math.max(0, startIndex - 2);
+        const prevLast = Math.max(1, startIndex - 1);
+        setStartIndex(prevStart);
+        setLastIndex(prevLast);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 500);
+            if (window.innerWidth <= 500) {
+                setMenuOpen(false)
+            }
+        }
+        window.addEventListener('resize', handleResize)
+        return () => { window.removeEventListener('resize', handleResize) }
+    }, [])
 
     const getInvitationList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_list`, {
@@ -31,33 +74,59 @@ export const Invitation = () => {
         setSelectedPrice(data)
     }
 
+    console.log(isMobile, "ismobile")
+
     return (
         <div className='invitations' >
             <div className='invitations-header'>
-                <div><Link to='/invitation' >Only Invitation</Link></div>
-                <div><Link to='/invitation-wooden'>Invitation on Wooden Box</Link></div>
-                <div><Link to='/invitation-box'>Invitation on Box</Link></div>
-                <div><Link to='/invitation-glass'>Invitation on Glass Box</Link></div>
-                <div><Link to='/invitation-misc'>Misc Invitation</Link></div>
+                {
+                    isMobile ?
+                        <>
+                            {startIndex > 0 &&
+                                <div onClick={handlePrev}><img src={leftIcon} /></div>
+                            }
+                            {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => (
+                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            ))}
+                            {(lastIndex < (invitationHeader?.length || 0) - 1) &&
+                                <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
+                            }
+                        </> :
+                        <>
+                            {invitationHeader?.map((ele) => (
+                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            ))}
+                        </>
+                }
             </div>
             <div className='invitations-content'>
                 <div className='invitations-price-left'>
                     <div className='invitation-price-header'>Price Range filter</div>
                     {
-                        filterData?.map((ele) => (
-                            <div className='invitation-price' onClick={() => { handleFilter(ele) }}>{ele}</div>
-                        ))
+                        isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
+                            <MenuIcon />
+                        </div>
                     }
+                    <div className={`invitation-toggle ${isMobile ? (menuOpen ? 'open' : 'close') : ''}`}>
+                        {
+                            filterData?.map((ele) => (
+                                <div className='invitation-price' onClick={() => { handleFilter(ele) }}>{ele}</div>
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className='invitations-content-header'>
                     <div className='invitation-content-text'> Upload Your Design and get quote for the same</div>
                     <div className='invitation-content-list'>
-                        {data?.map((ele) => (
-                            <div className='invitation-content-img'>
-                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                <div>{ele?.name}</div>
-                            </div>
-                        ))}
+                        {
+                            data?.map((ele) => (
+                                <div >
+                                    <Link className='invitation-content-img' to='/invitation-detail' state={{ data: ele }} >
+                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        <div>{ele?.name}</div>
+                                    </Link>
+                                </div>
+                            ))}
                     </div>
                 </div>
 
@@ -65,39 +134,3 @@ export const Invitation = () => {
         </div>
     )
 }
-
-//             <div className='invitations-content'>
-//                 <div className='invitations-price-left'>
-//                     <div className='invitation-price-header'>Price Range filter</div>
-//                     {pricefilterList.map(price => (
-//                         <div key={price.id} className='invitation-price'>
-//                             {price.value}
-//                         </div>
-//                     ))}
-//                 </div>
-
-//                 <div className='invitations-content-header'>
-//                     <div className='invitation-content-text'>
-//                         Upload Your Design and get quote for the same
-//                     </div>
-
-//                     <div className='invitation-content-list'>
-//                         {invitationList?.map((ele) => (
-//                             <Link
-//                                 key={ele.id}
-//                                 to={`/invitation/${ele.id}`}
-//                                 className='invitation-content-img'
-//                             >
-//                                 <img src={ele?.img} alt={ele?.name} />
-//                                 <div className='decorations-name'>{ele?.name}</div>
-//                                 key={ele.discription}
-//                                 to={`/invitation/${ele.discription}`}
-
-//                             </Link>
-//                         ))}
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };

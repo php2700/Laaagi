@@ -22,6 +22,7 @@ export const SignUp = () => {
     const [otpModel, setOtpModel] = useState(false)
     const [otp, setOtp] = useState()
     const [data, setData] = useState()
+    const [error, setError] = useState({})
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -44,8 +45,33 @@ export const SignUp = () => {
 
     // if (!open) return null;
 
+    const validate = () => {
+        let newError = {};
+
+        if (!name?.trim()) {
+            newError.name = 'Name is required'
+        } else if (name?.length < 3) {
+            newError.name = 'minimum 3 character required'
+        }
+
+        if (!mobile) {
+            newError.mobile = 'Mobile number required'
+        } else if (mobile?.length < 10) {
+            newError.mobile = 'minimum 10 number required'
+        } else if (mobile?.length > 12) {
+            newError.mobile = 'mobile max length'
+        }
+
+        setError(newError);
+        return Object.keys(newError)?.length;
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (validate()) {
+            return
+        }
 
         const signupData = {
             name, mobile
@@ -110,10 +136,19 @@ export const SignUp = () => {
                             <div className="sign-up-form-main" >
                                 <form className="sign-up-form" onSubmit={handleSubmit}>
                                     <div className="sign-up-input">
-                                        <input type="text" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                        <input type="text" placeholder="Enter Name" value={name} onChange={(e) => {
+                                            setName(e.target.value)
+                                            setError({ ...error, name: '' })
+                                        }} />
+                                        {error.name && (<div className="error-msg">{error?.name}</div>)}
                                     </div>
                                     <div className="sign-up-input">
-                                        <input type="number" placeholder="Enter Mobile Number" value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                                        <input type="number" placeholder="Enter Mobile Number" value={mobile} onChange={(e) => {
+                                            setMobile(e.target.value)
+                                            setError({ ...error, mobile: '' })
+                                        }} />
+                                        {error.mobile && (<div className="error-msg">{error?.mobile}</div>)}
+
                                     </div>
                                     <div className="sign-up-submit">
                                         <button type="submit">Submit</button>

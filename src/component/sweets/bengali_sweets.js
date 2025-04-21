@@ -1,15 +1,51 @@
 import { useEffect, useState } from 'react';
-import firstImg from '../../assets/invitations/image.png'
-import secondImg from '../../assets/invitations/image (1).png'
-import thirdImg from '../../assets/invitations/image (2).png'
-
+import { sweetsCategory } from '../category'
 import './index.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { sweetsCategory } from '../category';
+import rightIcon from "../../assets/icon/li_arrow-right.png"
+import leftIcon from "../../assets/icon/left_arrow-right.png"
+
+const sweetsHeader = [
+    { name: 'Sugar Free', url: '/sweets' },
+    { name: 'Bengali Sweets', url: '/bengali-sweets' },
+    { name: 'Sweets', url: '/sweets' },
+    { name: 'Sweets', url: '/sweets' },
+    { name: 'Sweets', url: '/sweets' }
+]
 
 export const Bengali_Sweets = () => {
     const [data, setData] = useState([])
+
+    const [startIndex, setStartIndex] = useState(0)
+    const [lastIndex, setLastIndex] = useState(2)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
+
+    const handleForwardIcon = () => {
+        const totalItems = sweetsHeader?.length || 0;
+        const nextStart = lastIndex + 1;
+        const nextLast = lastIndex + 3;
+        if (nextStart < totalItems) {
+            setStartIndex(nextStart);
+            setLastIndex(Math.min(nextLast, totalItems - 1));
+        }
+    }
+
+    const handlePrev = () => {
+        const prevStart = Math.max(0, startIndex - 3);
+        const prevLast = Math.max(2, startIndex - 1);
+        setStartIndex(prevStart);
+        setLastIndex(prevLast);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 500);
+        }
+        window.addEventListener('resize', handleResize)
+        return () => { window.removeEventListener('resize', handleResize) }
+    }, [])
+
 
     const sweetsDataList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
@@ -32,19 +68,34 @@ export const Bengali_Sweets = () => {
     return (
         <div className='sweets' >
             <div className='sweets-header'>
-                <div><Link to='/sweets'>Sugar Free</Link></div>
-                <div><Link to='/bengali-sweets'>Bengali Sweets</Link></div>
-                <div><Link to='/sweets'>Sweets</Link></div>
-                <div><Link to='/sweets'>Sweets</Link></div>
-                <div><Link to='/sweets'>Sweets</Link></div>
+
+                {
+                    isMobile ? <>
+                        {startIndex > 0 &&
+                            <div onClick={handlePrev}><img src={leftIcon} /></div>
+                        }
+                        {sweetsHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => (
+                            <div><Link to={ele.url} >{ele?.name}</Link></div>
+                        ))}
+                        {(lastIndex < (sweetsHeader?.length || 0) - 1) &&
+                            <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
+                        }
+                    </> : <>
+                        {sweetsHeader?.map((ele) => (
+                            <div><Link to={ele.url} >{ele?.name}</Link></div>
+                        ))}
+                    </>
+                }
             </div>
             <div className='sweets-content'>
                 <div className='sweets-content-list'>
                     {data?.map((ele) => (
-                        <div className='sweets-content-img'>
-                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                            <div className='sweets-name'>{ele?.name}</div>
-                            <div className='sweets-price'>{ele?.amount} </div>
+                        <div >
+                            <Link className='sweets-content-img' to='/sweets-info' state={{ data: ele }} >
+                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                <div className='sweets-name'>{ele?.name}</div>
+                                <div className='sweets-price'>{ele?.amount} </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

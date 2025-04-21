@@ -1,101 +1,152 @@
 .invitations {
-      margin: 20px 0;
+  margin: 20px 0;
 }
 .invitations-header {
-      display: flex;
-      justify-content: space-evenly;
-}
-
-.invitations-header div {
-      min-height: 48px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 225px;
-      background-color: #800000;
-      color: #ffd700;
-      font-size: 16px;
-      font-weight: 500;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .invitations-header div a {
-      color: #ffd700;
-      text-decoration: none;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #800000;
+  color: #ffd700;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .invitation-header-active-color {
-      background-color: #ffd700;
+  background-color: #ffd700;
 }
 
 .invitations-price-left {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      height: 282px;
-      min-width: 213px;
-      box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 282px;
+  min-width: 213px;
+  box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
 }
 
 .invitation-price-header {
-      margin-top: 12px;
-      font-weight: 700;
-      font-size: 16px;
-      color: #1d1a1a;
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1d1a1a;
 }
 .invitation-price {
-      font-size: 16px;
-      font-weight: 500;
-      color: #1d1a1a;
-      cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1d1a1a;
+  cursor: pointer;
 }
 
 .invitation-price:hover {
-      color: #0562e3;
+  color: #0562e3;
 }
 
 .invitations-content {
-      display: flex;
-      gap: 20px;
-      padding: 15px;
+  display: flex;
+  gap: 20px;
+  padding: 15px;
 }
 .invitations-content-header {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 }
 .invitation-content-text {
-      text-align: center;
-      color: #ffd700;
-      background-color: #800000;
-      font-weight: 500;
-      font-size: 16px;
-      padding: 10px;
+  text-align: center;
+  color: #ffd700;
+  background-color: #800000;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .invitation-content-list {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 25px;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 25px;
 }
 .invitation-content-img {
-      height: 319px;
-      width: 347px;
-      box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
-      position: relative;
-      border-radius: 3px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  height: 319px;
+  width: 347px;
+  box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+  position: relative;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .invitation-content-img img {
-      height: 217px;
-      width: 342px;
+  height: 217px;
+  width: 342px;
 }
 
 .invitation-content-img div {
-      position: absolute;
-      bottom: 20px;
+  position: absolute;
+  bottom: 20px;
+}
+.invitation-toggle {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 500px) {
+  .invitations-header {
+    margin: 30px 0px;
+    gap: 8px;
+    align-items: center;
+  }
+  .invitations-content {
+    flex-direction: column;
+  }
+  .invitation-toggle {
+    display: none;
+  }
+  .invitation-toggle.open {
+    display: block;
+  }
+  .invitation-toggle.close {
+    display: none;
+  }
+  .invitations-price-left {
+    height: auto;
+  }
+  .invitation-content-list {
+    justify-content: center;
+  }
+  .invitations-header div a {
+    padding: 0px 3px;
+  }
+}
+
+@media (max-width: 700px) {
+  .invitations-header {
+    justify-content: space-between;
+    padding: 0 12px;
+  }
+  .invitations-header div a {
+    padding: 0 15px;
+  }
+  .invitations-price-left {
+    min-width: 164px;
+  }
+  .invitations-content {
+    padding: 15px 10px;
+  }
+  .invitation-content-list {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }

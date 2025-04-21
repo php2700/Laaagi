@@ -15,6 +15,7 @@ export const Header = () => {
 
     useEffect(() => {
         const handleResize = () => {
+            console.log(window.innerWidth,"asssssssssssssssssssssssssssss")
             setIsMobile(window.innerWidth <= 500);
             if (window.innerWidth > 500) {
                 setMenuOpen(false);

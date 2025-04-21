@@ -38,7 +38,8 @@ import { Invitationhome } from './component/invitations/Invitationhome';
 function App() {
 
   const PrivateRoute = ({ children }) => {
-    const { token } = useContext(AuthContext);
+    const content = useContext(AuthContext)
+    const token = content?.token || localStorage.getItem('token')
     return (
       <>{token ? children : < Navigate to='/signup' />}</>
     )
@@ -46,7 +47,7 @@ function App() {
 
   return (
     <>
-      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 20px' }}>
+      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 0' }}>
         {/* <div> */}
         <BrowserRouter>
           <Header />
@@ -76,18 +77,13 @@ function App() {
             <Route path='/planning-other' element={<PlanningRoomDecor />} />
             <Route path='/sweets-info' element={<SweetsInfo />} />
             <Route path='/signup' element={<SignUp />} />
+            <Route path="/invitation-detail" element={<Invitationhome />} />
           </Routes>
         </BrowserRouter>
         <Footer />
         <ToastContainer />
-            {/* <Route path='/invitation-GuestList' element={<GuestList />} /> */}
-            {/* <Route path="/invitation" element={<Invitation />} />
-            <Route path="/invitation/:id" element={<Invitationhome />} />
-            
-
-          </Routes>
-        </BrowserRouter>
-        <Footer /> */}
+        {/* <Route path='/invitation-GuestList' element={<GuestList />} /> */}
+        {/* <Route path="/invitation" element={<Invitation />} />     */}
       </div >
     </>
   );
