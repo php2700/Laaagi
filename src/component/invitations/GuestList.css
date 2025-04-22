@@ -1,200 +1,241 @@
 /* --- Global & Container --- */
 .guest-list-container {
-    font-family: sans-serif;
-    border: 1px solid #E4E2E2; /* Figma Border */
-    width: 1143px; /* Figma Width */
-    margin: 20px auto; /* सेंटर करने के लिए */
-    background-color: #fff;
-    border-radius: 8px; /* थोड़ा गोल कोने */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* हल्का शैडो */
-    overflow: hidden; /* बॉर्डर रेडियस ठीक से दिखे */
-  }
-  
-  /* --- Header --- */
-  .guest-list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #E4E2E2;
-  }
-  
-  .search-input {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    min-width: 250px; 
-  }
-  
-  .add-guest-button {
-    background-color: #FFD700; 
-    color: #333;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .add-guest-button:hover {
-    background-color: #f0c400; 
-  }
-  
-  .table-wrapper {
-      /* overflow-x: auto; */
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse; 
-  }
-  
-  th, td {
-    padding: 12px 15px; 
-    text-align: left;
-    border-bottom: 1px solid #eee; 
-    font-size: 14px;
-    vertical-align: middle; 
-  }
-  
-  thead th {
-    background-color: #f8f8f8; 
-    font-weight: bold;
-    color: #555;
-    font-size: 12px; 
-    text-transform: uppercase; 
-  }
-  
-  th:first-child, td:first-child {
-    padding-left: 20px;
-    width: 40px; 
-    text-align: center;
-  }
-  th:nth-child(2), td:nth-child(2) {
-   width: 40px; 
-   text-align: center;
-  }
-  td:nth-child(3) { 
-    font-weight: 500;
-    color: #333;
-  }
-  th:nth-child(5), td:nth-child(5) { 
-    width: 120px;
-    text-align: center;
-  }
-  th:last-child, td:last-child {
-    padding-right: 20px;
-    text-align: center;
-    width: 100px;
-  }
-  
-  
-  tbody tr:hover {
-    background-color: #f9f9f9; 
-  }
-  
-  .sent-request-button {
-    background-color: #FFD700; 
-    color: #333;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: default; 
-  }
-  
-  .my-address-section {
-    padding: 15px 20px;
-    border-top: 1px solid #E4E2E2;
-  }
-  .my-address-row {
-    display: flex;
-    align-items: center;
-    gap: 15px; 
-    font-size: 14px;
-  }
-  .my-address-row div:first-child { 
-    width: 40px;
-    text-align: center;
-  }
-  .my-address-row div:nth-child(2) { 
-    font-weight: 500;
-    min-width: 100px;
-  }
-  .my-address-row div:nth-child(3) { 
-    color: #666;
-  }
-  
-  
-  .shipping-info {
-    padding: 10px 20px;
-    background-color: #fef9f9; 
-    border-top: 1px solid #E4E2E2;
-    border-bottom: 1px solid #E4E2E2;
-    font-size: 12px;
-    color: #A52A2A; 
-    text-align: right;
-  }
-  .shipping-info div {
-      padding: 2px 0;
-  }
-  
-  .totals-bar {
-    background-color: #A52A2A; 
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  
-  .pay-button-container {
-    padding: 20px;
-    text-align: center; 
-    border-top: 1px solid #E4E2E2;
-    background-color: #f8f8f8; 
-  
-  }
-  
-  .pay-button {
-    background-color: #FFD700;
-    color: #333;
-    border: none;
-    padding: 12px 40px; 
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .pay-button:hover {
-    background-color: #f0c400; 
-  }
-  
-  
-  .footer-links {
-      padding: 15px 20px;
-      text-align: center;
-      font-size: 13px;
-      background-color: #fff; 
-  }
-  
-  .footer-links a {
-      color: #007bff; 
-      text-decoration: none;
-      margin: 0 15px;
-  }
-  .footer-links a:hover {
-      text-decoration: underline;
-  }
-  
-  input[type="checkbox"] {
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-  }
+  font-family: sans-serif;
+  border: 1px solid #e4e2e2; /* Figma Border */
+  width: 1143px; /* Figma Width */
+  margin: 20px auto; /* सेंटर करने के लिए */
+  background-color: #fff;
+  border-radius: 8px; /* थोड़ा गोल कोने */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* हल्का शैडो */
+  overflow: hidden; /* बॉर्डर रेडियस ठीक से दिखे */
+}
+
+/* --- Header --- */
+.guest-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e4e2e2;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 250px;
+}
+
+.add-guest-button {
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.add-guest-button:hover {
+  background-color: #f0c400;
+}
+
+.form-add-guest-header {
+  text-align: center;
+  color: #0b0b0b;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 20px;
+}
+.form-add-guest-header button {
+  background-color: #ffd700;
+  color: #011334;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px 100px;
+  border-radius: 20px;
+  border: 1px solid #9734a6;
+}
+.form-guest-text-field {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 30px;
+}
+.add-guest-main-div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.form-guest-text-field input,
+select {
+  border: 1px solid #9734a6;
+  padding: 15px 100px 15px 15px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.add-guest-select-option {
+  width: 312px;
+}
+.add-guest-main-container {
+  margin: 0 auto;
+  width: 1143px;
+  justify-content: center;
+  background-color: #d9d9d9;
+  border-radius: 25px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+thead th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+  color: #555;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 20px;
+  width: 40px;
+  text-align: center;
+}
+th:nth-child(2),
+td:nth-child(2) {
+  width: 40px;
+  text-align: center;
+}
+td:nth-child(3) {
+  font-weight: 500;
+  color: #333;
+}
+th:nth-child(5),
+td:nth-child(5) {
+  width: 120px;
+  text-align: center;
+}
+th:last-child,
+td:last-child {
+  padding-right: 20px;
+  text-align: center;
+  width: 100px;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.sent-request-button {
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.my-address-section {
+  padding: 15px 20px;
+  border-top: 1px solid #e4e2e2;
+}
+.my-address-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+}
+.my-address-row div:first-child {
+  width: 40px;
+  text-align: center;
+}
+.my-address-row div:nth-child(2) {
+  font-weight: 500;
+  min-width: 100px;
+}
+.my-address-row div:nth-child(3) {
+  color: #666;
+}
+
+.shipping-info {
+  padding: 10px 20px;
+  background-color: #fef9f9;
+  border-top: 1px solid #e4e2e2;
+  border-bottom: 1px solid #e4e2e2;
+  font-size: 12px;
+  color: #a52a2a;
+  text-align: right;
+}
+.shipping-info div {
+  padding: 2px 0;
+}
+
+.totals-bar {
+  background-color: #a52a2a;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.pay-button-container {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #e4e2e2;
+  background-color: #f8f8f8;
+}
+
+.pay-button {
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pay-button:hover {
+  background-color: #f0c400;
+}
+
+.footer-links {
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 13px;
+  background-color: #fff;
+}
+
+.footer-links a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 15px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}

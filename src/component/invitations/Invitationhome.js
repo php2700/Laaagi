@@ -187,7 +187,7 @@ export const Invitationhome = () => {
         <div>120</div>
       </div>
       <div className='invitation-next'>
-        <Link to='/sweets'>Next</Link>
+        <Link to='/invitation-GuestList'>Next</Link>
       </div>
 
 

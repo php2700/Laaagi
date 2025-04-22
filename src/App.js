@@ -33,6 +33,7 @@ import { useContext } from 'react';
 import { AuthContext } from './component/context';
 import { GuestList } from './component/invitations/GuestList';
 import { Invitationhome } from './component/invitations/Invitationhome';
+import { AddGuest } from './component/invitations/add-guest';
 // import {GuestRow} from './component/invitations/GuestRow';
 
 function App() {
@@ -78,11 +79,13 @@ function App() {
             <Route path='/sweets-info' element={<SweetsInfo />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path="/invitation-detail" element={<Invitationhome />} />
+            <Route path='/invitation-GuestList' element={<GuestList />} />
+            <Route path='/add-guest' element={<AddGuest/> } />
           </Routes>
         </BrowserRouter>
         <Footer />
         <ToastContainer />
-        {/* <Route path='/invitation-GuestList' element={<GuestList />} /> */}
+
         {/* <Route path="/invitation" element={<Invitation />} />     */}
       </div >
     </>
