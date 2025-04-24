@@ -11,9 +11,74 @@
   padding: 7px 18px;
 }
 .add-guest {
+  color: #800000;
+  background-color: #ffd700;
+}
+.add-guest a {
+  text-decoration: none;
+}
+
+.guest-list {
   background-color: #800000;
   color: #ffd700;
 }
-.guest-list {
+.guest-list a{
+  text-decoration: none;
+  color: #ffd700;
+
+}
+.add-guest-main-container {
+  margin: 0 auto;
+  width: 650px;
+  justify-content: center;
+    box-shadow: 3px 0px 18px #d9d9d9;
+  border-radius: 25px;
+}
+
+.form-add-guest-header {
+  text-align: center;
+  color: #0b0b0b;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 20px;
+}
+.form-add-guest-header button {
   background-color: #ffd700;
+  color: #011334;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px 100px;
+  border-radius: 20px;
+  border: 1px solid #9734a6;
+}
+.form-guest-text-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+.add-guest-main-div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.guest-input,
+select {
+  border: 1px solid #9734a6;
+  padding: 10px 13px;
+  min-width: 273px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.add-guest-select-option {
+  min-width: 300px;
+}
+.guest-address-radio {
+  display: flex;
+  gap: 10px;
+}
+.note{
+  color:#FF5454
 }

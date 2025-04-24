@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
+import { AuthContext } from '../context';
 
 
 const invitationHeader = [
@@ -17,6 +18,9 @@ const invitationHeader = [
 ]
 
 export const Invitation = () => {
+    const context = useContext(AuthContext);
+    const invitationSweet = context.setSelectSweet;
+    const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
     const [startIndex, setStartIndex] = useState(0)
@@ -76,6 +80,11 @@ export const Invitation = () => {
 
     console.log(isMobile, "ismobile")
 
+    const handleInvitationImg = (ele) => {
+        invitationSweet(ele)
+        navigate('/invitation-detail')
+    }
+
     return (
         <div className='invitations' >
             <div className='invitations-header'>
@@ -120,11 +129,15 @@ export const Invitation = () => {
                     <div className='invitation-content-list'>
                         {
                             data?.map((ele) => (
-                                <div >
-                                    <Link className='invitation-content-img' to='/invitation-detail' state={{ data: ele }} >
+                                <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
+                                    {/* <Link className='invitation-content-img' to='/invitation-detail' state={{ data: ele }} >
                                         <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
                                         <div>{ele?.name}</div>
-                                    </Link>
+                                    </Link> */}
+                                    {/* <Link className='invitation-content-img' to='/invitation-detail' state={{ data: ele }} > */}
+                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                    <div>{ele?.name}</div>
+                                    {/* </Link> */}
                                 </div>
                             ))}
                     </div>
