@@ -33,8 +33,14 @@ import { useContext } from 'react';
 import { AuthContext } from './component/context';
 import { GuestList } from './component/invitations/GuestList';
 import { Invitationhome } from './component/invitations/Invitationhome';
+<<<<<<< HEAD
 import { AddGuest } from './component/invitations/add-guest';
 import { ProfilePage } from './component/header/ProfilePage';
+=======
+import { AddGuest, Guest } from './component/invitations/guest';
+import { Add_Guest } from './component/invitations/add_guest';
+import { Edit_Guest } from './component/invitations/edit_guest';
+>>>>>>> 128176fa22ecb89338cbb7ebf9c0a099854a1a8f
 // import {GuestRow} from './component/invitations/GuestRow';
 
 function App() {
@@ -81,8 +87,14 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             <Route path="/invitation-detail" element={<Invitationhome />} />
             <Route path='/invitation-GuestList' element={<GuestList />} />
+<<<<<<< HEAD
             <Route path='/add-guest' element={<AddGuest/> } />
             <Route path="/profile" element={<ProfilePage />} />
+=======
+            <Route path='/add-guest' element={<Guest/> } />
+            <Route path='/guest-add' element={<Add_Guest/>} />
+            <Route path='/edit-guest' element={<Edit_Guest />} />
+>>>>>>> 128176fa22ecb89338cbb7ebf9c0a099854a1a8f
           </Routes>
         </BrowserRouter>
         <Footer />

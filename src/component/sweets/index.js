@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { sweetsCategory } from '../category'
 import './index.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
+import { AuthContext } from '../context';
 
 const sweetsHeader = [
     { name: 'Sugar Free', url: '/sweets' },
@@ -15,7 +16,14 @@ const sweetsHeader = [
 ]
 
 export const Sweets = () => {
+    const navigate = useNavigate()
+    const content = useLocation();
+    const isInvitationSweets = content?.state?.data;
+    const invitationId = content?.state?.invitationId;
+    const name = content?.state?.name
+    const index = content?.state?.idx;
     const [data, setData] = useState([])
+    const [invitationselectSweet, setInvitationSelectSweet] = useState();
 
     const [startIndex, setStartIndex] = useState(0)
     const [lastIndex, setLastIndex] = useState(2)
@@ -65,7 +73,16 @@ export const Sweets = () => {
         sweetsDataList()
     }, [])
 
+
+    const handleSweet = (item) => {
+        setInvitationSelectSweet(item)
+    }
+
+    const handleInvitationSweet = () => {
+        navigate("/invitation-detail", { state: { ...invitationselectSweet, index: index, invitationId: invitationId, name: name } })
+    }
     return (
+
         <div className='sweets' >
             <div className='sweets-header'>
 
@@ -87,20 +104,36 @@ export const Sweets = () => {
                     </>
                 }
             </div>
-            <div className='sweets-content'>
-                <div className='sweets-content-list'>
-                    {data?.map((ele) => (
-                        <div >
-                            <Link className='sweets-content-img' to='/sweets-info' state={{ data: ele }} >
-                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                <div className='sweets-name'>{ele?.name}</div>
-                                <div className='sweets-price'>{ele?.amount} </div>
-                            </Link>
+            {
+                isInvitationSweets ?
+                    <div className='sweets-content'>
+                        <div className='sweets-content-list'>
+                            {data?.map((ele) => (
+                                <div className='sweets-content-img' onClick={() => handleSweet(ele)}>
+                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                    <div className='sweets-name'>{ele?.name}</div>
+                                    <div className='sweets-price'>{ele?.amount} </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-
-            </div>
+                    </div>
+                    : <div className='sweets-content'>
+                        <div className='sweets-content-list'>
+                            {data?.map((ele) => (
+                                <div >
+                                    <Link className='sweets-content-img' to='/sweets-info' state={{ data: ele }} >
+                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        <div className='sweets-name'>{ele?.name}</div>
+                                        <div className='sweets-price'>{ele?.amount} </div>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+            }
+            {
+                isInvitationSweets && <div className='btn-done' onClick={handleInvitationSweet} >Done </div>
+            }
         </div>
     )
 }

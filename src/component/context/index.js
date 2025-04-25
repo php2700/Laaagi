@@ -4,6 +4,8 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState();
+    const [selectSweet, setSelectSweet] = useState({})
+ const [amounts, setAmounts] = useState([0, 0, 0, 0, 0]);
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -17,7 +19,8 @@ export const AuthProvider = ({ children }) => {
         setToken(newToken)
     }
 
+
     return (
-        <AuthContext.Provider value={{ token, loginData }} >{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ token, loginData, selectSweet, setSelectSweet,amounts,setAmounts }} >{children}</AuthContext.Provider>
     )
 }
