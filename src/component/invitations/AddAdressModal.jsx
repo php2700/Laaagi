@@ -3,7 +3,7 @@ import './AddAddressModal.css'; // Import the CSS file
 
 // Assume you have your logo image locally or provide a URL
 import logoImage from '../../assets/logo.png'; // <-- UPDATE THIS PATH
-import { GuestList } from './GuestList';
+  import  {GuestList}  from './GuestList';
 function AddAddressModal({ onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
