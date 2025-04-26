@@ -3,7 +3,8 @@ import './GuestList.css';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
-import { AddAddressModal } from './AddAddressModal';
+// import { AddAddressModal } from './AddAddressModal';
+import { AddGuestHeader } from './add-guest.header';
 
 export const GuestList = () => {
   const total = useLocation();
