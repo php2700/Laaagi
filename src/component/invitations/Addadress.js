@@ -4,7 +4,7 @@ import './AddAddressModal.css'; // Import the CSS file
 // Assume you have your logo image locally or provide a URL
 import logoImage from '../../assets/logo.png'; // <-- UPDATE THIS PATH
   import  {GuestList}  from './GuestList.js';
-function AddAddressModal({ onClose }) {
+function Addadress({ onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission logic here
@@ -55,4 +55,4 @@ function AddAddressModal({ onClose }) {
   );
 }
 
-export default AddAddressModal;
+export default Addadress;

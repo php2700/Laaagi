@@ -141,7 +141,7 @@ import { ProfilePage } from './component/header/ProfilePage';
 // import {GuestRow} from './component/invitations/GuestRow';
 // import { Add_Guest } from './component/invitations/add-guest';
 
-// import { AddGuestHeader } from './component/invitations/add_guest.js'; // Corrected import statement for Add_Guest
+import { AddGuestHeader } from './component/invitations/add_guest.js'; // Corrected import statement for Add_Guest
 function App() {
 
   const PrivateRoute = ({ children }) => {
@@ -194,6 +194,8 @@ function App() {
             <Route path='/edit-guest' element={<Edit_Guest />} />
 
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/add-guest" element={<Add_Guest />} />
+            <Route path="/guest-list" element={<GuestList />} />
           </Routes>
         </BrowserRouter>
         <Footer />
