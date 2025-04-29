@@ -7,10 +7,19 @@
 }
 
 .breadcrumb {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 20px;
+  letter-spacing: 0%;
+  font:quicksand;
+
+  margin-top: 10px;
+  font-weight: 400;
+  padding: 8px 0 0 0;
+  font-size: 1em;
+  /* font-size: 16px; */
+  color: #1D1A1A;
+  margin-bottom: 10px;
+  line-height: 100%;
 }
+
 
 .back-btn {
   background: none;
@@ -275,13 +284,14 @@
   font-size: 16px;
   font-weight: 500;
   border-style: none;
+  line-height: 100%;
+  letter-spacing: 0%;
   padding: 8px 24px;
-  border-radius: 6px;
-  width: 70px;
-  text-align: center;
+  border-radius: 10px;
   text-decoration: none;
   cursor: pointer;
 }
+
 
 .select-size-header {
   margin: 18px 0;
