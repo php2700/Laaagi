@@ -6,6 +6,8 @@ import axios from 'axios';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import { AuthContext } from '../context';
+import rightArrow from "../../assets/invitations/right-icon.png"
+
 
 const sweetsHeader = [
     { name: 'Sugar Free', url: '/sweets' },
@@ -22,8 +24,10 @@ export const Sweets = () => {
     const invitationId = content?.state?.invitationId;
     const name = content?.state?.name
     const index = content?.state?.idx;
+    const id = content?.state?.id;
     const [data, setData] = useState([])
     const [invitationselectSweet, setInvitationSelectSweet] = useState();
+    const [orderId, setOrderId] = useState();
 
     const [startIndex, setStartIndex] = useState(0)
     const [lastIndex, setLastIndex] = useState(2)
@@ -75,11 +79,12 @@ export const Sweets = () => {
 
 
     const handleSweet = (item) => {
+        setOrderId(item?.orderId)
         setInvitationSelectSweet(item)
     }
 
     const handleInvitationSweet = () => {
-        navigate("/invitation-detail", { state: { ...invitationselectSweet, index: index, invitationId: invitationId, name: name } })
+        navigate("/invitation-detail", { state: { ...invitationselectSweet, index: index, invitationId: invitationId, name: name, showId: id } })
     }
     return (
 
@@ -110,6 +115,9 @@ export const Sweets = () => {
                         <div className='sweets-content-list'>
                             {data?.map((ele) => (
                                 <div className='sweets-content-img' onClick={() => handleSweet(ele)}>
+                                    {
+                                        orderId == ele?.orderId && <div className='show-arrow-right'><img src={rightArrow} /></div>
+                                    }
                                     <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
                                     <div className='sweets-name'>{ele?.name}</div>
                                     <div className='sweets-price'>{ele?.amount} </div>
@@ -132,7 +140,9 @@ export const Sweets = () => {
                     </div>
             }
             {
-                isInvitationSweets && <div className='btn-done' onClick={handleInvitationSweet} >Done </div>
+                isInvitationSweets && <div className='sweet-select'>
+                    <div className='btn-done' onClick={handleInvitationSweet} >Done </div>
+                </div>
             }
         </div>
     )

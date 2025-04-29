@@ -43,6 +43,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .sweets-content-img img {
   height: 335px;
@@ -71,6 +72,23 @@
   padding: 5px 10px;
   text-align: center;
   width: 50px;
+  cursor: pointer;
+}
+
+.show-arrow-right img {
+  border-radius: 12px;
+  padding: 4px 6px;
+  background-color: white;
+  border-radius: 25px;
+  height: 26px;
+  width: 26px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.sweet-select {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 500px) {

@@ -112,12 +112,21 @@ tbody tr:hover {
   cursor: default;
 }
 
+.invite-guest-list {
+  text-align: center;
+  width: 46px;
+}
+
 .my-address-section {
   padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 45px;
   border-top: 1px solid #e4e2e2;
 }
 .my-address-row {
   display: flex;
+
   align-items: center;
   gap: 15px;
   font-size: 14px;
@@ -129,6 +138,10 @@ tbody tr:hover {
 .my-address-row div:nth-child(2) {
   font-weight: 500;
   min-width: 100px;
+}
+.my-address-text {
+  width: 45px;
+  text-align: center;
 }
 .my-address-row div:nth-child(3) {
   color: #666;

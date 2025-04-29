@@ -136,7 +136,7 @@ export const GuestList = () => {
                 </td>
                 <td>{guest.category}</td>
                 <td>
-                  <input type='Number' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => handleBox(e.target.value, index)} />
+                  <input type='Number' className='invite-guest-list' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => handleBox(e.target.value, index)} />
                 </td>
               </tr >
             ))}
@@ -151,7 +151,10 @@ export const GuestList = () => {
           <div><input type="checkbox" checked={isUserAddressChecked} onChange={(e) => handleCheckUser(e.target.checked)} /></div>
           <div>My Address</div>
           <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</div>
-          <input type='Number' value={userBox} onChange={(e) => handleUser(e.target.value)} />
+
+        </div>
+        <div>
+          <input type='Number' className='my-address-text' value={userBox} onChange={(e) => handleUser(e.target.value)} />
         </div>
       </div>
       <div className="shipping-info">
