@@ -179,11 +179,11 @@ body {
   gap: 18px; 
 }
 
-/* .add-guest-main-div {
+ .add-guest-main-div {
   display: flex;
   flex-direction: column;
   gap: 18px;
-} */
+} 
 
 .guest-input,
 select {
