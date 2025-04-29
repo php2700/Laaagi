@@ -10,7 +10,7 @@ export const AddGuestHeader = () => {
             <div ><img className="guestImg" src={GuestImg} /></div>
             <div className="add-guest-nav">
                 <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div>
-                <div className="guest-list"><Link to='/add-guest'>Guest List</Link></div>
+                <div className="guest-list"><Link to='/guest'>Guest List</Link></div>
             </div>
         </div>
     )

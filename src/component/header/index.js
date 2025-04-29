@@ -185,8 +185,8 @@ export const Header = () => {
                                 <ul>
                                     {/* Use Link component and close dropdown on click */}
                                     <li><Link to="/profile" onClick={() => setIsProfileDropdownOpen(false)}>Profile</Link></li>
-                                    <li><Link to="/guest-list" onClick={() => setIsProfileDropdownOpen(false)}>Guest list</Link></li>
-                                    <li><Link to="/planning-tool-user" onClick={() => setIsProfileDropdownOpen(false)}>Planning Tool</Link></li> {/* Maybe a user-specific planning tool link? */}
+                                    <li><Link to="/guest" onClick={() => setIsProfileDropdownOpen(false)}>Guest list</Link></li>
+                                    <li><Link to="/planning-tool" onClick={() => setIsProfileDropdownOpen(false)}>Planning Tool</Link></li> {/* Maybe a user-specific planning tool link? */}
                                     <li>
                                         <button type="button" onClick={handleLogout} className="logout-button">
                                             Logout

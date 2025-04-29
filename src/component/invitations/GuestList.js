@@ -3,7 +3,6 @@ import './GuestList.css';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
-// import { AddAddressModal } from './AddAddressModal';
 import { AddGuestHeader } from './add-guest.header';
 import {GuestRow} from './GuestRow.js';
 import Addadress from './Addadress';
@@ -111,7 +110,7 @@ export const GuestList = () => {
           placeholder="Search..."
           className="search-input"
         />
-        <Link to='/add-guest' className="add-guest-button">+ Add Guest</Link>
+        <Link to='/guest' className="add-guest-button">+ Add Guest</Link>
       </div>
       <div className="table-wrapper">
         <table>

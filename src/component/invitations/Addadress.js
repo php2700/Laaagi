@@ -1,36 +1,29 @@
-import React from 'react';
-import './AddAddressModal.css'; // Import the CSS file
+import './AddAddressModal.css';
+import logoImage from '../../assets/logo.png';
+import { useState } from 'react';
 
-// Assume you have your logo image locally or provide a URL
-import logoImage from '../../assets/logo.png'; // <-- UPDATE THIS PATH
-  import  {GuestList}  from './GuestList.js';
-function Addadress({ onClose }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted');
-    // Example: Get values
-    // const fullAddress = event.target.elements.fullAddress.value;
-    // const googleAddress = event.target.elements.googleAddress.value;
-    // ... send data to backend or update state ...
-    // onClose(); // Optionally close modal on submit
-  };
+export const Addadress = ({ open, onClose }) => {
+  const id = localStorage.getItem("_id");
+  const [_id, setId] = useState(id);
 
-   return (
+
+  if (!open) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  return (
     <div className="modal-overlay" onClick={onClose}>
-      {/* Stop propagation prevents closing modal when clicking inside content */}
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close-button" onClick={onClose} aria-label="Close modal">
-          × {/* Use a simple 'x' for the close button */}
+          ×
         </button>
-
         <div className="modal-header">
           <img src={logoImage} alt="Laaagi Logo" className="modal-logo" />
           <span className="modal-brand-name">Laaagi</span>
         </div>
-
         <h2 className="modal-title" id="titles">Add My Address</h2>
-
         <form className="modal-form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -44,7 +37,6 @@ function Addadress({ onClose }) {
             name="googleAddress"
             className="modal-input"
             placeholder="Google Address"
-            // Consider if this should be an address autocomplete input
           />
           <button type="submit" className="modal-submit-button">
             Submit
@@ -53,6 +45,4 @@ function Addadress({ onClose }) {
       </div>
     </div>
   );
-}
-
-export default Addadress;
+};

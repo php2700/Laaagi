@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react"
 import { AddGuestHeader } from "./add-guest.header"
 import { AuthContext } from "../context";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import GuestRow from "./GuestRow";
+import { Addadress } from "./Addadress";
 
 export const Guest = () => {
+    const [openAddress, setOpenAddress] = useState(false)
     const content = useContext(AuthContext)
     const userId = localStorage.getItem('_id');
     const token = content?.token;
@@ -27,6 +28,14 @@ export const Guest = () => {
     useEffect(() => {
         getGuestList()
     }, [])
+
+    const handleModel = () => {
+        setOpenAddress(true)
+    }
+
+    const handleCloseAddress = () => {
+        setOpenAddress(false)
+    }
     return (
         <>
             <AddGuestHeader />
@@ -37,7 +46,8 @@ export const Guest = () => {
                         placeholder="Search..."
                         className="search-input"
                     />
-                    <Link to='/add-guest' className="add-guest-button">+ Add My Address</Link>
+                    {/* <Link to='/add-address' ></Link> */}
+                    <div className="add-guest-button" onClick={() => handleModel()} > + Add My Address</div>
                 </div>
                 <div className="table-wrapper">
                     <table>
@@ -64,6 +74,7 @@ export const Guest = () => {
                     </div>
                 </div>
             </div>
+            <Addadress open={openAddress} onClose={handleCloseAddress} />
         </>
     )
 }

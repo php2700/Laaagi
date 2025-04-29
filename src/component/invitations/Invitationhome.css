@@ -8,18 +8,17 @@
 
 .breadcrumb {
   letter-spacing: 0%;
-  font:quicksand;
+  font: quicksand;
 
   margin-top: 10px;
   font-weight: 400;
   padding: 8px 0 0 0;
   font-size: 1em;
   /* font-size: 16px; */
-  color: #1D1A1A;
+  color: #1d1a1a;
   margin-bottom: 10px;
   line-height: 100%;
 }
-
 
 .back-btn {
   background: none;
@@ -274,7 +273,8 @@
   font-weight: bold;
   color: #333;
 }
-.error-color{
+.error-color {
+  margin-top: 7px;
   color: red;
 }
 
@@ -291,7 +291,6 @@
   text-decoration: none;
   cursor: pointer;
 }
-
 
 .select-size-header {
   margin: 18px 0;

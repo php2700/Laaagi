@@ -123,9 +123,6 @@ export const SignUp = () => {
                     <div className='model' onClick={(e) => e.stopPropagation()}>
                         <div className='close-model'>
                             <button onClick={onClose}>X</button>
-                            {/* <button onClick={onClose}>X</button> */}
-
-
                         </div>
                         <div className="sign-up-top">
                             <div className="sign-up-header">
