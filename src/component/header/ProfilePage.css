@@ -1,4 +1,4 @@
-/* 
+
 .profile-page-container {
     max-width: 900px; 
     margin: 40px auto; 
@@ -148,6 +148,7 @@
   .edit-profile-button {
     background-color: #800000; 
     color: #ffd700; 
+  }
   .edit-profile-button:hover {
     background-color: #600000; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -231,12 +232,12 @@
       .profile-name {
           font-size: 22px;
       }
-  } */
-   /* General Page */
-/* ProfileSettingsModal.css */
+  } 
+  
 
-/* Optional Overlay */
-/* .modal-overlay {
+
+
+ .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -247,10 +248,9 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-} */
+}
 
-/* Modal Container */
-/* AccountProfilePage.css */
+
 
 .account-profile-page {
     font-family: sans-serif; 
@@ -296,8 +296,9 @@
     background-color: #e0e0e0;
   }
   
-  /* Optional: Change Photo Button Styling */
-  /* .change-avatar-button {
+  
+
+   .change-avatar-button {
       display: block;
       margin: 10px auto 0;
       font-size: 13px;
@@ -308,7 +309,7 @@
   }
   .change-avatar-button:hover {
       text-decoration: underline;
-  } */
+  } 
   
   
   .profile-form {
