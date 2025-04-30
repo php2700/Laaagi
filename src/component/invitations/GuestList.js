@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './GuestList.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { AddGuestHeader } from './add-guest.header';
@@ -9,6 +9,7 @@ import Addadress from './Addadress';
 
 export const GuestList = () => {
   const total = useLocation();
+  const navigate=useNavigate();
   const totalAmountPerBox = total?.state.amount;
   console.log(totalAmountPerBox)
   const content = useContext(AuthContext)
@@ -102,6 +103,11 @@ export const GuestList = () => {
       setIsUserAddressChecked(false)
     }
   }
+
+  const handlePayment=()=>{
+    navigate('/payment')
+  }
+  
   return (
     <div className="guest-list-container">
       <div className="guest-list-header">
@@ -168,7 +174,7 @@ export const GuestList = () => {
         <span>Total Boxes:{totalbox} </span>
       </div>
       <div className="pay-button-container">
-        <button className="pay-button">Pay</button>
+        <button className="pay-button" onClick={handlePayment}>Pay</button>
       </div>
       <div className="pay-button-container">
         Total Price:{totalPrice} /-

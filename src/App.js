@@ -37,6 +37,7 @@ import { ProfilePage } from './component/header/ProfilePage';
 import { Edit_Guest } from './component/invitations/edit_guest';
 import { Add_Guest } from './component/invitations/add_guest';
 import { Guest } from './component/invitations/guest';
+import { Payment } from './component/payment';
 
 function App() {
 
@@ -81,11 +82,12 @@ function App() {
             <Route path='/sweets-info' element={<SweetsInfo />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path="/invitation-detail" element={<Invitationhome />} />
-            <Route path='/invitation-GuestList' element={<GuestList />} />
-            <Route path='/guest' element={<Guest />} />
-            <Route path='/guest-add' element={<Add_Guest />} />
-            <Route path='/edit-guest' element={<Edit_Guest />} />
-            <Route path="/guest-list" element={<GuestList />} />
+            <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
+            <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
+            <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
+            <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
+            <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} />
+            <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
             <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </BrowserRouter>

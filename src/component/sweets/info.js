@@ -1,13 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import './info.css'
 import { useState } from "react";
-import { SignUp } from "../signUp";
+
+const sweetsInKg = ['1kg', '2kg', '5kg', '10kg']
 
 export const SweetsInfo = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const sweetsData = location?.state?.data;
     const token = localStorage.getItem('token')
+    const [sweetkg, setSweetkg] = useState()
     const [open, setOpen] = useState(false)
 
     const handlePayment = () => {
@@ -15,6 +17,7 @@ export const SweetsInfo = () => {
             // setOpen(true)
             navigate("/signup")
         }
+        navigate('/payment')
     }
 
     const handleClose = () => {
@@ -52,7 +55,15 @@ export const SweetsInfo = () => {
                         and typesetting industry. Lorem Ipsum has been
                         the industry's standard
                     </div>
-                    <div>10kg</div>
+                    <div>
+                        <select value={sweetkg} onChange={(e) => setSweetkg(e.target.value)} >
+                            <option value="" disabled>Select quantity</option>
+                            {sweetsInKg?.map((ele) => (
+                                <option value={ele}>{ele}</option>
+                            ))}
+
+                        </select>
+                    </div>
                     <div className="sweets-info-price">Total Price:2500</div>
                     <div className="sweets-info-button">
                         <button onClick={handlePayment}>Pay</button>
