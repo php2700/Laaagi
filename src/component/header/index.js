@@ -209,6 +209,7 @@ import login from "../../assets/login/Ellipse 2.png";
 import { useEffect, useState, useRef } from 'react'; 
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, NavLink } from 'react-router-dom';
+import './index.css';
 
 export const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
