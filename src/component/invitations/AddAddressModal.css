@@ -105,7 +105,6 @@
   /* border: 1px solid #e0e0e0; Light border */
   border-radius: 25px; /* Highly rounded corners for inputs (changed from 25%) */
   font-size: 1rem;
-  background-color: #f8f4eb; /* Very light beige background */
   /* text-align: center;  <-- YEH LINE HATA DI GAYI HAI */
   text-align: left; /* Explicitly set to left (or remove the line completely for default behavior) */
   width: 100%; /* Take full width */

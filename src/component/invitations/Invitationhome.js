@@ -450,6 +450,7 @@ export const Invitationhome = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onFormSubmitSuccess={handleFormSubmitSuccess}
+        invitationId={invitationId}
       />
       <SuccessModal
         isOpen={isSuccessModalOpen}

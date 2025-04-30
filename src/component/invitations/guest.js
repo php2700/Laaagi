@@ -46,7 +46,6 @@ export const Guest = () => {
                         placeholder="Search..."
                         className="search-input"
                     />
-                    {/* <Link to='/add-address' ></Link> */}
                     <div className="add-guest-button" onClick={() => handleModel()} > + Add My Address</div>
                 </div>
                 <div className="table-wrapper">

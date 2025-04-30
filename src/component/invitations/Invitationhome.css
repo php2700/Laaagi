@@ -1,4 +1,4 @@
- .invitation-details-container {
+.invitation-details-container {
   margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -376,16 +376,17 @@
   display: flex;
   gap: 30px;
   justify-content: space-between;
+  align-items: center;
 }
 .invittion-box-detail {
-  width: 100%;
+  max-width: 165px;
   text-align: center;
 }
 .invittion-box-container {
-  width: 13%;
+  width: 15%;
   text-align: center;
   border: 2px solid white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 10px;
   background-color: #ffd700;
 }
@@ -517,9 +518,8 @@
   .customize-btn {
     width: 100%;
   }
-} 
- 
- 
+}
+
 /* new */
 /* Invitationhome.css */
 /* Invitationhome.css */
