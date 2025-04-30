@@ -455,3 +455,92 @@ button {
     gap: 14px;
   }
 }
+
+
+.user-menu-container {
+  position: relative; 
+  display: flex; 
+  align-items: center;
+}
+
+.login-name {
+  display: flex;
+  align-items: center;
+  cursor: pointer; 
+  
+}
+
+.user-dropdown-menu {
+  font: quicksand;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  font-size: 16px; 
+  height: 188px; 
+  width: 125px; 
+  position: absolute;
+  top: 100%; 
+  right: 0; 
+  background-color: #F4F4F4; 
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 30px 0; 
+  z-index: 100; 
+  min-width: 150px;
+  margin-top: 5px; 
+}
+
+.user-dropdown-menu a,
+.user-dropdown-menu button {
+  display: block;
+  letter-spacing: 0%;
+  font: quicksand;
+  font-size: 16px; 
+  line-height: 100%; 
+  font-weight: 700; 
+
+  padding: 8px 15px;
+  color: #800000; 
+  text-decoration: none;
+  white-space: nowrap; 
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: inherit; 
+}
+
+/* .user-dropdown-menu a:hover,
+.user-dropdown-menu button:hover {
+  background-color: #f0f0f0; 
+} */
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+.dropdown-arrow {
+ transition: transform 0.3s ease;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.login-name img:first-child { 
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px; 
+}
+
+.login-name img:last-child { 
+    width: 12px; 
+    height: auto;
+    font-size: 16px; 
+    margin-left: 5px; 
+}
