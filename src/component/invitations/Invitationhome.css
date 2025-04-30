@@ -1,4 +1,4 @@
-.invitation-details-container {
+ .invitation-details-container {
   margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -14,7 +14,6 @@
   font-weight: 400;
   padding: 8px 0 0 0;
   font-size: 1em;
-  /* font-size: 16px; */
   color: #1d1a1a;
   margin-bottom: 10px;
   line-height: 100%;
@@ -279,6 +278,11 @@
 }
 
 .back-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 119px;
+  height: 48px;
   background-color: #ffd700;
   color: #800000;
   font-size: 16px;
@@ -513,4 +517,9 @@
   .customize-btn {
     width: 100%;
   }
-}
+} 
+ 
+ 
+/* new */
+/* Invitationhome.css */
+/* Invitationhome.css */

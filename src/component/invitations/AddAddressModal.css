@@ -2,157 +2,159 @@
 
 /* Style the semi-transparent background overlay */
 .modal-overlay {
-    position: fixed; /* Stay in place even when scrolling */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Dimmed background */
-    display: flex;
-    align-items: center; /* Vertically center */
-    justify-content: center; /* Horizontally center */
-    z-index: 1000; /* Ensure it's on top of other content */
-    padding: 20px; /* Add padding for smaller screens */
-  }
-  
-  /* Style the main modal content box */
+  position: fixed; /* Stay in place even when scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Dimmed background */
+  display: flex;
+  align-items: center; /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  z-index: 1000; /* Ensure it's on top of other content */
+  padding: 20px; /* Add padding for smaller screens */
+}
+
+/* Style the main modal content box */
+.modal-content {
+  background-color: #ffffff; /* White background */
+  padding: 30px 40px; /* Padding inside the modal */
+  border-radius: 16px; /* Rounded corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  position: relative; /* Needed for absolute positioning of the close button */
+  width: 100%;
+  max-width: 450px; /* Max width of the modal */
+  text-align: center; /* Center align text elements (headings, etc.) */
+  box-sizing: border-box; /* Include padding in width/height */
+}
+
+/* Style the close button (top right corner) */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem; /* Make the 'x' larger */
+  font-weight: bold;
+  color: #253D4E; /* Grey color for the 'x' */
+  cursor: pointer;
+  line-height: 1; /* Ensure proper vertical alignment */
+  padding: 5px;
+}
+
+ /* .modal-close-button:hover {
+  color: #333;
+}
+ */
+/* Style the header section (logo + brand name) */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-logo {
+  height: 94px;
+  width: 94px; /* Adjust logo size as needed */
+  /* margin-right: 10px; */
+   /* No left margin */
+  object-fit: contain; /* Prevent distortion */
+}
+
+.modal-brand-name {
+  margin-left: 0;
+  font-size: 45px; /* Larger font size for brand */
+  font-weight: 700;
+  /* Approximate color from image - adjust as needed */
+  color: #BC7E55; /* Sienna/Brownish color */
+  /* or maybe a gold: color: #D4AF37; */
+}
+
+/* Style the main title "Add My Address" */
+.modal-title {
+  font-size: 30px; /* Font size for the title */
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;/* Slightly bold */
+  color: #1D1A1A; /* Dark grey text */
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+#title {
+  font-size: 70px; /* Font size for the title */
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;/* Slightly bold */
+  color: #ca3333; /* Dark grey text */
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+/* Style the form container */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form elements */
+}
+
+/* Style the input fields */
+.modal-input {
+  padding: 12px 20px;
+  /* border: 1px solid #e0e0e0; Light border */
+  border-radius: 25px; /* Highly rounded corners for inputs (changed from 25%) */
+  font-size: 1rem;
+  background-color: #f8f4eb; /* Very light beige background */
+  /* text-align: center;  <-- YEH LINE HATA DI GAYI HAI */
+  text-align: left; /* Explicitly set to left (or remove the line completely for default behavior) */
+  width: 100%; /* Take full width */
+  box-sizing: border-box; /* Include padding in width */
+  outline: none; /* Remove default browser outline */
+  transition: border-color 0.2s ease-in-out;
+  border: 1px solid transparent; /* Add a transparent border to prevent layout shift on focus */
+}
+
+
+.modal-input::placeholder {
+  color: #aeaeae; /* Slightly darker placeholder for better visibility */
+  /* Placeholder text alignment will now follow the input's text-align (left) */
+}
+
+.modal-input:focus {
+  border-color: #A0522D; /* Highlight border on focus */
+}
+
+/* Style the submit button */
+.modal-submit-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px; /* Highly rounded corners for button */
+  background-color: #FFD700; /* Yellow background (like Tailwind yellow-400) */
+  color: #333; /* Dark text color */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 10px; /* Add some space above the button */
+}
+
+.modal-submit-button:hover {
+  background-color: #eab308; /* Darker yellow on hover (like Tailwind yellow-500) */
+}
+
+/* Basic responsiveness */
+@media (max-width: 500px) {
   .modal-content {
-    background-color: #ffffff; /* White background */
-    padding: 30px 40px; /* Padding inside the modal */
-    border-radius: 16px; /* Rounded corners */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    position: relative; /* Needed for absolute positioning of the close button */
-    width: 100%;
-    max-width: 450px; /* Max width of the modal */
-    text-align: center; /* Center align text elements */
-    box-sizing: border-box; /* Include padding in width/height */
+    padding: 20px 25px;
   }
-  
-  /* Style the close button (top right corner) */
-  .modal-close-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.8rem; /* Make the 'x' larger */
-    font-weight: bold;
-    color: #253D4E; /* Grey color for the 'x' */
-    cursor: pointer;
-    line-height: 1; /* Ensure proper vertical alignment */
-    padding: 5px;
-  }
-  
-   /* .modal-close-button:hover {
-    color: #333; 
-  } 
-   */
-  /* Style the header section (logo + brand name) */
-  .modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .modal-logo {
-    height: 94px;
-    width: 94px; /* Adjust logo size as needed */
-    /* margin-right: 10px; */
-     /* No left margin */
-    object-fit: contain; /* Prevent distortion */
-  }
-  
   .modal-brand-name {
-    margin-left: 0;
-    font-size: 45px; /* Larger font size for brand */
-    font-weight: 700;
-    /* Approximate color from image - adjust as needed */
-    color: #BC7E55; /* Sienna/Brownish color */
-    /* or maybe a gold: color: #D4AF37; */
+    font-size: 1.8rem;
   }
-  
-  /* Style the main title "Add My Address" */
   .modal-title {
-    font-size: 30px; /* Font size for the title */
-    font-weight: 700;
-    line-height: 100%; 
-    letter-spacing: 0%;/* Slightly bold */
-    color: #1D1A1A; /* Dark grey text */
-    margin-top: 0;
-    margin-bottom: 25px;
+    font-size: 1.3rem;
   }
-  #title {
-    font-size: 70px; /* Font size for the title */
-    font-weight: 700;
-    line-height: 100%; 
-    letter-spacing: 0%;/* Slightly bold */
-    color: #ca3333; /* Dark grey text */
-    margin-top: 0;
-    margin-bottom: 25px;
+  .modal-input, .modal-submit-button {
+    font-size: 0.95rem;
   }
-  
-  /* Style the form container */
-  .modal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Space between form elements */
-  }
-  
-  /* Style the input fields */
-  .modal-input {
-    padding: 12px 20px;
-    /* border: 1px solid #e0e0e0; Light border */
-    border-radius: 25%; /* Highly rounded corners for inputs */
-    font-size: 1rem;
-    background-color: #f8f4eb; /* Very light beige background */
-    text-align: center; /* Center placeholder text */
-    width: 100%; /* Take full width */
-    box-sizing: border-box; /* Include padding in width */
-    outline: none; /* Remove default browser outline */
-    transition: border-color 0.2s ease-in-out;
-  }
-  
-  
-  .modal-input::placeholder {
-    
-    color: #F5F1E6; /* Lighter color for placeholder */
-  }
-  
-  .modal-input:focus {
-    border-color: #A0522D; /* Highlight border on focus */
-  }
-  
-  /* Style the submit button */
-  .modal-submit-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 25px; /* Highly rounded corners for button */
-    background-color: #FFD700; /* Yellow background (like Tailwind yellow-400) */
-    color: #333; /* Dark text color */
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    margin-top: 10px; /* Add some space above the button */
-  }
-  
-  .modal-submit-button:hover {
-    background-color: #eab308; /* Darker yellow on hover (like Tailwind yellow-500) */
-  }
-  
-  /* Basic responsiveness */
-  @media (max-width: 500px) {
-    .modal-content {
-      padding: 20px 25px;
-    }
-    .modal-brand-name {
-      font-size: 1.8rem;
-    }
-    .modal-title {
-      font-size: 1.3rem;
-    }
-    .modal-input, .modal-submit-button {
-      font-size: 0.95rem;
-    }
-  }
+}

@@ -1,12 +1,8 @@
-/* General Styles */
-/* body {
-  margin: 0;
-  font-family: sans-serif; /* Example font */
-/* } */ */
+/* General Styles
 
 a {
   text-decoration: none;
-  color: inherit; /* Inherit color by default */
+  color: inherit; 
 }
 
 button {
@@ -14,10 +10,10 @@ button {
   background: none;
   padding: 0;
   cursor: pointer;
-  font-family: inherit; /* Inherit font */
+  font-family: inherit; 
 }
 
-/* --- Top Bar --- */
+
 .topbar {
   display: flex;
     justify-content: center;
@@ -32,14 +28,14 @@ button {
   }
 
 
-/* --- Main Header --- */
+
 .header {
   display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-/* Header Search */
+
 .header-search {
   display: flex;
 }
@@ -130,31 +126,31 @@ button {
   color: #333;
 }
 .dropdown-arrow-img {
-  height: 12px; /* Adjust arrow size */
+  height: 12px; 
   width: auto;
-  transition: transform 0.2s ease-in-out; /* Smooth rotation */
+  transition: transform 0.2s ease-in-out; 
 }
 .dropdown-arrow-img.open {
-  transform: rotate(180deg); /* Rotate arrow when open */
+  transform: rotate(180deg); 
 }
 
-/* Profile Dropdown Menu */
+
 .profile-dropdown-menu {
   position: absolute;
   height: 188px;
   width: 125px;
-  top: calc(100% + 5px); /* Position below the trigger + 5px gap */
-  right: 0; /* Align to the right edge of the container */
+  top: calc(100% + 5px); 
+  right: 0; 
   background-color: #F4F4F4;
   border: 1px solid #ddd;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 180px; /* Set a minimum width */
-  z-index: 100; /* Ensure it's above other content */
-  padding: 8px 0; /* Padding top/bottom */
-  opacity: 1; /* Start visible */
-  transform: translateY(0); /* Start in position */
-  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out; /* Basic fade/slide */
+  min-width: 180px;
+  z-index: 100; 
+  padding: 8px 0; 
+  opacity: 1; 
+  transform: translateY(0);
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out; 
 }
 
 
@@ -326,4 +322,136 @@ button {
     .cart-icon-wrapper .MuiSvgIcon-root {
        font-size: 24px; 
     }
+} */
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffd700;
+  background-color: #800000;
+  height: 38px;
+}
+.topbar div {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header .search {
+  display: flex;
+}
+.header .search input {
+  padding: 8px;
+  max-width: 400px;
+}
+.topbar-right {
+  display: flex;
+  gap: 50px;
+}
+.login-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header .search img {
+  padding: 8px;
+  background-color: #800000;
+}
+
+.Laaagi {
+  display: flex;
+  align-items: center;
+}
+
+.Laaagi div a {
+  color: #bc7e55;
+  font-size: 45px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.laaagi-img {
+  height: 80px;
+  width: 80px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #800000;
+  color: #ffd700;
+  min-height: 38px;
+}
+.navbar div a {
+  text-decoration: none;
+  color: #ffd700;
+}
+.navbar div {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* temp */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle img {
+  height: 30px;
+  width: 30px;
+}
+
+@media (max-width: 500px) {
+  .menu-toggle {
+    display: block;
+    background-color: #800000;
+    text-align: end;
+    color: white;
+    padding-top: 5px;
+    padding-right: 5px;
+  }
+
+  .navbar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #800000;
+    color: #ffd700;
+    padding: 10px 0;
+  }
+
+  .navbar.open {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .navbar.collapsed {
+    display: none;
+  }
+
+  .header .search,
+  .topbar-right {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  .Laaagi div a {
+    font-size: 34px;
+  }
+  .laaagi-img {
+    height: 78px;
+    width: 67px;
+  }
+  .topbar-right {
+    gap: 14px;
+  }
 }
