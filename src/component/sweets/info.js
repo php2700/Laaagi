@@ -2,15 +2,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import './info.css'
 import { useState } from "react";
 
-const sweetsInKg = ['1kg', '2kg', '5kg', '10kg']
+const sweetsInKg = [{ name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 5 }]
+
 
 export const SweetsInfo = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const sweetsData = location?.state?.data;
+    const [priceperg, setPricePerg] = useState((sweetsData?.amount.split('/')[0]))
     const token = localStorage.getItem('token')
     const [sweetkg, setSweetkg] = useState()
     const [open, setOpen] = useState(false)
+    const [price, setPrice] = useState(0)
 
     const handlePayment = () => {
         if (!token) {
@@ -20,8 +23,10 @@ export const SweetsInfo = () => {
         navigate('/payment')
     }
 
-    const handleClose = () => {
-        setOpen(false)
+    const calculatePrice = (quantity) => {
+        const calculateAmount = quantity * 1000 * priceperg;
+        setPrice(calculateAmount)
+        setSweetkg(quantity)
     }
 
     return (
@@ -39,32 +44,24 @@ export const SweetsInfo = () => {
                 <div className="sweets-info-right-side">
                     <div className="sweets-info-name">
                         <div>{sweetsData?.name}</div>
-                        <div>{sweetsData?.amount}</div>
+                        <div>&nbsp;(Rs. {sweetsData?.amount} &nbsp;/- )</div>
                     </div>
                     <div className="sweets-info-des">
                         Description
                     </div>
                     <div className="sweets-info-text">
-                        Lorem Ipsum is simply dummy text of the printing
-                        and typesetting industry. Lorem Ipsum has been
-                        the industry's standard
-                        Lorem Ipsum is simply dummy text of the printing
-                        and typesetting industry. Lorem Ipsum has been
-                        the industry's standard
-                        Lorem Ipsum is simply dummy text of the printing
-                        and typesetting industry. Lorem Ipsum has been
-                        the industry's standard
+                        {sweetsData?.description}
                     </div>
                     <div>
-                        <select value={sweetkg} onChange={(e) => setSweetkg(e.target.value)} >
+                        <select value={sweetkg} onChange={(e) => calculatePrice(e.target.value)} >
                             <option value="" disabled>Select quantity</option>
                             {sweetsInKg?.map((ele) => (
-                                <option value={ele}>{ele}</option>
+                                <option value={ele?.value}>{ele?.name}</option>
                             ))}
 
                         </select>
                     </div>
-                    <div className="sweets-info-price">Total Price:2500</div>
+                    <div className="sweets-info-price">Total Price:{price}</div>
                     <div className="sweets-info-button">
                         <button onClick={handlePayment}>Pay</button>
                     </div>

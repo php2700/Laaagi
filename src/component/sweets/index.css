@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.sweets-header div a {
+.sweets-header div {
   min-height: 48px;
   display: flex;
   justify-content: center;
@@ -30,9 +30,9 @@
 
 .sweets-content-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 110px;
 }
 .sweets-content-img {
   min-height: 477px;
@@ -89,6 +89,9 @@
 .sweet-select {
   display: flex;
   justify-content: center;
+}
+.cursor{
+  cursor: pointer;
 }
 
 @media (max-width: 500px) {

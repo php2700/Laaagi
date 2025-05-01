@@ -1,5 +1,5 @@
 import './index.css'
-import { planningCategory } from "../category"
+// import { planningCategory } from "../category"
 import planningImg from '../../assets/planning/planning.jpg'
 import { Link } from 'react-router-dom'
 import { SignUp } from '../signUp'
@@ -20,6 +20,12 @@ export const PlanningTool = () => {
     const [lastIndex, setLastIndex] = useState(2)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [shouldSave, setShouldSave] = useState(false);
+    const [category, setCategory] = useState('Marriage')
+
+
+    const planningCategory = [{ name: 'Marriage', url: '/planning-tool' }, { name: "Birthday", url: '/planning-birthday' }, { name: "Mehndi", url: '/planning-mehndi' }, { name: "Party", url: '/planning-party' }, { name: "Room Decor", url: '/planning-other' }]
+
+
 
     const handleCheck = (idx) => {
         const isExist = checkedItems.includes(idx)
@@ -63,7 +69,7 @@ export const PlanningTool = () => {
                 Authorization: `Bearer ${token}`
             },
             params: {
-                category: planningCategory[1]?.name,
+                category: category,
             }
         })
             .then((res) => {
@@ -78,7 +84,7 @@ export const PlanningTool = () => {
 
     useEffect(() => {
         getPlanningData()
-    }, [])
+    }, [category])
 
 
 
@@ -118,6 +124,9 @@ export const PlanningTool = () => {
         setShouldSave(true)
     };
 
+    const handleUrl = (ele) => {
+        setCategory(ele?.name);
+    }
 
     return (
         <div >
@@ -132,7 +141,8 @@ export const PlanningTool = () => {
 
                     {
                         planningCategory?.slice(startIndex, lastIndex + 1)?.map((ele, index) => (
-                            <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
+                            // <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
+                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                         ))
                     }
                     {(lastIndex < (planningCategory?.length || 0) - 1) &&
@@ -141,7 +151,9 @@ export const PlanningTool = () => {
                 </>) : (<>
                     {
                         planningCategory?.map((ele, index) => (
-                            <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
+                            // <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
+                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+
                         ))
                     }
                 </>

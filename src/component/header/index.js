@@ -214,7 +214,7 @@ import './index.css';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { Logout } from './logout';
-
+import defaultImg from "../../assets/login/default-profile.png"
 
 export const Header = () => {
     const [userData, setUserData] = useState();
@@ -222,7 +222,8 @@ export const Header = () => {
     const context = useContext(AuthContext);
     const setToken = context?.setToken;
     const token = context?.token;
-    const defaultProfile=context.defaultProfile
+    const defaultProfile = context.defaultProfile
+    console.log(defaultProfile, '33333333333333333333333333')
     const userId = localStorage.getItem("_id")
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
@@ -298,7 +299,7 @@ export const Header = () => {
 
     useEffect(() => {
         getUserData()
-    }, [token,defaultProfile])
+    }, [token, defaultProfile])
 
     return (
         <div>
@@ -324,17 +325,17 @@ export const Header = () => {
                     <div className='user-menu-container' ref={dropdownRef}>
                         {
                             userData ? <div className='login-name'>
-                                <img src={userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData?.profile}` : defaultProfile} alt="User avatar" />
+                                <img src={userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData?.profile}` : defaultImg} alt="User avatar" />
                                 <div>{userData?.name}</div>
                                 <img
                                     src={downArrow}
                                     alt="Open user menu"
-                                    className={`dropdown-arrow dropdown-trigger-arrow ${isDropdownOpen ? 'open' : ''}`} 
+                                    className={`dropdown-arrow dropdown-trigger-arrow ${isDropdownOpen ? 'open' : ''}`}
                                     onClick={toggleDropdown}
                                 />
                             </div> :
                                 <div className='login-name'>
-                                    <img src={defaultProfile} alt="User avatar" />
+                                    <img src={defaultImg} alt="User avatar" />
                                     <div>Guest</div>
                                 </div>
                         }

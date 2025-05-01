@@ -51,8 +51,8 @@ function App() {
 
   return (
     <>
-      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 0' }}>
-        {/* <div> */}
+      {/* <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 0' }}> */}
+        <div>
         <BrowserRouter>
           <Header />
           <Routes>

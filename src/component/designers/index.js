@@ -8,14 +8,15 @@ import { designerCategory } from '../category';
 import axios from 'axios';
 
 const designerHeader = [
-    { name: 'Bridge', url: '/designers' },
-    { name: 'groom', url: '/Groom' },
-    { name: 'suits', url: '/Suits' },
-    { name: 'other', url: '/Other' },
+    { name: 'Bridge', category: 'Bridge' },
+    { name: 'groom', category: 'Groom' },
+    { name: 'suits', category: 'Suits' },
+    { name: 'other', category: 'Other' },
 
 ]
 
 export const Designers = () => {
+    const [category, setCategory] = useState('Bridge')
 
     const [data, setData] = useState([])
     const [startIndex, setStartIndex] = useState(0)
@@ -51,7 +52,7 @@ export const Designers = () => {
     const designerLsit = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/designers_list`, {
             params: {
-                category: designerCategory[0]
+                category: category
             }
         })
             .then((res) => {
@@ -63,7 +64,11 @@ export const Designers = () => {
 
     useEffect(() => {
         designerLsit()
-    }, [])
+    }, [category])
+
+    const handleUrl = (ele) => {
+        setCategory(ele?.category);
+    }
 
     return (
         <div className='designers' >
@@ -72,7 +77,7 @@ export const Designers = () => {
                     isMobile ?
                         <>
                             {startIndex > 0 &&
-                                <div onClick={handlePrev}><img  src={leftIcon} /></div>
+                                <div onClick={handlePrev}><img src={leftIcon} /></div>
                             }
                             {designerHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => (
                                 <div><Link to={ele.url} >{ele?.name}</Link></div>
@@ -83,7 +88,9 @@ export const Designers = () => {
                         </> :
                         <>
                             {designerHeader?.map((ele) => (
-                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+
                             ))}
                         </>
                 }

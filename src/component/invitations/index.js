@@ -2,7 +2,7 @@ import { use, useContext, useEffect, useState } from 'react';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,16 +10,16 @@ import { AuthContext } from '../context';
 
 
 const invitationHeader = [
-    { name: 'Only Invitation', url: '/invitation' },
-    { name: 'Invitation on Wooden Box', url: '/invitation-wooden' },
-    { name: 'Invitation on Box', url: '/invitation-box' },
-    { name: 'Invitation on Glass Box', url: '/invitation-glass' },
-    { name: 'Misc Invitation', url: '/invitation-misc' },
+    { name: 'Only Invitation', category: 'invitation' },
+    { name: 'Invitation on Wooden Box', category: 'invitation_wooden_box' },
+    { name: 'Invitation on Box', category: 'invitation_box' },
+    { name: 'Invitation on Glass Box', category: 'invitation_glass_box' },
+    { name: 'Misc Invitation', category: 'misc_invitation' },
 ]
 
 export const Invitation = () => {
     const context = useContext(AuthContext);
-    const invitationSweet = context.setSelectSweet;
+    const setInvitationsweet = context.setSelectSweet;
     const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
@@ -27,6 +27,7 @@ export const Invitation = () => {
     const [lastIndex, setLastIndex] = useState(1)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [menuOpen, setMenuOpen] = useState(false)
+    const [category, setCategory] = useState()
 
     const handleForwardIcon = () => {
         const totalItems = invitationHeader?.length || 0;
@@ -59,7 +60,7 @@ export const Invitation = () => {
     const getInvitationList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_list`, {
             params: {
-                category: invitationCategory[0],
+                category: category,
                 price: selectedPrice
             }
         })
@@ -72,17 +73,19 @@ export const Invitation = () => {
 
     useEffect(() => {
         getInvitationList()
-    }, [selectedPrice])
+    }, [selectedPrice, category])
 
     const handleFilter = (data) => {
         setSelectedPrice(data)
     }
 
-    console.log(isMobile, "ismobile")
-
     const handleInvitationImg = (ele) => {
-        invitationSweet(ele)
+        setInvitationsweet(ele)
         navigate('/invitation-detail')
+    }
+
+    const handleUrl = (ele) => {
+        setCategory(ele?.category);
     }
 
     return (
@@ -95,7 +98,8 @@ export const Invitation = () => {
                                 <div onClick={handlePrev}><img src={leftIcon} /></div>
                             }
                             {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => (
-                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                             {(lastIndex < (invitationHeader?.length || 0) - 1) &&
                                 <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
@@ -103,7 +107,8 @@ export const Invitation = () => {
                         </> :
                         <>
                             {invitationHeader?.map((ele) => (
-                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }
@@ -130,14 +135,11 @@ export const Invitation = () => {
                         {
                             data?.map((ele) => (
                                 <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
-                                    {/* <Link className='invitation-content-img' to='/invitation-detail' state={{ data: ele }} >
-                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                        <div>{ele?.name}</div>
-                                    </Link> */}
-                                    {/* <Link className='invitation-content-img' to='/invitation-detail' state={{ data: ele }} > */}
                                     <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                    <div>{ele?.name}</div>
-                                    {/* </Link> */}
+                                    <div className='invitation-content-img-name' >
+                                        <div >{ele?.name}</div>
+                                        <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
+                                    </div>
                                 </div>
                             ))}
                     </div>

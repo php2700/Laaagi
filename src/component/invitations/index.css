@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.invitations-header div a {
+.invitations-header div {
   min-height: 48px;
   display: flex;
   justify-content: center;
@@ -18,6 +18,7 @@
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .invitation-header-active-color {
@@ -73,9 +74,9 @@
 
 .invitation-content-list {
   display: flex;
-
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 65px;
+  justify-content: flex-start;
 }
 .invitation-content-img {
   height: 319px;
@@ -92,13 +93,19 @@
   width: 342px;
 }
 
-.invitation-content-img div {
-  position: absolute;
-  bottom: 20px;
-}
 .invitation-toggle {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+}
+
+.invitation-content-img-name {
+  position: absolute;
+  bottom: 20px;
+}
+
+.invitation-payment {
+  margin: 6px;
 }
 
 @media (max-width: 500px) {
@@ -131,7 +138,7 @@
 }
 
 @media (max-width: 700px) {
-  .invitations-header {
+  .invitations-header a {
     justify-content: space-between;
     padding: 0 12px;
   }
