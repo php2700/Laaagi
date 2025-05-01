@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [amounts, setAmounts] = useState([0, 0, 0, 0, 0]);
     const [boxName, setBoxName] = useState('Normal Box');
     const [weight, setWeight] = useState(500)
+    const [defaultProfile, setDefaultProfile] = useState(false)
 
 
     useEffect(() => {
@@ -24,6 +25,6 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName,weight, setWeight }} >{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
     )
 }

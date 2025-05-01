@@ -20,7 +20,7 @@ export const Addadress = ({ open, onClose }) => {
       address: address,
     }
 
-    axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update-address`, userData, {
+    axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, userData, {
       headers: {
         Authorization: `Bearer ${token}`
       }
