@@ -88,7 +88,7 @@ function App() {
             <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
             <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} />
             <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
           </Routes>
         </BrowserRouter>
         <Footer />

@@ -206,15 +206,29 @@ import seacrh from '../../assets/logo/search.png';
 import group from "../../assets/logo/Group 2.png";
 import downArrow from "../../assets/logo/down.png";
 import login from "../../assets/login/Ellipse 2.png";
-import { useEffect, useState, useRef } from 'react'; 
+import defaultProfile from "../../assets/login/default-profile.png"
+import { useEffect, useState, useRef, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './index.css'
+import { AuthContext } from '../context';
+import axios from 'axios';
+import { Logout } from './logout';
+
 
 export const Header = () => {
+    const [userData, setUserData] = useState();
+    const navigate = useNavigate();
+    const context = useContext(AuthContext);
+    const setToken = context?.setToken;
+    const token = context?.token;
+    const defaultProfile=context.defaultProfile
+    const userId = localStorage.getItem("_id")
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropdownRef = useRef(null); 
+    const dropdownRef = useRef(null);
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         const handleResize = () => {
@@ -226,7 +240,7 @@ export const Header = () => {
 
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-               setIsDropdownOpen(false);
+                setIsDropdownOpen(false);
             }
         };
 
@@ -237,25 +251,54 @@ export const Header = () => {
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            document.removeEventListener('mousedown', handleClickOutside); 
+            document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [isDropdownOpen]); 
+    }, [isDropdownOpen]);
 
 
     const toggleDropdown = (event) => {
         event.stopPropagation();
-        setIsDropdownOpen(prevState => !prevState); 
+        setIsDropdownOpen(prevState => !prevState);
     };
 
     const handleLogout = () => {
-        console.log("Logout action triggered");
         setIsDropdownOpen(false);
+        setOpen(true)
     };
+
+    const LogoutUser = () => {
+        localStorage.removeItem("_id")
+        localStorage.removeItem("token")
+        setUserData('')
+        setToken('')
+        setOpen(false)
+        navigate('/')
+    }
+
+    const closeLogoutModel = () => {
+        setOpen(false)
+    }
+
 
     const closeDropdown = () => {
         setIsDropdownOpen(false);
     }
 
+    const getUserData = async () => {
+        await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        }).then((res) => {
+            setUserData(res?.data?.userData)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        getUserData()
+    }, [token,defaultProfile])
 
     return (
         <div>
@@ -272,34 +315,40 @@ export const Header = () => {
                     <div><Link to='/'>Laaagi</Link></div>
                 </div>
                 <div className='topbar-right'>
-                   
+
                     <div>
                         <img src={group} alt="group" />
-                        <img src={downArrow} alt="dropdown arrow"/> 
+                        <img src={downArrow} alt="dropdown arrow" />
                     </div>
 
                     <div className='user-menu-container' ref={dropdownRef}>
-                        <div className='login-name'>
-                            <img src={login} alt="User avatar"/>
-                            <div>Ram Kam</div>
-                            <img
-                                src={downArrow}
-                                alt="Open user menu" 
-                                className={`dropdown-arrow dropdown-trigger-arrow ${isDropdownOpen ? 'open' : ''}`} // Added specific class for trigger
-                                onClick={toggleDropdown}
-                            />
-                        </div>
-
+                        {
+                            userData ? <div className='login-name'>
+                                <img src={userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData?.profile}` : defaultProfile} alt="User avatar" />
+                                <div>{userData?.name}</div>
+                                <img
+                                    src={downArrow}
+                                    alt="Open user menu"
+                                    className={`dropdown-arrow dropdown-trigger-arrow ${isDropdownOpen ? 'open' : ''}`} 
+                                    onClick={toggleDropdown}
+                                />
+                            </div> :
+                                <div className='login-name'>
+                                    <img src={defaultProfile} alt="User avatar" />
+                                    <div>Guest</div>
+                                </div>
+                        }
                         {isDropdownOpen && (
                             <div className='user-dropdown-menu'>
-                                <Link to='/profile' onClick={closeDropdown}>Profile</Link>
-                                <Link to='/guestlist' onClick={closeDropdown}>GuestList</Link>
+                                <Link to='/profile' state={{ data: userData }} onClick={closeDropdown}>Profile</Link>
+                                <Link to='/guest' onClick={closeDropdown}>GuestList</Link>
                                 <Link to='/planning-tool' onClick={closeDropdown}>Planning tool</Link>
                                 <button onClick={handleLogout}>LogOut</button>
                             </div>
                         )}
                     </div>
                 </div>
+                <Logout open={open} handleClose={closeLogoutModel} logoutUser={LogoutUser} />
             </div>
 
             {isMobile && (
