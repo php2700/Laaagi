@@ -209,8 +209,12 @@ import login from "../../assets/login/Ellipse 2.png";
 import defaultProfile from "../../assets/login/default-profile.png"
 import { useEffect, useState, useRef, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
+import axios from 'axios';
+import { AuthContext } from '../context';
+import { Logout } from './logout';
+
 
 export const Header = () => {
     const [userData, setUserData] = useState();
