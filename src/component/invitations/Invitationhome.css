@@ -1,4 +1,4 @@
-.invitation-details-container {
+ .invitation-details-container {
   margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -518,7 +518,60 @@
   .customize-btn {
     width: 100%;
   }
-}
+} 
 
 /* new */
-/* Invitationhome.css */
+ @media (max-width: 400px) {
+  .invitation-description h2 {
+    font-size: 1.4em;
+  }
+
+  .back-btn {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+
+  .invitation-box-header {
+    padding: 12px 20px;
+  }
+
+  .invitation-box-type {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .invitation-size-box,
+  .invitation-section-align,
+  .invitation-total {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .invitation-total div {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .invitation-next div {
+    width: 100%;
+  }
+
+  .invittions-size-img,
+  .invitation-second-img,
+  .invitation-third-img,
+  .select-sweet-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .invitation-box-select-header {
+    font-size: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+} 
+/* new2 */

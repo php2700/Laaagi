@@ -394,7 +394,6 @@ button {
   font-weight: 400;
 }
 
-/* temp */
 .menu-toggle {
   display: none;
   cursor: pointer;
@@ -512,10 +511,7 @@ button {
   font-size: inherit; 
 }
 
-/* .user-dropdown-menu a:hover,
-.user-dropdown-menu button:hover {
-  background-color: #f0f0f0; 
-} */
+
 
 .dropdown-arrow.open {
   transform: rotate(180deg);
@@ -543,4 +539,94 @@ button {
     height: auto;
     font-size: 16px; 
     margin-left: 5px; 
+}
+/* new2 */
+/* Responsive Improvements for 300px - 500px range */
+
+/* Base Styles - keep existing structure as is */
+/* ... [your existing styles, already pasted above] ... */
+
+/* Additional Responsive Fixes */
+@media (max-width: 500px) and (min-width: 300px) {
+  .topbar div {
+    font-size: 13px;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .Laaagi {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .Laaagi div a {
+    font-size: 24px;
+  }
+
+  .laaagi-img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .navbar {
+    font-size: 14px;
+    padding: 8px 0;
+    gap: 5px;
+  }
+
+  .navbar a {
+    padding: 8px 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .user-dropdown-menu {
+    right: 10px;
+    min-width: 140px;
+  }
+
+  .login-name img:first-child {
+    width: 26px;
+    height: 26px;
+  }
+
+  .login-name img:last-child {
+    width: 10px;
+  }
+
+  .menu-toggle img {
+    height: 24px;
+    width: 24px;
+  }
+
+  .topbar-right {
+    gap: 10px;
+  }
+
+  .header .search input {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .header .search img {
+    padding: 6px;
+    height: 16px;
+    width: 16px;
+  }
+
+  .user-dropdown-menu a,
+  .user-dropdown-menu button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* Optional: smooth animation for dropdown */
+.user-dropdown-menu {
+  transition: all 0.3s ease;
 }

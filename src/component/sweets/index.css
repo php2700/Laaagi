@@ -1,4 +1,4 @@
-.sweets {
+ .sweets {
   margin: 20px 0;
 }
 .sweets-header {
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-width: 225px; */
+  
   padding: 0 25px;
   background-color: #800000;
   color: #ffd700;
@@ -128,4 +128,5 @@
   .sweets-content-list {
     justify-content: center;
   }
-}
+} 
+
