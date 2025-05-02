@@ -81,6 +81,12 @@
 
 @media (max-width: 500px) {
   .dry-fruit-treat-img-list {
+    gap: 25x;
+}
+  .dry-fruit-treat-img-wrapper {
+    width: 100%;
+  }
+  .dry-fruit-treat-img-list {
     flex-direction: column;
     gap: 20px;
   }

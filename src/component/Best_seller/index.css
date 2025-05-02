@@ -80,6 +80,10 @@
 }
 
 @media (max-width: 500px) {
+  .best-seller-wrapper {
+    width: 100%;
+}
+
   .best-seller-img-list {
     display: flex;
     flex-direction: column;

@@ -34,6 +34,9 @@
 }
 
 @media (max-width: 500px) {
+      .discover-category-wrapper {
+            width: 100%;
+        }
       .discover-category-list {
             display: flex;
             flex-direction: column;

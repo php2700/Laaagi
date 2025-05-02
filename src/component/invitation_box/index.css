@@ -28,6 +28,10 @@
 }
 
 @media (max-width: 500px) {
+
+      .invitation-box-wrapper {
+            width: 100%;
+        }
       .invitation-box-list {
             display: flex;
             flex-direction: column;

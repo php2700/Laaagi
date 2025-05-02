@@ -15,8 +15,8 @@
 
 .contact-us-top-img {
   /* min-height: 354px; */
-  /* height: auto; */
-  /* margin-top: 20px; */
+/* height: auto; */
+/* margin-top: 20px; */
 /* } */
 /* .contact-us-top-img img {
   width: 100%;
@@ -111,19 +111,19 @@
     margin: 25px 0;
     padding: 15px 20px;
   } */
-  /* .contact-us-form {
+/* .contact-us-form {
     padding: 34px 15px;
   } */
-  /* .contact-us-form-name {
+/* .contact-us-form-name {
     flex-direction: column;
     align-items: center;
   } */
 
-  /* .contact-us-header {
+/* .contact-us-header {
     font-size: 30px;
   } */
 
-  /* .contact-us-form-name input {
+/* .contact-us-form-name input {
     width: 425px;
   } */
 /* } */
@@ -133,7 +133,7 @@
     flex-direction: column;
   }
 }  */
- /* --- Global & Base Styles --- */
+/* --- Global & Base Styles --- */
 /* *, *::before, *::after {
   box-sizing: border-box; 
 }
@@ -336,19 +336,7 @@ body {
 }
  */
 /* Reset & Global Styles */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Image Styling */
 .ads-img {
   max-height: 496px;
   width: 100%;
@@ -493,14 +481,7 @@ html, body {
   margin-bottom: 5px;
 }
 
-/* Responsive Styles */
-@media (min-width: 501px) {
-  .contact-us-header {
-    font-size: 32px;
-  }
-}
-
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .contact-middle {
     gap: 50px;
     padding: 25px 8%;
@@ -517,6 +498,13 @@ html, body {
 
   .contact-us-form-name {
     flex-wrap: nowrap;
+  }
+}
+
+/* Responsive Styles */
+@media (min-width: 500px) {
+  .contact-us-header {
+    font-size: 32px;
   }
 }
 

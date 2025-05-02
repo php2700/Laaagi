@@ -111,6 +111,7 @@
   color: #253d4e;
 }
 .footer-middle {
+  overflow: hidden;
   display: flex;
   justify-content: center;
 }
