@@ -139,9 +139,11 @@ export const Sweets = () => {
                     : <div className='sweets-content'>
                         <div className='sweets-content-list'>
                             {data?.map((ele) => (
-                                <div >
+                                <div className='sweets-main-container'>
                                     <Link className='sweets-content-img' to='/sweets-info' state={{ data: ele }} >
-                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        <div className='sweets-img-div'>
+                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        </div>
                                         <div className='sweets-name'>{ele?.name}</div>
                                         <div className='sweets-price'>{ele?.amount} </div>
                                     </Link>

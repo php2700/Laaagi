@@ -5,6 +5,7 @@
       text-align: center;
       font-weight: 600;
       font-size: 32px;
+      margin: 20px 0;
 }
 .discover-category-left-text {
       font-weight: 600;
@@ -18,10 +19,10 @@
 
 .discover-category-wrapper {
       text-align: center;
+      width: 32%;
 }
 .discover-category-img {
-      height: 379px;
-      width: 424px;
+      width: 100%;
       border: 1px solid #ccc;
 }
 .discover-category-img-text {

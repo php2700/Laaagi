@@ -1,50 +1,76 @@
 .about {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
-      min-height: 550px;
-      background-color: #f6f6f6;
-      align-items: center;
-      padding: 0 150px;
-      gap: 50px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 550px;
+  background-color: #f6f6f6;
+  align-items: center;
+  padding: 0 150px;
+  gap: 50px;
 }
 .about-us {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 .about-heading {
-      font-size: 30px;
-      font-weight: 600;
+  font-size: 30px;
+  font-weight: 600;
 }
 .about-desc {
-      font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 20px;
-      color: #555555;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #555555;
 }
 .about-button {
-      display: flex;
-      min-width: 150px;
-      padding: 5px 20px;
-      border-radius: 20px;
-      font-size: 20px;
-      font-weight: 400;
+  display: flex;
+  min-width: 150px;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 400;
 }
 .about-video {
-      min-height: 340px;
-      max-width: 552px;
+  min-height: 340px;
+  max-width: 552px;
 }
 
+
+
+@media (max-width: 850px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 50px;
+  }
+  .about-video {
+    width: 100%;
+  }
+
+
+}
+
+@media (max-width: 720px) {
+  .about-video {
+    width: 100%;
+    max-width: 552px;
+  }
+}
+
+
+
+
 @media (max-width: 500px) {
-      .about {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 0 50px;
-      }
-      .about-video {
-            width: 100%;
-            max-width: 552px;
-      }
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 50px;
+  }
+  .about-video {
+    width: 100%;
+    max-width: 552px;
+  }
 }

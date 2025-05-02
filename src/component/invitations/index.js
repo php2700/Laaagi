@@ -123,20 +123,21 @@ export const Invitation = () => {
                 }
             </div>
 
+
             <div className='invitations-content'>
                 <div className='invitations-price-left'>
-                    <div className='filter-header-container'>
-                        <span className='invitation-price-header'>Price Range filter</span>
-                        {isMobile && (
-                           <button
-                                className='hamburger-toggle-button'
-                                onClick={() => setMenuOpen(!menuOpen)}
-                                aria-expanded={menuOpen}
-                                aria-controls="filter-options" 
-                            >
-                                <MenuIcon />
-                           </button>
-                        )}
+                    <div className='invitation-price-header'>Price Range filter</div>
+                    {
+                        isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
+                            <MenuIcon />
+                        </div>
+                    }
+                    <div className={`invitation-toggle ${isMobile ? (menuOpen ? 'open' : 'close') : ''}`}>
+                        {
+                            filterData?.map((ele) => (
+                                <div className='invitation-price' onClick={() => { handleFilter(ele) }}>{ele}</div>
+                            ))
+                        }
                     </div>
                 </div>
                 <div className='invitations-content-header'>
@@ -155,36 +156,8 @@ export const Invitation = () => {
                     </div>
                 </div>
 
-                <div className='invitations-content-header'>
-                    <div className='invitation-content-text'>
-                        Upload Your Design and get quote for the same 
-                    </div>
-                    <div className='invitation-content-list'>
-                        {data?.length > 0 ? (
-                             data.map((ele) => (
-                                <div
-                                    key={ele?._id || ele?.name} 
-                                    className='invitation-content-img'
-                                    onClick={() => handleInvitationImg(ele)}
-                                    role="button" 
-                                    tabIndex={0}
-                                    onKeyDown={(e) => e.key === 'Enter' || e.key === ' ' ? handleInvitationImg(ele) : null} // Keyboard activation
-                                >
-                                    <img
-                                        src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`}
-                                        alt={ele?.name || 'Invitation image'}
-                                        loading="lazy" 
-                                    />
-                                    <div className="invitation-name-overlay">{ele?.name}</div>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No invitations found matching your criteria.</p> 
-                        )}
-
-                    </div>
-                </div>
             </div>
+
         </div>
     );
 };
