@@ -98,13 +98,17 @@ export const Designers = () => {
             <div className='designers-content'>
                 <div className='designers-content-list'>
                     {data?.map((ele) => (
-                        <div className='designers-content-img'>
-                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                        <div className='designer-parent-content'>
+                            <div className='designers-content-img'>
+                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+
+                            </div>
                             <div className='designers-name'>{ele?.name}</div>
                         </div>
                     ))}
                 </div>
             </div>
+
 
         </div>
     )
