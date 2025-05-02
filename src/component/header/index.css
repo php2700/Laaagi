@@ -626,7 +626,79 @@ button {
   }
 }
 
-/* Optional: smooth animation for dropdown */
+
 .user-dropdown-menu {
   transition: all 0.3s ease;
+}
+/*  */
+/* ... existing css rules ... */
+
+.navbar {
+  display: flex;
+  justify-content: space-around; /* Or space-between, etc. */
+  align-items: center;
+  background-color: #800000;
+  color: #ffd700;
+  min-height: 38px;
+  /* padding: 0 10px; /* Add some padding if needed */
+}
+
+/* Style for the container div of each link - helps with spacing/alignment */
+.navbar div {
+  padding: 5px 10px; /* Adjust vertical (5px) and horizontal (10px) padding */
+  display: flex;      /* Helps center the link if needed */
+  align-items: center; /* Vertically center */
+}
+
+/* Style for the NavLink (<a> tag) itself */
+.navbar div a {
+  text-decoration: none;
+  color: #ffd700;
+  font-size: 18px;    /* Your existing font size */
+  font-weight: 400;   /* Your existing font weight */
+  padding: 5px 0;     /* Add some vertical padding directly to the link if needed */
+  position: relative; /* Needed if using ::after pseudo-element */
+  transition: color 0.2s ease; /* Smooth transition for potential hover effects */
+}
+
+
+/* --- NEW CSS FOR ACTIVE LINK --- */
+
+/* Style for the ACTIVE NavLink (<a> tag with .active class) */
+.navbar div a.active {
+  color: #ffffff; /* Optional: Change text color for active link (e.g., white) */
+  font-weight: 600; /* Optional: Make active link bolder */
+}
+
+/* Add the red underline using ::after pseudo-element */
+.navbar div a.active::after {
+  content: '';             /* Necessary for pseudo-elements */
+  position: absolute;
+  bottom: -2px;             /* Position the line slightly below the text */
+  left: 0;                  /* Start line from the left edge of the link */
+  right: 0;                 /* Extend line to the right edge of the link */
+  height: 3px;              /* Thickness of the line */
+  background-color: red;    /* Color of the line */
+}
+
+/* --- End NEW CSS --- */
+
+
+/* ... rest of your existing css rules ... */
+
+/* Adjust padding/positioning in media queries if needed */
+@media (max-width: 500px) {
+  .navbar div {
+    padding: 8px 15px; /* Adjust padding for mobile if needed */
+    width: 100%;       /* Make divs take full width in column layout */
+    justify-content: flex-start; /* Align text left */
+  }
+
+  .navbar div a.active::after {
+     /* You might want to adjust left/right/bottom for mobile if padding changes */
+     left: 15px; /* Example: Match mobile padding */
+     right: 15px;/* Example: Match mobile padding */
+  }
+
+  /* ... other mobile styles ... */
 }

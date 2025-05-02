@@ -337,6 +337,7 @@ export const Header = () => {
                                     <img src={defaultProfile} alt="User avatar" />
                                     <div>Guest</div>
                                 </div>
+                
                         }
                         {isDropdownOpen && (
                             <div className='user-dropdown-menu'>
