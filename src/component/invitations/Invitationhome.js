@@ -73,6 +73,7 @@ export const Invitationhome = () => {
   // const weight = context.weight
   // const setWeight = context.setWeight;
   const invitation = context?.selectSweet;
+  const [price, serPrice] = useState(invitation?.price)
   const [invitationId, setinvitationId] = useState(invitation?._id)
   const getSweet = location?.state;
   const [selectedSweet, setSelectedSweet] = useState(getSweet)
@@ -265,7 +266,7 @@ export const Invitationhome = () => {
           <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
         </div>
         <div className="invitation-description">
-          <h2>{invitation?.name}</h2>
+          <h2>{invitation?.name} (Rs. {price}/-)</h2>
           <p className="description-label">Description</p>
           <p>{invitation?.description}</p>
           <button className="customize-btn" onClick={handleOpenModal}>

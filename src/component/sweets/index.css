@@ -1,4 +1,4 @@
- .sweets {
+.sweets {
   margin: 20px 0;
 }
 .sweets-header {
@@ -7,12 +7,12 @@
   flex-wrap: wrap;
 }
 
-.sweets-header div a {
+.sweets-header div {
   min-height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   padding: 0 25px;
   background-color: #800000;
   color: #ffd700;
@@ -22,48 +22,41 @@
 }
 
 .sweets-content {
-  display: flex;
-  gap: 20px;
   padding: 15px;
-  justify-content: space-between;
 }
 
 .sweets-content-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 30px;
 }
+
 .sweets-content-img {
-  min-height: 477px;
-  min-width: 360px;
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
-  position: relative;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  text-decoration: none;
 }
 .sweets-content-img img {
-  height: 335px;
-  width: 358px;
+  width: 100%;
+  height: 560px;
 }
 
 .sweets-name {
-  position: absolute;
-  bottom: 50px;
   color: #5d4037;
   font-size: 20px;
   font-weight: 700;
+  margin-top: 30px;
 }
 
 .sweets-price {
-  position: absolute;
-  bottom: 20px;
   font-size: 20px;
   font-weight: 600;
   color: #5d4037;
+  margin-bottom: 30px;
 }
 .btn-done {
   border-radius: 10px;
@@ -89,6 +82,17 @@
 .sweet-select {
   display: flex;
   justify-content: center;
+}
+.cursor {
+  cursor: pointer;
+}
+
+.sweets-main-container {
+  width: 32%;
+}
+
+.sweets-img-div {
+  width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -128,5 +132,4 @@
   .sweets-content-list {
     justify-content: center;
   }
-} 
-
+}

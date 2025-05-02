@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.designers-header div a {
+.designers-header div  {
   min-height: 48px;
   display: flex;
   justify-content: center;
@@ -30,10 +30,11 @@
 
 .designers-content-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 110px;
 }
+
 .designers-content-img {
   min-height: 444px;
   min-width: 391px;
@@ -55,6 +56,10 @@
   color: #5d4037;
   font-size: 20px;
   font-weight: 700;
+}
+
+.cursor{
+  cursor: pointer;
 }
 
 @media (max-width: 500px) {

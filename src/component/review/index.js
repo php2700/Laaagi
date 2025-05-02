@@ -32,6 +32,7 @@ export const Review = () => {
     }, [reviewListData]);
     const currentReview = reviewListData[currentIndex];
 
+
     return (
         <div className='review'>
             <div className='review-list'>

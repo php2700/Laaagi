@@ -13,10 +13,10 @@
 
 .invitation-box-wrapper {
       text-align: center;
+      width: 32%;
 }
 .invitation-box-img {
-      height: 379px;
-      width: 424px;
+      width: 100%;
       border: 1px solid #ccc;
 }
 .invitation-box-img-text {

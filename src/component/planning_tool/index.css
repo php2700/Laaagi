@@ -5,7 +5,7 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.plannig-category div a {
+.plannig-category div  {
   text-decoration: none;
   min-height: 48px;
   display: flex;
@@ -16,6 +16,7 @@
   color: #ffd700;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 .planning-check-list {
   text-align: center;

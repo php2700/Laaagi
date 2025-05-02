@@ -41,7 +41,7 @@ export const Ads = () => {
                 {
                     adsData.filter((item) => (item.banner == 'Banner3'))
                         .map((ele) => (
-                            <div key={ele.id} className="ads-center"><img className="ads-second-row-img" src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} /> </div>
+                            <div key={ele.id} className="ads-second-center"><img className="ads-second-row-img" src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} /> </div>
                         ))
                 }
             </div>

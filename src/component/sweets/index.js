@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { sweetsCategory } from '../category'
 import './index.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,13 +8,18 @@ import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png"
 
 
+
+
 const sweetsHeader = [
-    { name: 'Sugar Free', url: '/sweets' },
-    { name: 'Bengali Sweets', url: '/bengali-sweets' },
-    { name: 'Sweets', url: '/sweets' },
-    { name: 'Sweets', url: '/sweets' },
-    { name: 'Sweets', url: '/sweets' }
+    { name: 'Sugar Free', category: 'SugarFree' },
+    { name: 'Bengali Sweets', category: 'BengaliSweets' },
+    { name: 'Sweets', category: 'Sweets' },
+    { name: 'Sweets', category: 'Sweets' },
+    { name: 'Sweets', category: 'Sweets' }
 ]
+
+
+
 
 export const Sweets = () => {
     const navigate = useNavigate()
@@ -28,6 +32,7 @@ export const Sweets = () => {
     const [data, setData] = useState([])
     const [invitationselectSweet, setInvitationSelectSweet] = useState();
     const [orderId, setOrderId] = useState();
+    const [category, setCategory] = useState('SugarFree')
 
     const [startIndex, setStartIndex] = useState(0)
     const [lastIndex, setLastIndex] = useState(2)
@@ -62,7 +67,7 @@ export const Sweets = () => {
     const sweetsDataList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
             params: {
-                category: sweetsCategory[0]
+                category: category
             }
         })
             .then((res) => {
@@ -75,12 +80,16 @@ export const Sweets = () => {
 
     useEffect(() => {
         sweetsDataList()
-    }, [])
+    }, [category])
 
 
     const handleSweet = (item) => {
         setOrderId(item?.orderId)
         setInvitationSelectSweet(item)
+    }
+
+    const handleUrl = (ele) => {
+        setCategory(ele?.category);
     }
 
     const handleInvitationSweet = () => {
@@ -97,14 +106,16 @@ export const Sweets = () => {
                             <div onClick={handlePrev}><img src={leftIcon} /></div>
                         }
                         {sweetsHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => (
-                            <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                         ))}
                         {(lastIndex < (sweetsHeader?.length || 0) - 1) &&
                             <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
                         }
                     </> : <>
                         {sweetsHeader?.map((ele) => (
-                            <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                         ))}
                     </>
                 }
@@ -120,7 +131,7 @@ export const Sweets = () => {
                                     }
                                     <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
                                     <div className='sweets-name'>{ele?.name}</div>
-                                    <div className='sweets-price'>{ele?.amount} </div>
+                                    <div className='sweets-price'> {ele?.amount} </div>
                                 </div>
                             ))}
                         </div>
@@ -128,9 +139,11 @@ export const Sweets = () => {
                     : <div className='sweets-content'>
                         <div className='sweets-content-list'>
                             {data?.map((ele) => (
-                                <div >
+                                <div className='sweets-main-container'>
                                     <Link className='sweets-content-img' to='/sweets-info' state={{ data: ele }} >
-                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        <div className='sweets-img-div'>
+                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        </div>
                                         <div className='sweets-name'>{ele?.name}</div>
                                         <div className='sweets-price'>{ele?.amount} </div>
                                     </Link>
