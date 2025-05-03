@@ -1,5 +1,4 @@
 import './index.css'
-// import { planningCategory } from "../category"
 import planningImg from '../../assets/planning/planning.jpg'
 import { Link } from 'react-router-dom'
 import { SignUp } from '../signUp'

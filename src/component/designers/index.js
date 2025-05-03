@@ -6,6 +6,7 @@ import './index.css'
 import { Link } from 'react-router-dom';
 import { designerCategory } from '../category';
 import axios from 'axios';
+import { Model } from './Model';
 
 const designerHeader = [
     { name: 'Bridge', category: 'Bridge' },
@@ -17,7 +18,8 @@ const designerHeader = [
 
 export const Designers = () => {
     const [category, setCategory] = useState('Bridge')
-
+    const [open, setOpen] = useState(false)
+    const [imgData, setImgData] = useState();
     const [data, setData] = useState([])
     const [startIndex, setStartIndex] = useState(0)
     const [lastIndex, setLastIndex] = useState(2)
@@ -62,6 +64,14 @@ export const Designers = () => {
             })
     }
 
+    const handleModel = (imgData) => {
+        setImgData(imgData)
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     useEffect(() => {
         designerLsit()
     }, [category])
@@ -99,7 +109,7 @@ export const Designers = () => {
                 <div className='designers-content-list'>
                     {data?.map((ele) => (
                         <div className='designer-parent-content'>
-                            <div className='designers-content-img'>
+                            <div className='designers-content-img' onClick={() => handleModel(ele)}>
                                 <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
 
                             </div>
@@ -109,7 +119,11 @@ export const Designers = () => {
                 </div>
             </div>
 
-
+            <Model
+                open={open}
+                onClose={handleClose}
+                data={imgData}
+            />
         </div>
     )
 }

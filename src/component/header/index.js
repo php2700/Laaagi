@@ -209,7 +209,7 @@ import login from "../../assets/login/Ellipse 2.png";
 import defaultProfile from "../../assets/login/default-profile.png"
 import { useEffect, useState, useRef, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './index.css';
 import axios from 'axios';
 import { AuthContext } from '../context';
@@ -317,11 +317,6 @@ export const Header = () => {
                 </div>
                 <div className='topbar-right'>
 
-                    <div>
-                        <img src={group} alt="group" />
-                        <img src={downArrow} alt="dropdown arrow" />
-                    </div>
-
                     <div className='user-menu-container' ref={dropdownRef}>
                         {
                             userData ? <div className='login-name'>
@@ -357,13 +352,21 @@ export const Header = () => {
                     <MenuIcon />
                 </div>
             )}
-            <div className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
+            {/* <div className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
                 <div><Link to='/invitation'>Invitations</Link></div>
                 <div> <Link to='/sweets'>Sweets</Link></div>
                 <div><Link to='/decorations'>Decorations</Link> </div>
                 <div><Link to='/designers'>Designer</Link> </div>
                 <div><Link to='/planning-tool'>Planning Tools</Link></div>
                 <div><Link to='/contact-us'>Contact Us</Link></div>
+            </div> */}
+            <div className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
+                <div><NavLink to='/invitation' className={({ isActive }) => (isActive ? 'active-link' : '')}>Invitations</NavLink></div>
+                <div><NavLink to='/sweets' className={({ isActive }) => (isActive ? 'active-link' : '')}>Sweets</NavLink></div>
+                <div><NavLink to='/decorations' className={({ isActive }) => (isActive ? 'active-link' : '')}>Decorations</NavLink></div>
+                <div><NavLink to='/designers' className={({ isActive }) => (isActive ? 'active-link' : '')}>Designer</NavLink></div>
+                <div><NavLink to='/planning-tool' className={({ isActive }) => (isActive ? 'active-link' : '')}>Planning Tools</NavLink></div>
+                <div><NavLink to='/contact-us' className={({ isActive }) => (isActive ? 'active-link' : '')}>Contact Us</NavLink></div>
             </div>
         </div>
     );

@@ -9,7 +9,7 @@ export const SweetsInfo = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const sweetsData = location?.state?.data;
-    const [priceperg, setPricePerg] = useState((sweetsData?.amount.split('/')[0]))
+    const [priceperg, setPricePerg] = useState((sweetsData?.amount?.split('/')[0]))
     const token = localStorage.getItem('token')
     const [sweetkg, setSweetkg] = useState()
     const [open, setOpen] = useState(false)
@@ -32,7 +32,7 @@ export const SweetsInfo = () => {
     return (
         <div className="sweets-info">
             <div className="sweets-info-back-button">
-                <Link to='/sweets'><button>back</button></Link>
+                <Link to='/sweets'><button className="sweets-info-back-button">back</button></Link>
             </div>
             <div>
                 <div>home</div>
@@ -52,7 +52,7 @@ export const SweetsInfo = () => {
                     <div className="sweets-info-text">
                         {sweetsData?.description}
                     </div>
-                    <div>
+                    <div className="sweets-info-drop-down">
                         <select value={sweetkg} onChange={(e) => calculatePrice(e.target.value)} >
                             <option value="" disabled>Select quantity</option>
                             {sweetsInKg?.map((ele) => (
@@ -67,10 +67,6 @@ export const SweetsInfo = () => {
                     </div>
                 </div>
             </div>
-            {/* <SignUp
-                open={open}
-                onClose={handleClose}
-            /> */}
         </div>
     )
 }
