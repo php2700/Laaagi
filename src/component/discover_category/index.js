@@ -26,6 +26,9 @@ export const DiscoverCategory = () => {
 
     const discoverSweetsList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
+            params: {
+                isSweet: true
+            }
         })
             .then((res) => {
                 setDiscoverData(res?.data?.sweetsData);

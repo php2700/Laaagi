@@ -24,6 +24,9 @@ export const InvitationBox = () => {
 
     const invitationBoxList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_list`, {
+            params: {
+                isInvitationBoxes: true
+            }
         })
             .then((res) => {
                 setInvitationBoxData(res?.data?.invitationData || []);
@@ -54,7 +57,6 @@ export const InvitationBox = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     )
 }

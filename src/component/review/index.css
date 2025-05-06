@@ -36,8 +36,20 @@
   justify-content: center;
 }
 
+@media (max-width: 850px) {
+  .review {
+    padding: 12px 20px;
+  }
+  .review-list {
+    width: 70%;
+  }
+}
+
 @media (max-width: 500px) {
   .review {
     padding: 12px 20px;
+  }
+  .review-list {
+    width: 60%;
   }
 }

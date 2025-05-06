@@ -25,6 +25,9 @@ export const WeddingSpecial = () => {
 
     const weddingSpecialList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
+            params: {
+                isWedding: true
+            }
         })
             .then((res) => {
                 setData(res?.data?.sweetsData);

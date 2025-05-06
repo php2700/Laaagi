@@ -32,6 +32,18 @@
   border: 1px solid #777;
 }
 
+@media (max-width: 850px) {
+  .invitation-box-img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 720px) {
+  .invitation-box-img {
+    height: 380px;
+  }
+}
+
 @media (max-width: 500px) {
   .invitation-box-wrapper {
     width: 100%;

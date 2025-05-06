@@ -89,6 +89,28 @@
   .best-seller-img-text {
     padding: 3px;
   }
+
+  .best-seller-img {
+    height: 350px;
+    width: 100%;
+  }
+  .best-seller-img-list {
+    gap: 25px;
+  }
+  .best-seller {
+    padding: 40px 22px;
+  }
+  .best-seller-img {
+    height: 320px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .best-seller-img {
+    height: 300px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {

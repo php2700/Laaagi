@@ -23,6 +23,7 @@ export const SignUp = () => {
     const context = useContext(AuthContext)
     const token = context?.token;
     const headerUpdate = context?.setHeaderUpdate;
+    const [otpVerifyError, setOtpVerifyError] = useState()
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -109,7 +110,10 @@ export const SignUp = () => {
             }
 
         }).catch((error) => {
-            console.log(error);
+            // console.log(error?.response?.data?.message);
+            if (error?.response?.data?.message == 'otp does not match') {
+                setOtpVerifyError('OTP does not match');
+            }
         })
     }
 
@@ -258,6 +262,7 @@ export const SignUp = () => {
                                         <div className="sign-up-input">
                                             <input type="text" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
                                         </div>
+                                        {otpVerifyError && (<div className="error-msg">{otpVerifyError}</div>)}
                                         <div className="sign-up-submit">
                                             <button type="submit">Next</button>
                                         </div>

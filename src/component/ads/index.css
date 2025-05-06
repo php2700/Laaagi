@@ -31,6 +31,25 @@
   width: 85%;
 }
 
+@media (max-width: 850px) {
+  .ads-first-row-img {
+    height: 380px;
+  }
+
+  .ads-second-row-img {
+    height: 380px;
+  }
+}
+@media (max-width: 720px) {
+  .ads-first-row-img {
+    height: 360px;
+  }
+
+  .ads-second-row-img {
+    height: 360px;
+  }
+}
+
 @media (max-width: 500px) {
   .ads-center {
     width: 100%;

@@ -1,14 +1,15 @@
 .banner-img {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .icon-wrapper {
-      position: absolute;
-      bottom: 50px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }

@@ -85,6 +85,10 @@
   .wedding-img-text {
     bottom: 15px !important;
   }
+  .wedding-img {
+    height: 350px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 720px) {
@@ -92,8 +96,12 @@
     bottom: 10px !important;
   }
   .wedding {
-    padding: 10px 29px !important;
+    padding: 10px 20px !important;
   }
+  .wedding-img {
+    height: 350px;
+    width: 100%;
+  } 
 }
 
 @media (max-width: 500px) {

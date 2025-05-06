@@ -198,7 +198,7 @@ export const Invitationhome = () => {
     if (validate()) {
       return;
     }
-    navigate('/invitation-GuestList', { state: { amount: total } })
+    navigate('/invitation-GuestList', { state: { amount: total+price } })
   }
 
   useEffect(() => {
@@ -257,12 +257,18 @@ export const Invitationhome = () => {
     navigate(`${lastURL}`);
   }
 
+  const handleHome = () => {
+    navigate('/')
+  }
 
 
   return (
     <div className="invitation-details-container">
       <div className='back-button' onClick={handleBack}>back</div>
-      <div className="breadcrumb"> Home Invitation</div>
+      <div className="invitation-detils-home-container">
+        <div className="invitation-detail-home" onClick={handleHome}>Home</div>
+        <div> &nbsp;> &nbsp;Invitation</div>
+      </div>
       <div className="top-section">
         <div className="image-container">
           <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
@@ -438,7 +444,7 @@ export const Invitationhome = () => {
       </div>
       <div className='invitation-total'>
         <div>Total</div>
-        <div>{total}</div>
+        <div>{total + price}</div>
       </div>
       {/* <div className='invitation-next'>
         <Link to='/invitation-GuestList' state={{ amount: total }} >Next</Link>
