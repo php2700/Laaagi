@@ -1,48 +1,52 @@
 .invitation-box {
-      padding: 10px 0;
+  padding: 10px 0;
 }
 .invitation-box-left-text {
-      font-weight: 600;
-      font-size: 32px;
+  font-weight: 600;
+  font-size: 32px;
 }
 
 .invitation-box-list {
-      display: flex;
-      justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .invitation-box-wrapper {
-      text-align: center;
-      width: 32%;
+  text-align: center;
+  width: 32%;
 }
 .invitation-box-img {
-      width: 100%;
-      border: 1px solid #ccc;
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 535px;
+  cursor: pointer;
 }
 .invitation-box-img-text {
-      width: 100%;
-      bottom: 10px;
-      color: #5d4037;
-      font-weight: 600;
-      font-size: 20px;
+  width: 100%;
+  bottom: 10px;
+  color: #5d4037;
+  font-weight: 600;
+  font-size: 20px;
+}
+.invitation-box-img:hover {
+  border: 1px solid #777;
 }
 
 @media (max-width: 500px) {
-
-      .invitation-box-wrapper {
-            width: 100%;
-        }
-      .invitation-box-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-      }
-      .invitation-box-left-text {
-            text-align: center;
-      }
-      .invitation-box-img {
-            width: 90%;
-            max-width: 424px;
-            height: auto;
-      }
+  .invitation-box-wrapper {
+    width: 100%;
+  }
+  .invitation-box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .invitation-box-left-text {
+    text-align: center;
+  }
+  .invitation-box-img {
+    width: 90%;
+    max-width: 424px;
+    height: auto;
+  }
 }

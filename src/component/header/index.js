@@ -209,7 +209,7 @@ import login from "../../assets/login/Ellipse 2.png";
 import defaultProfile from "../../assets/login/default-profile.png"
 import { useEffect, useState, useRef, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import './index.css';
 import axios from 'axios';
 import { AuthContext } from '../context';
@@ -230,6 +230,8 @@ export const Header = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const [open, setOpen] = useState(false)
+
+    const headerUpdate = context?.headerUpdate;
 
     useEffect(() => {
         const handleResize = () => {
@@ -299,7 +301,11 @@ export const Header = () => {
 
     useEffect(() => {
         getUserData()
-    }, [token, defaultProfile])
+    }, [token, defaultProfile, headerUpdate])
+
+    const openSignup = () => {
+        navigate('/signup')
+    }
 
     return (
         <div>
@@ -329,7 +335,7 @@ export const Header = () => {
                                     onClick={toggleDropdown}
                                 />
                             </div> :
-                                <div className='login-name'>
+                                <div className='login-name' onClick={openSignup} >
                                     <img src={defaultImg} alt="User avatar" />
                                     <div>Guest</div>
                                 </div>

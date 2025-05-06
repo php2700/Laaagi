@@ -141,7 +141,7 @@ export const PlanningTool = () => {
                     {
                         planningCategory?.slice(startIndex, lastIndex + 1)?.map((ele, index) => (
                             // <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
-                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
                         ))
                     }
                     {(lastIndex < (planningCategory?.length || 0) - 1) &&
@@ -151,7 +151,7 @@ export const PlanningTool = () => {
                     {
                         planningCategory?.map((ele, index) => (
                             // <div key={index}><Link to={ele.url} >{ele?.name}</Link></div>
-                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
 
                         ))
                     }

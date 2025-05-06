@@ -48,8 +48,8 @@
   background-color: white;
 }
 .dry-fruit-treat-img {
-  position: relative;
   width: 100%;
+  height: 400px;
 }
 .dry-fruit-treat-img-wrapper {
   border: 1px solid #e1e1e1;
@@ -65,24 +65,28 @@
   font-size: 20px;
   font-weight: 600;
   color: #5d4037;
-  position: absolute;
-  bottom: 14px;
+  margin: 30px 0;
+}
+
+.dry-fruit-img-container {
+  cursor: pointer;
+  width: 100%;
+}
+
+.dry-fruit-treat-img:hover {
+  border: 2px solid #777;
 }
 
 @media (max-width: 850px) {
   .dry-fruit-treat {
     padding: 10px 30px !important;
   }
-
-  .dry-fruit-treat-img-text {
-    bottom: 8px !important;
-  }
 }
 
 @media (max-width: 500px) {
   .dry-fruit-treat-img-list {
     gap: 25x;
-}
+  }
   .dry-fruit-treat-img-wrapper {
     width: 100%;
   }
@@ -95,9 +99,7 @@
     max-width: 406px;
     height: auto;
   }
-  .dry-fruit-treat-img-text {
-    bottom: 10px;
-  }
+
   .dry-fruit-treat-right-icon {
     display: none;
   }

@@ -10,9 +10,9 @@ import { Model } from './Model';
 
 const designerHeader = [
     { name: 'Bridge', category: 'Bridge' },
-    { name: 'groom', category: 'Groom' },
-    { name: 'suits', category: 'Suits' },
-    { name: 'other', category: 'Other' },
+    { name: 'Groom', category: 'Groom' },
+    { name: 'Suits', category: 'Suits' },
+    { name: 'Other', category: 'Other' },
 
 ]
 
@@ -99,8 +99,7 @@ export const Designers = () => {
                         <>
                             {designerHeader?.map((ele) => (
                                 // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                                <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
-
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }
@@ -117,6 +116,10 @@ export const Designers = () => {
                         </div>
                     ))}
                 </div>
+
+                {!data?.length &&
+                    <div className='no-found'>No Data Found</div>
+                }
             </div>
 
             <Model

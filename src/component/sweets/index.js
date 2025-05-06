@@ -24,6 +24,8 @@ const sweetsHeader = [
 export const Sweets = () => {
     const navigate = useNavigate()
     const content = useLocation();
+    const context = useContext(AuthContext);
+    const sweetsInfo = context?.setSweetsInfo
     const isInvitationSweets = content?.state?.data;
     const invitationId = content?.state?.invitationId;
     const name = content?.state?.name
@@ -106,8 +108,9 @@ export const Sweets = () => {
                             <div onClick={handlePrev}><img src={leftIcon} /></div>
                         }
                         {sweetsHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => (
-                            // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            // <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
+
                         ))}
                         {(lastIndex < (sweetsHeader?.length || 0) - 1) &&
                             <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
@@ -115,7 +118,7 @@ export const Sweets = () => {
                     </> : <>
                         {sweetsHeader?.map((ele) => (
                             // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                            <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                         ))}
                     </>
                 }
@@ -138,9 +141,10 @@ export const Sweets = () => {
                     </div>
                     : <div className='sweets-content'>
                         <div className='sweets-content-list'>
+
                             {data?.map((ele) => (
                                 <div className='sweets-main-container'>
-                                    <Link className='sweets-content-img' to='/sweets-info' state={{ data: ele }} >
+                                    <Link className='sweets-content-img' to='/sweets-info' onClick={() => (sweetsInfo(ele))} state={{ data: ele }} >
                                         <div className='sweets-img-div'>
                                             <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
                                         </div>
@@ -150,6 +154,9 @@ export const Sweets = () => {
                                 </div>
                             ))}
                         </div>
+                        {!data?.length &&
+                            <div className='no-found'>No Data Found</div>
+                        }
                     </div>
             }
             {

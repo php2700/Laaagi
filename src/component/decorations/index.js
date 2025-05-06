@@ -57,7 +57,7 @@ export const Decorations = () => {
         <div className='decorations' >
             <div className='decorations-header'>
                 {decorationHeader?.map((ele) => (
-                    <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                    <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                 ))}
             </div>
             <div className='decorations-content'>
@@ -72,6 +72,9 @@ export const Decorations = () => {
                         </div>
                     ))}
                 </div>
+                {!decorationData?.length &&
+                    <div className='no-found'>No Data Found</div>
+                }
             </div>
             <Model
                 open={open}

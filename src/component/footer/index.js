@@ -10,6 +10,7 @@ import instIcon from '../../assets/icon/insta.png'
 import twittericon from '../../assets/icon/twitter.png'
 import facebook from "../../assets/icon/face.png"
 import linked from "../../assets/icon/linked.png"
+import { Link } from 'react-router-dom'
 
 export const Footer = () => {
     return (
@@ -44,15 +45,15 @@ export const Footer = () => {
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Account</div>
-                        <div className='footer-left-middle-text'>Sweets</div>
-                        <div className='footer-left-middle-text'>Invitation</div>
-                        <div className='footer-left-middle-text'>Decoration</div>
-                        <div className='footer-left-middle-text'>Planning Tool</div>
+                        <div className='footer-left-middle-text'><Link to='/sweets'>Sweets</Link></div>
+                        <div className='footer-left-middle-text'> <Link to='/invitation'>Invitation</Link></div>
+                        <div className='footer-left-middle-text'><Link to='/decorations'>Decoration</Link></div>
+                        <div className='footer-left-middle-text'><Link to='/planning-tool'>Planning Tool</Link></div>
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Useful links</div>
-                        <div className='footer-left-middle-text'>About Us</div>
-                        <div className='footer-left-middle-text'>Contact</div>
+                        <div className='footer-left-middle-text'><Link >About Us</Link></div>
+                        <div className='footer-left-middle-text'><Link to='/contact-us'>Contact</Link></div>
                         <div className='footer-left-middle-text'>Promotions</div>
                     </div>
                     <div className='footer-left-middle'>
@@ -73,10 +74,10 @@ export const Footer = () => {
                         <img src={payment} />
                     </div>
                     <div className='footer-right-icon'>
-                        <div className='footer-right-img-icon' ><img src={facebook} /></div>
-                        <div className='footer-right-img-icon'><img src={linked} /></div>
-                        <div className='footer-right-img-icon'><img src={twittericon} /></div>
-                        <div className='footer-right-img-icon'><img src={instIcon} /></div>
+                        <div className='footer-right-img-icon' ><a target='_blank' rel='noopener noreferrer' href='https://www.facebook.com/'><img src={facebook} /></a></div>
+                        <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/'><img src={linked} /></a></div>
+                        <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://www.twitter.com/'><img src={twittericon} /></a></div>
+                        <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/'><img src={instIcon} /></a></div>
                     </div>
                 </div>
             </div>

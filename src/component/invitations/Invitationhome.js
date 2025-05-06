@@ -88,15 +88,15 @@ export const Invitationhome = () => {
 
   const calculateTotalAmount = (price, weight) => {
     if (boxName == 'Normal Box') {
-      return parseInt(price * weight)
+      return parseInt(price / 1000 * weight)
     }
     else if (boxName == '4 Section in box') {
-      return parseInt(price * weight / 4)
+      return parseInt((price / 1000) * weight / 4)
     }
     else if (boxName == '3 Section in box') {
-      return parseInt(price * weight / 3)
+      return parseInt((price / 1000) * weight / 3)
     } else {
-      return parseInt(price * weight / 5)
+      return parseInt((price / 1000) * weight / 5)
     }
   }
 
@@ -251,8 +251,10 @@ export const Invitationhome = () => {
     setAmounts([0, 0, 0, 0, 0])
     // setWeight(500)    ----->context   
     dispatch(chnageWeight(500))   // redux
-    setBoxName('Normal Box')
-    navigate('/invitation')
+    setBoxName('Normal Box');
+    const lastURL = sessionStorage.getItem('lastURL')
+    // navigate('/invitation')
+    navigate(`${lastURL}`);
   }
 
 

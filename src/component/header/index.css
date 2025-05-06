@@ -324,8 +324,6 @@ button {
     }
 } */
 
-
-
 .topbar {
   display: flex;
   justify-content: center;
@@ -346,10 +344,11 @@ button {
 }
 .header .search {
   display: flex;
+  width: 20%;
 }
 .header .search input {
   padding: 8px;
-  max-width: 400px;
+  width: 100%;
 }
 .topbar-right {
   display: flex;

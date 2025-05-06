@@ -2,8 +2,10 @@ import './index.css'
 import bestSellerImg from '../../assets/best_seller.png'
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import leftIcon from "../../assets/icon/left_arrow-right.png"
+import { AuthContext } from '../context'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -11,14 +13,29 @@ export const Best_seller = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(3)
     const [bestSellerData, setBestSellerData] = useState([])
+    const context = useContext(AuthContext);
+    const sweetsInfo = context?.setSweetsInfo;
+    const navigate = useNavigate();
+
+    // const BestSellerList = () => {
+    //     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/best_seller_list`).then((res) => {
+    //         setBestSellerData(res?.data?.bestSellerData)
+    //     }).catch((error) => {
+    //         console.log(error)
+    //     })
+    // }
 
     const BestSellerList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/best_seller_list`).then((res) => {
-            setBestSellerData(res?.data?.bestSellerData)
-        }).catch((error) => {
-            console.log(error)
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
         })
+            .then((res) => {
+                setBestSellerData(res?.data?.sweetsData);
+                console.log(res?.data?.sweetsData)
+            }).catch((error) => {
+                console.log(error);
+            })
     }
+
 
     useEffect(() => {
         BestSellerList()
@@ -40,6 +57,11 @@ export const Best_seller = () => {
         setStartIndex(prevStart)
         setLastIndex(prevEnd)
     }
+
+    const handleDryFruitInfo = (data) => {
+        sweetsInfo(data)
+        navigate('/sweets-info')
+    }
     return (
         <div className='best-seller'>
             <div className='best-seller-top'>
@@ -56,7 +78,9 @@ export const Best_seller = () => {
                 }
                 {bestSellerData?.slice(startIndex, lastIndex + 1)?.map((item) => (
                     <div key={item?.id} className='best-seller-wrapper'>
-                        <img className='best-seller-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                        <div className='best-seller-img-parent'>
+                            <img className='best-seller-img' onClick={() => handleDryFruitInfo(item)} src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                        </div>
                         <div className='best-seller-img-text'>{item?.name}</div>
                     </div>
                 ))}
