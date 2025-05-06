@@ -63,9 +63,12 @@ export const Decorations = () => {
             <div className='decorations-content'>
                 <div className='decorations-content-list'>
                     {decorationData?.map((ele) => (
-                        <div className='decorations-content-img' onClick={() => handleModel(ele)}>
-                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                        <div className='decorations-content-img'>
+                            <div className='decoration-img-align' onClick={() => handleModel(ele)}>
+                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                            </div>
                             <div className='decorations-name'>{ele?.category}</div>
+
                         </div>
                     ))}
                 </div>
