@@ -266,9 +266,9 @@
 }
 .invitation-content-img {
   height: 590px;
-  width:450px;
+  width:590px;
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
-  position: relative;
+  position: absolute;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -321,7 +321,7 @@
 
   .invitation-content-img {
     width: 90%; 
-    max-width: 350px; 
+    max-width: 425px; 
     height: auto;     
     position: static;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
@@ -347,17 +347,5 @@
 
    
 
-  .invitation-content-img-name {
-    position: static;
-    width: 100%;
-    padding: 12px 10px; 
-    text-align: center;
-    background-color: #fff;
-    color: #333;
-    font-weight: 500;
-    font-size: 15px;
-    margin: 0; 
-    box-sizing: border-box;
-    line-height: 1.4; 
-  }
+  
 }
