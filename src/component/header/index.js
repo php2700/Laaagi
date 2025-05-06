@@ -358,14 +358,18 @@ export const Header = () => {
                     <MenuIcon />
                 </div>
             )}
-            <div className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
-                <div><Link to='/invitation'>Invitations</Link></div>
-                <div> <Link to='/sweets'>Sweets</Link></div>
-                <div><Link to='/decorations'>Decorations</Link> </div>
-                <div><Link to='/designers'>Designer</Link> </div>
-                <div><Link to='/planning-tool'>Planning Tools</Link></div>
-                <div><Link to='/contact-us'>Contact Us</Link></div>
+            <div className={`navbar nav-bar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
+                <div className='nav-item active'onclick="setActive(this)"
+                ><Link to='/invitation'>Invitations</Link></div>
+                <div className='nav-item'onclick="setActive(this)" ><Link to='/sweets'>Sweets</Link></div>
+                <div className='nav-item'onclick="setActive(this)"><Link to='/decorations'>Decorations</Link> </div>
+                <div className='nav-item'onclick="setActive(this)"><Link to='/designers'>Designer</Link> </div>
+                <div className='nav-item'onclick="setActive(this)"><Link to='/planning-tool'>Planning Tools</Link></div>
+                <div className='nav-item'onclick="setActive(this)"><Link to='/contact-us'>Contact Us</Link></div>
+                
             </div>
+            
         </div>
+        
     );
 };

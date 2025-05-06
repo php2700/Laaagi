@@ -16,6 +16,7 @@ const invitationHeader = [
     { name: 'Misc Invitation', category: 'misc_invitation' },
 ]
 
+
 export const Invitation = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
@@ -107,7 +108,7 @@ export const Invitation = () => {
                                 <div onClick={handlePrev}><img src={leftIcon} /></div>
                             }
                             {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => (
-                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                               
                                 <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                             {(lastIndex < (invitationHeader?.length || 0) - 1) &&
@@ -116,7 +117,7 @@ export const Invitation = () => {
                         </> :
                         <>
                             {invitationHeader?.map((ele) => (
-                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                               
                                 <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
@@ -153,6 +154,7 @@ export const Invitation = () => {
                                     </div>
                                 </div>
                             ))}
+
                     </div>
                 </div>
 
