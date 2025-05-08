@@ -1,10 +1,10 @@
 .shop {
   display: flex;
   background-color: #f6f6f6;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 100px;
   align-items: center;
-  padding: 20px 120px;
+  padding: 20px 10px;
 }
 .shop-header {
   color: #253d4e;

@@ -480,6 +480,15 @@
   cursor: pointer;
 }
 
+.invitation-detils-home-container{
+  display: flex;
+
+}
+
+.invitation-detail-home{
+  cursor: pointer;
+}
+
 @media (max-width: 992px) {
   .top-section {
     flex-direction: column;

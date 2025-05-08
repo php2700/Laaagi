@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AuthContext } from '../context'; 
+import { AuthContext } from '../context';
 
 const invitationHeader = [
     { name: 'Only Invitation', category: 'invitation' },
@@ -27,7 +27,7 @@ export const Invitation = () => {
     const [lastIndex, setLastIndex] = useState(1)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [menuOpen, setMenuOpen] = useState(false)
-    const [category, setCategory] = useState()
+    const [category, setCategory] = useState('invitation')
 
     const handleForwardIcon = () => {
         const totalItems = invitationHeader?.length || 0;
@@ -41,8 +41,8 @@ export const Invitation = () => {
     };
 
     const handlePrev = () => {
-         const itemsToShow = 2;
-         const prevStart = Math.max(0, startIndex - itemsToShow);  
+        const itemsToShow = 2;
+        const prevStart = Math.max(0, startIndex - itemsToShow);
 
         if (prevStart !== startIndex) {
             setStartIndex(prevStart);
@@ -53,7 +53,7 @@ export const Invitation = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            const mobileCheck = window.innerWidth <= 500; 
+            const mobileCheck = window.innerWidth <= 500;
             setIsMobile(mobileCheck);
             setMenuOpen(!mobileCheck);
         };
@@ -62,7 +62,7 @@ export const Invitation = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []); 
+    }, []);
 
     const getInvitationList = () => {
         const categoryToFetch = invitationCategory?.[0] || 'default_category';
@@ -77,7 +77,7 @@ export const Invitation = () => {
                 setData(res?.data?.invitationData || []);
             }).catch((error) => {
                 console.error("Error fetching invitation list:", error); // Log errors
-                setData([]); 
+                setData([]);
             });
     };
 
@@ -108,8 +108,8 @@ export const Invitation = () => {
                                 <div onClick={handlePrev}><img src={leftIcon} /></div>
                             }
                             {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => (
-                               
-                                <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                             {(lastIndex < (invitationHeader?.length || 0) - 1) &&
                                 <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
@@ -117,8 +117,8 @@ export const Invitation = () => {
                         </> :
                         <>
                             {invitationHeader?.map((ele) => (
-                               
-                                <div className='cursor' onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }

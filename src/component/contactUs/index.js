@@ -133,7 +133,7 @@ export const ContactUs = () => {
                             {error?.email && (<div className="error-color">{error?.email}</div>)}
                         </div>
                         <div>
-                            <input type="number" placeholder="Phone Number*" value={mobile} onChange={(e) => {
+                            <input type="text" placeholder="Phone Number*" value={mobile} onChange={(e) => {
                                 setMobile(e.target.value)
                                 setError({ ...error, mobile: '' })
                             }

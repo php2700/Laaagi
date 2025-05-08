@@ -38,10 +38,9 @@ import { Edit_Guest } from './component/invitations/edit_guest';
 import { Add_Guest } from './component/invitations/add_guest';
 import { Guest } from './component/invitations/guest';
 import { Payment } from './component/payment';
-import { Navigation } from './component/Navigation/Navigation';
+import { LastUrl } from './lastUrl';
 
 function App() {
-
   const PrivateRoute = ({ children }) => {
     const content = useContext(AuthContext)
     const token = content?.token || localStorage.getItem('token')
@@ -49,57 +48,51 @@ function App() {
       <>{token ? children : < Navigate to='/signup' />}</>
     )
   }
-
   return (
     <>
-      {/* <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 0' }}> */}
-        <div>
+      <div className='app-container'>
         <BrowserRouter>
+          <LastUrl />
           <Header />
-          <Routes>
-            <Route index path='/' element={<Dashboard />} />
-            <Route path='/invitation' element={< Invitation />} />
-            <Route path='/invitation-wooden' element={<Wooden />} />
-            <Route path='/invitation-box' element={<Invitation_Box />} />
-            <Route path='/invitation-glass' element={<Glass />} />
-            <Route path='/invitation-misc' element={<Misc />} />
-            <Route path='/sweets' element={<Sweets />} />
-            <Route path='/bengali-sweets' element={<Bengali_Sweets />} />
-            <Route path='/decorations' element={<Decorations />} />
-            <Route path='/bithday' element={<BirthDay />} />
-            <Route path='/mehndi' element={<Mehndi />} />
-            <Route path='/room-decor' element={<Room_Decor />} />
-            <Route path='/party' element={<Party />} />
-            <Route path='/designers' element={<Designers />} />
-            <Route path='/groom' element={<Groom />} />
-            <Route path='/suits' element={<Suits />} />
-            <Route path='/other' element={<Other />} />
-            <Route path='/contact-us' element={<ContactUs />} />
-            <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
-            <Route path='/planning-birthday' element={<PlanningBirthDay />} />
-            <Route path='/planning-mehndi' element={<PlanningMehndi />} />
-            <Route path='/planning-party' element={<PlanningParty />} />
-            <Route path='/planning-other' element={<PlanningRoomDecor />} />
-            <Route path='/sweets-info' element={<SweetsInfo />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path="/invitation-detail" element={<Invitationhome />} />
-            <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
-            <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
-            <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
-            <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
-            <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} />
-            <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
-            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-            
-            <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
-            <Route path='/Navigation' element={<PrivateRoute><Navigation /></PrivateRoute>} />
-
-            
-
-
-          </Routes>
+          <div className='app-content'>
+            <Routes>
+              <Route index path='/' element={<Dashboard />} />
+              <Route path='/invitation' element={< Invitation />} />
+              <Route path='/invitation-wooden' element={<Wooden />} />
+              <Route path='/invitation-box' element={<Invitation_Box />} />
+              <Route path='/invitation-glass' element={<Glass />} />
+              <Route path='/invitation-misc' element={<Misc />} />
+              <Route path='/sweets' element={<Sweets />} />
+              <Route path='/bengali-sweets' element={<Bengali_Sweets />} />
+              <Route path='/decorations' element={<Decorations />} />
+              <Route path='/bithday' element={<BirthDay />} />
+              <Route path='/mehndi' element={<Mehndi />} />
+              <Route path='/room-decor' element={<Room_Decor />} />
+              <Route path='/party' element={<Party />} />
+              <Route path='/designers' element={<Designers />} />
+              <Route path='/groom' element={<Groom />} />
+              <Route path='/suits' element={<Suits />} />
+              <Route path='/other' element={<Other />} />
+              <Route path='/contact-us' element={<ContactUs />} />
+              <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
+              <Route path='/planning-birthday' element={<PlanningBirthDay />} />
+              <Route path='/planning-mehndi' element={<PlanningMehndi />} />
+              <Route path='/planning-party' element={<PlanningParty />} />
+              <Route path='/planning-other' element={<PlanningRoomDecor />} />
+              <Route path='/sweets-info' element={<SweetsInfo />} />
+              <Route path='/signup' element={<SignUp />} />
+              <Route path="/invitation-detail" element={<Invitationhome />} />
+              <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
+              <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
+              <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
+              <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
+              <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} />
+              <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
+              <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            </Routes>
+          </div>
+          <Footer />
         </BrowserRouter>
-        <Footer />
         <ToastContainer />
       </div >
     </>

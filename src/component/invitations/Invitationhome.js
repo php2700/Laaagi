@@ -88,15 +88,15 @@ export const Invitationhome = () => {
 
   const calculateTotalAmount = (price, weight) => {
     if (boxName == 'Normal Box') {
-      return parseInt(price * weight)
+      return parseInt(price / 1000 * weight)
     }
     else if (boxName == '4 Section in box') {
-      return parseInt(price * weight / 4)
+      return parseInt((price / 1000) * weight / 4)
     }
     else if (boxName == '3 Section in box') {
-      return parseInt(price * weight / 3)
+      return parseInt((price / 1000) * weight / 3)
     } else {
-      return parseInt(price * weight / 5)
+      return parseInt((price / 1000) * weight / 5)
     }
   }
 
@@ -198,7 +198,7 @@ export const Invitationhome = () => {
     if (validate()) {
       return;
     }
-    navigate('/invitation-GuestList', { state: { amount: total } })
+    navigate('/invitation-GuestList', { state: { amount: total+price } })
   }
 
   useEffect(() => {
@@ -251,16 +251,24 @@ export const Invitationhome = () => {
     setAmounts([0, 0, 0, 0, 0])
     // setWeight(500)    ----->context   
     dispatch(chnageWeight(500))   // redux
-    setBoxName('Normal Box')
-    navigate('/invitation')
+    setBoxName('Normal Box');
+    const lastURL = sessionStorage.getItem('lastURL')
+    // navigate('/invitation')
+    navigate(`${lastURL}`);
   }
 
+  const handleHome = () => {
+    navigate('/')
+  }
 
 
   return (
     <div className="invitation-details-container">
       <div className='back-button' onClick={handleBack}>back</div>
-      <div className="breadcrumb"> Home Invitation</div>
+      <div className="invitation-detils-home-container">
+        <div className="invitation-detail-home" onClick={handleHome}>Home</div>
+        <div> &nbsp;> &nbsp;Invitation</div>
+      </div>
       <div className="top-section">
         <div className="image-container">
           <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
@@ -436,7 +444,7 @@ export const Invitationhome = () => {
       </div>
       <div className='invitation-total'>
         <div>Total</div>
-        <div>{total}</div>
+        <div>{total + price}</div>
       </div>
       {/* <div className='invitation-next'>
         <Link to='/invitation-GuestList' state={{ amount: total }} >Next</Link>

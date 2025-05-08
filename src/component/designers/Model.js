@@ -37,17 +37,16 @@ export const Model = ({ open, onClose, data }) => {
         } else if (message?.length < 3) {
             newError.message = 'minimum 5 character required'
         }
-
         if (!mobile) {
             newError.mobile = 'Mobile number is required*';
-          } else if (!/^\d+$/.test(mobile)) {
+        } else if (!/^\d+$/.test(mobile)) {
             newError.mobile = 'Mobile number must contain digits only';
-          } else if (mobile.length < 10) {
+        } else if (mobile.length < 10) {
             newError.mobile = 'Mobile number must be at least 10 digits';
-          } else if (mobile.length > 12) {
+        } else if (mobile.length > 12) {
             newError.mobile = 'Mobile number must not exceed 12 digits';
-          }
-          
+        }
+
         setError(newError);
         return (Object.keys(newError))?.length;
     }
@@ -70,21 +69,22 @@ export const Model = ({ open, onClose, data }) => {
             message: message
         }
 
-        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/quote`, quoteData)
-            .then((res) => {
-                setName("")
-                setEmail("")
-                setLastName("")
-                setMobile("")
-                setMessage("")
-                setDecorationId("")
-                onClose()
-                toast.success("Details added!", {
-                    position: "top-right"
-                });
-            }).catch((error) => {
-                console.log(error)
-            })
+        return
+        // axios.post(`${process.env.REACT_APP_BASE_URL}api/user/quote`, quoteData)
+        //     .then((res) => {
+        //         setName("")
+        //         setEmail("")
+        //         setLastName("")
+        //         setMobile("")
+        //         setMessage("")
+        //         setDecorationId("")
+        //         onClose()
+        //         toast.success("Details added!", {
+        //             position: "top-right"
+        //         });
+        //     }).catch((error) => {
+        //         console.log(error)
+        //     })
     }
 
     const handleClose = () => {
@@ -104,7 +104,8 @@ export const Model = ({ open, onClose, data }) => {
                     <button onClick={handleClose}>X</button>
                 </div>
                 <div>
-                    <div className='model-text'>Get Quote with Laaagi</div>
+                    <div className='model-text'>Get Quote with Designer
+                    </div>
                 </div>
                 <div  >
                     <form className='model-form' onSubmit={handleSubmit}>

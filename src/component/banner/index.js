@@ -10,7 +10,6 @@ export const Banner = () => {
 
     const bannerlist = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/banner_list`).then((res) => {
-            console.log(res?.data?.banner, "hhhhhhhhhhhhhhhhhhhhhhhhhh")
             setData(res?.data?.banner);
         }).catch((error) => {
             console.log(error)
@@ -35,11 +34,12 @@ export const Banner = () => {
         <div className="banner">
             {
                 <div className="banner-img">
-                    <img style={{
-                        width: '100%',
-                        height: 'auto',
-                        maxHeight: '466px',
-                    }}
+                    <img
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            maxHeight: '466px',
+                        }}
                         alt="Banner" src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`} />
                     <div className="icon-wrapper">
                         {

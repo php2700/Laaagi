@@ -1,14 +1,49 @@
-.banner-img {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-}
-
-.icon-wrapper {
-      position: absolute;
-      bottom: 50px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-}
+  .banner-img {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  }
+  .icon-wrapper {
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  }  
+  .banner-img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* overflow: hidden; /* Optional: if absolutely positioned children might peek out */
+  }
+  
+  .icon-wrapper {
+    position: absolute;
+    bottom: 8%; /* Changed from 50px. This makes the position relative to the banner's height.
+                   50px on a 466px max-height image is about 10.7%.
+                   Adjust this percentage (e.g., 5% to 12%) as it looks best. */
+    left: 0;     /* Ensures the wrapper spans the full width of .banner-img */
+    right: 0;    /* Ensures the wrapper spans the full width of .banner-img */
+    /* Alternatively, you could use width: 100%; */
+    display: flex;
+    gap: 10px;   /* You can keep this, or use a smaller px value (e.g., 8px)
+                   or a responsive unit (e.g., 1.5vw) if the gap appears too large on zoom-out. */
+    justify-content: center; /* Centers the icons within the full-width wrapper */
+    /* Adding a little padding can also help if icons feel too close to the edge,
+       but 'bottom' property should handle vertical positioning primarily.
+       e.g., padding: 5px 0; /* Adds 5px padding top and bottom inside the wrapper */
+  }
+  
+  /* You might also want to style the icons themselves if their default size is an issue on zoom */
+  /* For example:
+  .icon-wrapper .icon {
+    max-width: 16px;
+    max-height: 16px;
+    width: auto;
+    height: auto;
+  }
+  */

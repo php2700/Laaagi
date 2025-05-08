@@ -1,10 +1,12 @@
-.plannig-category {
+/* .plannig-category {
   margin: 30px 20px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+
 }
+
 .plannig-category div  {
   text-decoration: none;
   min-height: 48px;
@@ -51,6 +53,7 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+
 }
 .planning-check-save {
   padding: 5px;
@@ -61,6 +64,7 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+
 }
 
 .planning-img img {
@@ -80,6 +84,7 @@
     gap: 10px;
     font-size: 14px;
   }
+
   .planning-check-list {
     width: 90%;
     padding: 10px 20px;
@@ -254,7 +259,7 @@
   min-width: 213px; 
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
 }
-/* ... */
+
 
 
 
@@ -352,4 +357,144 @@
     flex-grow: 0; 
     justify-content: flex-start; 
   }
+} */
+ /* newold */
+ 
+.plannig-category {
+  margin: 30px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
 }
+.plannig-category div  {
+  text-decoration: none;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #800000;
+  color: #ffd700;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.planning-check-list {
+  text-align: center;
+  width: 30%;
+  margin: 0 auto;
+  padding: 10px 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: 0px 1px 8px gray;
+}
+.planning-check-header {
+  color: #1d1a1a;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.planning-list {
+  display: flex;
+  gap: 5px;
+}
+.planning-list div {
+  font-weight: 400;
+  font-size: 14px;
+}
+.planning-check-clear {
+  padding: 5px;
+  background-color: #800000;
+  color: #ffd700;
+  border: 1px solid #b356c1;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.planning-check-save {
+  padding: 5px;
+  background-color: #ffd700;
+  color: #982900;
+  border: 1px solid #b356c1;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.planning-img img {
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .plannig-category {
+    margin: 30px 0px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .plannig-category div a {
+    text-decoration: none;
+    min-height: 36px;
+    padding: 0 14px;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .planning-check-list {
+    width: 90%;
+    padding: 10px 20px;
+  }
+}
+
+
+@media(max-width:700px){
+  /* .plannig-category {
+    margin: 30px 0px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .plannig-category div a {
+    text-decoration: none;
+    min-height: 36px;
+    padding: 0 14px;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .planning-check-list {
+    width: 90%;
+    padding: 10px 20px;
+  } */
+}
+@media (max-width: 500px) {
+  .plannig-category {
+    margin: 30px 0px;
+    gap: 8px;
+    flex-wrap: wrap;        
+    justify-content: center; 
+  }
+
+  .plannig-category div {
+    min-height: 36px;  
+    padding: 0 14px;  
+    font-size: 14px;   
+  }
+
+  /*
+ 
+  */
+  /* .plannig-category div a {
+    text-decoration: none;
+    min-height: 36px;
+    padding: 0 14px;
+    gap: 10px; /* Note: 'gap' is a flex container property. If 'a' is not a flex container, this won't apply to its children. */
+    /* font-size: 14px;
+  } */
+
+  .planning-check-list {
+    width: 90%;
+    padding: 10px 20px;
+  }
+}
+/*  */

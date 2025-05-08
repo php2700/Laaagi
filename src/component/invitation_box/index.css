@@ -1,44 +1,189 @@
-.invitation-box {
-      padding: 10px 0;
+/* .invitation-box {
+  padding: 10px 0;
 }
 .invitation-box-left-text {
-      font-weight: 600;
-      font-size: 32px;
+  font-weight: 600;
+  font-size: 32px;
 }
 
 .invitation-box-list {
-      display: flex;
-      justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .invitation-box-wrapper {
-      text-align: center;
-      width: 32%;
+  text-align: center;
+  width: 32%;
 }
 .invitation-box-img {
-      width: 100%;
-      border: 1px solid #ccc;
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 535px;
+  cursor: pointer;
 }
 .invitation-box-img-text {
-      width: 100%;
-      bottom: 10px;
-      color: #5d4037;
-      font-weight: 600;
-      font-size: 20px;
+  width: 100%;
+  bottom: 10px;
+  color: #5d4037;
+  font-weight: 600;
+  font-size: 20px;
+}
+.invitation-box-img:hover {
+  border: 1px solid #777;
+}
+
+@media (max-width: 850px) {
+  .invitation-box-img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 720px) {
+  .invitation-box-img {
+    height: 380px;
+  }
 }
 
 @media (max-width: 500px) {
-      .invitation-box-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-      }
-      .invitation-box-left-text {
-            text-align: center;
-      }
-      .invitation-box-img {
-            width: 90%;
-            max-width: 424px;
-            height: auto;
-      }
+  .invitation-box-wrapper {
+    width: 100%;
+  }
+  .invitation-box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .invitation-box-left-text {
+    text-align: center;
+  }
+  .invitation-box-img {
+    width: 90%;
+    max-width: 424px;
+    height: auto;
+  }
+} */
+/* new */
+.invitation-box {
+  padding: 30px 50px; /* Consistent padding */
+  background-color: #fff; /* Optional */
+  margin-bottom: 30px;
+}
+
+.invitation-box-left-text { /* This acts as the section heading */
+  font-weight: 600;
+  font-size: 28px; /* Adjusted size */
+  margin-bottom: 30px; /* Space below heading */
+  color: #333;
+  text-align: left; /* Or center if preferred for section title */
+}
+
+.invitation-box-list {
+  display: flex;
+  /* justify-content: space-between; /* Use with care if gap is also used */
+  justify-content: center; /* Center items if they don't fill full width */
+  flex-wrap: wrap; /* Allow items to wrap */
+  gap: 20px; /* Gap between invitation box wrappers */
+}
+
+.invitation-box-wrapper { /* Individual invitation box card */
+  text-align: center;
+  /* width: 32%; Will be set by flex-basis */
+  flex: 0 0 calc(33.333% - (2 * 20px / 3)); /* For 3 items with 20px gap */
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid #e0e0e0; /* Optional border for the card */
+  /* border-radius: 6px; /* Optional */
+  /* background-color: #f9f9f9; /* Optional */
+  /* overflow: hidden; /* If using border-radius */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.invitation-box-wrapper:hover {
+  /* transform: translateY(-5px); */
+  /* box-shadow: 0 6px 15px rgba(0,0,0,0.1); */
+}
+
+/* Image Container (or the image itself if no wrapper div) */
+.invitation-box-img { /* If this is a div wrapping an <img> tag */
+  width: 100%;
+  aspect-ratio: 4 / 3;  /* <<< MUKHYA BADLAV: Adjust as needed (e.g., 16/9, 1/1, 3/2) */
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Optional */
+  cursor: pointer;
+  background-color: #f0f0f0; /* Placeholder */
+  transition: border-color 0.3s ease;
+}
+.invitation-box-img:hover {
+  border-color: #777;
+}
+
+.invitation-box-img img { /* If .invitation-box-img is a wrapper for an actual <img> tag */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Or 'contain' if you want to see the whole image without cropping */
+  display: block;
+  transition: transform 0.3s ease;
+}
+.invitation-box-wrapper:hover .invitation-box-img img { /* Zoom image on card hover */
+    transform: scale(1.05);
+}
+
+.invitation-box-img-text {
+  /* width: 100%; Already full width due to parent's text-align: center or if block */
+  /* bottom: 10px; Removed absolute positioning */
+  color: #5d4037;
+  font-weight: 600;
+  font-size: 18px; /* Adjusted font size */
+  padding: 15px 10px; /* Use padding for spacing */
+  margin-top: auto; /* Pushes text to bottom if wrapper is flex column and image takes variable space */
+}
+
+/* --- Media Queries --- */
+@media (max-width: 1024px) { /* For 2 items on tablets */
+    .invitation-box-wrapper {
+        flex: 0 0 calc(50% - (1 * 20px / 2)); /* calc(50% - 10px) */
+    }
+}
+
+@media (max-width: 850px) {
+  .invitation-box {
+    padding: 20px 30px;
+  }
+  .invitation-box-left-text {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+  /* .invitation-box-img height is now controlled by aspect-ratio */
+}
+
+@media (max-width: 720px) {
+  .invitation-box {
+    padding: 20px;
+  }
+  /* .invitation-box-img height is controlled by aspect-ratio */
+  .invitation-box-img-text {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) { /* Changed from 500px for earlier switch to 1 column */
+  .invitation-box-list {
+    /* flex-direction: column; Already handled by wrapper width 100% */
+    /* gap: 20px; Gap is already set for .invitation-box-list */
+  }
+  .invitation-box-wrapper {
+    flex-basis: 100%; /* Full width for each item, making it 1 column */
+  }
+  .invitation-box-left-text {
+    text-align: center; /* Center heading on mobile */
+    font-size: 22px; /* Adjust heading size for mobile */
+  }
+
+  .invitation-box-img {
+    /* width: 90%; Removed, let it be 100% of wrapper */
+    /* max-width: 424px; Removed, let it be responsive */
+    /* height: auto; Already handled by aspect-ratio */
+    /* aspect-ratio: 1/1; /* Example: Change aspect ratio for mobile if desired */
+  }
 }
