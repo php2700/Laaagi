@@ -1,4 +1,4 @@
-/* .invitation-box {
+ .invitation-box {
   padding: 10px 0;
 }
 .invitation-box-left-text {
@@ -18,7 +18,8 @@
 .invitation-box-img {
   width: 100%;
   border: 1px solid #ccc;
-  height: 535px;
+  /* height: 535px; */
+  aspect-ratio: 4/3;
   cursor: pointer;
 }
 .invitation-box-img-text {
@@ -31,6 +32,7 @@
 .invitation-box-img:hover {
   border: 1px solid #777;
 }
+
 
 @media (max-width: 850px) {
   .invitation-box-img {
@@ -61,4 +63,4 @@
     max-width: 424px;
     height: auto;
   }
-}
+} 
