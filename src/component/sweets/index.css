@@ -354,7 +354,6 @@
 .sweets-content-img ,
 .sweets-price a {
   text-decoration: none;
-  /* color: inherit; optional: keep the color same as parent */
 }
 .sweets-content-img a {
   text-decoration: none;
