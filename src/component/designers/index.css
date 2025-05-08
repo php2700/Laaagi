@@ -41,7 +41,8 @@
 }
 .designers-content-img img {
   width: 100%;
-  height: 550px;
+  /* height: 550px; */
+  aspect-ratio: 4/3;
 }
 
 .designers-name {

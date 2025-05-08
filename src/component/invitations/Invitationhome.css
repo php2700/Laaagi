@@ -1,4 +1,4 @@
- .invitation-details-container {
+.invitation-details-container {
   margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -39,6 +39,10 @@
   gap: 30px;
   margin-bottom: 40px;
   align-items: flex-start;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 .image-container {
@@ -48,7 +52,7 @@
 
 .invitation-image {
   width: 100%;
-  height: auto;
+  height: 450px;
   display: block;
   border: 1px solid #eee;
   border-radius: 8px;
@@ -282,7 +286,7 @@
   display: flex;
   justify-content: center;
   width: 119px;
-  height: 48px;
+  height: 40px;
   background-color: #ffd700;
   color: #800000;
   font-size: 16px;
@@ -383,7 +387,6 @@
   text-align: center;
 }
 .invittion-box-container {
-  width: 15%;
   text-align: center;
   border: 2px solid white;
   padding: 12px;
@@ -443,7 +446,7 @@
 
 .invitation-section-align {
   display: flex;
-  width: 38%;
+  width: 34%;
   justify-content: space-between;
   align-items: center;
 }
@@ -480,16 +483,62 @@
   cursor: pointer;
 }
 
-.invitation-detils-home-container{
+.invitation-detils-home-container {
   display: flex;
-
+  margin: 12px 0px;
 }
 
-.invitation-detail-home{
+.invitation-detail-home {
   cursor: pointer;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1000px) {
+  .invitation-section-align {
+    width: 43%;
+  }
+  .invitation-box-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 11px 40px;
+    background-color: #eeeeee;
+  }
+  .invitation-size-box {
+    display: flex;
+    margin: 12px 0px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .invittions-size-img {
+    height: 45px;
+    width: 66px;
+    border: 1px solid #000000;
+  }
+  .invitation-second-img {
+    height: 83px;
+    width: 64px;
+    border: 1px solid #000000;
+  }
+  .invitation-third-img {
+    height: 42px;
+    width: 83px;
+    border: 1px solid #000000;
+  }
+  .invitation-len-h {
+    font-size: 21px;
+    font-weight: 600;
+    color: #74787a;
+  }
+  .invitation-box-we {
+    font-size: 16px;
+    font-weight: 600;
+    color: #74787a;
+  }
+  .right-icon-arrow {
+    border-radius: 14px;
+    border: 1px solid #a8a8a8;
+    padding: 17px;
+  }
   .top-section {
     flex-direction: column;
     align-items: center;
@@ -516,6 +565,74 @@
   }
 }
 
+@media (max-width: 850px) {
+  .invitation-second-img {
+    height: 75px;
+    width: 55px;
+    border: 1px solid #000000;
+  }
+  .invitation-third-img {
+    height: 34px;
+    width: 75px;
+    border: 1px solid #000000;
+  }
+  .invittions-size-img {
+    height: 35px;
+    width: 55px;
+    border: 1px solid #000000;
+  }
+  .right-icon-arrow {
+    border-radius: 14px;
+    border: 1px solid #a8a8a8;
+    padding: 15px;
+  }
+  .invitation-box-we {
+    font-size: 14px;
+    font-weight: 600;
+    color: #74787a;
+  }
+  .invitation-box-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 11px 13px;
+    background-color: #eeeeee;
+  }
+  .invitation-box-type {
+    display: flex;
+    gap: 14px;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 750px) {
+  .invitation-box-header {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    padding: 11px 1px;
+    background-color: #eeeeee;
+  }
+  .invitation-box-type {
+    display: flex;
+    gap: 11px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .invittion-box-detail {
+    max-width: 115px;
+    text-align: center;
+  }
+  .invitation-box-name {
+    text-align: center;
+    word-break: break-word;
+  }
+  .invitation-box-type-img img {
+    height: 70px;
+    width: 100%;
+  }
+}
 @media (max-width: 576px) {
   .options-grid.four-columns,
   .options-grid.two-columns {
@@ -527,10 +644,10 @@
   .customize-btn {
     width: 100%;
   }
-} 
+}
 
 /* new */
- @media (max-width: 400px) {
+@media (max-width: 400px) {
   .invitation-description h2 {
     font-size: 1.4em;
   }
@@ -582,5 +699,4 @@
     text-align: center;
     gap: 10px;
   }
-} 
-/* new2 */
+}

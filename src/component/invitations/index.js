@@ -147,7 +147,9 @@ export const Invitation = () => {
                         {
                             data?.map((ele) => (
                                 <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
-                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                    <div className='invitation-content-main-img'>
+                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                    </div>
                                     <div className='invitation-content-img-name' >
                                         <div >{ele?.name}</div>
                                         <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>

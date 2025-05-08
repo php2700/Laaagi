@@ -75,22 +75,25 @@
 .invitation-content-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 65px;
+  gap: 30px;
   justify-content: flex-start;
 }
+
 .invitation-content-img {
-  height: 319px;
-  width: 347px;
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
-  position: relative;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: calc((100% - 60px) / 3);
+}
+
+.invitation-content-main-img {
+  width: 100%;
 }
 .invitation-content-img img {
-  height: 217px;
-  width: 342px;
+  width: 100%;
+  height: 500px;
 }
 
 .invitation-toggle {
@@ -100,8 +103,7 @@
 }
 
 .invitation-content-img-name {
-  position: absolute;
-  bottom: 20px;
+  margin: 25px 0px;
 }
 
 .invitation-payment {
@@ -110,8 +112,37 @@
 
 .active-url {
   text-decoration: underline !important;
-  text-decoration-color: #7f73b0  !important ;
+  text-decoration-color: #7f73b0 !important ;
   text-decoration-thickness: 3px !important;
+}
+
+@media (max-width: 1000px) {
+  .invitation-content-img img {
+    width: 100%;
+    height: 451px;
+  }
+}
+@media (max-width: 850px) {
+  .invitation-content-img img {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+@media (max-width: 720px) {
+  .invitation-content-img img {
+    width: 100%;
+    height: 310px;
+  }
+  .invitations-price-left {
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 282px;
+    min-width: 142px;
+    box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+  }
 }
 
 @media (max-width: 500px) {

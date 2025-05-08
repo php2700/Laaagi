@@ -198,7 +198,7 @@ export const Invitationhome = () => {
     if (validate()) {
       return;
     }
-    navigate('/invitation-GuestList', { state: { amount: total+price } })
+    navigate('/invitation-GuestList', { state: { amount: total + price } })
   }
 
   useEffect(() => {
@@ -258,7 +258,8 @@ export const Invitationhome = () => {
   }
 
   const handleHome = () => {
-    navigate('/')
+    const lastUrl = sessionStorage.getItem('lastURL');
+    navigate(`${lastUrl}`)
   }
 
 
@@ -267,7 +268,7 @@ export const Invitationhome = () => {
       <div className='back-button' onClick={handleBack}>back</div>
       <div className="invitation-detils-home-container">
         <div className="invitation-detail-home" onClick={handleHome}>Home</div>
-        <div> &nbsp;> &nbsp;Invitation</div>
+        <div> &nbsp;> &nbsp;Detail</div>
       </div>
       <div className="top-section">
         <div className="image-container">
