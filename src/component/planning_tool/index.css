@@ -1,3 +1,365 @@
+/* .plannig-category {
+  margin: 30px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.plannig-category div  {
+  text-decoration: none;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #800000;
+  color: #ffd700;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.planning-check-list {
+  text-align: center;
+  width: 30%;
+  margin: 0 auto;
+  padding: 10px 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: 0px 1px 8px gray;
+}
+.planning-check-header {
+  color: #1d1a1a;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.planning-list {
+  display: flex;
+  gap: 5px;
+}
+.planning-list div {
+  font-weight: 400;
+  font-size: 14px;
+}
+.planning-check-clear {
+  padding: 5px;
+  background-color: #800000;
+  color: #ffd700;
+  border: 1px solid #b356c1;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+.planning-check-save {
+  padding: 5px;
+  background-color: #ffd700;
+  color: #982900;
+  border: 1px solid #b356c1;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+
+.planning-img img {
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .plannig-category {
+    margin: 30px 0px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .plannig-category div a {
+    text-decoration: none;
+    min-height: 36px;
+    padding: 0 14px;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .planning-check-list {
+    width: 90%;
+    padding: 10px 20px;
+  }
+}
+
+
+@media(max-width:700px){
+
+}
+.plannig-category {
+  margin: 30px 15px; 
+  display: flex;
+  justify-content: center; 
+  align-items: stretch; 
+  gap: 8px; 
+}
+
+.plannig-category div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px; 
+  background-color: #800000;
+  color: #ffd700;
+  font-size: 14px; 
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px; 
+  flex-grow: 1; 
+  flex-basis: 0; 
+  box-sizing: border-box;
+}
+
+
+
+@media (max-width: 500px) {
+  .plannig-category {
+    margin: 20px 10px;
+    gap: 5px; 
+  }
+
+  .plannig-category div {
+    padding: 8px 8px; 
+    font-size: 12px; 
+  }
+}
+
+.planning-check-list {
+  text-align: center;
+  width: 90%; 
+  max-width: 500px; 
+  margin: 30px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0px 1px 8px gray;
+  border-radius: 8px;
+}
+.planning-check-header {
+  color: #1d1a1a;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+.planning-list {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.planning-list div {
+  font-weight: 400;
+  font-size: 16px;
+}
+.planning-check-clear,
+.planning-check-save {
+  padding: 10px 15px; 
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+.planning-check-clear {
+  background-color: #800000;
+  color: #ffd700;
+}
+.planning-check-save {
+  background-color: #ffd700;
+  color: #982900;
+}
+.planning-img img {
+  width: 100%;
+  display: block;
+}
+
+
+.invitations-content {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+}
+.invitations-content-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.invitation-content-text {
+  text-align: center;
+  color: #ffd700;
+  background-color: #800000;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.invitation-content-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  justify-content: flex-start; 
+}
+
+.invitation-content-img {
+  width: 450px;  
+  height: 590px; 
+  box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+  position: relative; 
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; 
+  background-color: #fff; 
+}
+
+.invitation-content-img img {
+   display: block;
+   width: 100%;   
+   height: 500px; 
+   object-fit: cover; 
+   background-color: #f0f0f0; 
+}
+
+.invitation-content-img-name {
+  width: 100%;
+  padding: 15px 10px; 
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #fff; 
+  color: #333;
+  font-weight: 500;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.invitations-price-left {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 282px; 
+  min-width: 213px; 
+  box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+}
+
+
+
+
+@media (max-width: 700px) {
+
+   .invitations-content {
+    
+      padding: 15px 10px;
+   }
+   .invitations-price-left {
+     min-width: 164px;
+     height: auto; 
+   }
+
+  .invitation-content-list {
+      justify-content: center;
+      gap: 15px;
+  }
+
+  .invitation-content-img {
+      width: calc(50% - 10px); 
+      height: auto; 
+      position: static;
+  }
+  .invitation-content-img img {
+      height: auto; 
+      aspect-ratio: 3 / 4;
+      
+  }
+  .invitation-content-img-name {
+       padding: 10px 5px;
+       position: static; 
+       flex-grow: 0; 
+       justify-content: flex-start; 
+  }
+}
+
+
+@media (max-width: 500px) {
+   .invitations-header {
+     flex-direction: column;
+     align-items: center;
+     gap: 10px;
+   }
+   .invitations-header div {
+      width: 90%;
+      text-align: center;
+   }
+
+
+  .invitations-content {
+    flex-direction: column; 
+    align-items: center;   
+    padding: 15px 5px;
+  }
+
+  .invitations-price-left {
+    height: auto; 
+    min-width: unset;
+    width: 90%; 
+    align-self: center;
+  }
+  .invitation-toggle { display: none; }
+  .invitation-toggle.open { display: block; }
+
+
+  .invitation-content-list {
+    flex-direction: column; 
+    align-items: center;
+    width: 100%;
+    gap: 25px;
+  }
+
+  .invitation-content-img {
+    width: 90%; 
+    max-width: 350px;
+    height: auto;     
+    position: static; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    overflow: hidden; 
+  }
+
+  .invitation-content-img img {
+    width: 100%;
+    height: auto; 
+    aspect-ratio: 3 / 4; 
+    object-fit: cover; 
+  }
+
+  .invitation-content-img-name {
+    position: static; 
+    width: 100%;
+    padding: 12px 10px;
+    text-align: center;
+    flex-grow: 0; 
+    justify-content: flex-start; 
+  }
+} */
+ /* newold */
+ 
 .plannig-category {
   margin: 30px 20px;
   display: flex;
@@ -105,3 +467,34 @@
     padding: 10px 20px;
   } */
 }
+@media (max-width: 500px) {
+  .plannig-category {
+    margin: 30px 0px;
+    gap: 8px;
+    flex-wrap: wrap;        
+    justify-content: center; 
+  }
+
+  .plannig-category div {
+    min-height: 36px;  
+    padding: 0 14px;  
+    font-size: 14px;   
+  }
+
+  /*
+ 
+  */
+  /* .plannig-category div a {
+    text-decoration: none;
+    min-height: 36px;
+    padding: 0 14px;
+    gap: 10px; /* Note: 'gap' is a flex container property. If 'a' is not a flex container, this won't apply to its children. */
+    /* font-size: 14px;
+  } */
+
+  .planning-check-list {
+    width: 90%;
+    padding: 10px 20px;
+  }
+}
+/*  */

@@ -16,6 +16,7 @@ const invitationHeader = [
     { name: 'Misc Invitation', category: 'misc_invitation' },
 ]
 
+
 export const Invitation = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
@@ -153,6 +154,7 @@ export const Invitation = () => {
                                     </div>
                                 </div>
                             ))}
+
                     </div>
                 </div>
 

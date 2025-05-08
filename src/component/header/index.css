@@ -429,7 +429,11 @@ button {
     background-color: #800000;
     color: #ffd700;
     padding: 10px 0;
+
   }
+  /* .navbar a:active {
+    text-decoration: underline red
+  } */
 
   .navbar.open {
     display: flex;
@@ -630,7 +634,11 @@ button {
   }
 }
 
-/* Optional: smooth animation for dropdown */
+
 .user-dropdown-menu {
   transition: all 0.3s ease;
+}
+.main-navbar .nav-item.active {
+  
+  background-color: red;
 }

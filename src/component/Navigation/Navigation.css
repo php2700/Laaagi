@@ -1,0 +1,37 @@
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: red; /* Dark red background like in the image */
+    justify-content: center; /* Center items if needed */
+    /* Add other styling for the nav bar */
+  }
+  
+  .main-nav li {
+     margin: 0 15px; /* Adjust spacing */
+  }
+  
+  .nav-link { /* Style for ALL NavLinks */
+    display: inline-block; /* Important for padding/border */
+    padding: 15px 10px; /* Adjust padding */
+    text-decoration: none;
+    color: blue; /* Text color */
+    border-bottom: 3px solid transparent; /* Default: invisible border */
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Style for the ACTIVE NavLink */
+  .nav-link.active {
+    color: #FFD700; /* Gold/Yellow color for active text */
+    border-bottom-color: red; /* RED bottom border */
+    font-weight: bold;
+  }
+  
+  /* Optional: Hover effect for non-active links */
+  .nav-link:not(.active):hover {
+    color: #eee; /* Slightly lighter text on hover */
+     /* You could add a subtle hover border if desired */
+     /* border-bottom-color: #FFD700; */
+  }

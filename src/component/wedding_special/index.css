@@ -1,4 +1,4 @@
-.wedding {
+/* .wedding {
   padding: 10px 50px;
 }
 .wedding-top {
@@ -48,6 +48,7 @@
   background-color: white;
 }
 .wedding-img {
+  
   height: 400px;
   width: 100%;
 }
@@ -65,8 +66,7 @@
   font-weight: 600;
   color: #5d4037;
   margin: 35px 0px;
-  /* position: absolute;
-  bottom: 33px; */
+  
 }
 
 .wedding-img-container {
@@ -101,6 +101,10 @@
     height: 350px;
     width: 100%;
   }
+  .wedding-img {
+    height: 350px;
+    width: 100%;
+  } 
 }
 
 @media (max-width: 500px) {
@@ -130,5 +134,186 @@
 
   .wedding-img-right-icon {
     display: none;
+  }
+} */
+/* new */
+.wedding {
+  padding: 20px 50px; 
+  margin-bottom: 30px; 
+}
+
+.wedding-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; 
+  margin-bottom: 20px;
+}
+
+.wedding-left-text {
+  font-weight: 600;
+  font-size: 28px; 
+  color: #333; 
+}
+
+.wedding-right-text { 
+  font-weight: 500; 
+  font-size: 16px;
+  color: #800000; 
+  text-decoration: none;
+  padding: 8px 15px;
+  border: 1px solid #800000;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.wedding-right-text:hover {
+  background-color: #800000;
+  color: #ffd700;
+}
+
+.wedding-img-list { 
+  display: flex;
+  align-items: stretch; 
+  position: relative;
+  gap: 20px; 
+}
+
+.wedding-img-left-icon,
+.wedding-img-right-icon {
+  display: flex;
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%);
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  height: 42px; 
+  width: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  z-index: 10;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.wedding-img-left-icon:hover,
+.wedding-img-right-icon:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.2);
+}
+
+.wedding-img-left-icon {
+  left: -21px; 
+}
+
+.wedding-img-right-icon {
+  right: -21px; 
+}
+
+.wedding-img-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+  border: 1px solid #e1e1e1;
+  border-radius: 6px; 
+  overflow: hidden; 
+  flex: 0 0 calc(33.333% - (40px / 3));
+                                      
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+.wedding-img-wrapper:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.wedding-img { 
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #f0f0f0; 
+}
+
+.wedding-img img { 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.wedding-img-wrapper:hover .wedding-img img {
+    transform: scale(1.05);
+}
+
+.wedding-img-text {
+  font-size: 18px; 
+  font-weight: 600;
+  color: #5d4037;
+  padding: 15px; 
+  text-align: center;
+  width: 100%; 
+}
+
+
+@media (max-width: 1024px) { 
+    .wedding-img-wrapper {
+        flex: 0 0 calc(50% - (20px / 2));
+    }
+}
+
+@media (max-width: 850px) {
+  .wedding {
+    padding: 15px 30px; 
+  }
+  
+  .wedding-left-text {
+    font-size: 24px;
+  }
+  .wedding-right-text {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 720px) { 
+  .wedding {
+    padding: 15px 20px;
+  }
+  .wedding-img-left-icon,
+  .wedding-img-right-icon {
+    height: 38px;
+    width: 38px;
+  }
+  .wedding-img-left-icon { left: -19px; }
+  .wedding-img-right-icon { right: -19px; }
+}
+
+@media (max-width: 600px) { 
+  .wedding-img-list {
+    overflow-x: auto;
+    padding-bottom: 15px; 
+    scroll-snap-type: x mandatory; 
+    justify-content: flex-start;
+  }
+  .wedding-img-wrapper {
+    flex: 0 0 80%;  
+    scroll-snap-align: start; 
+  }
+  /* .wedding-img {
+    width: 100%;
+    max-width: 100%; // Remove max-width if it's taking full width of wrapper
+    // height: auto; // Already handled by aspect-ratio
+  } */
+
+  .wedding-img-text {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .wedding-img-left-icon,
+  .wedding-img-right-icon {
+    display: none; 
+  }
+  .wedding-left-text {
+    font-size: 20px;
   }
 }

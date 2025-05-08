@@ -339,6 +339,7 @@ export const Header = () => {
                                     <img src={defaultImg} alt="User avatar" />
                                     <div>Guest</div>
                                 </div>
+                
                         }
                         {isDropdownOpen && (
                             <div className='user-dropdown-menu'>
@@ -374,6 +375,8 @@ export const Header = () => {
                 <div><NavLink to='/planning-tool' className={({ isActive }) => (isActive ? 'active-link' : '')}>Planning Tools</NavLink></div>
                 <div><NavLink to='/contact-us' className={({ isActive }) => (isActive ? 'active-link' : '')}>Contact Us</NavLink></div>
             </div>
+            
         </div>
+        
     );
 };
