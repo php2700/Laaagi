@@ -4,12 +4,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { AddGuestHeader } from './add-guest.header';
-import {GuestRow} from './GuestRow.js';
+import { GuestRow } from './GuestRow.js';
 import Addadress from './Addadress';
 
 export const GuestList = () => {
   const total = useLocation();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const totalAmountPerBox = total?.state.amount;
   console.log(totalAmountPerBox)
   const content = useContext(AuthContext)
@@ -104,10 +104,10 @@ export const GuestList = () => {
     }
   }
 
-  const handlePayment=()=>{
+  const handlePayment = () => {
     navigate('/payment')
   }
-  
+
   return (
     <div className="guest-list-container">
       <div className="guest-list-header">

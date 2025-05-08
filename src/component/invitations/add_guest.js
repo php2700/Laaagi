@@ -88,7 +88,7 @@ export const Add_Guest = () => {
                             </>)
                         }
                         <div>
-                            <span className="note">Note</span>
+                            <span className="note">Note :</span>
                             <span>We will send address request to your guest via email/whatsapp</span>
                         </div>
                     </div>

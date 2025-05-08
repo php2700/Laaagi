@@ -48,7 +48,6 @@
   background-color: white;
 }
 .wedding-img {
-  /* position: relative; */
   height: 400px;
   width: 100%;
 }
@@ -101,7 +100,7 @@
   .wedding-img {
     height: 350px;
     width: 100%;
-  } 
+  }
 }
 
 @media (max-width: 500px) {

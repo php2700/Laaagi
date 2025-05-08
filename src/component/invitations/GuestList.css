@@ -1,16 +1,15 @@
 /* --- Global & Container --- */
 .guest-list-container {
   font-family: sans-serif;
-  border: 1px solid #e4e2e2; /* Figma Border */
-  width: 1143px; /* Figma Width */
-  margin: 20px auto; /* सेंटर करने के लिए */
+  border: 1px solid #e4e2e2;
+  width: 65%;
+  margin: 20px auto;
   background-color: #fff;
-  border-radius: 8px; /* थोड़ा गोल कोने */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* हल्का शैडो */
-  overflow: hidden; /* बॉर्डर रेडियस ठीक से दिखे */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-/* --- Header --- */
 .guest-list-header {
   display: flex;
   justify-content: space-between;
@@ -213,4 +212,41 @@ input[type="checkbox"] {
   cursor: pointer;
   width: 16px;
   height: 16px;
+}
+
+@media (max-width: 850px) {
+  .guest-list-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 720px) {
+  .guest-list-container {
+    width: 95%;
+  }
+  th,
+  td {
+    padding: 14px 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  th,
+  td {
+    padding: 12px 8px;
+  }
+  .guest-list-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  th,
+  td {
+    padding: 12px 6px;
+  }
+
+  .search-input {
+    min-width: 200px;
+  }
 }
