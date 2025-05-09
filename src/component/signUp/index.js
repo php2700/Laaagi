@@ -164,6 +164,8 @@ export const SignUp = () => {
         setShowSignUp(false)
         const lastURL = sessionStorage.getItem('lastURL');
         const secondLastURL = sessionStorage.getItem('secondLastUrl');
+        console.log(lastURL,"lastURL",secondLastURL,"secondLastURL")
+
         if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
             navigate(`${secondLastURL}`)
         } else {
