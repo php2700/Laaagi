@@ -2,7 +2,7 @@ import { use, useContext, useEffect, useState } from 'react';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -142,7 +142,7 @@ export const Invitation = () => {
                     </div>
                 </div>
                 <div className='invitations-content-header'>
-                    <div className='invitation-content-text'> Upload Your Design and get quote for the same</div>
+                    <div className='invitation-content-text' ><Link to='/upload-design'>Upload Your Design and get quote for the same</Link> </div>
                     <div className='invitation-content-list'>
                         {
                             data?.map((ele) => (
@@ -158,6 +158,9 @@ export const Invitation = () => {
                             ))}
 
                     </div>
+                    {!data?.length &&
+                        <div className='no-found'>No Data Found</div>
+                    }
                 </div>
 
             </div>

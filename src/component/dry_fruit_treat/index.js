@@ -27,11 +27,11 @@ export const Dry_Fruit_Treat = () => {
     // }
 
     const dryFruitsList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`, {
         })
             .then((res) => {
-                setDryFruitData(res?.data?.sweetsData);
-                console.log(res?.data?.sweetsData)
+                setDryFruitData(res?.data?.dryFruitData);
+                console.log(res?.data?.dryFruitData)
             }).catch((error) => {
                 console.log(error);
             })

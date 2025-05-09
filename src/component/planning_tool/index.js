@@ -1,6 +1,6 @@
 import './index.css'
 import planningImg from '../../assets/planning/planning.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { SignUp } from '../signUp'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context'
@@ -10,8 +10,10 @@ import leftIcon from "../../assets/icon/left_arrow-right.png"
 import { toast } from 'react-toastify'
 
 export const PlanningTool = () => {
+    const navigate = useNavigate()
     const context = useContext(AuthContext);
     const token = context?.token || localStorage.getItem('token')
+    const setToken = context?.setToken;
     const [data, setData] = useState()
     const [checkedItems, setCheckedItems] = useState([]);
     const userId = localStorage.getItem("_id")
@@ -72,12 +74,19 @@ export const PlanningTool = () => {
             }
         })
             .then((res) => {
-                console.log(res.data)
-                console.log(res?.data)
+                console.log(res.data, '888888888888888888888888888888')
+                // console.log(res?.data)
                 setData(res?.data?.planningData);
                 setCheckedItems(res.data?.planningData?.checked)
             }).catch((error) => {
-                console.log(error);
+                // const message = error?.response?.data?.Message;
+                // if (message == 'jwt expired') {
+                //     setToken("")
+                //     localStorage.removeItem("_id")
+                //     localStorage.removeItem("token")
+                //     navigate("/signup")
+                // }
+                console.log(error, 'aaaaaaaaa');
             })
     }
 

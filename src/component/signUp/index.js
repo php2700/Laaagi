@@ -27,6 +27,7 @@ export const SignUp = () => {
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
+            console.log(tokenResponse)
             await axios.post(`${process.env.REACT_APP_BASE_URL}api/user/google-login`, {
                 access_token: tokenResponse?.access_token
             })
@@ -35,7 +36,7 @@ export const SignUp = () => {
                     localStorage.setItem("_id", res?.data?.user?._id)
                     navigate("/")
                 }).catch((error) => {
-                    console.log(error)
+                    console.log(error, '33')
                 })
         },
         onError: () => {
@@ -46,13 +47,6 @@ export const SignUp = () => {
 
     const validate = () => {
         let newError = {};
-
-        // if (!name?.trim()) {
-        //     newError.name = 'Name is required'
-        // } else if (name?.length < 3) {
-        //     newError.name = 'minimum 3 character required'
-        // }
-
 
 
         if (!mobile) {
@@ -220,12 +214,8 @@ export const SignUp = () => {
                         </div>
                     </div>
                 </div>) : (nameModel ?
-                    // (<div className="modal-overlay" onClick={handleNameModel}>
                     (<div className="modal-overlay">
                         <div className='model' onClick={(e) => e.stopPropagation()}>
-                            {/* <div className='close-model'>
-                                <button onClick={handleNameModel}>X</button>
-                            </div> */}
                             <div className="sign-up-top">
                                 <div className="sign-up-header">
                                     <img src={laaagi} alt="laaagi" />
@@ -273,39 +263,8 @@ export const SignUp = () => {
                             </div>
                         </div>
                     </div>))
-
-
-
-
-                // (<div className="modal-overlay" onClick={handleOtpClose}>
-                //     <div className='model' onClick={(e) => e.stopPropagation()}>
-                //         <div className='close-model'>
-                //             <button onClick={handleOtpClose}>X</button>
-                //         </div>
-                //         <div className="sign-up-top">
-                //             <div className="sign-up-header">
-                //                 <img src={laaagi} alt="laaagi" />
-                //                 <div >Laaagi</div>
-                //             </div>
-                //             <div className='model-text'>We sent OTP on : {mobile}</div>
-                //             <div className="sign-up-form-main" >
-                //                 <form className="sign-up-form" onSubmit={handleVerify}>
-                //                     <div className="sign-up-input">
-                //                         <input type="text" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
-                //                     </div>
-                //                     <div className="sign-up-submit">
-                //                         <button type="submit">Next</button>
-                //                     </div>
-                //                 </form>
-                //             </div>
-                //             <div className="sign-up-or" onClick={handelResend}>resend</div>
-                //             <div>{data?.otp}</div>
-                //         </div>
-                //     </div>
-                // </div>)
             )
         }
-
         </>
     )
 }

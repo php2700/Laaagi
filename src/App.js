@@ -39,6 +39,7 @@ import { Add_Guest } from './component/invitations/add_guest';
 import { Guest } from './component/invitations/guest';
 import { Payment } from './component/payment';
 import { LastUrl } from './lastUrl';
+import { UploadInvitation } from './component/invitations/upload-invitation';
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -74,6 +75,7 @@ function App() {
               <Route path='/suits' element={<Suits />} />
               <Route path='/other' element={<Other />} />
               <Route path='/contact-us' element={<ContactUs />} />
+              <Route path='/upload-design' element={<UploadInvitation />} />
               <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
               <Route path='/planning-birthday' element={<PlanningBirthDay />} />
               <Route path='/planning-mehndi' element={<PlanningMehndi />} />
@@ -82,11 +84,14 @@ function App() {
               <Route path='/sweets-info' element={<SweetsInfo />} />
               <Route path='/signup' element={<SignUp />} />
               <Route path="/invitation-detail" element={<Invitationhome />} />
+
               <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
               <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
               <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
               <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
-              <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} />
+              {/* <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} /> */}
+
+
               <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
               <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
             </Routes>

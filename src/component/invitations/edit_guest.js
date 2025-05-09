@@ -50,7 +50,7 @@ export const Edit_Guest = () => {
             setGuestNo('')
             setMobile('')
             setPincode('')
-            navigate('/add-guest')
+            navigate('/guest')
         }).catch((error) => {
             console.log(error);
         })

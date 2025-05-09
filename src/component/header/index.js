@@ -220,10 +220,13 @@ export const Header = () => {
     const [userData, setUserData] = useState();
     const navigate = useNavigate();
     const context = useContext(AuthContext);
+    const setAmounts = context?.setAmounts;
+    const amounts = context?.amounts;
     const setToken = context?.setToken;
     const token = context?.token;
     const defaultProfile = context.defaultProfile
-    console.log(defaultProfile, '33333333333333333333333333')
+
+
     const userId = localStorage.getItem("_id")
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
@@ -231,7 +234,9 @@ export const Header = () => {
     const dropdownRef = useRef(null);
     const [open, setOpen] = useState(false)
 
+
     const headerUpdate = context?.headerUpdate;
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -303,6 +308,7 @@ export const Header = () => {
         getUserData()
     }, [token, defaultProfile, headerUpdate])
 
+
     const openSignup = () => {
         navigate('/signup')
     }
@@ -339,7 +345,7 @@ export const Header = () => {
                                     <img src={defaultImg} alt="User avatar" />
                                     <div>Guest</div>
                                 </div>
-                
+
                         }
                         {isDropdownOpen && (
                             <div className='user-dropdown-menu'>
@@ -375,8 +381,8 @@ export const Header = () => {
                 <div><NavLink to='/planning-tool' className={({ isActive }) => (isActive ? 'active-link' : '')}>Planning Tools</NavLink></div>
                 <div><NavLink to='/contact-us' className={({ isActive }) => (isActive ? 'active-link' : '')}>Contact Us</NavLink></div>
             </div>
-            
+
         </div>
-        
+
     );
 };

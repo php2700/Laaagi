@@ -72,6 +72,11 @@
   padding: 10px;
 }
 
+.invitation-content-text a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffd700;
+}
 .invitation-content-list {
   display: flex;
   flex-wrap: wrap;
@@ -114,6 +119,18 @@
   text-decoration: underline !important;
   text-decoration-color: #7f73b0 !important ;
   text-decoration-thickness: 3px !important;
+}
+
+.no-found {
+  background-color: #800000;
+  color: #ffd700;
+  padding: 12px 0px;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  margin: 60px auto;
+  font-size: 18px;
+  border-radius: 4px;
 }
 
 @media (max-width: 1000px) {

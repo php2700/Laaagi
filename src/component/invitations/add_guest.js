@@ -27,6 +27,40 @@ export const Add_Guest = () => {
         else { setOpenAddress(false) }
     }
 
+
+    // const validate = () => {
+    //     const newError = {};
+    //     if (!name?.trim())
+    //       newError.name = 'Name is required'
+    //     else if (name?.length < 3)
+    //       newError.name = 'min 3 character required'
+    
+    //     if (!guestNo)
+    //       newError.guestNo = 'guest No is required'
+       
+    
+    //     if (!mobile) {
+    //       newError.mobile = 'Mobile number is required*';
+    //     } else if (!/^\d+$/.test(mobile)) {
+    //       newError.mobile = 'Mobile number must contain digits only';
+    //     } else if (mobile.length < 10) {
+    //       newError.mobile = 'Mobile number must be at least 10 digits';
+    //     } else if (mobile.length > 12) {
+    //       newError.mobile = 'Mobile number must not exceed 12 digits';
+    //     }
+    
+    //     if (!message?.trim())
+    //       newError.message = 'Messsage is required'
+    //     else if (message?.length < 3)
+    //       newError.message = 'min 10 character required'
+    
+    
+    //     setError(newError)
+    //     return Object.keys(newError)?.length;
+    
+    
+    //   }
+
     const handleSumbit = async (e) => {
         e.preventDefault();
 
@@ -36,6 +70,8 @@ export const Add_Guest = () => {
             email, category,
             pincode
         }
+
+        // if (validate()) return
 
         await (axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-guest`, guestData, {
             headers: {
@@ -48,7 +84,7 @@ export const Add_Guest = () => {
             setGuestNo('')
             setMobile('')
             setPincode('')
-            navigate('/add-guest')
+            navigate('/guest')
         }).catch((error) => {
             console.log(error);
         })
