@@ -47,8 +47,6 @@ export const SignUp = () => {
 
     const validate = () => {
         let newError = {};
-
-
         if (!mobile) {
             newError.mobile = 'Mobile number is required*';
         } else if (!/^\d+$/.test(mobile)) {
@@ -70,7 +68,6 @@ export const SignUp = () => {
         if (validate()) {
             return
         }
-
 
         setMobile(mobile?.trim())
         const signupData = {
@@ -104,7 +101,6 @@ export const SignUp = () => {
             }
 
         }).catch((error) => {
-            // console.log(error?.response?.data?.message);
             if (error?.response?.data?.message == 'otp does not match') {
                 setOtpVerifyError('OTP does not match');
             }
@@ -170,8 +166,10 @@ export const SignUp = () => {
         const secondLastURL = sessionStorage.getItem('secondLastUrl');
         if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
             navigate(`${secondLastURL}`)
-        } else
+        } else {
             navigate(`${lastURL}`)
+        }
+
     }
 
     return (

@@ -305,6 +305,10 @@ export const Header = () => {
     }
 
     useEffect(() => {
+        if (!token) {
+            setUserData();
+            return
+        }
         getUserData()
     }, [token, defaultProfile, headerUpdate])
 

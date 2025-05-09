@@ -89,8 +89,6 @@ function App() {
               <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
               <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
               <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
-              {/* <Route path="/guest-list" element={<PrivateRoute><GuestList /></PrivateRoute>} /> */}
-
 
               <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
               <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />

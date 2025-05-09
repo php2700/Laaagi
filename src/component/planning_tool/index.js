@@ -74,19 +74,17 @@ export const PlanningTool = () => {
             }
         })
             .then((res) => {
-                console.log(res.data, '888888888888888888888888888888')
                 // console.log(res?.data)
                 setData(res?.data?.planningData);
                 setCheckedItems(res.data?.planningData?.checked)
             }).catch((error) => {
-                // const message = error?.response?.data?.Message;
-                // if (message == 'jwt expired') {
-                //     setToken("")
-                //     localStorage.removeItem("_id")
-                //     localStorage.removeItem("token")
-                //     navigate("/signup")
-                // }
-                console.log(error, 'aaaaaaaaa');
+                const message = error?.response?.data?.Message;
+                if (message == 'jwt expired') {
+                    setToken("")
+                    localStorage.removeItem("_id")
+                    localStorage.removeItem("token")
+                    navigate('/')
+                }
             })
     }
 
