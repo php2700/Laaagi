@@ -94,7 +94,7 @@
 
 .no-found {
   background-color: #800000;
-  colo: 75%;
+  color: 75%;
   display: flex;
   justify-content: center;
   margin: 60px auto;
@@ -279,7 +279,6 @@
 .sweets-content-img,
 .sweets-price a {
   text-decoration: none;
-  /* color: inherit; optional: keep the color same as parent */
 }
 .sweets-content-img a {
   text-decoration: none;

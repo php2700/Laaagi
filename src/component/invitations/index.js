@@ -7,6 +7,7 @@ import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AuthContext } from '../context';
+import UploadDesignForm from './UploadDesignForm';
 
 const invitationHeader = [
     { name: 'Only Invitation', category: 'invitation' },
@@ -28,6 +29,7 @@ export const Invitation = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [menuOpen, setMenuOpen] = useState(false)
     const [category, setCategory] = useState('invitation')
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
     const handleForwardIcon = () => {
         const totalItems = invitationHeader?.length || 0;
@@ -97,6 +99,14 @@ export const Invitation = () => {
     const handleUrl = (ele) => {
         setCategory(ele?.category);
     }
+    const handleOpenUploadModal = () => {
+        navigate('/forms')
+        setIsUploadModalOpen(true);
+    };
+    
+
+
+    
 
     return (
         <div className='invitations'>
@@ -118,7 +128,7 @@ export const Invitation = () => {
                         <>
                             {invitationHeader?.map((ele) => (
                                 // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                                <div className={ele} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }
@@ -142,7 +152,7 @@ export const Invitation = () => {
                     </div>
                 </div>
                 <div className='invitations-content-header'>
-                    <div className='invitation-content-text' ><Link to='/upload-design'>Upload Your Design and get quote for the same</Link> </div>
+                    <div className='invitation-content-text'onClick={handleOpenUploadModal} style={{ cursor: 'pointer',  }}> Upload Your Design and get quote for the same</div>
                     <div className='invitation-content-list'>
                         {
                             data?.map((ele) => (

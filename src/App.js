@@ -39,7 +39,7 @@ import { Add_Guest } from './component/invitations/add_guest';
 import { Guest } from './component/invitations/guest';
 import { Payment } from './component/payment';
 import { LastUrl } from './lastUrl';
-import { UploadInvitation } from './component/invitations/upload-invitation';
+import {UploadDesignForm }from './component/invitations/UploadDesignForm';
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -75,7 +75,7 @@ function App() {
               <Route path='/suits' element={<Suits />} />
               <Route path='/other' element={<Other />} />
               <Route path='/contact-us' element={<ContactUs />} />
-              <Route path='/upload-design' element={<UploadInvitation />} />
+              {/* <Route path='/upload-design' element={<UploadInvitation />} /> */}
               <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
               <Route path='/planning-birthday' element={<PlanningBirthDay />} />
               <Route path='/planning-mehndi' element={<PlanningMehndi />} />
@@ -91,7 +91,8 @@ function App() {
               <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
 
               <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
-              <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+              <Route  path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+              <Route path='/forms' element={<UploadDesignForm/>} />
             </Routes>
           </div>
           <Footer />
