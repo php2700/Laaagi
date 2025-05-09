@@ -2,7 +2,7 @@ import { use, useContext, useEffect, useState } from 'react';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -168,6 +168,9 @@ export const Invitation = () => {
                             ))}
 
                     </div>
+                    {!data?.length &&
+                        <div className='no-found'>No Data Found</div>
+                    }
                 </div>
 
             </div>

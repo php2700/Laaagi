@@ -7,10 +7,11 @@ import { Addadress } from "./Addadress";
 
 export const Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
-    const content = useContext(AuthContext)
+    const context = useContext(AuthContext)
     const userId = localStorage.getItem('_id');
-    const token = content?.token;
+    const token = context?.token;
     const [guestList, setGuestList] = useState([]);
+    const [userData, setUserData] = useState();
 
     const getGuestList = async () => {
         await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
@@ -26,8 +27,22 @@ export const Guest = () => {
     }
 
     useEffect(() => {
-        getGuestList()
-    }, [])
+        if (token) {
+            getGuestList();
+        }
+    }, [token]);
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            setUserData(res?.data?.userData)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [openAddress, token])
 
     const handleModel = () => {
         setOpenAddress(true)
@@ -69,11 +84,11 @@ export const Guest = () => {
                     <div className="my-address-row">
                         <div><input type="checkbox" /></div>
                         <div>My Address</div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</div>
+                        {userData?.address && <div>{userData?.address}</div>}
                     </div>
                 </div>
             </div>
-            <Addadress open={openAddress} onClose={handleCloseAddress} />
+            <Addadress open={openAddress} onClose={handleCloseAddress} userData={userData} />
         </>
     )
 }

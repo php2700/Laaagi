@@ -4,12 +4,12 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context';
 
-export const Addadress = ({ open, onClose }) => {
+export const Addadress = ({ open, onClose, userData }) => {
   const context = useContext(AuthContext);
   const token = context?.token;
   const id = localStorage.getItem("_id");
   const [_id, setId] = useState(id);
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState(userData?.address);
 
   if (!open) return null;
 
@@ -48,6 +48,7 @@ export const Addadress = ({ open, onClose }) => {
             type="text"
             className="modal-input"
             placeholder="Enter Full Address"
+            value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
           <input

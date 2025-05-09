@@ -118,7 +118,7 @@ export const Sweets = () => {
                     </> : <>
                         {sweetsHeader?.map((ele) => (
                             // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                            <div className={ele} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            <div className={ele.category == category ? 'active-link' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                         ))}
                     </>
                 }

@@ -82,6 +82,8 @@ export const Invitationhome = () => {
   const [id, setId] = useState(1)
   const [total, setTotal] = useState(0)
   const [error, setError] = useState([])
+  const [lastURL, setLastURL] = useState(sessionStorage.getItem('lastURL'));
+
 
   const weight = useSelector((state) => state.weight?.value);
   const dispatch = useDispatch()
@@ -204,7 +206,7 @@ export const Invitationhome = () => {
   useEffect(() => {
     if (selectedSweet?.index >= 0 && selectedSweet?.index < amounts?.length) {
       const updatedAmounts = [...amounts];
-      const calculateAmount = calculateTotalAmount((selectedSweet?.amount).split("/")[0], weight);
+      const calculateAmount = calculateTotalAmount((selectedSweet?.amount)?.split("/")[0], weight);
       updatedAmounts[selectedSweet?.index] = calculateAmount;
       setId(getSweet?.showId)
       setAmounts(updatedAmounts);
@@ -261,6 +263,14 @@ export const Invitationhome = () => {
     const lastUrl = sessionStorage.getItem('lastURL');
     navigate(`${lastUrl}`)
   }
+
+  useEffect(() => {
+    console.log(lastURL, 'aaaaaaaaaaa')
+    if (lastURL && lastURL !== '/invitation-detail') {
+      setBoxName('Normal Box');
+      setAmounts([0, 0, 0, 0, 0]);
+    }
+  }, [lastURL]);
 
 
   return (

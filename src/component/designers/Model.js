@@ -10,8 +10,8 @@ export const Model = ({ open, onClose, data }) => {
     const [lastName, setLastName] = useState()
     const [mobile, setMobile] = useState()
     const [message, setMessage] = useState();
-    const [decorationId, setDecorationId] = useState()
     const [error, setError] = useState({})
+
 
     const validate = () => {
         let newError = {};
@@ -61,7 +61,7 @@ export const Model = ({ open, onClose, data }) => {
         }
 
         const quoteData = {
-            decorationId: data?._id,
+            designerId: data?._id,
             firstName: name,
             lastName: lastName,
             email: email,
@@ -69,22 +69,22 @@ export const Model = ({ open, onClose, data }) => {
             message: message
         }
 
-        return
-        // axios.post(`${process.env.REACT_APP_BASE_URL}api/user/quote`, quoteData)
-        //     .then((res) => {
-        //         setName("")
-        //         setEmail("")
-        //         setLastName("")
-        //         setMobile("")
-        //         setMessage("")
-        //         setDecorationId("")
-        //         onClose()
-        //         toast.success("Details added!", {
-        //             position: "top-right"
-        //         });
-        //     }).catch((error) => {
-        //         console.log(error)
-        //     })
+
+
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/designer-quote`, quoteData)
+            .then((res) => {
+                setName("")
+                setEmail("")
+                setLastName("")
+                setMobile("")
+                setMessage("")
+                onClose()
+                toast.success("Details added!", {
+                    position: "top-right"
+                });
+            }).catch((error) => {
+                console.log(error)
+            })
     }
 
     const handleClose = () => {
