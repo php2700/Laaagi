@@ -114,20 +114,31 @@
   }
   .designers-header {
     margin: 30px 0px;
-    gap: 8px;
-    flex-wrap: nowrap;
+    display: flex;
+    overflow-x: auto;  
+    -webkit-overflow-scrolling: touch; 
+    padding: 10px;
+    gap:8px;
+    flex-wrap: wrap;
     align-items: center;
   }
   .designers-header div a {
     padding: 0 20px;
   }
+  .designers-header div {
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
   .designers-content {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 15px 10px;
   }
   .designers-content-list {
     flex-direction: column;
+    align-items: center;
   }
 
   .designers-content-img {
@@ -136,5 +147,11 @@
   }
   .designers-content-img img {
     width: 100%;
+    height: auto;
+  }
+  
+  .designers-name {
+    font-size: 18px;
+    margin: 20px;
   }
 }

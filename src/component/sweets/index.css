@@ -311,7 +311,7 @@
 .active-url {
   text-decoration: underline !important;
   text-decoration-color: red !important ; 
-  text-decoration-thickness: 3px !important;
+  text-decoration-thickness: 6px !important;
 }
 
 .no-found {
