@@ -320,7 +320,7 @@ export const Header = () => {
     return (
         <div>
             <div className='topbar'>
-                <div>Lorem Ipsum is simply dummy text</div>
+                <div>Welcome to the Laaagi</div>
             </div>
             <div className='header'>
                 <div className='search'>

@@ -96,7 +96,8 @@
 }
 
 .invitation-content-img {
-  width: 420px;
+  /* width: 420px; */
+  width: calc((100% - 60px) / 3);
   height: 590px;
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
   position: relative;
@@ -116,9 +117,7 @@
   background-color: #f0f0f0;
   aspect-ratio: 3 / 4;
   cursor: pointer;
- 
 }
-
 
 .invitation-content-img-name {
   width: 100%;
@@ -148,11 +147,15 @@
   margin: 6px;
 }
 
-/* .active-url {
+.invitation-content-main-img {
+  width: 100%;
+}
+
+.active-url {
   text-decoration: underline !important;
   text-decoration-color: #7f73b0 !important;
   text-decoration-thickness: 3px !important;
-} */
+}
 
 .no-found {
   background-color: #800000;

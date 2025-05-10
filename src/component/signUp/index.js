@@ -259,7 +259,7 @@ export const SignUp = () => {
                                     </form>
                                 </div>
                                 <div className="sign-up-or" onClick={handelResend}>Resend</div>
-                                <div>{data?.otp}</div>
+                                <div>Your OTP: {data?.otp}</div>
                             </div>
                         </div>
                     </div>))

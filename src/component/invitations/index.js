@@ -103,10 +103,10 @@ export const Invitation = () => {
         navigate('/forms')
         setIsUploadModalOpen(true);
     };
-    
 
 
-    
+
+
 
     return (
         <div className='invitations'>
@@ -152,7 +152,7 @@ export const Invitation = () => {
                     </div>
                 </div>
                 <div className='invitations-content-header'>
-                    <div className='invitation-content-text'onClick={handleOpenUploadModal} style={{ cursor: 'pointer',  }}> Upload Your Design and get quote for the same</div>
+                    <div className='invitation-content-text' onClick={handleOpenUploadModal} style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</div>
                     <div className='invitation-content-list'>
                         {
                             data?.map((ele) => (

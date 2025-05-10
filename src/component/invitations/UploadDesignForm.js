@@ -68,7 +68,7 @@ export const UploadDesignForm = ({ isOpen, onClose }) => {
         } finally {
             setIsLoading(false);
         }
-    }; 
+    };
 
     return (
         <div className="modal-overlay">
