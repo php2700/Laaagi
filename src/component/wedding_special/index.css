@@ -76,6 +76,7 @@
 
 .wedding-img:hover {
   border: 2px solid #777;
+  cursor: pointer;
 }
 
 @media (max-width: 850px) {

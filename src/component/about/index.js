@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 export const About = () => {
     const [aboutData, setAboutData] = useState({})
+    const [learnMore, setLearnMore] = useState(false)
 
     const aboutList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/about_list`)
@@ -25,10 +26,19 @@ export const About = () => {
         <div className='about'>
             <div className='about-us'>
                 <div className='about-heading'>About Us</div>
-                <div className='about-desc'>{aboutData?.description}</div>
-                {/* <div className='about-more-learn'>
-                    <button className='about-button'>Learn More<img src={rightIcon} /></button>
-                </div> */}
+                <div className='about-desc'>
+                    {learnMore ? aboutData?.description : aboutData?.description?.slice(0, 200) + (aboutData?.description?.length > 200 ? '...' : '')}
+                </div>
+
+                {aboutData?.description?.length > 200 && (
+                    <div className='about-more-learn'>
+                        <button className='about-button' onClick={() => setLearnMore(!learnMore)}>
+                            {learnMore ? 'Show Less' : 'Learn More'}
+                            <img src={rightIcon} alt="arrow" />
+                        </button>
+                    </div>
+                )}
+
             </div>
             <div className='about-video-section'>
                 <video className='about-video'

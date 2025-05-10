@@ -18,10 +18,12 @@ export const Add_Guest = () => {
     const [address, setAddress] = useState();
     const [pincode, setPincode] = useState();
     const [openAddress, setOpenAddress] = useState(false)
+    const [selectRadio, setSelectRadio] = useState()
     const [error, setError] = useState({})
 
 
     const handleAddress = (value) => {
+        setSelectRadio(value)
         if (value == 'address_myself') {
             setOpenAddress(true)
         }
@@ -64,6 +66,8 @@ export const Add_Guest = () => {
         if (!category?.trim())
             newError.category = 'Category is required'
 
+        if (!selectRadio)
+            newError.selectRadio = 'Please Select Address'
 
         setError(newError)
         return Object.keys(newError)?.length == 0;
@@ -160,12 +164,19 @@ export const Add_Guest = () => {
 
                         </div>
                         <div className="guest-address-radio">
-                            <div><input type='radio' name='address' value='address_myself' onChange={(e) => handleAddress(e.target.value)} />Add Address by my self</div>
-                            <div><input type='radio' name='address' value='address_person' onChange={(e) => handleAddress(e.target.value)} />Add Address by person itself</div>
+                            <div><input type='radio' name='address' value='address_myself' onChange={(e) => {
+                                handleAddress(e.target.value)
+                                setError({ ...error, selectRadio: '' })
+                            }} />Add Address by my self</div>
+                            <div><input type='radio' name='address' value='address_person' onChange={(e) => {
+                                handleAddress(e.target.value)
+                                setError({ ...error, selectRadio: '' })
+                            }} />Add Address by person itself</div>
                         </div>
+                        {error?.selectRadio && (<div className='error-color'>{error?.selectRadio}</div>)}
                         {
                             openAddress && (<>
-                                <div><input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => setAddress(e.target.value)} /></div>
+                                <div><input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => { setAddress(e.target.value) }} /></div>
                                 <div><input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => setPincode(e.target.value)} /></div>
                             </>)
                         }

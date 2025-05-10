@@ -335,14 +335,13 @@ export const Header = () => {
 
                     <div className='user-menu-container' ref={dropdownRef}>
                         {
-                            userData ? <div className='login-name'>
+                            userData ? <div className='login-name' onClick={toggleDropdown}>
                                 <img src={userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData?.profile}` : defaultImg} alt="User avatar" />
                                 <div>{userData?.name}</div>
                                 <img
                                     src={downArrow}
                                     alt="Open user menu"
                                     className={`dropdown-arrow dropdown-trigger-arrow ${isDropdownOpen ? 'open' : ''}`}
-                                    onClick={toggleDropdown}
                                 />
                             </div> :
                                 <div className='login-name' onClick={openSignup} >
