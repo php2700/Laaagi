@@ -57,7 +57,7 @@ export const Decorations = () => {
         <div className='decorations' >
             <div className='decorations-header'>
                 {decorationHeader?.map((ele) => (
-                    <div className={ele} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                    <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                 ))}
             </div>
             <div className='decorations-content'>

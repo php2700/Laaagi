@@ -99,7 +99,7 @@ export const Designers = () => {
                         <>
                             {designerHeader?.map((ele) => (
                                 // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                                <div className={ele} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }
