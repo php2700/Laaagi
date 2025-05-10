@@ -19,6 +19,7 @@ export const Add_Guest = () => {
     const [pincode, setPincode] = useState();
     const [openAddress, setOpenAddress] = useState(false)
     const [error, setError] = useState({})
+    const [selectRadioButton, setSelectRadioButton] = useState()
 
 
     const handleAddress = (value) => {
@@ -63,6 +64,10 @@ export const Add_Guest = () => {
 
         if (!category?.trim())
             newError.category = 'Category is required'
+
+        if (!selectRadioButton) {
+            newError.selectRadioButton = 'Please Select Address'
+        }
 
 
         setError(newError)
@@ -130,11 +135,15 @@ export const Add_Guest = () => {
                         <div>
                             <select className='add-guest-select-option' value={category}
                                 onChange={(e) => {
-                                    setCategory(e.target.value)
+                                    if (e.target.value == 'Select Relation') {
+                                        setCategory(category)
+                                    } else {
+                                        setCategory(e.target.value)
+                                    }
                                     setError({ ...error, category: '' })
                                 }}
                             >
-                                <option >Select Relation</option>
+                                <option value='Select Relation'>Select Relation</option>
                                 <option value='family'>Family</option>
                                 <option value='friends'>Friends</option>
                                 <option value='co-worker'>Co-workers</option>
@@ -144,7 +153,11 @@ export const Add_Guest = () => {
                         </div>
                         <div><input className="guest-input" type='text' placeholder='Whatsapp Contact Number' value={mobile}
                             onChange={(e) => {
-                                setMobile(e.target.value)
+                                // setMobile(e.target.value)
+                                const newValue = e.target.value;
+                                if (newValue?.length <= 10) {
+                                    setMobile(newValue)
+                                }
                                 setError({ ...error, mobile: '' })
                             }}
                         />
@@ -159,10 +172,19 @@ export const Add_Guest = () => {
                             {error?.guestNo && (<div className='error-color'>{error?.guestNo}</div>)}
 
                         </div>
+                        {console.log(error, '333333333333333333333')}
                         <div className="guest-address-radio">
-                            <div><input type='radio' name='address' value='address_myself' onChange={(e) => handleAddress(e.target.value)} />Add Address by my self</div>
-                            <div><input type='radio' name='address' value='address_person' onChange={(e) => handleAddress(e.target.value)} />Add Address by person itself</div>
+                            <div><input type='radio' name='address' value='address_myself' onChange={(e) => {
+                                setSelectRadioButton(e.target.value)
+                                setError({ ...error, selectRadioButton: '' })
+                            }} />Add Address by my self</div>
+                            <div><input type='radio' name='address' value='address_person' onChange={(e) => {
+                                setSelectRadioButton(e.target.value)
+                                setError({ ...error, selectRadioButton: '' })
+                            }} />Add Address by person itself</div>
                         </div>
+
+                        {error?.selectRadioButton && (<div className='error-color'>{error?.selectRadioButton}</div>)}
                         {
                             openAddress && (<>
                                 <div><input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => setAddress(e.target.value)} /></div>

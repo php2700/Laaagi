@@ -134,7 +134,11 @@ export const Model = ({ open, onClose, data }) => {
                         </div>
                         <div>
                             <input type="text" placeholder="Phone Number*" value={mobile} onChange={(e) => {
-                                setMobile(e.target.value)
+                                const newValue = e.target.value;
+                                if (newValue?.length <= 10) {
+                                    setMobile(newValue)
+                                }
+
                                 setError({ ...error, mobile: '' })
                             }} />
                             {error?.mobile && (<div className='error-color'>{error?.mobile}</div>)}

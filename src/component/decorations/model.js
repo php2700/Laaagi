@@ -40,14 +40,14 @@ export const Model = ({ open, onClose, data }) => {
 
         if (!mobile) {
             newError.mobile = 'Mobile number is required*';
-          } else if (!/^\d+$/.test(mobile)) {
+        } else if (!/^\d+$/.test(mobile)) {
             newError.mobile = 'Mobile number must contain digits only';
-          } else if (mobile.length < 10) {
+        } else if (mobile.length < 10) {
             newError.mobile = 'Mobile number must be at least 10 digits';
-          } else if (mobile.length > 12) {
+        } else if (mobile.length > 12) {
             newError.mobile = 'Mobile number must not exceed 12 digits';
-          }
-          
+        }
+
         setError(newError);
         return (Object.keys(newError))?.length;
     }
@@ -133,7 +133,10 @@ export const Model = ({ open, onClose, data }) => {
                         </div>
                         <div>
                             <input type="text" placeholder="Phone Number*" value={mobile} onChange={(e) => {
-                                setMobile(e.target.value)
+                                const newValue = e.target.value;
+                                if (newValue?.length <= 10) {
+                                    setMobile(newValue)
+                                }
                                 setError({ ...error, mobile: '' })
                             }} />
                             {error?.mobile && (<div className='error-color'>{error?.mobile}</div>)}
