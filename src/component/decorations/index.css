@@ -79,6 +79,7 @@
 }
 
 .decoration-img-align img {
+  cursor: pointer;
   width: 100%;
 }
 .active-url {
