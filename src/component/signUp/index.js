@@ -164,7 +164,7 @@ export const SignUp = () => {
         setShowSignUp(false)
         const lastURL = sessionStorage.getItem('lastURL');
         const secondLastURL = sessionStorage.getItem('secondLastUrl');
-        console.log(lastURL,"lastURL",secondLastURL,"secondLastURL")
+        console.log(lastURL, "lastURL", secondLastURL, "secondLastURL")
 
         if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
             navigate(`${secondLastURL}`)
@@ -193,8 +193,12 @@ export const SignUp = () => {
                                 <form className="sign-up-form" onSubmit={handleSubmit}>
                                     <div className="sign-up-input">
                                         <input type="text" placeholder="Enter Mobile Number" value={mobile} onChange={(e) => {
-                                            setMobile(e.target.value)
+                                            const newValue = e.target.value;
+                                            if (newValue?.length <= 10) {
+                                                setMobile(newValue)
+                                            }
                                             setError({ ...error, mobile: '' })
+
                                         }} />
                                         {error.mobile && (<div className="error-msg">{error?.mobile}</div>)}
 

@@ -20,6 +20,7 @@ export const Add_Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
     const [selectRadio, setSelectRadio] = useState()
     const [error, setError] = useState({})
+    const [selectRadioButton, setSelectRadioButton] = useState()
 
 
     const handleAddress = (value) => {
@@ -134,11 +135,15 @@ export const Add_Guest = () => {
                         <div>
                             <select className='add-guest-select-option' value={category}
                                 onChange={(e) => {
-                                    setCategory(e.target.value)
+                                    if (e.target.value == 'Select Relation') {
+                                        setCategory(category)
+                                    } else {
+                                        setCategory(e.target.value)
+                                    }
                                     setError({ ...error, category: '' })
                                 }}
                             >
-                                <option >Select Relation</option>
+                                <option value='Select Relation'>Select Relation</option>
                                 <option value='family'>Family</option>
                                 <option value='friends'>Friends</option>
                                 <option value='co-worker'>Co-workers</option>
@@ -148,7 +153,11 @@ export const Add_Guest = () => {
                         </div>
                         <div><input className="guest-input" type='text' placeholder='Whatsapp Contact Number' value={mobile}
                             onChange={(e) => {
-                                setMobile(e.target.value)
+                                // setMobile(e.target.value)
+                                const newValue = e.target.value;
+                                if (newValue?.length <= 10) {
+                                    setMobile(newValue)
+                                }
                                 setError({ ...error, mobile: '' })
                             }}
                         />
@@ -163,6 +172,7 @@ export const Add_Guest = () => {
                             {error?.guestNo && (<div className='error-color'>{error?.guestNo}</div>)}
 
                         </div>
+                        {console.log(error, '333333333333333333333')}
                         <div className="guest-address-radio">
                             <div><input type='radio' name='address' value='address_myself' onChange={(e) => {
                                 handleAddress(e.target.value)

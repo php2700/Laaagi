@@ -99,7 +99,12 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
           <div>
             <input type="text" placeholder="Phone Number" className="modal-input full" value={mobile} onChange={(e) => {
               setError((prev) => ({ ...prev, setError, mobile: '' }))
-              setMobile(e.target.value)
+
+              const newValue = e.target.value;
+              if (newValue?.length <= 10) {
+                setMobile(newValue)
+              }
+              setError((prev) => ({ ...prev, setError, mobile: '' }))
             }} />
             {error?.mobile && <div className='customi-error-color'>{error?.mobile}</div>}
           </div>
