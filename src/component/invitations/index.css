@@ -148,11 +148,11 @@
   margin: 6px;
 }
 
-/* .active-url {
+.active-url {
   text-decoration: underline !important;
   text-decoration-color: #7f73b0 !important;
   text-decoration-thickness: 3px !important;
-} */
+}
 
 .no-found {
   background-color: #800000;

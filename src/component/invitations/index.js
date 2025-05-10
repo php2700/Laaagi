@@ -2,7 +2,7 @@ import { use, useContext, useEffect, useState } from 'react';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -105,7 +105,6 @@ export const Invitation = () => {
     };
     
 
-
     
 
     return (
@@ -128,7 +127,7 @@ export const Invitation = () => {
                         <>
                             {invitationHeader?.map((ele) => (
                                 // <div><Link to={ele.url} >{ele?.name}</Link></div>
-                                <div className={ele} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }
@@ -168,9 +167,6 @@ export const Invitation = () => {
                             ))}
 
                     </div>
-                    {!data?.length &&
-                        <div className='no-found'>No Data Found</div>
-                    }
                 </div>
 
             </div>
