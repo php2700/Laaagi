@@ -31,7 +31,7 @@ export const Guest = () => {
             getGuestList();
         }
     }, [token]);
-
+ 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
             headers: {
