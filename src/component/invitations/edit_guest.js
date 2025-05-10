@@ -118,7 +118,12 @@ export const Edit_Guest = () => {
                 <form onSubmit={handleSumbit} className='add-guest-main-div' >
                     <div className='form-guest-text-field'>
                         <div>
-                            <input className="guest-input" type='text' placeholder='Person Name' value={name} onChange={(e) => setName(e.target.value)} />
+                            <input className="guest-input" type='text' placeholder='Person Name' value={name} onChange={(e) => {
+                                const input = e.target.value;
+                                if (/^[a-zA-Z\s]*$/.test(input)) {
+                                    setName(input);
+                                }
+                            }} />
                             {error?.name && (<div className='error-color'>{error?.name}</div>)}
                         </div>
                         <div>
@@ -136,7 +141,13 @@ export const Edit_Guest = () => {
                             {error?.category && (<div className='error-color'>{error?.category}</div>)}
                         </div>
                         <div>
-                            <input className="guest-input" type='text' placeholder='Whatsapp Contact Number' value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                            <input className="guest-input" type='text' placeholder='Whatsapp Contact Number' value={mobile} onChange={(e) => {
+                                //  setMobile(e.target.value)
+                                const newValue = e.target.value;
+                                if (newValue?.length <= 10) {
+                                    setMobile(newValue)
+                                }
+                            }} />
                             {error?.mobile && (<div className='error-color'>{error?.mobile}</div>)}
 
                         </div>

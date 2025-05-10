@@ -28,7 +28,7 @@ export const GuestList = () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
-      }
+      },
     }).then((res) => {
       setGuestList(res?.data?.guestList)
       console.log(res?.data?.guestList)
