@@ -4,12 +4,12 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context';
 
-export const Addadress = ({ open, onClose, userData }) => {
+export const Addadress = ({ open, onClose, loginUserDarta }) => {
   const context = useContext(AuthContext);
   const token = context?.token;
   const id = localStorage.getItem("_id");
   const [_id, setId] = useState(id);
-  const [address, setAddress] = useState(userData?.address);
+  const [address, setAddress] = useState(loginUserDarta?.address);
 
   if (!open) return null;
 
@@ -18,6 +18,7 @@ export const Addadress = ({ open, onClose, userData }) => {
     const userData = {
       _id: _id,
       address: address,
+      name: loginUserDarta?.name
     }
 
     axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, userData, {

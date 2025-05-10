@@ -305,12 +305,18 @@ export const Header = () => {
     }
 
     useEffect(() => {
+        getUserData()
+    }, [defaultProfile, headerUpdate])
+
+
+
+    useEffect(() => {
         if (!token) {
             setUserData();
             return
         }
         getUserData()
-    }, [token, defaultProfile, headerUpdate])
+    }, [token])
 
 
     const openSignup = () => {
@@ -348,7 +354,6 @@ export const Header = () => {
                                     <img src={defaultImg} alt="User avatar" />
                                     <div>Guest</div>
                                 </div>
-
                         }
                         {isDropdownOpen && (
                             <div className='user-dropdown-menu'>

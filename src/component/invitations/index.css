@@ -59,6 +59,7 @@
 
 .invitation-price:hover {
   color: #0562e3;
+  cursor: pointer;
 }
 
 .invitations-content {

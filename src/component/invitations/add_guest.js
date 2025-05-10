@@ -117,8 +117,11 @@ export const Add_Guest = () => {
                 <form onSubmit={handleSumbit} className='add-guest-main-div' >
                     <div className='form-guest-text-field'>
                         <div><input className="guest-input" type='text' placeholder='Person Name' value={name} onChange={(e) => {
-                            setName(e.target.value)
-                            setError({ ...error, name: '' })
+                            const input = e.target.value;
+                            if (/^[a-zA-Z\s]*$/.test(input)) {
+                                setName(input);
+                                setError({ ...error, name: '' });
+                            }
                         }} />
                             {error?.name && (<div className='error-color'>{error?.name}</div>)}
                         </div>
@@ -153,7 +156,6 @@ export const Add_Guest = () => {
                         </div>
                         <div><input className="guest-input" type='text' placeholder='Whatsapp Contact Number' value={mobile}
                             onChange={(e) => {
-                                // setMobile(e.target.value)
                                 const newValue = e.target.value;
                                 if (newValue?.length <= 10) {
                                     setMobile(newValue)
@@ -172,7 +174,6 @@ export const Add_Guest = () => {
                             {error?.guestNo && (<div className='error-color'>{error?.guestNo}</div>)}
 
                         </div>
-                        {console.log(error, '333333333333333333333')}
                         <div className="guest-address-radio">
                             <div><input type='radio' name='address' value='address_myself' onChange={(e) => {
                                 handleAddress(e.target.value)
