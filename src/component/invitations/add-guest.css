@@ -118,17 +118,20 @@ body {
 }
 
 .add-guest {
-  color: #800000;
-  background-color: #ffd700;
+  color: #ffd700;
+  background-color: #800000;
 }
 .add-guest a {
   text-decoration: none;
-  color: #800000;
+  color: #ffd700;
+
 }
 
 .guest-list {
-  background-color: #800000;
+  /* background-color: #800000; */
+  /* color: #ffd700; */
   color: #ffd700;
+  background-color: #800000;
 }
 .guest-list a {
   text-decoration: none;
@@ -239,3 +242,28 @@ select {
     font-size: 16px;
   }
 }
+.nav-button {
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  transition: all 0.3s ease;
+  background-color: white; /* default */
+  color: black;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.add-guest-active {
+  background-color: #FFD700; /* Yellow */
+  color: black;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.guest-list-active {
+  background-color: #7B0000; /* Dark Red / Maroon */
+  color: white;
+}
+/*  */
+
