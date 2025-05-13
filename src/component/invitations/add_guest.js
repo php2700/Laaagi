@@ -97,15 +97,23 @@ export const Add_Guest = () => {
         if (!validate()) {
             return
         }
-
-        const phoneNumber = `+918085559011`;
-        const guestId = userId;
+        const mobile = "8085559011";  // Example mobile number, replace with dynamic value
+        const phoneNumber = `+91${mobile}`;
+        const guestId = userId;  // Assuming userId is defined
         const updateLink = `https://laaagi.com/update-address/${guestId}`;
         const message = `Hi, please update your address here: ${updateLink}`;
         const encodedMessage = encodeURIComponent(message);
+
+        // Log the values to check
+        console.log("Phone number:", phoneNumber);
+        console.log("Encoded message:", encodedMessage);
+        console.log("Generated WhatsApp URL:", `https://wa.me/${phoneNumber}?text=${encodedMessage}`);
+
+        // Create the final URL
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
         console.log("Open this link to send WhatsApp message:", whatsappUrl);
+
 
 
         await (axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-guest`, guestData, {
