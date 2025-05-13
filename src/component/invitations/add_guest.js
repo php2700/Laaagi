@@ -71,6 +71,15 @@ export const Add_Guest = () => {
         if (!selectRadio)
             newError.selectRadio = 'Please Select Address'
 
+        if (openAddress) {
+            if (!address) {
+                newError.address = 'Please Add Address'
+            }
+            if (!pincode) {
+                newError.pincode = 'Please Enter PinCode'
+            }
+        }
+
         setError(newError)
         return Object.keys(newError)?.length == 0;
 
@@ -88,6 +97,16 @@ export const Add_Guest = () => {
         if (!validate()) {
             return
         }
+
+        const phoneNumber = `91${mobile}`;
+        const guestId = userId;
+        const updateLink = `https://laaagi.com/update-address/${guestId}`;
+        const message = `Hi, please update your address here: ${updateLink}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        console.log("Open this link to send WhatsApp message:", whatsappUrl);
+
 
         await (axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-guest`, guestData, {
             headers: {
@@ -112,20 +131,20 @@ export const Add_Guest = () => {
             <div className="add-guest-nav">
                 {/* <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div>
                 <div className="guest-list"><Link to='/guest'>Guest List</Link></div> */}
-                 <NavLink
-        to="/guest-add"
-        className={({ isActive }) => isActive ? 'nav-button add-guest-active' : 'nav-button'}
-      >
-        Add Guest
-      </NavLink>
-      <NavLink
-        to="/guest"
-        className={({ isActive }) => isActive ? 'nav-button Guest-List-active' : 'nav-button'}
-      >
-        Guest List
-      </NavLink>
+                <NavLink
+                    to="/guest-add"
+                    className={({ isActive }) => isActive ? 'nav-button add-guest-active' : 'nav-button'}
+                >
+                    Add Guest
+                </NavLink>
+                <NavLink
+                    to="/guest"
+                    className={({ isActive }) => isActive ? 'nav-button Guest-List-active' : 'nav-button'}
+                >
+                    Guest List
+                </NavLink>
             </div>
-  
+
             <div className='add-guest-main-container'>
                 <div className='form-add-guest-header'>Add Guest</div>
                 <form onSubmit={handleSumbit} className='add-guest-main-div' >
@@ -201,8 +220,20 @@ export const Add_Guest = () => {
                         {error?.selectRadio && (<div className='error-color'>{error?.selectRadio}</div>)}
                         {
                             openAddress && (<>
-                                <div><input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => { setAddress(e.target.value) }} /></div>
-                                <div><input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => setPincode(e.target.value)} /></div>
+                                <div>
+                                    <input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => {
+                                        setAddress(e.target.value)
+                                        setError({ ...error, address: '' })
+                                    }} />
+                                    {error?.address && (<div className='error-color'>{error?.address}</div>)}
+                                </div>
+                                <div>
+                                    <input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => {
+                                        setPincode(e.target.value)
+                                        setError({ ...error, pincode: '' })
+                                    }} />
+                                    {error?.pincode && (<div className='error-color'>{error?.pincode}</div>)}
+                                </div>
                             </>)
                         }
                         <div>
