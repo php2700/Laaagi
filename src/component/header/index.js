@@ -358,9 +358,9 @@ export const Header = () => {
                         {isDropdownOpen && (
                             <div className='user-dropdown-menu'>
                                 <Link to='/profile' state={{ data: userData }} onClick={closeDropdown}>Profile</Link>
-                                <Link to='/guest' onClick={closeDropdown}>GuestList</Link>
-                                <Link to='/planning-tool' onClick={closeDropdown}>Planning tool</Link>
-                                <button onClick={handleLogout}>LogOut</button>
+                                <Link to='/guest' onClick={closeDropdown}>Guest List</Link>
+                                <Link to='/planning-tool' onClick={closeDropdown}>Planning Tool</Link>
+                                <button onClick={handleLogout}>Logout</button>
                             </div>
                         )}
                     </div>

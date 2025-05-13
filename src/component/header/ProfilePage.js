@@ -91,12 +91,17 @@ export const ProfilePage = () => {
                     <div className="form-group">
                         <label htmlFor="name" className="form-label">Name</label>
                         <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            className="form-input"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                             type="text"
+                             id="name"
+                             name="name"
+                             className="form-input"
+                             value={name}
+                             onChange={(e) => {
+                               const input = e.target.value;
+                               const onlyLetters = input.replace(/[^a-zA-Z ]/g, '');
+                               setName(onlyLetters);
+                             }}
+                            //  placeholder="Only letters allowed"
                         />
                     </div>
                     <div className="form-group">
