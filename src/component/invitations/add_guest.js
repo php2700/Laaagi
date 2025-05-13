@@ -97,22 +97,25 @@ export const Add_Guest = () => {
         if (!validate()) {
             return
         }
-        const mobile = "8085559011";  // Example mobile number, replace with dynamic value
-        const phoneNumber = `+91${mobile}`;
-        const guestId = userId;  // Assuming userId is defined
-        const updateLink = `https://laaagi.com/update-address/${guestId}`;
-        const message = `Hi, please update your address here: ${updateLink}`;
-        const encodedMessage = encodeURIComponent(message);
+       
+        // 1 ) build a clean URL
+const mobile     = "8085559011";        // just 10 digits
+const phone      = `91${mobile}`;       // ⬅️ no “+”
+const guestId    = userId;              // whatever ID you’re using
+const token      = "abcxyz";            // optional extra security
+const link       = `https://laaagi.com/update-address/${guestId}?token=${token}`;
 
-        // Log the values to check
-        console.log("Phone number:", phoneNumber);
-        console.log("Encoded message:", encodedMessage);
-        console.log("Generated WhatsApp URL:", `https://wa.me/${phoneNumber}?text=${encodedMessage}`);
+const msg        = `Hi, please update your address here: ${link}`;
+const encodedMsg = encodeURIComponent(msg);
 
-        // Create the final URL
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+const waUrl      = `https://wa.me/${phone}?text=${encodedMsg}`;
 
-        console.log("Open this link to send WhatsApp message:", whatsappUrl);
+// 2 ) open the link in a new tab / window
+window.open(waUrl, "_blank");           // actually launches WhatsApp Web
+
+// 3 ) (optional) copy it to the clipboard so the user can share manually
+// navigator.clipboard.writeText(waUrl);
+
 
 
 
