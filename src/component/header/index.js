@@ -217,24 +217,19 @@ import { Logout } from './logout';
 import defaultImg from "../../assets/login/default-profile.png"
 
 export const Header = () => {
-    const [userData, setUserData] = useState();
     const navigate = useNavigate();
     const context = useContext(AuthContext);
-    const setAmounts = context?.setAmounts;
-    const amounts = context?.amounts;
+
+    const userData = context?.storeUserData;
+    const setUserData = context?.setStoreUserData;
     const setToken = context?.setToken;
     const token = context?.token;
-    const defaultProfile = context.defaultProfile
-
-
     const userId = localStorage.getItem("_id")
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const [open, setOpen] = useState(false)
-
-
     const headerUpdate = context?.headerUpdate;
 
 
@@ -306,8 +301,7 @@ export const Header = () => {
 
     useEffect(() => {
         getUserData()
-    }, [defaultProfile, headerUpdate])
-
+    }, [headerUpdate,])
 
 
     useEffect(() => {

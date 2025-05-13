@@ -13,8 +13,10 @@ export const ProfilePage = () => {
 
     const content = useLocation();
     const navigate = useNavigate();
-    const getUserData = content?.state?.data;
-    const [userData, setUserData] = useState(getUserData);
+
+    const userData = context?.storeUserData;
+    const setUserData = context?.setStoreUserData;
+
     const [name, setName] = useState(userData?.name)
     const [email, setEmail] = useState(userData?.email)
     const [mobile, setMobile] = useState(userData?.mobile)
@@ -25,7 +27,7 @@ export const ProfilePage = () => {
     const setDefaultProfile = context?.setDefaultProfile;
     const userId = localStorage.getItem("_id")
 
-    const handleUpdate = (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
@@ -34,12 +36,13 @@ export const ProfilePage = () => {
         if (profile) {
             formData.append("profile", profile);
         }
-        axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, formData, {
+        await axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((res) => {
-            console.log(res);
+            // console.log(res?.data?.response);
+            setUserData(res?.data?.response)            //-------  you have to store this value in context and update profile 
             setDefaultProfile(true)
             navigate('/')
         }).catch((error) => {

@@ -12,11 +12,16 @@ export const Guest = () => {
     const token = context?.token;
     const [guestList, setGuestList] = useState([]);
     const [userData, setUserData] = useState();
+    const [searchText, setSearchText] = useState();
+
 
     const getGuestList = async () => {
         await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
+            },
+            params: {
+                q: searchText
             }
         }).then((res) => {
             setGuestList(res?.data?.guestList)
@@ -30,7 +35,7 @@ export const Guest = () => {
         if (token) {
             getGuestList();
         }
-    }, [token]);
+    }, [token, searchText]);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
@@ -60,6 +65,8 @@ export const Guest = () => {
                         type="search"
                         placeholder="Search..."
                         className="search-input"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
                     <div className="add-guest-button" onClick={() => handleModel()} > + Add My Address</div>
                 </div>
