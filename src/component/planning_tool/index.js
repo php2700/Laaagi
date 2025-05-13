@@ -12,6 +12,7 @@ import { toast } from 'react-toastify'
 export const PlanningTool = () => {
     const navigate = useNavigate()
     const context = useContext(AuthContext);
+    const logout = context?.logout;
     const token = context?.token || localStorage.getItem('token')
     const setToken = context?.setToken;
     const [data, setData] = useState()
@@ -25,7 +26,6 @@ export const PlanningTool = () => {
 
 
     const planningCategory = [{ name: 'Marriage', url: '/planning-tool' }, { name: "Birthday", url: '/planning-birthday' }, { name: "Mehndi", url: '/planning-mehndi' }, { name: "Party", url: '/planning-party' }, { name: "Room Decor", url: '/planning-other' }]
-
 
 
     const handleCheck = (idx) => {
@@ -74,16 +74,18 @@ export const PlanningTool = () => {
             }
         })
             .then((res) => {
-                // console.log(res?.data)
                 setData(res?.data?.planningData);
                 setCheckedItems(res.data?.planningData?.checked)
             }).catch((error) => {
                 const message = error?.response?.data?.Message;
-                if (message == 'jwt expired') {
-                    setToken("")
-                    localStorage.removeItem("_id")
-                    localStorage.removeItem("token")
-                    navigate('/')
+                if (message === 'jwt expired') {
+                    logout()
+                    // navigate('/');
+                    // setTimeout(() => {
+                    //     setToken("");
+                    //     localStorage.removeItem("_id");
+                    //     localStorage.removeItem("token");
+                    // }, 100);
                 }
             })
     }

@@ -52,51 +52,51 @@ function App() {
   return (
     <>
       <div className='app-container'>
-        <BrowserRouter>
-          <LastUrl />
-          <Header />
-          <div className='app-content'>
-            <Routes>
-              <Route index path='/' element={<Dashboard />} />
-              <Route path='/invitation' element={< Invitation />} />
-              <Route path='/invitation-wooden' element={<Wooden />} />
-              <Route path='/invitation-box' element={<Invitation_Box />} />
-              <Route path='/invitation-glass' element={<Glass />} />
-              <Route path='/invitation-misc' element={<Misc />} />
-              <Route path='/sweets' element={<Sweets />} />
-              <Route path='/bengali-sweets' element={<Bengali_Sweets />} />
-              <Route path='/decorations' element={<Decorations />} />
-              <Route path='/bithday' element={<BirthDay />} />
-              <Route path='/mehndi' element={<Mehndi />} />
-              <Route path='/room-decor' element={<Room_Decor />} />
-              <Route path='/party' element={<Party />} />
-              <Route path='/designers' element={<Designers />} />
-              <Route path='/groom' element={<Groom />} />
-              <Route path='/suits' element={<Suits />} />
-              <Route path='/other' element={<Other />} />
-              <Route path='/contact-us' element={<ContactUs />} />
-              {/* <Route path='/upload-design' element={<UploadInvitation />} /> */}
-              <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
-              <Route path='/planning-birthday' element={<PlanningBirthDay />} />
-              <Route path='/planning-mehndi' element={<PlanningMehndi />} />
-              <Route path='/planning-party' element={<PlanningParty />} />
-              <Route path='/planning-other' element={<PlanningRoomDecor />} />
-              <Route path='/sweets-info' element={<SweetsInfo />} />
-              <Route path='/signup' element={<SignUp />} />
-              <Route path="/invitation-detail" element={<Invitationhome />} />
+        {/* <BrowserRouter> */}
+        <LastUrl />
+        <Header />
+        <div className='app-content'>
+          <Routes>
+            <Route index path='/' element={<Dashboard />} />
+            <Route path='/invitation' element={< Invitation />} />
+            <Route path='/invitation-wooden' element={<Wooden />} />
+            <Route path='/invitation-box' element={<Invitation_Box />} />
+            <Route path='/invitation-glass' element={<Glass />} />
+            <Route path='/invitation-misc' element={<Misc />} />
+            <Route path='/sweets' element={<Sweets />} />
+            <Route path='/bengali-sweets' element={<Bengali_Sweets />} />
+            <Route path='/decorations' element={<Decorations />} />
+            <Route path='/bithday' element={<BirthDay />} />
+            <Route path='/mehndi' element={<Mehndi />} />
+            <Route path='/room-decor' element={<Room_Decor />} />
+            <Route path='/party' element={<Party />} />
+            <Route path='/designers' element={<Designers />} />
+            <Route path='/groom' element={<Groom />} />
+            <Route path='/suits' element={<Suits />} />
+            <Route path='/other' element={<Other />} />
+            <Route path='/contact-us' element={<ContactUs />} />
+            {/* <Route path='/upload-design' element={<UploadInvitation />} /> */}
+            <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
+            <Route path='/planning-birthday' element={<PlanningBirthDay />} />
+            <Route path='/planning-mehndi' element={<PlanningMehndi />} />
+            <Route path='/planning-party' element={<PlanningParty />} />
+            <Route path='/planning-other' element={<PlanningRoomDecor />} />
+            <Route path='/sweets-info' element={<SweetsInfo />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path="/invitation-detail" element={<Invitationhome />} />
 
-              <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
-              <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
-              <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
-              <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
+            <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
+            <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
+            <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
+            <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
 
-              <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
-              <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-              <Route path='/forms' element={<UploadDesignForm />} />
-            </Routes>
-          </div>
-          <Footer />
-        </BrowserRouter>
+            <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
+            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path='/forms' element={<UploadDesignForm />} />
+          </Routes>
+        </div>
+        <Footer />
+        {/* </BrowserRouter> */}
         <ToastContainer />
       </div >
     </>
