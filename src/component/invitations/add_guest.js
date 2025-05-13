@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"
 import GuestImg from "../../assets/add-guest/add-guest.jpg"
 import './add-guest.css'
+import { NavLink } from 'react-router-dom';
 
 export const Add_Guest = () => {
     const navigate = useNavigate()
@@ -104,9 +105,22 @@ export const Add_Guest = () => {
         <div>
             <div ><img className="guestImg" src={GuestImg} /></div>
             <div className="add-guest-nav">
-                <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div>
-                <div className="guest-list"><Link to='/guest'>Guest List</Link></div>
+                {/* <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div>
+                <div className="guest-list"><Link to='/guest'>Guest List</Link></div> */}
+                 <NavLink
+        to="/guest-add"
+        className={({ isActive }) => isActive ? 'nav-button add-guest-active' : 'nav-button'}
+      >
+        Add Guest
+      </NavLink>
+      <NavLink
+        to="/guest"
+        className={({ isActive }) => isActive ? 'nav-button Guest-List-active' : 'nav-button'}
+      >
+        Guest List
+      </NavLink>
             </div>
+  
             <div className='add-guest-main-container'>
                 <div className='form-add-guest-header'>Add Guest</div>
                 <form onSubmit={handleSumbit} className='add-guest-main-div' >

@@ -152,9 +152,8 @@
 }
 
 .active-url {
-  text-decoration: underline !important;
-  text-decoration-color: #7f73b0 !important;
-  text-decoration-thickness: 3px !important;
+  background-color: #ffd700 !important;
+  color:#800000 !important;
 }
 
 .no-found {

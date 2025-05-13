@@ -192,12 +192,29 @@ export const SignUp = () => {
                             <div className="sign-up-form-main" >
                                 <form className="sign-up-form" onSubmit={handleSubmit}>
                                     <div className="sign-up-input">
+                                    <label htmlFor="name" className="form-label"></label>
+                        <input
+                             type="text"
+                             id="name"
+                             name="name"
+                             value={name}
+                             onChange={(e) => {
+                               const input = e.target.value;
+                               const onlyLetters = input.replace(/[^a-zA-Z ]/g, '');
+                               setName(onlyLetters);
+                             }}
+                             placeholder="Enter Name"
+                        />
                                         <input type="text" placeholder="Enter Mobile Number" value={mobile} onChange={(e) => {
                                             setMobile(e.target.value)
                                             setError({ ...error, mobile: '' })
                                         }} />
+                                        
                                         {error.mobile && (<div className="error-msg">{error?.mobile}</div>)}
 
+                                    </div>
+                                    <div className="sign-up-submit">
+                                        
                                     </div>
                                     <div className="sign-up-submit">
                                         <button type="submit">Submit</button>
