@@ -41,8 +41,7 @@ export const ProfilePage = () => {
                 Authorization: `Bearer ${token}`
             }
         }).then((res) => {
-            // console.log(res?.data?.response);
-            setUserData(res?.data?.response)            //-------  you have to store this value in context and update profile 
+            setUserData(res?.data?.response)
             setDefaultProfile(true)
             navigate('/')
         }).catch((error) => {
@@ -94,17 +93,17 @@ export const ProfilePage = () => {
                     <div className="form-group">
                         <label htmlFor="name" className="form-label">Name</label>
                         <input
-                             type="text"
-                             id="name"
-                             name="name"
-                             className="form-input"
-                             value={name}
-                             onChange={(e) => {
-                               const input = e.target.value;
-                               const onlyLetters = input.replace(/[^a-zA-Z ]/g, '');
-                               setName(onlyLetters);
-                             }}
-                            //  placeholder="Only letters allowed"
+                            type="text"
+                            id="name"
+                            name="name"
+                            className="form-input"
+                            value={name}
+                            onChange={(e) => {
+                                const input = e.target.value;
+                                const onlyLetters = input.replace(/[^a-zA-Z ]/g, '');
+                                setName(onlyLetters);
+                            }}
+                        //  placeholder="Only letters allowed"
                         />
                     </div>
                     <div className="form-group">

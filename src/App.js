@@ -40,6 +40,7 @@ import { Guest } from './component/invitations/guest';
 import { Payment } from './component/payment';
 import { LastUrl } from './lastUrl';
 import { UploadDesignForm } from './component/invitations/UploadDesignForm';
+import { Add_Address_Person } from './component/invitations/address-person';
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -93,6 +94,10 @@ function App() {
             <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
             <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
             <Route path='/forms' element={<UploadDesignForm />} />
+
+            {/* update address by person */}
+            <Route path='/update-address-person' element={<Add_Address_Person />} />
+
           </Routes>
         </div>
         <Footer />

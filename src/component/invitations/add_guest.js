@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom"
 import GuestImg from "../../assets/add-guest/add-guest.jpg"
 import './add-guest.css'
 import { NavLink } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 export const Add_Guest = () => {
     const navigate = useNavigate()
@@ -21,7 +23,6 @@ export const Add_Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
     const [selectRadio, setSelectRadio] = useState()
     const [error, setError] = useState({})
-    const [selectRadioButton, setSelectRadioButton] = useState()
 
 
     const handleAddress = (value) => {
@@ -29,9 +30,10 @@ export const Add_Guest = () => {
         if (value == 'address_myself') {
             setOpenAddress(true)
         }
-        else { setOpenAddress(false) }
+        else {
+            setOpenAddress(false)
+        }
     }
-
 
     const validate = () => {
         const newError = {};
@@ -103,6 +105,13 @@ export const Add_Guest = () => {
                 Authorization: `Bearer ${token}`
             }
         })).then((res) => {
+            if (selectRadio == 'address_person') {
+                const linkWithToken = `${process.env.REACT_APP_BASE_URL}update-address-person?mobile=${mobile}`;
+                const message = `Hi please share your address for the invitation by clicking this link: ${linkWithToken}`;
+                const encodedMsg = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/91${mobile}?text=${encodedMsg}`;
+                window.open(whatsappUrl, '_blank');
+            }
             setName('')
             setEmail('')
             setAddress('')
@@ -111,7 +120,12 @@ export const Add_Guest = () => {
             setPincode('')
             navigate('/guest')
         }).catch((error) => {
-            console.log(error);
+            const message = error?.response?.data?.message;
+            if (message == 'mobile_already_exist') {
+                toast.error("Mobile Number Exist!", {
+                    position: "bottom-right"
+                });
+            }
         })
     }
 
