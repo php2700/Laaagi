@@ -3,18 +3,16 @@ import './GuestList.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
-import { AddGuestHeader } from './add-guest.header';
-import { GuestRow } from './GuestRow.js';
-import Addadress from './Addadress';
+
 
 export const GuestList = () => {
 
   const context = useContext(AuthContext);
+  const logout = context?.logout;
   const userData = context?.storeUserData;
   const total = useLocation();
   const navigate = useNavigate();
   const totalAmountPerBox = total?.state.amount;
-  console.log(totalAmountPerBox, '============')
   const content = useContext(AuthContext)
   const userId = localStorage.getItem('_id');
   const token = content?.token;
@@ -41,6 +39,9 @@ export const GuestList = () => {
       setGuestList(res?.data?.guestList)
       console.log(res?.data?.guestList)
     }).catch((error) => {
+      if (error?.response?.data?.Message === 'jwt expired') {
+        logout()
+      }
       console.log(error)
     })
   }

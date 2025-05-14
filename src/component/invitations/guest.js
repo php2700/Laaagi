@@ -8,6 +8,7 @@ import { Addadress } from "./Addadress";
 export const Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
     const context = useContext(AuthContext)
+    const logout = context?.logout;
     const userId = localStorage.getItem('_id');
     const token = context?.token;
     const [guestList, setGuestList] = useState([]);
@@ -28,6 +29,9 @@ export const Guest = () => {
             console.log(res?.data?.guestList)
         }).catch((error) => {
             console.log(error)
+             if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
         })
     }
 
