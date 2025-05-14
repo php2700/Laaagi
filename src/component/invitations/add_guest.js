@@ -106,8 +106,8 @@ export const Add_Guest = () => {
             }
         })).then((res) => {
             if (selectRadio == 'address_person') {
-                const linkWithToken = `${process.env.REACT_APP_BASE_URL}update-address-person?mobile=${mobile}`;
-                const message = `Hi please share your address for the invitation by clicking this link: ${linkWithToken}`;
+                const linkWithToken = `${process.env.REACT_APP_URL}update-address-person?mobile=${mobile}`;
+                const message = `Hi please share your address for the invitation : ${linkWithToken}`;
                 const encodedMsg = encodeURIComponent(message);
                 const whatsappUrl = `https://wa.me/91${mobile}?text=${encodedMsg}`;
                 window.open(whatsappUrl, '_blank');

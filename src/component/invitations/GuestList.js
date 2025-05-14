@@ -147,7 +147,7 @@ export const GuestList = () => {
                 <td><input type="checkbox" onChange={() => { handleChecked(index) }} /></td>
                 <td>{index + 1}</td>
                 <td>{guest.name}</td>
-                <td>{guest.status === 'sent' ? (
+                <td>{!guest.address ? (
                   <button className="sent-request-button">Sent Request</button>
                 ) : (guest?.address)}</td>
                 <td>
