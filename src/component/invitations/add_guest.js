@@ -10,9 +10,10 @@ import { toast } from "react-toastify";
 
 export const Add_Guest = () => {
     const navigate = useNavigate()
-    const content = useContext(AuthContext)
+    const context = useContext(AuthContext)
+    const logout = context?.logout;
     const userId = localStorage.getItem('_id');
-    const token = content?.token;
+    const token = context?.token;
     const [name, setName] = useState();
     const [category, setCategory] = useState();
     const [mobile, setMobile] = useState();
@@ -125,6 +126,9 @@ export const Add_Guest = () => {
                 toast.error("Mobile Number Exist!", {
                     position: "bottom-right"
                 });
+            }
+            else if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
             }
         })
     }

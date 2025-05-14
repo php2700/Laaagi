@@ -10,7 +10,6 @@ import leftIcon from "../../assets/icon/left_arrow-right.png"
 import { toast } from 'react-toastify'
 
 export const PlanningTool = () => {
-    const navigate = useNavigate()
     const context = useContext(AuthContext);
     const logout = context?.logout;
     const token = context?.token || localStorage.getItem('token')
@@ -80,12 +79,6 @@ export const PlanningTool = () => {
                 const message = error?.response?.data?.Message;
                 if (message === 'jwt expired') {
                     logout()
-                    // navigate('/');
-                    // setTimeout(() => {
-                    //     setToken("");
-                    //     localStorage.removeItem("_id");
-                    //     localStorage.removeItem("token");
-                    // }, 100);
                 }
             })
     }

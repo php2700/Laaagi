@@ -10,9 +10,10 @@ export const Edit_Guest = () => {
     const location = useLocation();
     const guestData = location?.state?.guestData;
     console.log(guestData, 'guestData')
-    const content = useContext(AuthContext)
+    const context = useContext(AuthContext)
+    const logout = context?.logout;
     const userId = localStorage.getItem('_id');
-    const token = content?.token;
+    const token = context?.token;
     const [name, setName] = useState(guestData?.name);
     const [category, setCategory] = useState(guestData?.category);
     const [mobile, setMobile] = useState(guestData?.mobile);
@@ -108,6 +109,9 @@ export const Edit_Guest = () => {
             setPincode('')
             navigate('/guest')
         }).catch((error) => {
+            if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
             console.log(error);
         })
     }
