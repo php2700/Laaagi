@@ -71,7 +71,7 @@ export const Dry_Fruit_Treat = () => {
             <div className='dry-fruit-treat-top' >
                 <div className='dry-fruit-treat-left-text'>Dry Fruit Treats</div>
                 {/* <link to = "/details" className='dry-fruit-treat-right-text'>See More</link> */}
-                 <Link to="/sweets"  className="dry-fruit-treat-right-text">See More</Link>
+                 <Link to="/sweets" state={{ filter: 'dry-fruit-treat' }} className="dry-fruit-treat-right-text">See More</Link>
                 
             </div>
             <div className='dry-fruit-treat-img-list' >

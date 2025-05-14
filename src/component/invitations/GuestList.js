@@ -116,7 +116,7 @@ export const GuestList = () => {
           placeholder="Search..."
           className="search-input"
         />
-        <Link to='/guest' className="add-guest-button">+ Add Guest</Link>
+        <Link to='/guest' className="add-guest-button">+ add Guest</Link>
       </div>
       <div className="table-wrapper">
         <table>
