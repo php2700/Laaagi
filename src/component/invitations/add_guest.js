@@ -97,27 +97,6 @@ export const Add_Guest = () => {
         if (!validate()) {
             return
         }
-       
-        // 1 ) build a clean URL
-const mobile     = "8085559011";        // just 10 digits
-const phone      = `91${mobile}`;       // ⬅️ no “+”
-const guestId    = userId;              // whatever ID you’re using
-const token      = "abcxyz";            // optional extra security
-const link       = `https://laaagi.com/update-address/${guestId}?token=${token}`;
-
-const msg        = `Hi, please update your address here: ${link}`;
-const encodedMsg = encodeURIComponent(msg);
-
-const waUrl      = `https://wa.me/${phone}?text=${encodedMsg}`;
-
-// 2 ) open the link in a new tab / window
-window.open(waUrl, "_blank");           // actually launches WhatsApp Web
-
-// 3 ) (optional) copy it to the clipboard so the user can share manually
-// navigator.clipboard.writeText(waUrl);
-
-
-
 
         await (axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-guest`, guestData, {
             headers: {
@@ -140,8 +119,6 @@ window.open(waUrl, "_blank");           // actually launches WhatsApp Web
         <div>
             <div ><img className="guestImg" src={GuestImg} /></div>
             <div className="add-guest-nav">
-                {/* <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div>
-                <div className="guest-list"><Link to='/guest'>Guest List</Link></div> */}
                 <NavLink
                     to="/guest-add"
                     className={({ isActive }) => isActive ? 'nav-button add-guest-active' : 'nav-button'}
