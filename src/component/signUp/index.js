@@ -229,7 +229,18 @@ export const SignUp = () => {
                                 <div className="sign-up-form-main" >
                                     <form className="sign-up-form" onSubmit={handleName}>
                                         <div className="sign-up-input">
-                                            <input type="text" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                        <input
+                                          type="text"
+                                          placeholder="Enter Name"
+                                          value={name}
+                                          onChange={(e) => {
+                                           const value = e.target.value;
+                                            if (/^[a-zA-Z\s]*$/.test(value)) {
+                                              setName(value);
+                                                  }
+                                             }}
+/>
+
                                         </div>
                                         {error.name && (<div className="error-msg">{error?.name}</div>)}
                                         <div className="sign-up-submit">

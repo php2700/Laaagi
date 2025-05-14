@@ -15,6 +15,7 @@ const invitationHeader = [
     { name: 'Invitation on Box', category: 'invitation_box' },
     { name: 'Invitation on Glass Box', category: 'invitation_glass_box' },
     { name: 'Misc Invitation', category: 'misc_invitation' },
+
 ]
 
 
