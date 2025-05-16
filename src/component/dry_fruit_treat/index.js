@@ -6,6 +6,7 @@ import axios from 'axios';
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import { AuthContext } from '../context';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -63,7 +64,9 @@ export const Dry_Fruit_Treat = () => {
         <div className="dry-fruit-treat" >
             <div className='dry-fruit-treat-top' >
                 <div className='dry-fruit-treat-left-text'>Dry Fruit Treats</div>
-                {/* <div className='dry-fruit-treat-right-text'>See More</div> */}
+                {/* <link to = "/details" className='dry-fruit-treat-right-text'>See More</link> */}
+                 <Link to="/sweets" state={{ filter: 'dry-fruit-treat' }} className="dry-fruit-treat-right-text">See More</Link>
+                
             </div>
             <div className='dry-fruit-treat-img-list' >
                 {
