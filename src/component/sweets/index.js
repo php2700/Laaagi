@@ -10,12 +10,15 @@ import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png";
 
 const sweetsHeader = [
-    { id: 'sh1', name: 'Sugar Free', category: 'SugarFree' },
-    { id: 'sh2', name: 'Bengali Sweets', category: 'BengaliSweets' },
+    { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
+    { id: 'sh2', name: 'Bengali Sweets', category: 'Bengali Sweets' },
     { id: 'sh3', name: 'Sweets', category: 'Sweets' },
     { id: 'sh4', name: 'Dry Fruit Sweets', category: 'DryFruitSweets' }, 
     { id: 'sh5', name: 'Milk Sweets', category: 'MilkSweets' }        
-];
+
+]
+
+
 
 const INITIAL_CATEGORY = sweetsHeader[0]?.category || 'SugarFree';
 

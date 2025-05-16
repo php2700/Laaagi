@@ -412,6 +412,8 @@ button {
   text-decoration-thickness: 3px;
 }
 
+
+
 @media (max-width: 500px) {
   .menu-toggle {
     display: block;
@@ -637,5 +639,5 @@ button {
   transition: all 0.3s ease;
 }
 .main-navbar .nav-item.active {
-  background-color: red;
+  background-color:red;
 }

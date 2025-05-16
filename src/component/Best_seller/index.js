@@ -17,14 +17,6 @@ export const Best_seller = () => {
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
-    // const BestSellerList = () => {
-    //     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/best_seller_list`).then((res) => {
-    //         setBestSellerData(res?.data?.bestSellerData)
-    //     }).catch((error) => {
-    //         console.log(error)
-    //     })
-    // }
-
     const BestSellerList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
         })

@@ -200,7 +200,11 @@ export const SignUp = () => {
                                             setError({ ...error, mobile: '' })
 
                                         }} />
+
                                         {error.mobile && (<div className="error-msg">{error?.mobile}</div>)}
+
+                                    </div>
+                                    <div className="sign-up-submit">
 
                                     </div>
                                     <div className="sign-up-submit">

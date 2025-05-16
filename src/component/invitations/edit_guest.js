@@ -9,16 +9,18 @@ export const Edit_Guest = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const guestData = location?.state?.guestData;
-    const content = useContext(AuthContext)
+    console.log(guestData, 'guestData')
+    const context = useContext(AuthContext)
+    const logout = context?.logout;
     const userId = localStorage.getItem('_id');
-    const token = content?.token;
+    const token = context?.token;
     const [name, setName] = useState(guestData?.name);
     const [category, setCategory] = useState(guestData?.category);
     const [mobile, setMobile] = useState(guestData?.mobile);
     const [guestNo, setGuestNo] = useState(guestData?.guestNo);
     const [email, setEmail] = useState(guestData?.email);
-    const [address, setAddress] = useState();
-    const [pincode, setPincode] = useState();
+    const [address, setAddress] = useState(guestData?.address);
+    const [pincode, setPincode] = useState(guestData?.pincode);
     const [openAddress, setOpenAddress] = useState(false)
     const [_id, setId] = useState(guestData?._id)
     const [error, setError] = useState({})
@@ -70,6 +72,10 @@ export const Edit_Guest = () => {
         if (!address?.trim())
             newError.address = 'Address is required'
 
+        if (!pincode?.trim())
+            newError.pincode = 'Pincode is required'
+
+
         setError(newError)
         return Object.keys(newError)?.length == 0;
 
@@ -103,6 +109,9 @@ export const Edit_Guest = () => {
             setPincode('')
             navigate('/guest')
         }).catch((error) => {
+            if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
             console.log(error);
         })
     }
@@ -142,7 +151,6 @@ export const Edit_Guest = () => {
                         </div>
                         <div>
                             <input className="guest-input" type='text' placeholder='Whatsapp Contact Number' value={mobile} onChange={(e) => {
-                                //  setMobile(e.target.value)
                                 const newValue = e.target.value;
                                 if (newValue?.length <= 10) {
                                     setMobile(newValue)
@@ -156,16 +164,18 @@ export const Edit_Guest = () => {
                             {error?.guestNo && (<div className='error-color'>{error?.guestNo}</div>)}
 
                         </div>
-                        <div className="guest-address-radio">
+                        {/* <div className="guest-address-radio">
                             <div><input type='radio' name='address' value='address_myself' onChange={(e) => handleAddress(e.target.value)} />Add Address by my self</div>
                             <div><input type='radio' name='address' value='address_person' onChange={(e) => handleAddress(e.target.value)} />Add Address by person itself</div>
+                        </div> */}
+                        <div>
+                            <input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => setAddress(e.target.value)} />
+                            {error?.address && (<div className='error-color'>{error?.address}</div>)}
                         </div>
-                        {
-                            openAddress && (<>
-                                <div><input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => setAddress(e.target.value)} /></div>
-                                <div><input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => setPincode(e.target.value)} /></div>
-                            </>)
-                        }
+                        <div>
+                            <input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => setPincode(e.target.value)} />
+                            {error?.pincode && (<div className='error-color'>{error?.pincode}</div>)}
+                        </div>
                     </div>
                     <div className='form-add-guest-header'><button type='submit'>Edit</button></div>
                 </form>

@@ -61,6 +61,7 @@ export const WeddingSpecial = () => {
     };
 
     const handleWeddingInfo = (data) => {
+        
         sweetsInfo(data)
         navigate('/sweets-info')
     }

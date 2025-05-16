@@ -8,21 +8,30 @@ import { Addadress } from "./Addadress";
 export const Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
     const context = useContext(AuthContext)
+    const logout = context?.logout;
     const userId = localStorage.getItem('_id');
     const token = context?.token;
     const [guestList, setGuestList] = useState([]);
     const [userData, setUserData] = useState();
+    const [searchText, setSearchText] = useState();
+
 
     const getGuestList = async () => {
         await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
+            },
+            params: {
+                q: searchText
             }
         }).then((res) => {
             setGuestList(res?.data?.guestList)
             console.log(res?.data?.guestList)
         }).catch((error) => {
             console.log(error)
+             if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
         })
     }
 
@@ -30,7 +39,7 @@ export const Guest = () => {
         if (token) {
             getGuestList();
         }
-    }, [token]);
+    }, [token, searchText]);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
@@ -60,6 +69,8 @@ export const Guest = () => {
                         type="search"
                         placeholder="Search..."
                         className="search-input"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
                     <div className="add-guest-button" onClick={() => handleModel()} > + Add My Address</div>
                 </div>

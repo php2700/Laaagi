@@ -200,8 +200,8 @@ import leftIcon from "../../assets/icon/left_arrow-right.png"
 import { toast } from 'react-toastify'
 
 export const PlanningTool = () => {
-    const navigate = useNavigate()
     const context = useContext(AuthContext);
+    const logout = context?.logout;
     const token = context?.token || localStorage.getItem('token')
     const setToken = context?.setToken;
     const [data, setData] = useState()
@@ -211,16 +211,10 @@ export const PlanningTool = () => {
     const [lastIndex, setLastIndex] = useState(2)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [shouldSave, setShouldSave] = useState(false);
-    const [category, setCategory] = useState('Marriage') // Initial active category
+    const [category, setCategory] = useState('Marriage')
 
-    // planningCategory ko component ke bahar ya useMemo mein daal sakte hain agar yeh change nahi hota
-    const planningCategory = [
-        { name: 'Marriage', url: '/planning-tool' }, // url abhi use nahi ho raha, par rakh sakte hain
-        { name: "Birthday", url: '/planning-birthday' },
-        { name: "Mehndi", url: '/planning-mehndi' },
-        { name: "Party", url: '/planning-party' },
-        { name: "Room Decor", url: '/planning-other' }
-    ];
+
+    const planningCategory = [{ name: 'Marriage', url: '/planning-tool' }, { name: "Birthday", url: '/planning-birthday' }, { name: "Mehndi", url: '/planning-mehndi' }, { name: "Other", url: '/planning-party' }, { name: "Room Decor", url: '/planning-other' }]
 
     const handleCheck = (idx) => {
         const isExist = checkedItems.includes(idx)
@@ -282,15 +276,8 @@ export const PlanningTool = () => {
                 setCheckedItems(res.data?.planningData?.checked || []);
             }).catch((error) => {
                 const message = error?.response?.data?.Message;
-                if (message === 'jwt expired') { // Strict comparison
-                    if(setToken) setToken("");
-                    localStorage.removeItem("_id");
-                    localStorage.removeItem("token");
-                    toast.error('Session expired, please login again.');
-                    navigate('/');
-                } else {
-                    toast.error(message || 'Failed to fetch planning data.');
-                    console.error("Error fetching planning data:", error);
+                if (message === 'jwt expired') {
+                    logout()
                 }
             })
     }

@@ -4,12 +4,16 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"
 import GuestImg from "../../assets/add-guest/add-guest.jpg"
 import './add-guest.css'
+import { NavLink } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 export const Add_Guest = () => {
     const navigate = useNavigate()
-    const content = useContext(AuthContext)
+    const context = useContext(AuthContext)
+    const logout = context?.logout;
     const userId = localStorage.getItem('_id');
-    const token = content?.token;
+    const token = context?.token;
     const [name, setName] = useState();
     const [category, setCategory] = useState();
     const [mobile, setMobile] = useState();
@@ -20,7 +24,6 @@ export const Add_Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
     const [selectRadio, setSelectRadio] = useState()
     const [error, setError] = useState({})
-    const [selectRadioButton, setSelectRadioButton] = useState()
 
 
     const handleAddress = (value) => {
@@ -28,9 +31,10 @@ export const Add_Guest = () => {
         if (value == 'address_myself') {
             setOpenAddress(true)
         }
-        else { setOpenAddress(false) }
+        else {
+            setOpenAddress(false)
+        }
     }
-
 
     const validate = () => {
         const newError = {};
@@ -70,6 +74,15 @@ export const Add_Guest = () => {
         if (!selectRadio)
             newError.selectRadio = 'Please Select Address'
 
+        if (openAddress) {
+            if (!address) {
+                newError.address = 'Please Add Address'
+            }
+            if (!pincode) {
+                newError.pincode = 'Please Enter PinCode'
+            }
+        }
+
         setError(newError)
         return Object.keys(newError)?.length == 0;
 
@@ -93,6 +106,13 @@ export const Add_Guest = () => {
                 Authorization: `Bearer ${token}`
             }
         })).then((res) => {
+            if (selectRadio == 'address_person') {
+                const linkWithToken = `${process.env.REACT_APP_URL}update-address-person?mobile=${mobile}`;
+                const message = `Hi please share your address for the invitation : ${linkWithToken}`;
+                const encodedMsg = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/91${mobile}?text=${encodedMsg}`;
+                window.open(whatsappUrl, '_blank');
+            }
             setName('')
             setEmail('')
             setAddress('')
@@ -101,7 +121,15 @@ export const Add_Guest = () => {
             setPincode('')
             navigate('/guest')
         }).catch((error) => {
-            console.log(error);
+            const message = error?.response?.data?.message;
+            if (message == 'mobile_already_exist') {
+                toast.error("Mobile Number Exist!", {
+                    position: "bottom-right"
+                });
+            }
+            else if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
         })
     }
 
@@ -109,9 +137,20 @@ export const Add_Guest = () => {
         <div>
             <div ><img className="guestImg" src={GuestImg} /></div>
             <div className="add-guest-nav">
-                <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div>
-                <div className="guest-list"><Link to='/guest'>Guest List</Link></div>
+                <NavLink
+                    to="/guest-add"
+                    className={({ isActive }) => isActive ? 'nav-button add-guest-active' : 'nav-button'}
+                >
+                    Add Guest
+                </NavLink>
+                <NavLink
+                    to="/guest"
+                    className={({ isActive }) => isActive ? 'nav-button Guest-List-active' : 'nav-button'}
+                >
+                    Guest List
+                </NavLink>
             </div>
+
             <div className='add-guest-main-container'>
                 <div className='form-add-guest-header'>Add Guest</div>
                 <form onSubmit={handleSumbit} className='add-guest-main-div' >
@@ -187,8 +226,20 @@ export const Add_Guest = () => {
                         {error?.selectRadio && (<div className='error-color'>{error?.selectRadio}</div>)}
                         {
                             openAddress && (<>
-                                <div><input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => { setAddress(e.target.value) }} /></div>
-                                <div><input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => setPincode(e.target.value)} /></div>
+                                <div>
+                                    <input className="guest-input" type='text' placeholder='complete Address' value={address} onChange={(e) => {
+                                        setAddress(e.target.value)
+                                        setError({ ...error, address: '' })
+                                    }} />
+                                    {error?.address && (<div className='error-color'>{error?.address}</div>)}
+                                </div>
+                                <div>
+                                    <input className="guest-input" Number='text' placeholder='Pin Code' value={pincode} onChange={(e) => {
+                                        setPincode(e.target.value)
+                                        setError({ ...error, pincode: '' })
+                                    }} />
+                                    {error?.pincode && (<div className='error-color'>{error?.pincode}</div>)}
+                                </div>
                             </>)
                         }
                         <div>

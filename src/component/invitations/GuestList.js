@@ -3,15 +3,16 @@ import './GuestList.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
-import { AddGuestHeader } from './add-guest.header';
-import { GuestRow } from './GuestRow.js';
-import Addadress from './Addadress';
+
 
 export const GuestList = () => {
+
+  const context = useContext(AuthContext);
+  const logout = context?.logout;
+  const userData = context?.storeUserData;
   const total = useLocation();
   const navigate = useNavigate();
   const totalAmountPerBox = total?.state.amount;
-  console.log(totalAmountPerBox)
   const content = useContext(AuthContext)
   const userId = localStorage.getItem('_id');
   const token = content?.token;
@@ -23,23 +24,31 @@ export const GuestList = () => {
   const [userBox, setUserBox] = useState();
   const [isUserAddressChecked, setIsUserAddressChecked] = useState(false);
   const [totalPrice, setTotalPrice] = useState();
+  const [searchText, setSearchText] = useState();
+
 
   const getGuestList = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       },
+      params: {
+        q: searchText
+      }
     }).then((res) => {
       setGuestList(res?.data?.guestList)
       console.log(res?.data?.guestList)
     }).catch((error) => {
+      if (error?.response?.data?.Message === 'jwt expired') {
+        logout()
+      }
       console.log(error)
     })
   }
 
   useEffect(() => {
     getGuestList()
-  }, [])
+  }, [searchText])
 
   const countFun = () => {
     const countBox = checkedItems?.reduce((ele1, ele2) => ele1 + Number(ele2?.quantity), 0);
@@ -115,6 +124,8 @@ export const GuestList = () => {
           type="search"
           placeholder="Search..."
           className="search-input"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
         <Link to='/guest' className="add-guest-button">+ add Guest</Link>
       </div>
@@ -137,7 +148,7 @@ export const GuestList = () => {
                 <td><input type="checkbox" onChange={() => { handleChecked(index) }} /></td>
                 <td>{index + 1}</td>
                 <td>{guest.name}</td>
-                <td>{guest.status === 'sent' ? (
+                <td>{!guest.address ? (
                   <button className="sent-request-button">Sent Request</button>
                 ) : (guest?.address)}</td>
                 <td>
@@ -145,7 +156,12 @@ export const GuestList = () => {
                 </td>
                 <td>{guest.category}</td>
                 <td>
-                  <input type='Number' className='invite-guest-list' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => handleBox(e.target.value, index)} />
+                  <input type='text' className='invite-guest-list' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => {
+                    const isNumber = e.target.value;
+                    if (/^\d+$/.test(isNumber)) {
+                      handleBox(isNumber, index)
+                    }
+                  }} />
                 </td>
               </tr >
             ))}
@@ -159,11 +175,17 @@ export const GuestList = () => {
         <div className="my-address-row">
           <div><input type="checkbox" checked={isUserAddressChecked} onChange={(e) => handleCheckUser(e.target.checked)} /></div>
           <div>My Address</div>
-          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</div>
+          {userData?.address && <div>{userData?.address}</div>}
 
         </div>
         <div>
-          <input type='Number' className='my-address-text' value={userBox} onChange={(e) => handleUser(e.target.value)} />
+          <input type='text' className='my-address-text' value={userBox} onChange={(e) => {
+            const isNumber = e.target.value;
+            if (/^\d+$/.test(isNumber)) {
+              handleUser(isNumber)
+            }
+          }} />
+
         </div>
       </div>
       <div className="shipping-info">

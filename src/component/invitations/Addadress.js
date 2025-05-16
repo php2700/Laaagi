@@ -6,6 +6,7 @@ import { AuthContext } from '../context';
 
 export const Addadress = ({ open, onClose, loginUserDarta }) => {
   const context = useContext(AuthContext);
+  const logout = context?.logout;
   const token = context?.token;
   const id = localStorage.getItem("_id");
   const [_id, setId] = useState(id);
@@ -28,7 +29,9 @@ export const Addadress = ({ open, onClose, loginUserDarta }) => {
     }).then((res) => {
       onClose();
     }).catch((error) => {
-
+      if (error?.response?.data?.Message === 'jwt expired') {
+        logout()
+      }
       console.log("error", error)
     })
   }
