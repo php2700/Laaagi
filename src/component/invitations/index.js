@@ -22,6 +22,7 @@ const invitationHeader = [
 export const Invitation = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
+    const setRecentView = context?.setRecentView;
     const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
@@ -95,6 +96,7 @@ export const Invitation = () => {
     }
 
     const handleInvitationImg = (ele) => {
+        setRecentView(ele)
         setInvitationsweet(ele)
         navigate('/invitation-detail')
     }

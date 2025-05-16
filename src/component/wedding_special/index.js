@@ -12,6 +12,7 @@ export const WeddingSpecial = () => {
     const [lastIndex, setLastIndex] = useState(2)
     const [data, setData] = useState([]);
     const context = useContext(AuthContext);
+    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ export const WeddingSpecial = () => {
     };
 
     const handleWeddingInfo = (data) => {
-        
+        setRecentView(data)
         sweetsInfo(data)
         navigate('/sweets-info')
     }

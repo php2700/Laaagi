@@ -8,19 +8,12 @@ export const InvitationBox = () => {
     const navigate = useNavigate()
     const [invitationBoxData, setInvitationBoxData] = useState([])
     const context = useContext(AuthContext);
+    const setRecentView = context?.setRecentView;
     const setInvitationsweet = context.setSelectSweet;
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(2)
 
-    // const invitationBoxList = () => {
-    //     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_box_list`)
-    //         .then((res) => {
-    //             console.log(res?.data?.invitationBox, "asssssssssssssssssssss")
-    //             setInvitationBoxData(res?.data?.invitationBox)
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
+
 
     const invitationBoxList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_list`, {
@@ -41,6 +34,8 @@ export const InvitationBox = () => {
     }, [])
 
     const handleInvitationBoxInfo = (data) => {
+        setRecentView(data)
+
         setInvitationsweet(data)
         navigate('/invitation-detail')
     }

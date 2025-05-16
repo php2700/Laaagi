@@ -12,17 +12,10 @@ export const DiscoverCategory = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(2)
     const context = useContext(AuthContext);
+    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
-    // const discoverSweetsList = () => {
-    //     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/discover_sweets_list`)
-    //         .then((res) => {
-    //             setDiscoverData(res?.data?.discoverSweetsData)
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
 
     const discoverSweetsList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
@@ -44,6 +37,8 @@ export const DiscoverCategory = () => {
 
 
     const handleSweetInfo = (data) => {
+        setRecentView(data)
+
         sweetsInfo(data)
         navigate('/sweets-info')
     }

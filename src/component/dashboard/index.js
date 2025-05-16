@@ -20,8 +20,7 @@ export const Dashboard = () => {
       <WeddingSpecial />
       <Dry_Fruit_Treat />
       <Best_seller />
-
-      {/* <Recent_view /> */}
+      <Recent_view />
       <DiscoverCategory />
       <InvitationBox />
       <Ads />

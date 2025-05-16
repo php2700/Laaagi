@@ -13,20 +13,30 @@ const sweetsHeader = [
     { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
     { id: 'sh2', name: 'Bengali Sweets', category: 'Bengali Sweets' },
     { id: 'sh3', name: 'Sweets', category: 'Sweets' },
-    { id: 'sh4', name: 'Dry Fruit Sweets', category: 'DryFruitSweets' }, 
-    { id: 'sh5', name: 'Milk Sweets', category: 'MilkSweets' }        
+    { id: 'sh4', name: 'Dry Fruit Sweets', category: 'DryFruitSweets' },
+    { id: 'sh5', name: 'Milk Sweets', category: 'MilkSweets' }
 
 ]
 
 
 
-const INITIAL_CATEGORY = sweetsHeader[0]?.category || 'SugarFree';
+const INITIAL_CATEGORY = sweetsHeader[0]?.category || 'Sugar Free';
 
 export const Sweets = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const context = useContext(AuthContext);
-    const sweetsInfo = context?.setSweetsInfo;
+    const setRecentView = context?.setRecentView;
+    const sweetsInfo = context?.setSweetsInfo
+    // const isInvitationSweets = content?.state?.data;
+    // const invitationId = content?.state?.invitationId;
+    // const name = content?.state?.name
+    // const index = content?.state?.idx;
+    // const id = content?.state?.id;
+    // const [data, setData] = useState([])
+    // const [invitationselectSweet, setInvitationSelectSweet] = useState();
+    // const [orderId, setOrderId] = useState();
+    // const [category, setCategory] = useState('SugarFree')
 
     const isInvitationSweets = location.state?.data;
     const invitationId = location.state?.invitationId;
@@ -36,14 +46,14 @@ export const Sweets = () => {
     const [invitationselectSweet, setInvitationSelectSweet] = useState(null);
     const [orderId, setOrderId] = useState(null);
 
-    
+
     const [data, setData] = useState([]);
     const [category, setCategory] = useState(INITIAL_CATEGORY);
     const [isSpecialView, setIsSpecialView] = useState(false);
     const [pageHeading, setPageHeading] = useState("Sweets");
 
     const [startIndex, setStartIndex] = useState(0);
-    const [lastIndex, setLastIndex] = useState(2); 
+    const [lastIndex, setLastIndex] = useState(2);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
 
     const handleForwardIcon = () => {
@@ -63,7 +73,7 @@ export const Sweets = () => {
         setLastIndex(Math.max(2, prevLast));
     };
 
-    
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 500);
@@ -75,7 +85,7 @@ export const Sweets = () => {
     const fetchSweetsData = (fetchForWedding = false) => {
         const params = {};
         if (fetchForWedding) {
-            params.isWedding = true; 
+            params.isWedding = true;
         } else if (category) {
             params.category = category;
         }
@@ -89,7 +99,7 @@ export const Sweets = () => {
             });
     };
 
-    
+
     useEffect(() => {
         const filterFromState = location.state?.filter;
 
@@ -105,23 +115,23 @@ export const Sweets = () => {
                     setData([]);
                 });
         } else if (filterFromState === 'wedding') {
-            setIsSpecialView(true); 
+            setIsSpecialView(true);
             setPageHeading("Wedding Special Sweets");
-            fetchSweetsData(true); 
+            fetchSweetsData(true);
         } else {
-            
-            setIsSpecialView(false); 
+
+            setIsSpecialView(false);
             const currentCategoryObj = sweetsHeader.find(h => h.category === category);
             setPageHeading(currentCategoryObj ? currentCategoryObj.name : "Sweets");
-            fetchSweetsData(false); 
+            fetchSweetsData(false);
         }
-    }, [category, location.state?.filter]); 
+    }, [category, location.state?.filter]);
 
-    
+
     const handleCategorySelect = (ele) => {
-        
+
         setCategory(ele?.category);
-       
+
     };
 
     const handleSweetForInvitation = (item) => {
@@ -141,9 +151,10 @@ export const Sweets = () => {
 
     const handleItemDetailNavigation = (item) => {
         if (sweetsInfo) {
-            sweetsInfo(item); 
+            sweetsInfo(item);
         }
-        navigate('/sweets-info'); 
+        setRecentView(item)
+        navigate('/sweets-info');
     };
 
     return (
@@ -167,6 +178,23 @@ export const Sweets = () => {
                                     {ele?.name}
                                 </div>
                             ))}
+                            {/* </div>
+                    </div>
+                    : <div className='sweets-content'>
+                        <div className='sweets-content-list'>
+
+                            {data?.map((ele) => (
+                                <div className='sweets-main-container'>
+                                    <Link className='sweets-content-img' to='/sweets-info' onClick={() => {
+                                        setRecentView(ele)
+                                        sweetsInfo(ele)
+                                    }} state={{ data: ele }} >
+                                        <div className='sweets-img-div'>
+                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        </div>
+                                        <div className='sweets-name'>{ele?.name}</div>
+                                        <div className='sweets-price'>{ele?.amount} </div>
+                                    </Link> */}
                             {(lastIndex < (sweetsHeader?.length || 0) - 1) && (
                                 <div onClick={handleForwardIcon} className='sweets-header-arrow'>
                                     <img src={rightIcon} alt="Next categories" />
@@ -189,9 +217,9 @@ export const Sweets = () => {
                 </div>
             )}
 
-           
+
             {isInvitationSweets ? (
-               
+
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
                         {data?.map((ele) => (
@@ -203,11 +231,11 @@ export const Sweets = () => {
                                 )}
                                 <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
                                 <div className='sweets-name'>{ele?.name}</div>
-                              
+
                                 {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                             </div>
                         ))}
-                         {!data?.length && (
+                        {!data?.length && (
                             <div className='no-found'>No Data Found for Invitation Selection</div>
                         )}
                     </div>
@@ -215,8 +243,8 @@ export const Sweets = () => {
             ) : (
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
-                        {data?.map((ele) => ( 
-                            <div key={ele.id || ele.name} className='sweets-main-container'> 
+                        {data?.map((ele) => (
+                            <div key={ele.id || ele.name} className='sweets-main-container'>
                                 <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
                                     <div className='sweets-img-div'>
                                         <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
