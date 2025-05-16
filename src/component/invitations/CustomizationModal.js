@@ -82,14 +82,14 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
         <form className="modal-form" onSubmit={handleSubmit}>
           <div className="modal-row">
             <div>
-              <input type="text" placeholder="First Name" className="modal-input" value={firstName} onChange={(e) => {
+              <input type="text" placeholder="First Name" className="modalinputs" value={firstName} onChange={(e) => {
                 setFirstName(e.target.value)
                 setError((prev) => ({ ...prev, firstName: '' }))
               }} />
               {error?.firstName && <div className='customi-error-color'>{error?.firstName}</div>}
             </div>
             <div>
-              <input type="text" placeholder="Last Name" className="modal-input" value={lastName} onChange={(e) => {
+              <input type="text" placeholder="Last Name" className="modalinputs" value={lastName} onChange={(e) => {
                 setError((prev) => ({ ...prev, setError, lastName: '' }))
                 setLastName(e.target.value)
               }} />
@@ -97,7 +97,7 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
             </div>
           </div>
           <div>
-            <input type="text" placeholder="Phone Number" className="modal-input full" value={mobile} onChange={(e) => {
+            <input type="text" placeholder="Phone Number" className="modalinputs full" value={mobile} onChange={(e) => {
               setError((prev) => ({ ...prev, setError, mobile: '' }))
 
               const newValue = e.target.value;
