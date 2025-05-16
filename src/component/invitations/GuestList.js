@@ -127,7 +127,7 @@ export const GuestList = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <Link to='/guest' className="add-guest-button">+ Add Guest</Link>
+        <Link to='/guest' className="add-guest-button">+ add Guest</Link>
       </div>
       <div className="table-wrapper">
         <table>

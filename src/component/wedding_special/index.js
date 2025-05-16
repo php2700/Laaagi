@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const WeddingSpecial = () => {
     const [startIndex, setStartIndex] = useState(0)
@@ -70,6 +71,10 @@ export const WeddingSpecial = () => {
         <div className="wedding" >
             <div className='wedding-top' >
                 <div className='wedding-left-text'>Wedding special</div>
+                {/* <div className='wedding-right-text'>See More</div> */}
+                
+               <Link to="/sweets" state={{ filter: 'wedding' }} className="wedding-right-text">See More</Link>
+
                 {/* <div className='wedding-right-text'>See More</div> */}
             </div>
             <div className='wedding-img-list' >

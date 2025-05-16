@@ -13,8 +13,10 @@
 }
 .dry-fruit-treat-right-text {
   font-weight: 600;
-  font-size: 14px;
-}
+  font-size: 15px;
+  color: #000;
+  text-decoration: None;
+  }
 .dry-fruit-treat-img-list {
   display: flex;
   justify-content: space-between;

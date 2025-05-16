@@ -39,7 +39,7 @@ import { Add_Guest } from './component/invitations/add_guest';
 import { Guest } from './component/invitations/guest';
 import { Payment } from './component/payment';
 import { LastUrl } from './lastUrl';
-import { UploadDesignForm } from './component/invitations/UploadDesignForm';
+import { UploadDesign } from './component/invitations/UploadDesign';
 import { Add_Address_Person } from './component/invitations/address-person';
 
 function App() {
@@ -91,10 +91,10 @@ function App() {
             <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
             <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
 
-            <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
-            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-            <Route path='/forms' element={<UploadDesignForm />} />
-
+              <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
+              <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+              <Route path='/Design' element={<UploadDesign />} />
+         
             {/* update address by person */}
             <Route path='/update-address-person' element={<Add_Address_Person />} />
 
