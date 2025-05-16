@@ -1,19 +1,9 @@
 import './index.css'
-import dryFruit from '../../assets/dry_fruit.png'
-import bestSeller from '../../assets/best_seller.png'
-import weddingSpecial from "../../assets/wedding_special/image.png"
-import rightIcon from "../../assets/icon/li_arrow-right.png"
-import leftIcon from "../../assets/icon/left_arrow-right.png"
-
 
 export const Recent_view = () => {
-    const recentViewProduts = [
-        { id: 1, name: "Kaju", img: dryFruit },
-        { id: 2, name: "Kaju", img: bestSeller },
-        { id: 3, name: "Kaju", img: weddingSpecial },
-    ];
 
 
+    let recentViewProduts = JSON.parse(localStorage.getItem("recentView")) || [];
 
 
     return (
@@ -22,13 +12,15 @@ export const Recent_view = () => {
             <div className='recent-view-img-list' >
                 {recentViewProduts?.map((item) => (
                     <div key={item?.id} className='recent-view-img-wrapper'>
-                        <img className='recent-view-img' src={item?.img} alt="recent-view" />
+                        <div>
+                            <img className='recent-view-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="recent-view" />
+                        </div>
                         <div className='recent-view-img-text'>{item?.name}</div>
                     </div>
                 ))}
-                <div className='recent-view-right-icon'>
+                {/* <div className='recent-view-right-icon'>
                     <img src={rightIcon} />
-                </div>
+                </div> */}
             </div>
         </div>
     )

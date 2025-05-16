@@ -14,17 +14,9 @@ export const Dry_Fruit_Treat = () => {
     const [lastIndex, setLastIndex] = useState(2)
     const [dryFruitData, setDryFruitData] = useState([])
     const context = useContext(AuthContext);
+    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
-
-    // const dryFruitsList = () => {
-    //     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`)
-    //         .then((res) => {
-    //             setDryFruitData(res?.data?.dryFruitData);
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
 
     const dryFruitsList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`, {
@@ -61,6 +53,8 @@ export const Dry_Fruit_Treat = () => {
     }
 
     const handleDryFruitInfo = (data) => {
+        setRecentView(data)
+
         sweetsInfo(data)
         navigate('/sweets-info')
     }

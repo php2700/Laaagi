@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     const [headerUpdate, setHeaderUpdate] = useState(false)
     const [sweetsInfo, setSweetsInfo] = useState({})
     const [storeUserData, setStoreUserData] = useState({});
-
+    const [recentView, setRecentView] = useState({});
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -38,8 +38,23 @@ export const AuthProvider = ({ children }) => {
 
     };
 
+    const RecentView = (recentView) => {
+        if (!recentView?.image) return;
+        let getItem = JSON.parse(localStorage.getItem("recentView")) || [];
+        getItem = getItem.filter((v) => v.image !== recentView.image);
+        getItem.unshift(recentView);
+        if (getItem?.length > 4) getItem.pop();
+        localStorage.setItem("recentView", JSON.stringify(getItem));
+    };
+
+    useEffect(() => {
+        if (recentView) {
+            let newRecent = { name: recentView?.name, image: recentView?.image }
+            RecentView(newRecent)
+        }
+    }, [recentView])
 
     return (
-        <AuthContext.Provider value={{ logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ setRecentView, recentView, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
     )
 }

@@ -18,13 +18,11 @@ const sweetsHeader = [
     { name: 'Sweets', category: 'Sweets' }
 ]
 
-
-
-
 export const Sweets = () => {
     const navigate = useNavigate()
     const content = useLocation();
     const context = useContext(AuthContext);
+    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo
     const isInvitationSweets = content?.state?.data;
     const invitationId = content?.state?.invitationId;
@@ -144,7 +142,10 @@ export const Sweets = () => {
 
                             {data?.map((ele) => (
                                 <div className='sweets-main-container'>
-                                    <Link className='sweets-content-img' to='/sweets-info' onClick={() => (sweetsInfo(ele))} state={{ data: ele }} >
+                                    <Link className='sweets-content-img' to='/sweets-info' onClick={() => {
+                                        setRecentView(ele)
+                                        sweetsInfo(ele)
+                                    }} state={{ data: ele }} >
                                         <div className='sweets-img-div'>
                                             <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
                                         </div>
