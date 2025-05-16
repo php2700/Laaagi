@@ -11,8 +11,8 @@ import rightArrow from "../../assets/invitations/right-icon.png"
 
 
 const sweetsHeader = [
-    { name: 'Sugar Free', category: 'SugarFree' },
-    { name: 'Bengali Sweets', category: 'BengaliSweets' },
+    { name: 'Sugar Free', category: 'Sugar Free' },
+    { name: 'Bengali Sweets', category: 'Bengali Sweets' },
     { name: 'Sweets', category: 'Sweets' },
     { name: 'Sweets', category: 'Sweets' },
     { name: 'Sweets', category: 'Sweets' }

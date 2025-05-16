@@ -13,7 +13,7 @@ const decorationHeader = [
     { name: 'Marriage', category: 'Marriage' },
     { name: 'Birthday', category: 'Birthday' },
     { name: 'Mehndi', category: 'Mehndi' },
-    { name: 'Room Decor', category: 'RoomDecor' },
+    { name: 'Room Decor', category: 'Room Decor' },
     { name: 'Party', category: 'Party' }
 ]
 

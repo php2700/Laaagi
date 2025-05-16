@@ -4,8 +4,6 @@ import bestSeller from '../../assets/best_seller.png'
 import weddingSpecial from "../../assets/wedding_special/image.png"
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
-import axios from 'axios'
-import { useEffect } from 'react'
 
 
 export const Recent_view = () => {
@@ -14,6 +12,8 @@ export const Recent_view = () => {
         { id: 2, name: "Kaju", img: bestSeller },
         { id: 3, name: "Kaju", img: weddingSpecial },
     ];
+
+
 
 
     return (

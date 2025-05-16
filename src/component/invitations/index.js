@@ -7,14 +7,13 @@ import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AuthContext } from '../context';
-import UploadDesignForm from './UploadDesignForm';
 
 const invitationHeader = [
-    { name: 'Only Invitation', category: 'invitation' },
-    { name: 'Invitation on Wooden Box', category: 'invitation_wooden_box' },
-    { name: 'Invitation on Box', category: 'invitation_box' },
-    { name: 'Invitation on Glass Box', category: 'invitation_glass_box' },
-    { name: 'Misc Invitation', category: 'misc_invitation' },
+    { name: 'Only Invitation', category: 'Invitation' },
+    { name: 'Invitation on Wooden Box', category: 'Wooden Box' },
+    { name: 'Invitation on Box', category: 'Invitation On Box' },
+    { name: 'Invitation on Glass Box', category: 'Glass Box' },
+    { name: 'Misc Invitation', category: 'Misc Invitation' },
 ]
 
 

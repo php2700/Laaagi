@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const [defaultProfile, setDefaultProfile] = useState(false)
     const [headerUpdate, setHeaderUpdate] = useState(false)
     const [sweetsInfo, setSweetsInfo] = useState({})
-    const [storeUserData, setStoreUserData] = useState({})
+    const [storeUserData, setStoreUserData] = useState({});
 
 
     useEffect(() => {
