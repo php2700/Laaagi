@@ -24,7 +24,7 @@ export const PlanningTool = () => {
     const [category, setCategory] = useState('Marriage')
 
 
-    const planningCategory = [{ name: 'Marriage', url: '/planning-tool' }, { name: "Birthday", url: '/planning-birthday' }, { name: "Mehndi", url: '/planning-mehndi' }, { name: "Party", url: '/planning-party' }, { name: "Room Decor", url: '/planning-other' }]
+    const planningCategory = [{ name: 'Marriage', url: '/planning-tool' }, { name: "Birthday", url: '/planning-birthday' }, { name: "Mehndi", url: '/planning-mehndi' }, { name: "Other", url: '/planning-party' }, { name: "Room Decor", url: '/planning-other' }]
 
 
     const handleCheck = (idx) => {

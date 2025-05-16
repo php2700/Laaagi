@@ -19,7 +19,6 @@ export function LastUrl() {
         if (currentURL) {
             sessionStorage.setItem('lastURL', currentURL);
         }
-        console.log(currentURL, "lastUrl", lastURL, "secondlastURL")
         sessionStorage.setItem('currentURL', location?.pathname);
     }, [location]);
 }
