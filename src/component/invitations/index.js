@@ -1,4 +1,6 @@
 import { use, useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
@@ -7,7 +9,7 @@ import { filterData, invitationCategory } from '../category';
 import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AuthContext } from '../context';
-import UploadDesignForm from './UploadDesignForm';
+import { UploadDesign } from './UploadDesign';
 
 const invitationHeader = [
     { name: 'Only Invitation', category: 'invitation' },
@@ -30,7 +32,9 @@ export const Invitation = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [menuOpen, setMenuOpen] = useState(false)
     const [category, setCategory] = useState('invitation')
-    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+    // const [isUploadDesignForm, setIsUploadDesignForm] = useState(false);
+    // const defaultUploadDesignForm = context.defaultUploadDesignForm =useState(false);
+
 
     const handleForwardIcon = () => {
         const totalItems = invitationHeader?.length || 0;
@@ -100,10 +104,10 @@ export const Invitation = () => {
     const handleUrl = (ele) => {
         setCategory(ele?.category);
     }
-    const handleOpenUploadModal = () => {
-        navigate('/forms')
-        setIsUploadModalOpen(true);
-    };
+    // const handleUploadDesignForm = () => {
+    //     navigate('/forms')
+    //     setIsUploadDesignForm(true);
+    // };
 
 
 
@@ -153,7 +157,8 @@ export const Invitation = () => {
                     </div>
                 </div>
                 <div className='invitations-content-header'>
-                    <div className='invitation-content-text' onClick={handleOpenUploadModal} style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</div>
+                    {/* <div className='invitation-content-text' onClick={handleOpenUploadModal} style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</div> */}
+                    < Link to="/Design" className='invitation-content-text'  style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</Link>
                     <div className='invitation-content-list'>
                         {
                             data?.map((ele) => (
