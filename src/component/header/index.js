@@ -354,6 +354,7 @@ export const Header = () => {
                                 <Link to='/profile' state={{ data: userData }} onClick={closeDropdown}>Profile</Link>
                                 <Link to='/guest' onClick={closeDropdown}>Guest List</Link>
                                 <Link to='/planning-tool' onClick={closeDropdown}>Planning Tool</Link>
+                                <Link to='/payment-history' onClick={closeDropdown}>Payment History</Link>
                                 <button onClick={handleLogout}>Logout</button>
                             </div>
                         )}

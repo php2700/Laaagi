@@ -67,12 +67,15 @@ export const Invitationhome = () => {
   const location = useLocation();
   const context = useContext(AuthContext);
   const setAmounts = context?.setAmounts;
+  const setTotalAmountInv = context?.setTotalAmountInv
   const amounts = context?.amounts;
   const boxName = context?.boxName;
   const setBoxName = context?.setBoxName;
-  // const weight = context.weight
-  // const setWeight = context.setWeight;
   const invitation = context?.selectSweet;
+  const setPaymentHistory = context?.setPaymentHistory;
+  const paymentHistory = context?.paymentHistory;
+
+
   const [price, serPrice] = useState(invitation?.price)
   const [invitationId, setinvitationId] = useState(invitation?._id)
   const getSweet = location?.state;
@@ -200,6 +203,7 @@ export const Invitationhome = () => {
     if (validate()) {
       return;
     }
+    setTotalAmountInv(total + price)
     navigate('/invitation-GuestList', { state: { amount: total + price } })
   }
 
@@ -210,6 +214,10 @@ export const Invitationhome = () => {
       updatedAmounts[selectedSweet?.index] = calculateAmount;
       setId(getSweet?.showId)
       setAmounts(updatedAmounts);
+
+      const updatedHistory = paymentHistory?.filter((ele) => ele?.index != selectedSweet?.index) || [];
+      updatedHistory.push({ index: selectedSweet?.index, amount: calculateAmount, name: selectedSweet?.sweetName })
+      setPaymentHistory(updatedHistory)
     }
   }, [selectedSweet]);
 
@@ -237,6 +245,8 @@ export const Invitationhome = () => {
   };
 
   const handleBoxType = (ele) => {
+    setTotalAmountInv(0)
+    setPaymentHistory([])
     setAmounts([0, 0, 0, 0, 0])
     setBoxName(ele?.boxName)
     setId(ele?.id)
@@ -250,7 +260,9 @@ export const Invitationhome = () => {
   }
 
   const handleBack = () => {
+    setTotalAmountInv(0)
     setAmounts([0, 0, 0, 0, 0])
+    setPaymentHistory([])
     // setWeight(500)    ----->context   
     dispatch(chnageWeight(500))   // redux
     setBoxName('Normal Box');
@@ -457,9 +469,6 @@ export const Invitationhome = () => {
         <div>Total</div>
         <div>{total + price}</div>
       </div>
-      {/* <div className='invitation-next'>
-        <Link to='/invitation-GuestList' state={{ amount: total }} >Next</Link>
-      </div> */}
       <div className='invitation-next' >
         <div onClick={() => handleAmount()}>
           Next

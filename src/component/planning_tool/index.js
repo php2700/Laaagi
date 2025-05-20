@@ -135,12 +135,12 @@
 
 //     return (
 //         <div >
-               
+
 //             <div className='planning-img'>
 //                 <img src={planningImg} />
 //             </div>
 //             <div className='plannig-category'>
-                
+
 //                 {isMobile ? (<>
 //                     {startIndex > 0 &&
 //                         <div onClick={handlePrev}><img className='planning-left-arrow' src={leftIcon} /></div>
@@ -376,32 +376,32 @@ export const PlanningTool = () => {
                 )}
             </div>
             <div className='planning-check-list'>
-                <div className='planning-check-header'>Check List for {category}</div> 
-                {data?.description?.map((item, idx) => ( 
+                <div className='planning-check-header'>Check List for {category}</div>
+                {data?.description?.map((item, idx) => (
                     <div className='planning-list' key={idx}>
                         <div>
                             <input
                                 type='checkbox'
-                                id={`checkbox-${idx}`} 
+                                id={`checkbox-${idx}`}
                                 onChange={() => handleCheck(idx)}
                                 checked={checkedItems.includes(idx)}
                             />
                         </div>
                         <div>
-                            <label htmlFor={`checkbox-${idx}`}> 
-                                {item?.length > 52 ? item.slice(0, 51) + '...' : item}
+                            <label htmlFor={`checkbox-${idx}`}>
+                                {item?.length > 52 ? item?.slice(0, 51) + '...' : item}
                             </label>
                         </div>
                     </div>
                 ))}
-                {data?.description && data.description.length > 0 && ( 
-                    <>
+                {data?.description && data?.description?.length > 0 && (
+                    < >
                         <div className='planning-check-save' onClick={handleSave}>Save</div>
                         <div className='planning-check-clear' onClick={handleClear} >Clear All</div>
                     </>
                 )}
-                 {(!data?.description || data.description.length === 0) && (
-                    <div className='no-items-message'>No checklist items available for {category}.</div>
+                {(!data?.description || data.description.length === 0) && (
+                    <div className='no-items-message'>No items available for {category}.</div>
                 )}
             </div>
         </div>
