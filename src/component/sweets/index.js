@@ -13,8 +13,8 @@ const sweetsHeader = [
     { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
     { id: 'sh2', name: 'Bengali Sweets', category: 'Bengali Sweets' },
     { id: 'sh3', name: 'Sweets', category: 'Sweets' },
-    { id: 'sh4', name: 'Dry Fruit Sweets', category: 'DryFruitSweets' },
-    { id: 'sh5', name: 'Milk Sweets', category: 'MilkSweets' }
+    { id: 'sh4', name: 'Dry Fruit Sweets', category: 'Dry Fruit Sweets' },
+    { id: 'sh5', name: 'Milk Sweets', category: 'Milk Sweets' }
 
 ]
 
@@ -152,6 +152,7 @@ export const Sweets = () => {
     };
 
     const handleItemDetailNavigation = (item) => {
+
         if (sweetsInfo) {
             sweetsInfo(item);
         }
@@ -225,19 +226,23 @@ export const Sweets = () => {
 
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
-                        {data?.map((ele) => (
-                            <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
-                                {orderId === ele?.orderId && (
-                                    <div className='show-arrow-right'>
-                                        <img src={rightArrow} alt="Selected" />
-                                    </div>
-                                )}
-                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
-                                <div className='sweets-name'>{ele?.name}</div>
+                        {data?.length &&
+                            data?.map((ele) => (
 
-                                {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
-                            </div>
-                        ))}
+                                <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
+                                    {console.log(ele, "sss")}
+
+                                    {orderId === ele?.orderId && (
+                                        <div className='show-arrow-right'>
+                                            <img src={rightArrow} alt="Selected" />
+                                        </div>
+                                    )}
+                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                    <div className='sweets-name'>{ele?.name}</div>
+
+                                    {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
+                                </div>
+                            ))}
                         {!data?.length && (
                             <div className='no-found'>No Data Found for Invitation Selection</div>
                         )}
@@ -246,19 +251,21 @@ export const Sweets = () => {
             ) : (
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
-                        {data?.map((ele) => (
-                            <div key={ele.id || ele.name} className='sweets-main-container'>
-                                <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
-                                    <div className='sweets-img-div'>
-                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                        {data?.length &&
+                            <>
+                                {data?.map((ele) => (
+                                    <div key={ele.id || ele.name} className='sweets-main-container'>
+
+                                        <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
+                                            <div className='sweets-img-div'>
+                                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                            </div>
+                                            <div className='sweets-name'>{ele?.name}</div>
+                                            {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
+                                        </div>
                                     </div>
-                                    <div className='sweets-name'>{ele?.name}</div>
-                                    {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
-                                </div>
-                            </div>
-                        ))}
+                                ))} </>}
                     </div>
-                    {console.log(data?.length, 'aaaaaaaaaaaaa', data,)}
 
                     {!data?.length && (
                         <div className='no-found'>No Data Found</div>

@@ -30,7 +30,7 @@ export const Invitation = () => {
     const [lastIndex, setLastIndex] = useState(1)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [menuOpen, setMenuOpen] = useState(false)
-    const [category, setCategory] = useState('invitation')
+    const [category, setCategory] = useState('Invitation')
     // const [isUploadDesignForm, setIsUploadDesignForm] = useState(false);
     // const defaultUploadDesignForm = context.defaultUploadDesignForm =useState(false);
 
@@ -158,7 +158,7 @@ export const Invitation = () => {
                 </div>
                 <div className='invitations-content-header'>
                     {/* <div className='invitation-content-text' onClick={handleOpenUploadModal} style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</div> */}
-                    < Link to="/Design" className='invitation-content-text'  style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</Link>
+                    < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</Link>
                     <div className='invitation-content-list'>
                         {
                             data?.map((ele) => (
