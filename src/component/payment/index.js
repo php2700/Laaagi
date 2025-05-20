@@ -19,24 +19,15 @@ const loadRazorpayScript = () => {
     });
 };
 export const Payment = ({ amount, guest, userId }) => {
+
     const context = useContext(AuthContext);
     const userData = context?.storeUserData;
+    const invitation = context?.selectSweet;
     const paymentHistory = context?.paymentHistory;
-     const invitation = context?.selectSweet;
+
     const boxName = context?.boxName;
     const boxweight = useSelector((state) => state?.weight?.value);
-    let weight;
-    if (boxName == 'Normal Box') {
-        weight = parseInt(boxweight)
-    } else if (boxName == '4 Section in box') {
-        weight = parseInt(boxweight / 4)
-    } else if (boxName == '3 Section in box') {
-        weight = parseInt(boxweight / 3)
-    } else if (boxName == 'Special box') {
-        weight = parseInt(boxweight / 5)
-    }
-
-
+    const amounts = context?.amounts;
 
 
     useEffect(() => {
@@ -64,16 +55,19 @@ export const Payment = ({ amount, guest, userId }) => {
 
 
                 const storeHistory = {
-                    userId: userId, amount: amount,
+                    userId: userId,
+                    amount: amount,
                     weight: boxweight,
-                    invitationName:invitation?.name,
+                    invitationName: invitation?.name,
                     guest: guest?.map((ele) => (
                         { guestId: ele?.guestId, quantity: ele?.quantity }
                     )),
-                    sweet: paymentHistory?.map((item) => (
-                        { amount: item?.amount, name: item?.name }
-                    ))
-
+                    boxName: boxName,
+                    invAmounts: amounts,
+                    invitationImg: invitation?.image,
+                    boxAmount: invitation?.price,
+                    invDesc: invitation?.description,
+                    sweets: paymentHistory
                 }
 
                 response = { ...response, ...storeHistory }

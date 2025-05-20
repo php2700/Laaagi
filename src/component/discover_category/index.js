@@ -1,7 +1,4 @@
 import './index.css'
-import firstSweet from '../../assets/discover/first.png'
-import secondSweet from '../../assets/discover/second.png'
-import thirdSweet from '../../assets/discover/third.png'
 import { use, useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { AuthContext } from '../context'
