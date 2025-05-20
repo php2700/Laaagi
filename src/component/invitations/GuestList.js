@@ -3,6 +3,7 @@ import './GuestList.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
+import { Payment } from '../payment';
 
 
 export const GuestList = () => {
@@ -12,7 +13,8 @@ export const GuestList = () => {
   const userData = context?.storeUserData;
   const total = useLocation();
   const navigate = useNavigate();
-  const totalAmountPerBox = total?.state.amount;
+  const totalAmountPerBox = context?.totalAmountInv;
+  // const totalAmountPerBox = total?.state.amount;
   const content = useContext(AuthContext)
   const userId = localStorage.getItem('_id');
   const token = content?.token;
@@ -21,10 +23,13 @@ export const GuestList = () => {
   const [boxes, setBoxes] = useState([])
   const [totalbox, setTotalBox] = useState();
   const [totalGuest, setTotalGuest] = useState()
-  const [userBox, setUserBox] = useState();
+  const [userBox, setUserBox] = useState(1);
   const [isUserAddressChecked, setIsUserAddressChecked] = useState(false);
   const [totalPrice, setTotalPrice] = useState();
   const [searchText, setSearchText] = useState();
+  const [openRazorpay, setOpenRazorPay] = useState(false)
+  const [guest, setGuest] = useState([])
+  const [isPaymentHistory, setIsPaymentHistory] = useState(false)
 
 
   const getGuestList = async () => {
@@ -68,8 +73,25 @@ export const GuestList = () => {
     countFun();
   }, [checkedItems, boxes, isUserAddressChecked, userBox]);
 
+  useEffect(() => {
+    const updatedGuest = checkedItems.map((item) => {
+      const box = boxes.find((b) => b.idx === item.idx);
+      const quantity = box?.quantity || 1;
 
-  const handleChecked = (index) => {
+      const existing = guest.find((g) => g.idx === item.idx);
+      return {
+        idx: item.idx,
+        guestId: existing?.guestId || '',
+        quantity,
+      };
+    });
+
+    setGuest(updatedGuest);
+  }, [boxes, checkedItems]);
+
+
+
+  const handleChecked = (index, guestData) => {
     const isExist = checkedItems?.some((ele) => (ele?.idx == index))
     if (isExist) {
       setCheckedItems(checkedItems.filter((ele) => (ele?.idx) != index))
@@ -77,7 +99,20 @@ export const GuestList = () => {
       const checkedData = (boxes.filter((ele) => ele.idx == index))
       setCheckedItems([...checkedItems, { idx: index, quantity: checkedData[0]?.quantity || 1 }])
     }
+
+
+
+    const isGuestExist = guest?.some((item) => item.idx === index);
+    if (isGuestExist) {
+      setGuest(guest.filter((item) => item.idx !== index));
+    } else {
+      const checkedBox = boxes.find((ele) => ele.idx === index);
+      const quantity = checkedBox?.quantity || 1;
+      setGuest([...guest, { idx: index, guestId: guestData._id, quantity }]);
+    }
+
   }
+
   const handleBox = (value, index) => {
     const isExist = boxes.some((ele) => ele.idx == index)
 
@@ -100,24 +135,56 @@ export const GuestList = () => {
     }
   }
 
+
   const handleUser = (boxes) => {
     setUserBox(boxes);
   }
 
+  useEffect(() => {
+    handleCheckUser(isUserAddressChecked)
+  }, [userBox])
+
   const handleCheckUser = (isChecked) => {
+
+
     if (isChecked) {
-      setIsUserAddressChecked(true)
+      setIsUserAddressChecked(true);
+
+      setGuest((prevGuest) => {
+        const isAlreadyAdded = prevGuest.some((ele) => ele.guestId === userId);
+
+        if (isAlreadyAdded) {
+          return prevGuest?.map((ele) =>
+            ele.guestId === userId
+              ? { ...ele, quantity: userBox }
+              : ele
+          );
+        } else {
+          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId }];
+        }
+      });
     }
     else {
       setIsUserAddressChecked(false)
+      setGuest(guest?.filter((ele) => ele.guestId != userId) || []);
     }
   }
 
   const handlePayment = () => {
-    navigate('/payment')
+    setOpenRazorPay(false)
+    setTimeout(() => {
+      setOpenRazorPay(true)
+    }, 50);
+  }
+
+  const handleHistory = () => {
+    setIsPaymentHistory(true)
   }
 
   return (
+
+
+
     <div className="guest-list-container">
       <div className="guest-list-header">
         <input
@@ -145,7 +212,7 @@ export const GuestList = () => {
           <tbody>
             {guestList?.map((guest, index) => (
               <tr key={guest._id || index}>
-                <td><input type="checkbox" onChange={() => { handleChecked(index) }} /></td>
+                <td><input type="checkbox" onChange={() => { handleChecked(index, guest) }} /></td>
                 <td>{index + 1}</td>
                 <td>{guest.name}</td>
                 <td>{!guest.address ? (
@@ -158,7 +225,7 @@ export const GuestList = () => {
                 <td>
                   <input type='text' className='invite-guest-list' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => {
                     const isNumber = e.target.value;
-                    if (/^\d+$/.test(isNumber)) {
+                    if (/^\d*$/.test(isNumber)) {
                       handleBox(isNumber, index)
                     }
                   }} />
@@ -201,6 +268,7 @@ export const GuestList = () => {
       <div className="pay-button-container">
         Total Price:{totalPrice} /-
       </div>
+      {openRazorpay && <  Payment amount={totalPrice} guest={guest} userId={userId} />}
     </div>
   );
 }

@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
     const [sweetsInfo, setSweetsInfo] = useState({})
     const [storeUserData, setStoreUserData] = useState({});
     const [recentView, setRecentView] = useState({});
+    const [paymentHistory, setPaymentHistory] = useState([])
+    const [totalAmountInv, setTotalAmountInv] = useState(0)
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -55,6 +57,6 @@ export const AuthProvider = ({ children }) => {
     }, [recentView])
 
     return (
-        <AuthContext.Provider value={{ setRecentView, recentView, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ totalAmountInv, setTotalAmountInv, setPaymentHistory, paymentHistory, setRecentView, recentView, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
     )
 }

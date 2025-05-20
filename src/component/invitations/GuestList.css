@@ -18,6 +18,16 @@
   border-bottom: 1px solid #e4e2e2;
 }
 
+.payments-btn {
+  display: flex;
+  gap: 15px;
+}
+
+.handleview {
+  cursor: pointer;
+  color: blue;
+}
+
 .search-input {
   padding: 8px 12px;
   border: 1px solid #ccc;

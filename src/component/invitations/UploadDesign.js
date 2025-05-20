@@ -24,9 +24,6 @@ export const UploadDesign = () => {
         }
     };
 
-    const handleClose = () => {
-        navigate(-1);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +39,7 @@ export const UploadDesign = () => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('text', Amount);
-        formData.append('category',Category);
+        formData.append('category', Category);
         formData.append('notes', notes);
         formData.append('designFile', designFile);
 
@@ -86,31 +83,30 @@ export const UploadDesign = () => {
             <div className="upload-design-form-content">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h2>Upload Your Design for a Quote</h2>
-                    <button className="close-button" onClick={handleClose} style={{ cursor: 'pointer', background: 'transparent', border: 'none', fontSize: '1.5rem' }}>X</button> {/* onClose को handleClose से बदल दिया */}
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="form-group">
-  <label htmlFor="category">Category:</label>
-  <select
-    id="category"
-    value={Category}
-    onChange={(e) => setCategory(e.target.value)}
-  >
-    <option value="">-- Select Category --</option>
-    <option value="Only Invitation">Only Invitation</option>
-    <option value="Invitation on Wooden Box">Invitation on Wooden Box</option>
-    <option value="Invitation on Box">Invitation on Box</option>
-    <option value="Invitation on Glass Box">Invitation on Glass Box</option>
-    <option value="Misc Invitation">Misc Invitation</option>
-  </select>
-</div>
+                        <label htmlFor="category">Category:</label>
+                        <select
+                            id="category"
+                            value={Category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        >
+                            <option value="">Select Category</option>
+                            <option value="Only Invitation">Only Invitation</option>
+                            <option value="Invitation on Wooden Box">Invitation on Wooden Box</option>
+                            <option value="Invitation on Box">Invitation on Box</option>
+                            <option value="Invitation on Glass Box">Invitation on Glass Box</option>
+                            <option value="Misc Invitation">Misc Invitation</option>
+                        </select>
+                    </div>
                     <div className="form-group">
-                        <label htmlFor="designFile">Upload Design (PDF, JPG, PNG):</label>
-                        <input type="file" id="designFile" onChange={handleFileChange} accept=".pdf,.jpg,.jpeg,.png" required />
+                        <label htmlFor="designFile">Upload Design ( JPG, PNG):</label>
+                        <input type="file" id="designFile" onChange={handleFileChange} accept=".jpg,.jpeg,.png" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="amount">Amount:</label>

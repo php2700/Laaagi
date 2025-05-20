@@ -93,6 +93,7 @@ export const Sweets = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params })
             .then((res) => {
                 setData(res?.data?.sweetsData || []);
+                console.log(res?.data?.sweetsData?.length, '2222', res?.data?.sweetsData)
             }).catch((error) => {
                 console.error("Error fetching sweets data:", error);
                 setData([]);
@@ -129,12 +130,13 @@ export const Sweets = () => {
 
 
     const handleCategorySelect = (ele) => {
-
+        console.log(ele, 'aaaaaaaaa', '++++++')
         setCategory(ele?.category);
 
     };
 
     const handleSweetForInvitation = (item) => {
+        console.log(item, 'tttt')
         setOrderId(item?.orderId);
         setInvitationSelectSweet(item);
     };
@@ -142,7 +144,7 @@ export const Sweets = () => {
     const handleInvitationSweetDone = () => {
         if (invitationselectSweet) {
             navigate("/invitation-detail", {
-                state: { ...invitationselectSweet, index: index, invitationId: invitationId, name: name, showId: id }
+                state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id }
             });
         } else {
             alert("Please select a sweet for the invitation.");
@@ -157,9 +159,9 @@ export const Sweets = () => {
         navigate('/sweets-info');
     };
 
+
     return (
         <div className='sweets' >
-
             {!isSpecialView && ( // Only show header if not in a special view (wedding/dry fruits from filter)
                 <div className='sweets-header'>
                     {isMobile ? (
@@ -174,6 +176,7 @@ export const Sweets = () => {
                                     key={ele.id}
                                     className={`sweets-header-item ${ele.category === category ? 'active-url' : ''}`}
                                     onClick={() => handleCategorySelect(ele)}
+
                                 >
                                     {ele?.name}
                                 </div>
@@ -217,7 +220,7 @@ export const Sweets = () => {
                 </div>
             )}
 
-
+            {console.log(isInvitationSweets, '3333333333')}
             {isInvitationSweets ? (
 
                 <div className='sweets-content'>
@@ -255,6 +258,8 @@ export const Sweets = () => {
                             </div>
                         ))}
                     </div>
+                    {console.log(data?.length, 'aaaaaaaaaaaaa', data,)}
+
                     {!data?.length && (
                         <div className='no-found'>No Data Found</div>
                     )}

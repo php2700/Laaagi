@@ -4,6 +4,7 @@ import { AuthContext } from "../context";
 import axios from "axios";
 import GuestRow from "./GuestRow";
 import { Addadress } from "./Addadress";
+import { useNavigate } from "react-router-dom";
 
 export const Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
@@ -14,7 +15,7 @@ export const Guest = () => {
     const [guestList, setGuestList] = useState([]);
     const [userData, setUserData] = useState();
     const [searchText, setSearchText] = useState();
-
+    const navigate = useNavigate();
 
     const getGuestList = async () => {
         await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
@@ -29,7 +30,7 @@ export const Guest = () => {
             console.log(res?.data?.guestList)
         }).catch((error) => {
             console.log(error)
-             if (error?.response?.data?.Message === 'jwt expired') {
+            if (error?.response?.data?.Message === 'jwt expired') {
                 logout()
             }
         })
@@ -60,9 +61,16 @@ export const Guest = () => {
     const handleCloseAddress = () => {
         setOpenAddress(false)
     }
+    const handleBack = () => {
+        navigate("/invitation-GuestList")
+    }
+
+
     return (
         <>
+
             <AddGuestHeader />
+            <div onClick={handleBack} className='guest-handle-bck-btn' >Back</div>
             <div className="guest-list-container">
                 <div className="guest-list-header">
                     <input

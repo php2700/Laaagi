@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import './info.css'
 import { useContext, useState } from "react";
 import { AuthContext } from "../context";
+import { Payment } from "../payment";
 
 const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
 
@@ -16,14 +17,16 @@ export const SweetsInfo = () => {
     const [sweetkg, setSweetkg] = useState()
     const [open, setOpen] = useState(false)
     const [price, setPrice] = useState(0)
+    const [openRazorpay, setOpenRazorPay] = useState(false)
 
     const handlePayment = () => {
-
-
         if (!token) {
             navigate("/signup")
         } else {
-            navigate('/payment')
+            setOpenRazorPay(false)
+            setTimeout(() => {
+                setOpenRazorPay(true)
+            }, 50);
         }
     }
 
@@ -84,6 +87,7 @@ export const SweetsInfo = () => {
                     </div>
                 </div>
             </div>
+            {openRazorpay && <  Payment amount={price} />}
         </div>
     )
 }
