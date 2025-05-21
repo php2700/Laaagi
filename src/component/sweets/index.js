@@ -8,6 +8,7 @@ import rightIcon from "../../assets/icon/li_arrow-right.png";
 import leftIcon from "../../assets/icon/left_arrow-right.png";
 import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png";
+import { toast } from 'react-toastify';
 
 const sweetsHeader = [
     { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
@@ -83,6 +84,7 @@ export const Sweets = () => {
     }, []);
 
     const fetchSweetsData = (fetchForWedding = false) => {
+        setData([])
         const params = {};
         if (fetchForWedding) {
             params.isWedding = true;
@@ -92,8 +94,8 @@ export const Sweets = () => {
 
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params })
             .then((res) => {
+                console.log(res?.data?.sweetsData)
                 setData(res?.data?.sweetsData || []);
-                console.log(res?.data?.sweetsData?.length, '2222', res?.data?.sweetsData)
             }).catch((error) => {
                 console.error("Error fetching sweets data:", error);
                 setData([]);
@@ -110,7 +112,7 @@ export const Sweets = () => {
             axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`)
                 .then((res) => {
                     setData(res?.data?.dryFruitData || []);
-                    console.log("Fetched Dry Fruits:", res?.data?.dryFruitData);
+                    // console.log("Fetched Dry Fruits:", res?.data?.dryFruitData);
                 }).catch((error) => {
                     console.error("Error fetching dry fruits:", error);
                     setData([]);
@@ -120,7 +122,6 @@ export const Sweets = () => {
             setPageHeading("Wedding Special Sweets");
             fetchSweetsData(true);
         } else {
-
             setIsSpecialView(false);
             const currentCategoryObj = sweetsHeader.find(h => h.category === category);
             setPageHeading(currentCategoryObj ? currentCategoryObj.name : "Sweets");
@@ -130,13 +131,10 @@ export const Sweets = () => {
 
 
     const handleCategorySelect = (ele) => {
-        console.log(ele, 'aaaaaaaaa', '++++++')
         setCategory(ele?.category);
-
     };
 
     const handleSweetForInvitation = (item) => {
-        console.log(item, 'tttt')
         setOrderId(item?.orderId);
         setInvitationSelectSweet(item);
     };
@@ -147,7 +145,9 @@ export const Sweets = () => {
                 state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id }
             });
         } else {
-            alert("Please select a sweet for the invitation.");
+            toast.error("Please Select Sweet !", {
+                position: "bottom-right"
+            });
         }
     };
 
@@ -221,12 +221,11 @@ export const Sweets = () => {
                 </div>
             )}
 
-            {console.log(isInvitationSweets, '3333333333')}
             {isInvitationSweets ? (
 
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
-                        {data?.length &&
+                        {data?.length > 0 &&
                             data?.map((ele) => (
 
                                 <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
@@ -243,7 +242,7 @@ export const Sweets = () => {
                                     {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                                 </div>
                             ))}
-                        {!data?.length && (
+                        {!data?.length > 0 && (
                             <div className='no-found'>No Data Found for Invitation Selection</div>
                         )}
                     </div>
@@ -251,11 +250,11 @@ export const Sweets = () => {
             ) : (
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
-                        {data?.length &&
+                        {data?.length > 0 &&
                             <>
                                 {data?.map((ele) => (
                                     <div key={ele.id || ele.name} className='sweets-main-container'>
-
+                                        {console.log(ele, '4444')}
                                         <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
                                             <div className='sweets-img-div'>
                                                 <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
@@ -264,10 +263,11 @@ export const Sweets = () => {
                                             {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                                         </div>
                                     </div>
-                                ))} </>}
+                                ))}
+                            </>}
                     </div>
 
-                    {!data?.length && (
+                    {!data?.length > 0 && (
                         <div className='no-found'>No Data Found</div>
                     )}
                 </div>

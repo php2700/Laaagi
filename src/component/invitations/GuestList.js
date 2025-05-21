@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { Payment } from '../payment';
+import { toast } from 'react-toastify';
 
 
 export const GuestList = () => {
@@ -30,6 +31,7 @@ export const GuestList = () => {
   const [openRazorpay, setOpenRazorPay] = useState(false)
   const [guest, setGuest] = useState([])
   const [isPaymentHistory, setIsPaymentHistory] = useState(false)
+  const [error, setError] = useState()
 
 
   const getGuestList = async () => {
@@ -171,6 +173,13 @@ export const GuestList = () => {
   }
 
   const handlePayment = () => {
+    if (!guest?.length) {
+      toast.error("Please Select User !", {
+        position: 'bottom-right'
+      })
+      return
+    }
+
     setOpenRazorPay(false)
     setTimeout(() => {
       setOpenRazorPay(true)
@@ -212,7 +221,13 @@ export const GuestList = () => {
           <tbody>
             {guestList?.map((guest, index) => (
               <tr key={guest._id || index}>
-                <td><input type="checkbox" onChange={() => { handleChecked(index, guest) }} /></td>
+                <td>
+                  {
+                    guest.address ? <input type="checkbox" onChange={() => { handleChecked(index, guest) }} /> :
+                      <input type="checkbox" disabled />
+                  }
+                  {/* <input type="checkbox" onChange={() => { handleChecked(index, guest) }} /> */}
+                </td>
                 <td>{index + 1}</td>
                 <td>{guest.name}</td>
                 <td>{!guest.address ? (
@@ -240,7 +255,13 @@ export const GuestList = () => {
       </div>
       <div className="my-address-section">
         <div className="my-address-row">
-          <div><input type="checkbox" checked={isUserAddressChecked} onChange={(e) => handleCheckUser(e.target.checked)} /></div>
+          <div>
+            {userData?.address ?
+              <input type="checkbox" checked={isUserAddressChecked} onChange={(e) => handleCheckUser(e.target.checked)} />
+              :
+              <input type="checkbox" disabled />
+            }
+          </div>
           <div>My Address</div>
           {userData?.address && <div>{userData?.address}</div>}
 
