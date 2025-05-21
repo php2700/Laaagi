@@ -1,26 +1,36 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './UploadDesignForm.css';
 import { useNavigate } from 'react-router-dom';
-
+import { invitationCategory as invitationCategoryList } from '../category'; // ✅ avoid name clash
 
 export const UploadDesign = () => {
     const navigate = useNavigate();
+
     const [name, setName] = useState('');
     const [Category, setCategory] = useState('');
+    const [invitationCategory, setInvitationCategory] = useState([]);
 
     const [Amount, setAmount] = useState('');
     const [notes, setNotes] = useState('');
     const [designFile, setDesignFile] = useState(null);
+    const [previewURL, setPreviewURL] = useState(null);
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const token = localStorage.getItem("authToken");
 
 
+    // ✅ Load category list from import on mount
+    useEffect(() => {
+        setInvitationCategory(invitationCategoryList);
+    }, []);
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setDesignFile(e.target.files[0]);
+            const file = e.target.files[0];
+            setDesignFile(file);
+            const fileURL = URL.createObjectURL(file);
+            setPreviewURL(fileURL);
         }
     };
 
@@ -41,34 +51,34 @@ export const UploadDesign = () => {
 
         const formData = new FormData();
         formData.append('name', name);
-        formData.append('text', Amount);
-        formData.append('category',Category);
-        formData.append('notes', notes);
-        formData.append('designFile', designFile);
+        formData.append('price', Amount);
+        formData.append('category', Category);
+        formData.append('invitationCategory', invitationCategory); // 🟡 Just confirm this is needed by your API
+        formData.append('description', notes);
+        formData.append('image', designFile);
 
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}api/user/add_invitation`,
+                `${process.env.REACT_APP_BASE_URL}api/admin/add_invitation`,
                 formData,
                 {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
+                     "Authorization": `Bearer ${token}`,
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 }
             );
             setMessage(response.data.message || 'Request submitted successfully!');
             setName('');
             setCategory('');
+            setInvitationCategory([]);
             setAmount('');
             setNotes('');
             setDesignFile(null);
+            setPreviewURL(null);
 
-            if (document.getElementById('designFile')) {
-                document.getElementById('designFile').value = "";
-            }
+            const fileInput = document.getElementById('designFile');
+            if (fileInput) fileInput.value = "";
 
             setTimeout(() => {
-
                 setMessage('');
                 navigate('/some-thank-you-page-or-back');
             }, 3000);
@@ -80,38 +90,81 @@ export const UploadDesign = () => {
         }
     };
 
-
     return (
         <div className="upload-design-page-container">
             <div className="upload-design-form-content">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h2>Upload Your Design for a Quote</h2>
-                    <button className="close-button" onClick={handleClose} style={{ cursor: 'pointer', background: 'transparent', border: 'none', fontSize: '1.5rem' }}>X</button> {/* onClose को handleClose से बदल दिया */}
+                    <button className="close-button" onClick={handleClose} style={{ cursor: 'pointer', background: 'transparent', border: 'none', fontSize: '1.5rem' }}>X</button>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
+
                     <div className="form-group">
-  <label htmlFor="category">Category:</label>
-  <select
-    id="category"
-    value={Category}
-    onChange={(e) => setCategory(e.target.value)}
-  >
-    <option value="">-- Select Category --</option>
-    <option value="Only Invitation">Only Invitation</option>
-    <option value="Invitation on Wooden Box">Invitation on Wooden Box</option>
-    <option value="Invitation on Box">Invitation on Box</option>
-    <option value="Invitation on Glass Box">Invitation on Glass Box</option>
-    <option value="Misc Invitation">Misc Invitation</option>
-  </select>
-</div>
-                    <div className="form-group">
-                        <label htmlFor="designFile">Upload Design (PDF, JPG, PNG):</label>
-                        <input type="file" id="designFile" onChange={handleFileChange} accept=".pdf,.jpg,.jpeg,.png" required />
+                        <label htmlFor="category">Category:</label>
+                        <select
+                            id="category"
+                            value={Category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        >
+                            <option value="">-- Select Category --</option>
+                            {invitationCategory.map((cat, index) => (
+                                <option key={index} value={cat}>{cat}</option>
+                            ))}
+                        </select>
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="designFile">Upload Design (JPG, JPEG, PNG):</label>
+                        <input
+                            type="file"
+                            id="designFile"
+                            onChange={handleFileChange}
+                            accept=".jpg,.jpeg,.png"
+                            required
+                        />
+                        {previewURL && (
+                            <div style={{ marginTop: '10px', position: 'relative', display: 'inline-block' }}>
+                                <strong>Preview:</strong><br />
+                                <img
+                                    src={previewURL}
+                                    alt="Design Preview"
+                                    style={{
+                                        maxWidth: '25%',
+                                        height: '25%',
+                                        border: '1px solid #ccc',
+                                        padding: '5px',
+                                        marginTop: '5px'
+                                    }}
+                                />
+                                <button
+                                    onClick={() => setPreviewURL(null)}
+                                    style={{
+                                        position: 'relative',
+                                        top: 0,
+                                        right: 0,
+                                        backgroundColor: 'red',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '50%',
+                                        width: '20px',
+                                        height: '20px',
+                                        cursor: 'pointer',
+                                        lineHeight: '18px',
+                                        padding: 0
+                                    }}
+                                    title="Remove preview"
+                                    type="button"
+                                >
+                                    &times;
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="amount">Amount:</label>
                         <input
@@ -122,17 +175,23 @@ export const UploadDesign = () => {
                             placeholder="Enter amount"
                         />
                     </div>
+
                     <div className="form-group">
                         <label htmlFor="notes">Description:</label>
                         <textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows="3"></textarea>
                     </div>
+
                     <button id="sub" type="submit" disabled={isLoading}>
                         {isLoading ? 'Submitting...' : 'Get Quote'}
                     </button>
                 </form>
-                {message && <p className={`message ${message.toLowerCase().includes('error') || message.toLowerCase().includes('please') ? 'error' : 'success'}`}>{message}</p>}
+
+                {message && (
+                    <p className={`message ${message.toLowerCase().includes('error') || message.toLowerCase().includes('please') ? 'error' : 'success'}`}>
+                        {message}
+                    </p>
+                )}
             </div>
         </div>
     );
 };
-

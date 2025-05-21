@@ -20,6 +20,7 @@ src/components/UploadDesignForm.css
     width: 100%;
     max-width: 600px; /* फॉर्म की अधिकतम चौड़ाई */
     box-sizing: border-box;
+    margin: 0 auto; /* केंद्र में संरेखित करें */
 }
 
 .upload-design-form-content h2 {
