@@ -6,7 +6,7 @@ import { AuthContext } from '../context';
 import { Invitationhome } from './Invitationhome';
 import { useDispatch } from 'react-redux';
 import { chnageWeight } from '../redux/weightSlice';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const PaymentHistory = () => {
     const context = useContext(AuthContext);
@@ -126,7 +126,7 @@ export const PaymentHistory = () => {
                         </table>
                     </div>
                 </> : <>
-                    <div onClick={handleBack} >Back</div>
+                    <div className='payment-back' onClick={handleBack} ><ArrowBackIcon /></div>
 
                     <Invitationhome viewInv={true} />
 

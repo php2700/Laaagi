@@ -58,7 +58,7 @@ export const Footer = () => {
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Help Center</div>
-                        <div className='footer-left-middle-text'>Payments</div>
+                        <div className='footer-left-middle-text'><Link to='/payment-history'>Payments</Link></div>
                         <div className='footer-left-middle-text'>Refund</div>
                         <div className='footer-left-middle-text'>Checkout</div>
                         <div className='footer-left-middle-text'>Shipping</div>

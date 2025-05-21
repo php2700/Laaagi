@@ -3,6 +3,7 @@ import './info.css'
 import { useContext, useState } from "react";
 import { AuthContext } from "../context";
 import { Payment } from "../payment";
+import leftArrow from "../../assets/sweet/left_arrow.png"
 
 const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
 
@@ -18,8 +19,13 @@ export const SweetsInfo = () => {
     const [open, setOpen] = useState(false)
     const [price, setPrice] = useState(0)
     const [openRazorpay, setOpenRazorPay] = useState(false)
+    const [error, setError] = useState()
 
     const handlePayment = () => {
+        if (!sweetkg) {
+            setError('please Select Quantity')
+            return;
+        }
         if (!token) {
             navigate("/signup")
         } else {
@@ -33,6 +39,8 @@ export const SweetsInfo = () => {
     const calculatePrice = (quantity) => {
         if (quantity === "Select quantity")
             return;
+
+        setError('')
         const calculateAmount = quantity * pricePerKg;
         setPrice(calculateAmount)
         setSweetkg(quantity)
@@ -51,7 +59,9 @@ export const SweetsInfo = () => {
         <div className="sweets-info">
             <div className="sweets-info-back-button">
                 {/* <Link onClick={() => handleBack()} to='/sweets'><button className="sweets-info-back-button">back</button></Link> */}
-                <button onClick={() => handleBack()} className="sweets-info-back-button">back</button>
+                <button onClick={() => handleBack()} className="sweets-info-back-button">
+                    <img src={leftArrow}/>
+                    back</button>
 
             </div>
             <div className="sweet-info-home-container">
@@ -79,9 +89,10 @@ export const SweetsInfo = () => {
                                 <option key={index} value={ele?.value}  >{ele?.name}</option>
                             ))}
                         </select>
-                    </div>
 
-                    <div className="sweets-info-price">Total Price:{price}</div>
+                    </div>
+                    {error && <div style={{ color: 'red' }}>{error}</div>}
+                    <div className="sweets-info-price">Total Price:{price} /-</div>
                     <div className="sweets-info-button">
                         <button onClick={handlePayment}>Pay</button>
                     </div>
