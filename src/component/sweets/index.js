@@ -10,18 +10,24 @@ import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png";
 import { toast } from 'react-toastify';
 
+// const sweetsHeader = [
+//     { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
+//     { id: 'sh2', name: 'Bengali Sweets', category: 'Bengali Sweets' },
+//     { id: 'sh3', name: 'Sweets', category: 'Sweets' },
+//     { id: 'sh4', name: 'Dry Fruit Sweets', category: 'Dry Fruit Sweets' },
+//     { id: 'sh5', name: 'Milk Sweets', category: 'Milk Sweets' }
+// ]
+
+
 const sweetsHeader = [
-    { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
-    { id: 'sh2', name: 'Bengali Sweets', category: 'Bengali Sweets' },
-    { id: 'sh3', name: 'Sweets', category: 'Sweets' },
-    { id: 'sh4', name: 'Dry Fruit Sweets', category: 'Dry Fruit Sweets' },
-    { id: 'sh5', name: 'Milk Sweets', category: 'Milk Sweets' }
-
-]
+   { id: 'sh1', name: 'Indian Sweets', category: 'Indian Sweets' },
+    { id: 'sh2', name: 'Innovative Fusions', category: 'Innovative Fusions' },
+    { id: 'sh3', name: 'Savouries ', category: 'Savouries ' },
+    { id: 'sh4', name: 'Dry Fruits', category: 'Dry Fruits' },
+] 
 
 
-
-const INITIAL_CATEGORY = sweetsHeader[0]?.category || 'Sugar Free';
+const INITIAL_CATEGORY = sweetsHeader[0]?.category || 'Indian Sweets';
 
 export const Sweets = () => {
     const navigate = useNavigate();

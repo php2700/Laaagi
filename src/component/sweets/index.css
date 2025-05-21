@@ -22,7 +22,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 30px;
-}
+} 
 
 .sweets-content-img {
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
@@ -32,6 +32,7 @@
   align-items: center;
   position: relative;
   text-decoration: none;
+  cursor: pointer;
 }
 .sweets-content-img img {
   width: 100%;
