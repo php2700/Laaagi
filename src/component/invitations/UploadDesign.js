@@ -17,8 +17,6 @@ export const UploadDesign = () => {
     const [previewURL, setPreviewURL] = useState(null);
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const token = localStorage.getItem("authToken");
-
 
     // ✅ Load category list from import on mount
     useEffect(() => {
@@ -59,11 +57,10 @@ export const UploadDesign = () => {
 
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}api/admin/add_invitation`,
+                `${process.env.REACT_APP_BASE_URL}api/user/add_invitation`,
                 formData,
                 {
-                     "Authorization": `Bearer ${token}`,
-                    headers: { 'Content-Type': 'multipart/form-data' },
+                    headers: { 'Content-Type': 'multipart/form-data' }
                 }
             );
             setMessage(response.data.message || 'Request submitted successfully!');
@@ -122,6 +119,7 @@ export const UploadDesign = () => {
                         <input
                             type="file"
                             id="designFile"
+                            // value={designFile}
                             onChange={handleFileChange}
                             accept=".jpg,.jpeg,.png"
                             required

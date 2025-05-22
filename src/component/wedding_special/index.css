@@ -73,6 +73,7 @@
 }
 
 .wedding-img-container {
+  cursor: pointer;
   width: 100%;
 }
 
