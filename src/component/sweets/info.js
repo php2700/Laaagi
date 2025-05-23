@@ -61,8 +61,8 @@ export const SweetsInfo = () => {
                 </div>
                 <div className="sweets-info-right-side">
                     <div className="sweets-info-name">
-                        <div>{sweetsInfo?.name}</div>
-                        <div>&nbsp;(Rs. {sweetsInfo?.amount} &nbsp;/- )</div>
+                        <div>{sweetsInfo?.name}</div> &nbsp;
+                        <div>(Rs. {sweetsInfo?.amount} /- )</div>
                     </div>
                     <div className="sweets-info-des">
                         Description
