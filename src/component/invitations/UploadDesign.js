@@ -32,9 +32,6 @@ export const UploadDesign = () => {
         }
     };
 
-    const handleClose = () => {
-        navigate(-1);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -92,7 +89,6 @@ export const UploadDesign = () => {
             <div className="upload-design-form-content">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h2>Upload Your Design for a Quote</h2>
-                    <button className="close-button" onClick={handleClose} style={{ cursor: 'pointer', background: 'transparent', border: 'none', fontSize: '1.5rem' }}>X</button>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

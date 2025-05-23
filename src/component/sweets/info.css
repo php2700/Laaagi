@@ -13,6 +13,9 @@
   padding: 12px 5px;
   width: 100px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sweets-info-details {
@@ -36,7 +39,7 @@
   font-size: 25px;
   color: #253d4e;
 }
-
+ 
 .sweets-info-right-side {
   display: flex;
   flex-direction: column;
@@ -81,7 +84,7 @@
 }
 
 .sweets-info-drop-down {
-  width: 30%;
+  width: 35%;
   margin-top: 25px;
 }
 

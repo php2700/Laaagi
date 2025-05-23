@@ -1,17 +1,12 @@
-src/components/UploadDesignForm.css
-
-/* पेज के लिए मुख्य कंटेनर */
 .upload-design-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* ऊपर से शुरू करें */
-    padding: 20px;
-    min-height: 100vh; /* कम से कम पूरी स्क्रीन की ऊंचाई */
-    background-color: #f4f4f4; /* हल्का बैकग्राउंड */
-    box-sizing: border-box;
+  width: 30%;
+  margin: 25px auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f4f4f4;
 }
 
-/* फॉर्म सामग्री के लिए कंटेनर */
 .upload-design-form-content {
     background-color: #fff;
     padding: 25px 30px;
@@ -24,52 +19,51 @@ src/components/UploadDesignForm.css
 }
 
 .upload-design-form-content h2 {
-    text-align: center;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-    
+  text-align: center;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.8em;
 }
 
 /* हैडर में शीर्षक और क्लोज बटन को संरेखित करने के लिए */
-.upload-design-form-content .header-container { /* यदि आपने JSX में div.header-container जोड़ा है */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+.upload-design-form-content .header-container {
+  /* यदि आपने JSX में div.header-container जोड़ा है */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .upload-design-form-content .header-container h2 {
-    margin-bottom: 0; /* ऊपर से मार्जिन हटा दें क्योंकि यह अब फ्लेक्स आइटम है */
+  margin-bottom: 0;
 }
 
-
-.close-button { /* JSX में दिया गया क्लोज बटन */
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #888;
-    cursor: pointer;
-    padding: 5px;
-    line-height: 1;
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
 }
 
 .close-button:hover {
-    color: #333;
+  color: #333;
 }
 
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 600;
-    font-size: 0.95em;
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95em;
 }
 
 .form-group input[type="text"],
@@ -78,87 +72,87 @@ src/components/UploadDesignForm.css
 .form-group input[type="number"],
 .form-group input[type="file"],
 .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* महत्वपूर्ण */
-    font-size: 1em;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
 }
 
 .form-group input[type="file"] {
-    padding: 8px; /* फ़ाइल इनपुट के लिए थोड़ी अलग पैडिंग */
+  padding: 8px; /* फ़ाइल इनपुट के लिए थोड़ी अलग पैडिंग */
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #007bff; /* फोकस पर बॉर्डर का रंग */
-    outline: none; /* डिफ़ॉल्ट आउटलाइन हटाएं */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  border-color: #007bff; /* फोकस पर बॉर्डर का रंग */
+  outline: none; /* डिफ़ॉल्ट आउटलाइन हटाएं */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .form-group textarea {
-    resize: vertical; /* केवल वर्टिकल रूप से आकार बदलने की अनुमति दें */
-    min-height: 80px;
+  resize: vertical; /* केवल वर्टिकल रूप से आकार बदलने की अनुमति दें */
+  min-height: 80px;
 }
 
-#sub  {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 600;
-    width: 100%; /* बटन को पूरी चौड़ाई दें */
-    transition: background-color 0.3s ease;
+#sub {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  width: 100%; /* बटन को पूरी चौड़ाई दें */
+  transition: background-color 0.3s ease;
 }
 
 #sub :hover:not(:disabled) {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #sub :disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 /* संदेशों के लिए स्टाइलिंग */
 .message {
-    margin-top: 20px;
-    padding: 12px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: 500;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
 }
 
 .message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
 .message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 
 /* मोबाइल उपकरणों के लिए उत्तरदायी डिजाइन */
 @media (max-width: 768px) {
-    .upload-design-form-content {
-        margin: 20px; /* मोबाइल पर किनारों से थोड़ा मार्जिन */
-        padding: 20px;
-    }
+  .upload-design-form-content {
+    margin: 20px; /* मोबाइल पर किनारों से थोड़ा मार्जिन */
+    padding: 20px;
+  }
 
-    .upload-design-form-content h2 {
-        font-size: 1.5em;
-    }
+  .upload-design-form-content h2 {
+    font-size: 1.5em;
+  }
 
-    #sub {
-        font-size: 1em;
-        padding: 10px 15px;
-    }
+  #sub {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
 }

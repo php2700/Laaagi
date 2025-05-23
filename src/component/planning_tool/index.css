@@ -498,22 +498,3 @@
   }
 }
 /*  */
-
-
-
-
-.category-item { /* Base styles for all category items */
-  padding: 8px 15px;
-  margin: 5px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-weight: 500;
-}
-
-.category-item.active-category { /* Style for the active category item */
-  background-color: #ffd700; /* Aap apna desired color yahaan daal sakte hain */
-  color: #800000;
-  
-}
