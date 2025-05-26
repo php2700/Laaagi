@@ -1,6 +1,23 @@
 import { Modal, Box, Typography, Button } from '@mui/material';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context';
 
-export const Logout = ({ open, handleClose, logoutUser }) => {
+export const Logout = ({ open, handleClose }) => {
+    const context = useContext(AuthContext);
+    const setToken = context?.setToken;
+    const setUserData = context?.setStoreUserData;
+
+    const navigate = useNavigate()
+    const logoutUsers = () => {
+        localStorage.removeItem("_id")
+        localStorage.removeItem("token")
+        setUserData('')
+        setToken('')
+        handleClose()
+        navigate('/')
+    }
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -34,7 +51,7 @@ export const Logout = ({ open, handleClose, logoutUser }) => {
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={() => logoutUser()}
+                        onClick={() => logoutUsers()}
                     >
                         Yes
                     </Button>

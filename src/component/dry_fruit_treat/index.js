@@ -48,16 +48,16 @@ export const Dry_Fruit_Treat = () => {
 
     const handleBack = () => {
         const prevStart = Math.max(0, startIndex - 3);
-        const prevLast = Math.max(2, lastIndex - 3);
+        const prevLast = Math.max(2, startIndex - 1);
         setStartIndex(prevStart);
         setLastIndex(prevLast);
     }
 
     const handleDryFruitInfo = (data) => {
         setRecentView(data)
-
         sweetsInfo(data)
-        navigate('/sweets-info')
+        // navigate('/sweets-info')
+        navigate(`/dry-fruit_info/${data?._id}`);
     }
 
     return (
@@ -65,8 +65,8 @@ export const Dry_Fruit_Treat = () => {
             <div className='dry-fruit-treat-top' >
                 <div className='dry-fruit-treat-left-text'>Dry Fruit Treats</div>
                 {/* <link to = "/details" className='dry-fruit-treat-right-text'>See More</link> */}
-                 <Link to="/sweets" state={{ filter: 'dry-fruit-treat' }} className="dry-fruit-treat-right-text">See More</Link>
-                
+                <Link to="/dry_fruit_list" state={{ filter: 'dry-fruit-treat' }} className="dry-fruit-treat-right-text">See More</Link>
+
             </div>
             <div className='dry-fruit-treat-img-list' >
                 {

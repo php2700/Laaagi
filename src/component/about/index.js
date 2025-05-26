@@ -23,7 +23,7 @@ export const About = () => {
     }, [])
 
     return (
-        <div className='about'>
+        <div className='about' id="about-us">
             <div className='about-us'>
                 <div className='about-heading'>About Us</div>
                 <div className='about-desc'>

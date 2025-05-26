@@ -16,11 +16,12 @@
   font-size: 15px;
   color: #000;
   text-decoration: None;
-  }
+}
 .dry-fruit-treat-img-list {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 35px;
   position: relative;
 }
 .dry-fruit-treat-left-icon {
@@ -84,13 +85,13 @@
   .dry-fruit-treat {
     padding: 10px 30px !important;
   }
-  .dry-fruit-treat-img{
+  .dry-fruit-treat-img {
     height: 350px;
   }
 }
 
-@media(max-width:720px){
-  .dry-fruit-treat-img{
+@media (max-width: 720px) {
+  .dry-fruit-treat-img {
     height: 350px;
   }
 }

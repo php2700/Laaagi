@@ -8,17 +8,20 @@ export function LastUrl() {
         window.scrollTo(0, 0);
     }, [location]);
 
+
+
     useEffect(() => {
-        const currentURL = sessionStorage.getItem('currentURL');
-        const lastURL = sessionStorage.getItem('lastURL');
+        const currentURL = localStorage.getItem('currentURL');
+        const lastURL = localStorage.getItem('lastURL');
 
         if (lastURL) {
-            sessionStorage.setItem('secondLastUrl', lastURL);
+            localStorage.setItem('secondLastUrl', lastURL);
         }
 
         if (currentURL) {
-            sessionStorage.setItem('lastURL', currentURL);
+            if (currentURL != '/planning-tool')
+                localStorage.setItem('lastURL', currentURL);
         }
-        sessionStorage.setItem('currentURL', location?.pathname);
+        localStorage.setItem('currentURL', location?.pathname);
     }, [location]);
 }

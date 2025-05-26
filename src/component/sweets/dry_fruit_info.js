@@ -1,49 +1,23 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import './info.css'
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context";
+import { Payment } from "../payment";
 import leftArrow from "../../assets/sweet/left_arrow.png"
 import axios from "axios";
-import { PaymentSingleItem } from "../payment/sweet_payment";
 
 const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
 
 
-export const SweetsInfo = () => {
-    const context = useContext(AuthContext);
-    const logout = context?.logout;
-    const { _id, url } = useParams();
+export const DryFruitInfo = () => {
+    const { _id } = useParams();
     const navigate = useNavigate();
     const [sweetsInfo, setSweetsInfo] = useState({})
     const [pricePerKg, setPricePerkg] = useState()
-    const userId = localStorage.getItem("_id");
     const token = localStorage.getItem('token')
     const [sweetkg, setSweetkg] = useState()
     const [price, setPrice] = useState(0)
     const [openRazorpay, setOpenRazorPay] = useState(false)
     const [error, setError] = useState()
-    const [userData, setUserData] = useState({})
-
-    const getUserData = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res) => {
-            console.log(res?.data?.userData)
-            setUserData(res?.data?.userData)
-        }).catch((error) => {
-            if (error?.response?.data?.Message === 'jwt expired') {
-                logout()
-            }
-            console.log(error, "error")
-        })
-    }
-
-    useEffect(() => {
-        if (token)
-            getUserData()
-    }, [token])
 
     const handlePayment = () => {
         if (!sweetkg) {
@@ -61,9 +35,9 @@ export const SweetsInfo = () => {
     }
 
     const getSweetData = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweet/${_id}`).then((res) => {
-            setPricePerkg(res?.data?.sweetData?.amount?.split('/')[0])
-            setSweetsInfo(res?.data?.sweetData)
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit/${_id}`).then((res) => {
+            setPricePerkg(res?.data?.dryFruitData?.amount?.split('/')[0])
+            setSweetsInfo(res?.data?.dryFruitData)
         }).catch((error) => {
             console.log(error, "error")
         })
@@ -76,6 +50,7 @@ export const SweetsInfo = () => {
     const calculatePrice = (quantity) => {
         if (quantity === "Select quantity")
             return;
+
         setError('')
         const calculateAmount = quantity * pricePerKg;
         setPrice(calculateAmount)
@@ -87,20 +62,17 @@ export const SweetsInfo = () => {
     }
 
     const handleBack = () => {
-        if (url == 'home') {
-            navigate('/')
-        }
-        else {
-            navigate('/sweets')
-        }
+        navigate('/')
     }
 
     return (
         <div className="sweets-info">
             <div className="sweets-info-back-button">
+                {/* <Link onClick={() => handleBack()} to='/sweets'><button className="sweets-info-back-button">back</button></Link> */}
                 <button onClick={() => handleBack()} className="sweets-info-back-button">
                     <img src={leftArrow} />
                     back</button>
+
             </div>
             <div className="sweet-info-home-container">
                 <div className="sweets-info-home-button" onClick={handleHome}>Home</div>
@@ -113,7 +85,7 @@ export const SweetsInfo = () => {
                 <div className="sweets-info-right-side">
                     <div className="sweets-info-name">
                         <div>{sweetsInfo?.name}</div>
-                        <div>&nbsp;(Rs. {sweetsInfo?.amount}&nbsp;/- )</div>
+                        <div>&nbsp;(Rs. {sweetsInfo?.amount} &nbsp;/- )</div>
                     </div>
                     <div className="sweets-info-des">
                         Description
@@ -127,6 +99,7 @@ export const SweetsInfo = () => {
                                 <option key={index} value={ele?.value}  >{ele?.name}</option>
                             ))}
                         </select>
+
                     </div>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
                     <div className="sweets-info-price">Total Price:{price} /-</div>
@@ -135,7 +108,7 @@ export const SweetsInfo = () => {
                     </div>
                 </div>
             </div>
-            {openRazorpay && <  PaymentSingleItem amount={price} description={sweetsInfo?.description} img={sweetsInfo?.image} Sweet={sweetsInfo?.name} rate={sweetsInfo?.amount} weight={sweetkg} quantity={sweetkg} name={userData?.name} />}
+            {openRazorpay && <  Payment amount={price} />}
         </div>
     )
 }

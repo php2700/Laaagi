@@ -31,9 +31,6 @@ export const Invitation = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
     const [menuOpen, setMenuOpen] = useState(false)
     const [category, setCategory] = useState('Invitation')
-    // const [isUploadDesignForm, setIsUploadDesignForm] = useState(false);
-    // const defaultUploadDesignForm = context.defaultUploadDesignForm =useState(false);
-
 
     const handleForwardIcon = () => {
         const totalItems = invitationHeader?.length || 0;
@@ -98,20 +95,13 @@ export const Invitation = () => {
     const handleInvitationImg = (ele) => {
         setRecentView(ele)
         setInvitationsweet(ele)
-        navigate('/invitation-detail')
+        const url = 'invitation'
+        navigate(`/invitation-detail/${ele?._id}/${url}`)
     }
 
     const handleUrl = (ele) => {
         setCategory(ele?.category);
     }
-    // const handleUploadDesignForm = () => {
-    //     navigate('/forms')
-    //     setIsUploadDesignForm(true);
-    // };
-
-
-
-
 
     return (
         <div className='invitations'>
@@ -157,7 +147,6 @@ export const Invitation = () => {
                     </div>
                 </div>
                 <div className='invitations-content-header'>
-                    {/* <div className='invitation-content-text' onClick={handleOpenUploadModal} style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</div> */}
                     < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</Link>
                     <div className='invitation-content-list'>
                         {
@@ -172,12 +161,9 @@ export const Invitation = () => {
                                     </div>
                                 </div>
                             ))}
-
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 };
