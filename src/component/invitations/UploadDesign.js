@@ -2,23 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './UploadDesignForm.css';
 import { useNavigate } from 'react-router-dom';
-import { invitationCategory as invitationCategoryList } from '../category'; // ✅ avoid name clash
+import { invitationCategory as invitationCategoryList } from '../category';
 
 export const UploadDesign = () => {
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
-    const [Category, setCategory] = useState('');
+    const [category, setCategory] = useState('');
     const [invitationCategory, setInvitationCategory] = useState([]);
-
-    const [Amount, setAmount] = useState('');
+    const [error, setError] = useState({})
+    const [amount, setAmount] = useState('');
     const [notes, setNotes] = useState('');
     const [designFile, setDesignFile] = useState(null);
     const [previewURL, setPreviewURL] = useState(null);
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // ✅ Load category list from import on mount
     useEffect(() => {
         setInvitationCategory(invitationCategoryList);
     }, []);
@@ -33,11 +32,36 @@ export const UploadDesign = () => {
     };
 
 
+    const validate = () => {
+        const newError = {};
+        if (!name?.trim())
+            newError.name = 'name is required'
+        else if (name?.length < 3)
+            newError.name = 'min 3 character required'
+
+        if (!amount)
+            newError.amount = 'amount is required'
+
+        if (!category) {
+            newError.category = 'category is required'
+        }
+
+        if (!notes?.trim())
+            newError.notes = 'Messsage is required'
+        else if (notes?.length < 5)
+            newError.notes = 'min 10 character required'
+
+        setError(newError)
+        return Object.keys(newError)?.length;
+
+
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage('');
         setIsLoading(true);
-
+        if (validate()) return
         if (!designFile) {
             setMessage('Please upload a design file.');
             setIsLoading(false);
@@ -46,9 +70,8 @@ export const UploadDesign = () => {
 
         const formData = new FormData();
         formData.append('name', name);
-        formData.append('price', Amount);
-        formData.append('category', Category);
-        formData.append('invitationCategory', invitationCategory); // 🟡 Just confirm this is needed by your API
+        formData.append('price', amount);
+        formData.append('category', category);
         formData.append('description', notes);
         formData.append('image', designFile);
 
@@ -74,7 +97,7 @@ export const UploadDesign = () => {
 
             setTimeout(() => {
                 setMessage('');
-                navigate('/some-thank-you-page-or-back');
+                navigate('/invitation');
             }, 3000);
         } catch (error) {
             setMessage(error.response?.data?.message || 'An error occurred. Please try again.');
@@ -93,17 +116,23 @@ export const UploadDesign = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <input type="text" id="name" value={name} onChange={(e) => {
+                            setName(e.target.value)
+                            setError((error) => ({ ...error, name: '' }))
+                        }} />
+                        {error.name && <div>{error?.name}</div>}
                     </div>
 
+
+
                     <div className="form-group">
-                        <label htmlFor="category">Category:</label>
+                        <label htmlFor="category">category:</label>
                         <select
                             id="category"
-                            value={Category}
+                            value={category}
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            <option value="">-- Select Category --</option>
+                            <option value="">-- Select category --</option>
                             {invitationCategory.map((cat, index) => (
                                 <option key={index} value={cat}>{cat}</option>
                             ))}
@@ -160,11 +189,11 @@ export const UploadDesign = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="amount">Amount:</label>
+                        <label htmlFor="amount">amount:</label>
                         <input
                             type="text"
                             id="amount"
-                            value={Amount}
+                            value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                             placeholder="Enter amount"
                         />
