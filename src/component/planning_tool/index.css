@@ -498,3 +498,19 @@
   }
 }
 /*  */
+
+
+.category-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  /* transition: background-color 0.3s ease; */
+}
+
+
+
+.active-category {
+  background-color: #FFD700 !important;  
+  color: #1D1A1A!important;
+  font-weight: bold;
+}

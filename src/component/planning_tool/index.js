@@ -157,9 +157,8 @@ export const PlanningTool = () => {
                             {
                                 planningCategory?.slice(startIndex, lastIndex + 1)?.map((ele) => (
                                     <div
-                                        key={ele.name} // Use a unique key like ele.name
+                                        key={ele.name}
                                         onClick={() => handleUrl(ele)}
-                                        // Conditionally add 'active-category' class
                                         className={`category-item ${category === ele.name ? 'active-category' : ''}`}
                                     >
                                         {ele?.name}
