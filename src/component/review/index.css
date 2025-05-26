@@ -18,8 +18,10 @@
   font-size: 32px;
 }
 .review-list-img img {
-  height: 88px;
   width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 0.5px solid;
 }
 .review-list-name {
   font-size: 24px;
