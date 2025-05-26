@@ -104,7 +104,7 @@ export const SweetsInfo = () => {
             </div>
             <div className="sweet-info-home-container">
                 <div className="sweets-info-home-button" onClick={handleHome}>Home</div>
-                <div> &nbsp;> &nbsp;Detail</div>
+                <div> &nbsp; &nbsp;Detail</div>
             </div>
             <div className="sweets-info-details">
                 <div className="sweets-info-img">

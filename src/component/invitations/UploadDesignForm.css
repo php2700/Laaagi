@@ -8,13 +8,14 @@
 }
 
 .upload-design-form-content {
-  background-color: #fff;
-  padding: 25px 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* फॉर्म की अधिकतम चौड़ाई */
+    box-sizing: border-box;
+    margin: 0 auto; /* केंद्र में संरेखित करें */
 }
 
 .upload-design-form-content h2 {

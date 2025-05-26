@@ -39,7 +39,7 @@
   font-size: 25px;
   color: #253d4e;
 }
-
+ 
 .sweets-info-right-side {
   display: flex;
   flex-direction: column;
@@ -80,10 +80,11 @@
   border-style: none;
   font-size: 16px;
   color: #800000;
+  cursor: pointer;
 }
 
 .sweets-info-drop-down {
-  width: 30%;
+  width: 35%;
   margin-top: 25px;
 }
 

@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const decorationHeader = [
     { name: 'Marriage', category: 'Marriage' },
-    { name: 'Birthday', category: 'Birthday' },
+    { name: 'Birthday', category: 'BirthDay' },
     { name: 'Mehndi', category: 'Mehndi' },
     { name: 'Room Decor', category: 'Room Decor' },
     { name: 'Party', category: 'Party' }
@@ -30,6 +30,11 @@ export const Decorations = () => {
             }
         })
             .then((res) => {
+                  console.log(`Data for category: ${category}`, res.data); // <<--- YEH ADD KAREIN
+        // Specifically check what res.data.decorationData is for 'Birthday'
+        if (category === 'Birthday') {
+            console.log('Birthday API response data:', res.data?.decorationData);
+        }
                 setDecorationData(res?.data?.decorationData);
             }).catch((error) => {
                 console.log(error);
@@ -56,9 +61,9 @@ export const Decorations = () => {
     return (
         <div className='decorations' >
             <div className='decorations-header'>
-                {decorationHeader?.map((ele) => (
+                { decorationHeader?.map((ele) => (
                     <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
-                ))}
+                )) }
             </div>
             <div className='decorations-content'>
                 <div className='decorations-content-list'>
