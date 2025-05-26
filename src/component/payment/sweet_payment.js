@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { toast } from "react-toastify";
@@ -19,16 +19,12 @@ const loadRazorpayScript = () => {
         document.body.appendChild(script);
     });
 };
-export const Payment = ({ amount, guest, userId }) => {
+export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quantity, name }) => {
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+    const userId = localStorage.getItem("_id");
+   
 
-    const navigate = useNavigate();
-    const context = useContext(AuthContext);
-    const userData = context?.storeUserData;
-    const invitation = context?.selectSweet;
-    const paymentHistory = context?.paymentHistory;
-    const boxName = context?.boxName;
-    const boxweight = useSelector((state) => state?.weight?.value);
-    const amounts = context?.amounts;
     useEffect(() => {
         handlePayment();
     }, []);
@@ -50,24 +46,16 @@ export const Payment = ({ amount, guest, userId }) => {
             description: 'Payment for Order',
             order_id: data.id,
             handler: function (response) {
-
-
                 const storeHistory = {
                     userId: userId,
+                    description: description,
+                    img: img,
+                    sweet: Sweet,
+                    rate: rate,
                     amount: amount,
-                    weight: boxweight,
-                    invitationName: invitation?.name,
-                    guest: guest?.map((ele) => (
-                        { guestId: ele?.guestId, quantity: ele?.quantity, name: ele?.name, address: ele?.address }
-                    )),
-                    boxName: boxName,
-                    invAmounts: amounts,
-                    invitationImg: invitation?.image,
-                    boxAmount: invitation?.price,
-                    invDesc: invitation?.description,
-                    sweets: paymentHistory
+                    quantity: quantity,
+                    name: name
                 }
-
                 response = { ...response, ...storeHistory }
                 axios.post(`${process.env.REACT_APP_BASE_URL}verifyOrder`, response).then((res) => {
                     if (res?.status == 200) {
@@ -89,7 +77,7 @@ export const Payment = ({ amount, guest, userId }) => {
                 })
             },
             prefill: {
-                name: userData?.name,
+                name: 'userData?.name',
                 // email: 'john@example.com',
                 // contact: '9999999999',
             },

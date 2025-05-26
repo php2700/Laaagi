@@ -42,13 +42,17 @@ import { LastUrl } from './lastUrl';
 import { UploadDesign } from './component/invitations/UploadDesign';
 import { Add_Address_Person } from './component/invitations/address-person';
 import { PaymentHistory } from './component/invitations/payment-history';
+import { DryFruitInfo } from './component/sweets/dry_fruit_info';
+import { Dry_fruit } from './component/sweets/dry_fruit';
+import { ViewHistory } from './component/invitations/viewHistory';
+import { ViewSweetHistory } from './component/sweets/sweet-history';
 
 function App() {
   const PrivateRoute = ({ children }) => {
     const content = useContext(AuthContext)
     const token = content?.token || localStorage.getItem('token')
     return (
-      <>{token ? children : < Navigate to='/signup' />}</>
+      <>{token ? children : < Navigate to='/' />}</>
     )
   }
   return (
@@ -78,16 +82,24 @@ function App() {
             <Route path='/other' element={<Other />} />
             <Route path='/contact-us' element={<ContactUs />} />
             {/* <Route path='/upload-design' element={<UploadInvitation />} /> */}
-            <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} />
+            {/* <Route path='/planning-tool' element={<PrivateRoute>< PlanningTool /></PrivateRoute>} /> */}
+            <Route path='/planning-tool' element={< PlanningTool />} />
+
             <Route path='/planning-birthday' element={<PlanningBirthDay />} />
             <Route path='/planning-mehndi' element={<PlanningMehndi />} />
             <Route path='/planning-party' element={<PlanningParty />} />
             <Route path='/planning-other' element={<PlanningRoomDecor />} />
-            <Route path='/sweets-info' element={<SweetsInfo />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path="/invitation-detail" element={<Invitationhome />} />
+            <Route path='/sweets-info/:_id/:url' element={<SweetsInfo />} />
+            <Route path='/dry_fruit_list' element={<Dry_fruit />} />
+            <Route path='/dry-fruit_info/:_id' element={<DryFruitInfo />} />
+            {/* <Route path='/sweets-info/' element={<SweetsInfo />} /> */}
 
-            <Route path='/invitation-GuestList' element={<PrivateRoute><GuestList /></PrivateRoute>} />
+            <Route path='/signup' element={<SignUp />} />
+            {/* <Route path="/invitation-detail" element={<Invitationhome />} /> */}
+            <Route path="/invitation-detail/:_id/:url" element={<Invitationhome />} />
+
+
+            <Route path='/invitation-GuestList/:total' element={<PrivateRoute><GuestList /></PrivateRoute>} />
             <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
             <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
             <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
@@ -101,6 +113,9 @@ function App() {
 
             {/* payment history */}
             <Route path='/payment-history' element={<PrivateRoute><PaymentHistory /></PrivateRoute>} />
+            <Route path='/view-history/:_id' element={<PrivateRoute><ViewHistory /></PrivateRoute>} />
+            <Route path='/view-sweet-history/:_id' element={<PrivateRoute><ViewSweetHistory /></PrivateRoute>} />
+
 
           </Routes>
         </div>

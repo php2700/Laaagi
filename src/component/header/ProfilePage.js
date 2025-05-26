@@ -3,33 +3,53 @@ import './ProfilePage.css';
 import laaagiLogo from '../../assets/logo.png';
 import { AuthContext } from '../context';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
-import defaultProfile from "../../assets/login/default-profile.png"
+import {  useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 
 
 export const ProfilePage = () => {
-    const context = useContext(AuthContext);
-
-    const content = useLocation();
     const navigate = useNavigate();
-
-    const userData = context?.storeUserData;
-    const setUserData = context?.setStoreUserData;
-
-    const [name, setName] = useState(userData?.name)
-    const [email, setEmail] = useState(userData?.email)
-    const [mobile, setMobile] = useState(userData?.mobile)
-    const [address, setAddress] = useState(userData?.address)
-    const [profile, setProfile] = useState()
-    const [profilePreview, setProfilePreview] = useState(userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData?.profile}` : laaagiLogo);
-    const token = context?.token;
+    const context = useContext(AuthContext);
     const setDefaultProfile = context?.setDefaultProfile;
-    const userId = localStorage.getItem("_id")
+    const setUserData = context?.setStoreUserData;
+    const logout = context?.logout;
+    const [name, setName] = useState()
+    const [email, setEmail] = useState()
+    const [mobile, setMobile] = useState()
+    const [address, setAddress] = useState()
+    const [profile, setProfile] = useState()
+    const [profilePreview, setProfilePreview] = useState();
+
+
+    const userId = localStorage.getItem("_id");
+    const token = context?.token || localStorage.getItem('token')
+
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            setName(res?.data?.userData?.name)
+            setEmail(res?.data?.userData?.email)
+            setMobile(res?.data?.userData?.mobile)
+            setAddress(res?.data?.userData?.address)
+            setProfilePreview(res?.data?.userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${res?.data?.userData?.profile}` : laaagiLogo)
+        }).catch((error) => {
+             if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
+            console.log(error);
+        })
+
+    }, [userId, token])
+
+
+
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append("_id", userId);
         formData.append("name", name);

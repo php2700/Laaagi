@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './GuestList.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { Payment } from '../payment';
@@ -8,17 +8,15 @@ import { toast } from 'react-toastify';
 
 
 export const GuestList = () => {
-
+  let { total } = useParams();
   const context = useContext(AuthContext);
   const logout = context?.logout;
-  const userData = context?.storeUserData;
-  const total = useLocation();
-  const navigate = useNavigate();
-  const totalAmountPerBox = context?.totalAmountInv;
-  // const totalAmountPerBox = total?.state.amount;
-  const content = useContext(AuthContext)
-  const userId = localStorage.getItem('_id');
-  const token = content?.token;
+  const paymentHistory = context?.paymentHistory;
+  // const userData = context?.storeUserData;
+  const id = localStorage.getItem('_id');
+  const totalAmountPerBox = total;
+  const [userId, setUserId] = useState(id);
+  const token = context?.token || localStorage.getItem("token")
   const [guestList, setGuestList] = useState([]);
   const [checkedItems, setCheckedItems] = useState([])
   const [boxes, setBoxes] = useState([])
@@ -30,9 +28,7 @@ export const GuestList = () => {
   const [searchText, setSearchText] = useState();
   const [openRazorpay, setOpenRazorPay] = useState(false)
   const [guest, setGuest] = useState([])
-  const [isPaymentHistory, setIsPaymentHistory] = useState(false)
-  const [error, setError] = useState()
-
+  const [userData, setUserData] = useState({})
 
   const getGuestList = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
@@ -51,11 +47,30 @@ export const GuestList = () => {
       }
       console.log(error)
     })
-  }
+  };
+
+  const getUserData = async () => {
+    await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }).then((res) => {
+      setUserData(res?.data?.userData)
+    }).catch((error) => {
+      if (error?.response?.data?.Message === 'jwt expired') {
+        logout()
+      }
+      console.log(error)
+    })
+  };
 
   useEffect(() => {
     getGuestList()
-  }, [searchText])
+  }, [searchText, userId])
+
+  useEffect(() => {
+    getUserData()
+  }, [userId])
 
   const countFun = () => {
     const countBox = checkedItems?.reduce((ele1, ele2) => ele1 + Number(ele2?.quantity), 0);
@@ -85,6 +100,8 @@ export const GuestList = () => {
         idx: item.idx,
         guestId: existing?.guestId || '',
         quantity,
+        name: existing?.name || '',
+        address: existing?.address || '',
       };
     });
 
@@ -102,15 +119,18 @@ export const GuestList = () => {
       setCheckedItems([...checkedItems, { idx: index, quantity: checkedData[0]?.quantity || 1 }])
     }
 
-
-
     const isGuestExist = guest?.some((item) => item.idx === index);
     if (isGuestExist) {
       setGuest(guest.filter((item) => item.idx !== index));
     } else {
       const checkedBox = boxes.find((ele) => ele.idx === index);
       const quantity = checkedBox?.quantity || 1;
-      setGuest([...guest, { idx: index, guestId: guestData._id, quantity }]);
+      setGuest([...guest, {
+        idx: index, guestId: guestData._id,
+        name: guestData.name,
+        address: guestData.address,
+        quantity,
+      }]);
     }
 
   }
@@ -162,7 +182,8 @@ export const GuestList = () => {
               : ele
           );
         } else {
-          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId }];
+          console.log()
+          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId, name: userData?.name, address: userData?.address }];
         }
       });
     }
@@ -173,6 +194,12 @@ export const GuestList = () => {
   }
 
   const handlePayment = () => {
+    if (!paymentHistory?.length) {
+      toast.error("Your data have been lose please Select One more time  !", {
+        position: 'bottom-right'
+      })
+      return
+    }
     if (!guest?.length) {
       toast.error("Please Select User !", {
         position: 'bottom-right'
@@ -186,14 +213,8 @@ export const GuestList = () => {
     }, 50);
   }
 
-  const handleHistory = () => {
-    setIsPaymentHistory(true)
-  }
 
   return (
-
-
-
     <div className="guest-list-container">
       <div className="guest-list-header">
         <input
@@ -211,7 +232,7 @@ export const GuestList = () => {
             <tr>
               <th> <input type="checkbox" /></th>
               <th>'#'</th>
-              <th>NAME</th>
+              <th >NAME</th>
               <th>ADDRESS</th>
               <th>GUEST NUMBER</th>
               <th>CATEGORIES</th>

@@ -1,5 +1,5 @@
 import React, { use, useContext, useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { data, Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Invitationhome.css';
 import CustomizationModal from './CustomizationModal';
 import SuccessModal from './SuccessModal';
@@ -28,6 +28,8 @@ import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png"
 import { useDispatch, useSelector } from 'react-redux';
 import { chnageWeight } from '../redux/weightSlice';
+import backArrow from "../../assets/sweet/left_arrow.png"
+import axios from 'axios';
 
 
 const sectionBox4 = [
@@ -62,8 +64,8 @@ const boxType = [
   { id: 4, number: 4, boxName: 'Special box', boxImg: section4, boxDesc: 'Lorem Ipsum is simply' },
 ]
 
-export const Invitationhome = ({ viewInv = false }) => {
-
+export const Invitationhome = () => {
+  const { _id, url } = useParams()
   const navigate = useNavigate();
   const location = useLocation();
   const context = useContext(AuthContext);
@@ -72,13 +74,16 @@ export const Invitationhome = ({ viewInv = false }) => {
   const amounts = context?.amounts;
   const boxName = context?.boxName;
   const setBoxName = context?.setBoxName;
-  const invitation = context?.selectSweet;
+  // const invitation = context?.selectSweet;
   const setPaymentHistory = context?.setPaymentHistory;
   const paymentHistory = context?.paymentHistory;
-  const [isPaymentHistory, setIsPaymentHistory] = useState(viewInv)
 
-  const [price, serPrice] = useState(invitation?.price)
-  const [invitationId, setinvitationId] = useState(invitation?._id)
+  // const [price, serPrice] = useState(invitation?.price)
+  // const [invitationId, setinvitationId] = useState(invitation?._id)
+  const [price, serPrice] = useState()     //these lines used  for reload data
+  const [invitationId, setinvitationId] = useState()
+  const [invitation, setInvitation] = useState({})
+
   const getSweet = location?.state;
   const [selectedSweet, setSelectedSweet] = useState(getSweet)
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -86,13 +91,12 @@ export const Invitationhome = ({ viewInv = false }) => {
   const [id, setId] = useState(1)
   const [total, setTotal] = useState(0)
   const [error, setError] = useState([])
-  const [lastURL, setLastURL] = useState(sessionStorage.getItem('lastURL'));
-  const [currentUrl, setCurrentUrl] = useState(sessionStorage.getItem('currentURL'))
+  const [lastURL, setLastURL] = useState(localStorage.getItem('lastURL'));
+  const [currentUrl, setCurrentUrl] = useState(localStorage.getItem('currentURL'))
 
 
   const weight = useSelector((state) => state.weight?.value);
   const dispatch = useDispatch()
-
   const calculateTotalAmount = (price, weight) => {
     if (boxName == 'Normal Box') {
       return parseInt(price / 1000 * weight)
@@ -108,6 +112,19 @@ export const Invitationhome = ({ viewInv = false }) => {
   }
 
 
+  const getInvitationData = () => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${_id}`).then((res) => {
+      serPrice(res?.data?.invitation?.price)
+      setinvitationId(res?.data?.invitation?._id)
+      setInvitation(res?.data?.invitation)
+    }).catch((error) => {
+      console.log(error, "error")
+    })
+  }
+
+  useEffect(() => {
+    getInvitationData()
+  }, [_id])
 
   const validate = () => {
     const newError = []
@@ -204,11 +221,19 @@ export const Invitationhome = ({ viewInv = false }) => {
 
 
   const handleAmount = () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/signup')
+      return
+    }
     if (validate()) {
       return;
     }
     setTotalAmountInv(total + price)
-    navigate('/invitation-GuestList', { state: { amount: total + price } })
+    // navigate('/invitation-GuestList', { state: { amount: total + price } })
+    const sum = total + price;
+    navigate(`/invitation-GuestList/${sum}`)
+
   }
 
   useEffect(() => {
@@ -270,141 +295,165 @@ export const Invitationhome = ({ viewInv = false }) => {
     // setWeight(500)    ----->context   
     dispatch(chnageWeight(500))   // redux
     setBoxName('Normal Box');
-    const lastURL = sessionStorage.getItem('lastURL')
-    // navigate('/invitation')
-    navigate(`${lastURL}`);
+
+    if (url == 'home') {
+      navigate('/')
+    } else {
+      navigate("/invitation")
+    }
   }
 
   const handleHome = () => {
-    const lastUrl = sessionStorage.getItem('lastURL');
-    navigate(`${lastUrl}`)
+    navigate('/')
   }
+
   useEffect(() => {
-    console.log(lastURL, 'aaaaaaaaaaa')
+    console.log(lastURL, 'lasturl', currentUrl)
     if (currentUrl && currentUrl == '/payment-history') {
       console.log(boxName == 'Normal Box' ? 1 : boxName == '4 Section in box' ? 2 : boxName == '3 Section in box' ? 3 : 4, "222299")
       setId(boxName == 'Normal Box' ? 1 : boxName == '4 Section in box' ? 2 : boxName == '3 Section in box' ? 3 : 4)
     }
-    else if (lastURL && lastURL !== '/invitation-detail') {
+    else if (currentUrl && currentUrl !== '/sweets') {
       setBoxName('Normal Box');
       setAmounts([0, 0, 0, 0, 0]);
     }
   }, [lastURL]);
 
-  console.log(amounts, 'dddd')
   return (
     <div className="invitation-details-container">
-      {!isPaymentHistory ? <>
-        <div className='back-button' onClick={handleBack}>back</div>
-        <div className="invitation-detils-home-container">
-          <div className="invitation-detail-home" onClick={handleHome}>Home</div>
-          <div> &nbsp;> &nbsp;Detail</div>
-        </div>
 
-        <div className="top-section">
-          <div className="image-container">
-            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
-          </div>
-          <div className="invitation-description">
-            <h2>{invitation?.name} (Rs. {price}/-)</h2>
-            <p className="description-label">Description</p>
-            <p>{invitation?.description}</p>
-            <button className="customize-btn" onClick={handleOpenModal}>
-              Customize
-            </button>
-          </div>
-        </div>
-        <div className='select-size-header'>Select size of the box</div>
-        <div className='invitation-size-box'>
-          <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : ''} >
-            {weight != 750 && weight != 1000 && weight != 250 ?
-              <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <></>
-            }
-            <div className='invitation-size-list' onClick={() => handleWeight(500)}>
-              <div><img className='invittions-size-img' src={Rectangle} /></div>
-              <div>
-                <div className='invitation-len-h'>L:50cm</div>
-                <div className='invitation-len-h'>W:50cm</div>
-                <div className='invitation-box-we'>Weight:500gm</div>
-              </div>
-            </div>
-          </div>
-          <div className={weight == 750 ? 'right-icon-arrow' : ''} >
-            {weight == 750 &&
-              <div className='invitation-icon-shift'><img src={rightArrow} /></div>
-            }
+      <div className='back-button' onClick={handleBack}>   <img src={backArrow} />back</div>
+      <div className="invitation-detils-home-container">
+        <div className="invitation-detail-home" onClick={handleHome}>Home</div>
+        <div> &nbsp;> &nbsp;Detail</div>
+      </div>
 
-            <div className='invitation-size-list' onClick={() => handleWeight(750)}>
-              <div><img className='invitation-second-img' src={boxSize2} /></div>
-              <div>
-                <div className='invitation-len-h'>L:50cm</div>
-                <div className='invitation-len-h'>W:50cm</div>
-                <div className='invitation-box-we'>Weight:750gm</div>
-              </div>
-            </div>
-          </div>
-          <div className={weight == 1000 ? 'right-icon-arrow' : ''} >
-            {weight == 1000 &&
-              <div className='invitation-icon-shift' ><img src={rightArrow} /></div>
-            }
-            <div className='invitation-size-list' onClick={() => handleWeight(1000)}>
-              <div ><img className='invitation-third-img' src={boxSize3} /></div>
-              <div>
-                <div className='invitation-len-h'>L:50cm</div>
-                <div className='invitation-len-h'>W:50cm</div>
-                <div className='invitation-box-we'>Weight:1000gm</div>
-              </div>
-            </div>
-          </div>
-          <div className={weight == 250 ? 'right-icon-arrow' : ''} >
-            {weight == 250 &&
-              <div className='invitation-icon-shift'><img src={rightArrow} /></div>
-            }
-            <div className='invitation-size-list' onClick={() => handleWeight(250)}>
-              <div><img className='invittions-size-img' src={Rectangle} /></div>
-              <div>
-                <div className='invitation-len-h'>L:50cm</div>
-                <div className='invitation-len-h'>W:50cm</div>
-                <div className='invitation-box-we'>Weight:250gm</div>
-              </div>
+      <div className="top-section">
+        <div className="image-container">
+          <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
+        </div>
+        <div className="invitation-description">
+          <h2>{invitation?.name} (Rs. {price}/-)</h2>
+          <p className="description-label">Description</p>
+          <p>{invitation?.description}</p>
+          <button className="customize-btn" onClick={handleOpenModal}>
+            Customize
+          </button>
+        </div>
+      </div>
+      <div className='select-size-header'>Select size of the box</div>
+      <div className='invitation-size-box'>
+        <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : ''} >
+          {weight != 750 && weight != 1000 && weight != 250 ?
+            <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <></>
+          }
+          <div className='invitation-size-list' onClick={() => handleWeight(500)}>
+            <div><img className='invittions-size-img' src={Rectangle} /></div>
+            <div>
+              <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div>
+              <div className='invitation-box-we'>Weight:500gm</div>
             </div>
           </div>
         </div>
-        <div className='invitation-box-header'>
-          <div className='invitation-box-type-header'> select box type</div>
-          <div className='invitation-box-type' >
-            {boxType?.map((ele) => (
-              <div className={boxName == ele?.boxName && 'invittion-box-container'}  >
-                {
-                  boxName == ele?.boxName && <div className='invitation-icon-shift'><img src={rightArrow} /></div>}
-                <div className='invittion-box-detail' onClick={() => handleBoxType(ele)}>
-                  <div className='invitation-box-numbers'>{ele?.number}</div>
-                  <div className='invitation-box-name'> {ele.boxName}</div>
-                  <div className='invitation-box-type-img'><img src={ele?.boxImg} /></div>
-                  <div className='invitation-box-desc'>{ele?.boxDesc}</div>
+        <div className={weight == 750 ? 'right-icon-arrow' : ''} >
+          {weight == 750 &&
+            <div className='invitation-icon-shift'><img src={rightArrow} /></div>
+          }
+
+          <div className='invitation-size-list' onClick={() => handleWeight(750)}>
+            <div><img className='invitation-second-img' src={boxSize2} /></div>
+            <div>
+              <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div>
+              <div className='invitation-box-we'>Weight:750gm</div>
+            </div>
+          </div>
+        </div>
+        <div className={weight == 1000 ? 'right-icon-arrow' : ''} >
+          {weight == 1000 &&
+            <div className='invitation-icon-shift' ><img src={rightArrow} /></div>
+          }
+          <div className='invitation-size-list' onClick={() => handleWeight(1000)}>
+            <div ><img className='invitation-third-img' src={boxSize3} /></div>
+            <div>
+              <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div>
+              <div className='invitation-box-we'>Weight:1000gm</div>
+            </div>
+          </div>
+        </div>
+        <div className={weight == 250 ? 'right-icon-arrow' : ''} >
+          {weight == 250 &&
+            <div className='invitation-icon-shift'><img src={rightArrow} /></div>
+          }
+          <div className='invitation-size-list' onClick={() => handleWeight(250)}>
+            <div><img className='invittions-size-img' src={Rectangle} /></div>
+            <div>
+              <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div>
+              <div className='invitation-box-we'>Weight:250gm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='invitation-box-header'>
+        <div className='invitation-box-type-header'> select box type</div>
+        <div className='invitation-box-type' >
+          {boxType?.map((ele) => (
+            <div className={boxName == ele?.boxName && 'invittion-box-container'}  >
+              {
+                boxName == ele?.boxName && <div className='invitation-icon-shift'><img src={rightArrow} /></div>}
+              <div className='invittion-box-detail' onClick={() => handleBoxType(ele)}>
+                <div className='invitation-box-numbers'>{ele?.number}</div>
+                <div className='invitation-box-name'> {ele.boxName}</div>
+                <div className='invitation-box-type-img'><img src={ele?.boxImg} /></div>
+                <div className='invitation-box-desc'>{ele?.boxDesc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='invitation-select-sweet-box-list'>
+        <div className='invitation-box-select-header'>
+          <div >sections</div>
+          <div>sweets</div>
+          <div>Price</div>
+        </div>
+        {id == 1 ?
+          normalBox?.map((ele, index) => (
+            <div className='invitation-select-arrow'>
+              <div className='invitation-section-align'>
+                <div><img src={ele?.sectionImg} /></div>
+                <div><img src={ele?.arrow} /></div>
+                <div>
+                  <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
+                    <img className='select-sweet-img' src={ele?.sweetImg} />
+                  </Link>
+                  {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div className='invitation-select-sweet-box-list'>
-          <div className='invitation-box-select-header'>
-            <div >sections</div>
-            <div>sweets</div>
-            <div>Price</div>
-          </div>
-          {id == 1 ?
-            normalBox?.map((ele, index) => (
+
+              <div className='invitation-select-box-sweet-price'>  {
+                (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
+                  ? (amounts[index] ?? 0)
+                  : '₹0'
+              }</div>
+
+            </div>
+          )) : (id == 2) ?
+            sectionBox4?.map((ele, index) => (
               <div className='invitation-select-arrow'>
                 <div className='invitation-section-align'>
                   <div><img src={ele?.sectionImg} /></div>
                   <div><img src={ele?.arrow} /></div>
                   <div>
-                    <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
+                    <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                       <img className='select-sweet-img' src={ele?.sweetImg} />
                     </Link>
-                    {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
+                    {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
                   </div>
                 </div>
 
@@ -416,8 +465,8 @@ export const Invitationhome = ({ viewInv = false }) => {
                 }</div>
 
               </div>
-            )) : (id == 2) ?
-              sectionBox4?.map((ele, index) => (
+            )) : (id == 3) ?
+              sectionBox3?.map((ele, index) => (
                 <div className='invitation-select-arrow'>
                   <div className='invitation-section-align'>
                     <div><img src={ele?.sectionImg} /></div>
@@ -426,7 +475,7 @@ export const Invitationhome = ({ viewInv = false }) => {
                       <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                         <img className='select-sweet-img' src={ele?.sweetImg} />
                       </Link>
-                      {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
+                      {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
                     </div>
                   </div>
 
@@ -438,240 +487,41 @@ export const Invitationhome = ({ viewInv = false }) => {
                   }</div>
 
                 </div>
-              )) : (id == 3) ?
-                sectionBox3?.map((ele, index) => (
-                  <div className='invitation-select-arrow'>
-                    <div className='invitation-section-align'>
-                      <div><img src={ele?.sectionImg} /></div>
-                      <div><img src={ele?.arrow} /></div>
-                      <div>
-                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
-                          <img className='select-sweet-img' src={ele?.sweetImg} />
-                        </Link>
-                        {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
-                      </div>
-                    </div>
-
-
-                    <div className='invitation-select-box-sweet-price'>  {
-                      (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
-                        ? (amounts[index] ?? 0)
-                        : '₹0'
-                    }</div>
-
-                  </div>
-                )) :
-                specialBox?.map((ele, index) => (
-                  <div className='invitation-select-arrow'>
-                    <div className='invitation-section-align'>
-                      <div><img src={ele?.sectionImg} /></div>
-                      <div><img src={ele?.arrow} /></div>
-                      <div>
-                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
-                          <img className='select-sweet-img' src={ele?.sweetImg} />
-                        </Link>
-                        {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
-                      </div>
-                    </div>
-
-
-                    <div className='invitation-select-box-sweet-price'>  {
-                      (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
-                        ? (amounts[index] ?? 0)
-                        : '₹0'
-                    }</div>
-
-                  </div>
-                ))
-          }
-        </div>
-
-        <div className='invitation-total'>
-          <div>Total</div>
-          <div>{total + price}</div>
-        </div>
-        <div className='invitation-next' >
-          <div onClick={() => handleAmount()}>
-            Next
-          </div>
-        </div>
-      </> :
-        <>
-
-          <div className="top-section">
-            <div className="image-container">
-              <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
-            </div>
-            <div className="invitation-description">
-              <h2>{invitation?.name} (Rs. {price}/-)</h2>
-              <p className="description-label">Description</p>
-              <p>{invitation?.description}</p>
-            </div>
-          </div>
-          <div className='select-size-header'>Select size of the box</div>
-          <div className='invitation-size-box'>
-            <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : ''} >
-              {weight != 750 && weight != 1000 && weight != 250 ?
-                <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <></>
-              }
-              <div className='invitation-size-list'>
-                <div><img className='invittions-size-img' src={Rectangle} /></div>
-                <div>
-                  <div className='invitation-len-h'>L:50cm</div>
-                  <div className='invitation-len-h'>W:50cm</div>
-                  <div className='invitation-box-we'>Weight:500gm</div>
-                </div>
-              </div>
-            </div>
-            <div className={weight == 750 ? 'right-icon-arrow' : ''} >
-              {weight == 750 &&
-                <div className='invitation-icon-shift'><img src={rightArrow} /></div>
-              }
-
-              <div className='invitation-size-list' >
-                <div><img className='invitation-second-img' src={boxSize2} /></div>
-                <div>
-                  <div className='invitation-len-h'>L:50cm</div>
-                  <div className='invitation-len-h'>W:50cm</div>
-                  <div className='invitation-box-we'>Weight:750gm</div>
-                </div>
-              </div>
-            </div>
-            <div className={weight == 1000 ? 'right-icon-arrow' : ''} >
-              {weight == 1000 &&
-                <div className='invitation-icon-shift' ><img src={rightArrow} /></div>
-              }
-              <div className='invitation-size-list' >
-                <div ><img className='invitation-third-img' src={boxSize3} /></div>
-                <div>
-                  <div className='invitation-len-h'>L:50cm</div>
-                  <div className='invitation-len-h'>W:50cm</div>
-                  <div className='invitation-box-we'>Weight:1000gm</div>
-                </div>
-              </div>
-            </div>
-            <div className={weight == 250 ? 'right-icon-arrow' : ''} >
-              {weight == 250 &&
-                <div className='invitation-icon-shift'><img src={rightArrow} /></div>
-              }
-              <div className='invitation-size-list' >
-                <div><img className='invittions-size-img' src={Rectangle} /></div>
-                <div>
-                  <div className='invitation-len-h'>L:50cm</div>
-                  <div className='invitation-len-h'>W:50cm</div>
-                  <div className='invitation-box-we'>Weight:250gm</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='invitation-box-header'>
-            <div className='invitation-box-type-header'> select box type</div>
-            <div className='invitation-box-type' >
-              {boxType?.map((ele) => (
-                <div className={boxName == ele?.boxName && 'invittion-box-container'}  >
-                  {
-                    boxName == ele?.boxName && <div className='invitation-icon-shift'><img src={rightArrow} /></div>}
-                  <div className='invittion-box-detail' >
-                    <div className='invitation-box-numbers'>{ele?.number}</div>
-                    <div className='invitation-box-name'> {ele.boxName}</div>
-                    <div className='invitation-box-type-img'><img src={ele?.boxImg} /></div>
-                    <div className='invitation-box-desc'>{ele?.boxDesc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className='invitation-select-sweet-box-list'>
-            <div className='invitation-box-select-header'>
-              <div >sections</div>
-              <div>sweets</div>
-              <div>Price</div>
-            </div>
-            {id == 1 ?
-              normalBox?.map((ele, index) => (
+              )) :
+              specialBox?.map((ele, index) => (
                 <div className='invitation-select-arrow'>
                   <div className='invitation-section-align'>
                     <div><img src={ele?.sectionImg} /></div>
                     <div><img src={ele?.arrow} /></div>
                     <div>
-                      {invitation?.sweetName?.map((ele) => {
-                        if (ele.index == index) return <div>{ele?.name}</div>
-                      })}
+                      <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                        <img className='select-sweet-img' src={ele?.sweetImg} />
+                      </Link>
+                      {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
                     </div>
                   </div>
 
 
                   <div className='invitation-select-box-sweet-price'>  {
-                    (amounts[index] ?? 0)
-                  }
-                  </div>
+                    (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
+                      ? (amounts[index] ?? 0)
+                      : '₹0'
+                  }</div>
 
                 </div>
-              )) : (id == 2) ?
-                sectionBox4?.map((ele, index) => (
-                  <div className='invitation-select-arrow'>
-                    <div className='invitation-section-align'>
-                      <div><img src={ele?.sectionImg} /></div>
-                      <div><img src={ele?.arrow} /></div>
-                      <div>
-                        {invitation?.sweetName?.map((ele) => {
-                          if (ele.index == index) return <div>{ele?.name}</div>
-                        })}
-                      </div>
-                    </div>
-                    <div className='invitation-select-box-sweet-price'>
-                      {amounts[index] ?? 0}
-                    </div>
-                  </div>
-                )) : (id == 3) ?
-                  sectionBox3?.map((ele, index) => (
-                    <div className='invitation-select-arrow'>
-                      <div className='invitation-section-align'>
-                        <div><img src={ele?.sectionImg} /></div>
-                        <div><img src={ele?.arrow} /></div>
-                        <div>
-                          {invitation?.sweetName?.map((ele) => {
-                            if (ele.index == index) return <div>{ele?.name}</div>
-                          })}
-                        </div>
-                      </div>
+              ))
+        }
+      </div>
 
-
-                      <div className='invitation-select-box-sweet-price'>  {
-                        (amounts[index] ?? 0)
-
-                      }</div>
-
-                    </div>
-                  )) :
-                  specialBox?.map((ele, index) => (
-                    <div className='invitation-select-arrow'>
-                      <div className='invitation-section-align'>
-                        <div><img src={ele?.sectionImg} /></div>
-                        <div><img src={ele?.arrow} /></div>
-                        <div>
-                          {invitation?.sweetName?.map((ele) => {
-                            if (ele.index == index) return <div>{ele?.name}</div>
-                          })}
-                        </div>
-                      </div>
-
-
-                      <div className='invitation-select-box-sweet-price'>  {
-                        (amounts[index] ?? 0)
-
-                      }</div>
-
-                    </div>
-                  ))
-            }
-          </div>
-
-
-        </>
-      }
-
+      <div className='invitation-total'>
+        <div>Total</div>
+        <div>{total + price}</div>
+      </div>
+      <div className='invitation-next' >
+        <div onClick={() => handleAmount()}>
+          Next
+        </div>
+      </div>
       <CustomizationModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

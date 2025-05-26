@@ -99,6 +99,13 @@
   border: 1px solid #777;
 }
 
+.sweets-info-select {
+  cursor: pointer;
+}
+
+.sweets-info-button button {
+  cursor: pointer;
+}
 @media (max-width: 1100px) {
   .sweets-info {
     padding: 12px 60px;
