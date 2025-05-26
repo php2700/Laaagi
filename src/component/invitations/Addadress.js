@@ -1,45 +1,87 @@
 import './AddAddressModal.css';
 import logoImage from '../../assets/logo.png';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context';
 
-export const Addadress = ({ open, onClose, loginUserDarta }) => {
+export const Addadress = ({ open, onClose, userData }) => {
   const context = useContext(AuthContext);
   const logout = context?.logout;
-  const token = context?.token;
+  const token = context?.token || localStorage.getItem('token');
   const id = localStorage.getItem("_id");
-  const [_id, setId] = useState(id);
-  const [address, setAddress] = useState(loginUserDarta?.address);
+  const [_id] = useState(id);
+  const [address, setAddress] = useState('');
+  const [googleAddress, setGoogleAddress] = useState('');
+  const [error, setError] = useState('');
+  const [addressError, setAddressError] = useState('');
+
+  const handleClose = () => {
+    setError('');
+    setAddressError('');
+    setAddress('');
+    setGoogleAddress('');
+    onClose();
+  };
+
+  useEffect(() => {
+    if (open) {
+      if (userData?.addressBy === 'custom') {
+        setAddress(userData?.address || '');
+        setGoogleAddress('');
+      } else if (userData?.addressBy === 'google') {
+        setGoogleAddress(userData?.address || '');
+        setAddress('');
+      } else {
+        setAddress('');
+        setGoogleAddress('');
+      }
+      setError('');
+      setAddressError('');
+    }
+  }, [open, userData]);
 
   if (!open) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = {
-      _id: _id,
-      address: address,
-      name: loginUserDarta?.name
+
+    if (address && googleAddress) {
+      setError('Only one address field can be filled.');
+      return;
+    } else if (!address?.trim() && !googleAddress?.trim()) {
+      setError('Both address fields cannot be empty.');
+      return;
+    } else if (address && address.trim().length < 3) {
+      setAddressError('Address must be at least 3 characters long.');
+      return;
     }
 
-    axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, userData, {
+    const addressBy = address ? 'custom' : 'google';
+
+    const payload = {
+      _id: _id,
+      address: address || googleAddress,
+      addressBy: addressBy
+    };
+
+    axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, payload, {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }).then((res) => {
-      onClose();
+    }).then(() => {
+      handleClose();
     }).catch((error) => {
       if (error?.response?.data?.Message === 'jwt expired') {
-        logout()
+        logout();
       }
-      console.log("error", error)
-    })
-  }
+      console.error("Update address error:", error);
+    });
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-button" onClick={onClose} aria-label="Close modal">
+        <button className="modal-close-button" onClick={handleClose} aria-label="Close modal">
           ×
         </button>
         <div className="modal-header">
@@ -53,14 +95,27 @@ export const Addadress = ({ open, onClose, loginUserDarta }) => {
             className="modal-input"
             placeholder="Enter Full Address"
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={(e) => {
+              setAddress(e.target.value);
+              setGoogleAddress('');
+              setError('');
+              setAddressError('');
+            }}
           />
+          {addressError && <div style={{ color: 'red' }}>{addressError}</div>}
           <input
             type="text"
             className="modal-input"
             placeholder="Google Address"
-            onChange={(e) => setAddress(e.target.value)}
+            value={googleAddress}
+            onChange={(e) => {
+              setGoogleAddress(e.target.value);
+              setAddress('');
+              setError('');
+              setAddressError('');
+            }}
           />
+          {error && <div style={{ color: 'red' }}>{error}</div>}
           <button type="submit" className="modal-submit-button">
             Submit
           </button>

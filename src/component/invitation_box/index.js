@@ -37,7 +37,9 @@ export const InvitationBox = () => {
         setRecentView(data)
 
         setInvitationsweet(data)
-        navigate('/invitation-detail')
+        // navigate('/invitation-detail')
+        const url='home'
+        navigate(`/invitation-detail/${data?._id}/${url}`)
     }
 
     return (

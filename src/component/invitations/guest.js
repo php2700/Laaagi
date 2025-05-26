@@ -51,8 +51,11 @@ export const Guest = () => {
             setUserData(res?.data?.userData)
         }).catch((error) => {
             console.log(error)
+            if (error?.response?.data?.Message === 'jwt expired') {
+                logout()
+            }
         })
-    }, [openAddress, token])
+    }, [openAddress, token, userId])
 
     const handleModel = () => {
         setOpenAddress(true)
@@ -61,16 +64,11 @@ export const Guest = () => {
     const handleCloseAddress = () => {
         setOpenAddress(false)
     }
-    const handleBack = () => {
-        navigate("/invitation-GuestList")
-    }
-
 
     return (
         <>
 
             <AddGuestHeader />
-            <div onClick={handleBack} className='guest-handle-bck-btn' >Back</div>
             <div className="guest-list-container">
                 <div className="guest-list-header">
                     <input
@@ -87,7 +85,7 @@ export const Guest = () => {
                         <thead>
                             <tr>
                                 <th>'#'</th>
-                                <th>NAME</th>
+                                <th >NAME</th>
                                 <th>ADDRESS</th>
                                 <th>GUEST NUMBER</th>
                                 <th>CATEGORIES</th>

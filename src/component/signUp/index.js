@@ -162,15 +162,15 @@ export const SignUp = () => {
 
     const onClose = () => {
         setShowSignUp(false)
-        const lastURL = sessionStorage.getItem('lastURL');
-        const secondLastURL = sessionStorage.getItem('secondLastUrl');
+        const lastURL = localStorage.getItem('lastURL');
+        const secondLastURL = localStorage.getItem('secondLastUrl');
         console.log(lastURL, "lastURL", secondLastURL, "secondLastURL")
 
-        if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
-            navigate(`${secondLastURL}`)
-        } else {
+        // if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
+        //     navigate(`${secondLastURL}`)
+        // } else {
             navigate(`${lastURL}`)
-        }
+        // }
 
     }
 
@@ -233,17 +233,17 @@ export const SignUp = () => {
                                 <div className="sign-up-form-main" >
                                     <form className="sign-up-form" onSubmit={handleName}>
                                         <div className="sign-up-input">
-                                        <input
-                                          type="text"
-                                          placeholder="Enter Name"
-                                          value={name}
-                                          onChange={(e) => {
-                                           const value = e.target.value;
-                                            if (/^[a-zA-Z\s]*$/.test(value)) {
-                                              setName(value);
-                                                  }
-                                             }}
-/>
+                                            <input
+                                                type="text"
+                                                placeholder="Enter Name"
+                                                value={name}
+                                                onChange={(e) => {
+                                                    const value = e.target.value;
+                                                    if (/^[a-zA-Z\s]*$/.test(value)) {
+                                                        setName(value);
+                                                    }
+                                                }}
+                                            />
 
                                         </div>
                                         {error.name && (<div className="error-msg">{error?.name}</div>)}

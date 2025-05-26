@@ -16,14 +16,6 @@ export const WeddingSpecial = () => {
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
-    // const weddingSpecialList = () => {
-    //     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/wedding_list`).then((res) => {
-    //         setData(res?.data?.weddingData)
-    //     }).catch((error) => {
-    //         console.log(error)
-    //     })
-    // }
-
 
     const weddingSpecialList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
@@ -45,9 +37,10 @@ export const WeddingSpecial = () => {
     }, [])
 
     const handleForwardIcon = () => {
-        const totalItems = data?.length || 0;
+        let totalItems = data?.length || 0;
         const nextStart = lastIndex + 1;
         const nextLast = lastIndex + 3;
+        console.log(nextStart, "nextStart", nextLast, "nextLast")
         if (nextStart < totalItems) {
             setStartIndex(nextStart);
             setLastIndex(Math.min(nextLast, totalItems - 1));
@@ -56,7 +49,8 @@ export const WeddingSpecial = () => {
 
     const handlePrev = () => {
         const prevStart = Math.max(0, startIndex - 3);
-        const prevLast = Math.max(2, lastIndex - 3);
+        const prevLast = Math.max(2, startIndex - 1);
+
         setStartIndex(prevStart);
         setLastIndex(prevLast);
     };
@@ -64,7 +58,9 @@ export const WeddingSpecial = () => {
     const handleWeddingInfo = (data) => {
         setRecentView(data)
         sweetsInfo(data)
-        navigate('/sweets-info')
+        // navigate('/sweets-info')
+        const url = 'home';
+        navigate(`/sweets-info/${data?._id}/${url}`);
     }
 
 
@@ -72,11 +68,7 @@ export const WeddingSpecial = () => {
         <div className="wedding" >
             <div className='wedding-top' >
                 <div className='wedding-left-text'>Wedding special</div>
-                {/* <div className='wedding-right-text'>See More</div> */}
-                
-               <Link to="/sweets" state={{ filter: 'wedding' }} className="wedding-right-text">See More</Link>
-
-                {/* <div className='wedding-right-text'>See More</div> */}
+                <Link to="/sweets" state={{ filter: 'wedding' }} className="wedding-right-text">See More</Link>
             </div>
             <div className='wedding-img-list' >
                 {startIndex > 0 && (

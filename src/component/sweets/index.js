@@ -1,5 +1,4 @@
 
-// new
 import { useContext, useEffect, useState } from 'react';
 import './index.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -10,41 +9,20 @@ import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png";
 import { toast } from 'react-toastify';
 
-// const sweetsHeader = [
-//     { id: 'sh1', name: 'Sugar Free', category: 'Sugar Free' },
-//     { id: 'sh2', name: 'Bengali Sweets', category: 'Bengali Sweets' },
-//     { id: 'sh3', name: 'Sweets', category: 'Sweets' },
-//     { id: 'sh4', name: 'Dry Fruit Sweets', category: 'Dry Fruit Sweets' },
-//     { id: 'sh5', name: 'Milk Sweets', category: 'Milk Sweets' }
-// ]
-
-
 const sweetsHeader = [
-   { id: 'sh1', name: 'Indian Sweets', category: 'Indian Sweets' },
+    { id: 'sh1', name: 'Indian Sweets', category: 'Indian Sweets' },
     { id: 'sh2', name: 'Innovative Fusions', category: 'Innovative Fusions' },
     { id: 'sh3', name: 'Savouries', category: 'Savouries' },
     { id: 'sh4', name: 'Dry Fruits', category: 'Dry Fruits' },
-] 
-
+]
 
 const INITIAL_CATEGORY = sweetsHeader[0]?.category || 'Indian Sweets';
-
 export const Sweets = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const context = useContext(AuthContext);
     const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo
-    // const isInvitationSweets = content?.state?.data;
-    // const invitationId = content?.state?.invitationId;
-    // const name = content?.state?.name
-    // const index = content?.state?.idx;
-    // const id = content?.state?.id;
-    // const [data, setData] = useState([])
-    // const [invitationselectSweet, setInvitationSelectSweet] = useState();
-    // const [orderId, setOrderId] = useState();
-    // const [category, setCategory] = useState('SugarFree')
-
     const isInvitationSweets = location.state?.data;
     const invitationId = location.state?.invitationId;
     const name = location.state?.name;
@@ -52,13 +30,10 @@ export const Sweets = () => {
     const id = location.state?.id;
     const [invitationselectSweet, setInvitationSelectSweet] = useState(null);
     const [orderId, setOrderId] = useState(null);
-
-
     const [data, setData] = useState([]);
     const [category, setCategory] = useState(INITIAL_CATEGORY);
     const [isSpecialView, setIsSpecialView] = useState(false);
     const [pageHeading, setPageHeading] = useState("Sweets");
-
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(2);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
@@ -112,18 +87,7 @@ export const Sweets = () => {
     useEffect(() => {
         const filterFromState = location.state?.filter;
 
-        if (filterFromState === 'dry-fruit-treat') {
-            setIsSpecialView(true);
-            setPageHeading("Dry Fruit Treats");
-            axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`)
-                .then((res) => {
-                    setData(res?.data?.dryFruitData || []);
-                    // console.log("Fetched Dry Fruits:", res?.data?.dryFruitData);
-                }).catch((error) => {
-                    console.error("Error fetching dry fruits:", error);
-                    setData([]);
-                });
-        } else if (filterFromState === 'wedding') {
+        if (filterFromState === 'wedding') {
             setIsSpecialView(true);
             setPageHeading("Wedding Special Sweets");
             fetchSweetsData(true);
@@ -146,8 +110,9 @@ export const Sweets = () => {
     };
 
     const handleInvitationSweetDone = () => {
+        const url = 'invitation'
         if (invitationselectSweet) {
-            navigate("/invitation-detail", {
+            navigate(`/invitation-detail/${invitationId}/${url}`, {
                 state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id }
             });
         } else {
@@ -158,18 +123,19 @@ export const Sweets = () => {
     };
 
     const handleItemDetailNavigation = (item) => {
-
         if (sweetsInfo) {
             sweetsInfo(item);
         }
         setRecentView(item)
-        navigate('/sweets-info');
+        const url = 'sweets';
+        navigate(`/sweets-info/${item?._id}/${url}`);
+
     };
 
 
     return (
         <div className='sweets' >
-            {!isSpecialView && ( // Only show header if not in a special view (wedding/dry fruits from filter)
+            {!isSpecialView && (
                 <div className='sweets-header'>
                     {isMobile ? (
                         <>
@@ -235,7 +201,6 @@ export const Sweets = () => {
                             data?.map((ele) => (
 
                                 <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
-                                    {console.log(ele, "sss")}
 
                                     {orderId === ele?.orderId && (
                                         <div className='show-arrow-right'>
@@ -260,7 +225,6 @@ export const Sweets = () => {
                             <>
                                 {data?.map((ele) => (
                                     <div key={ele.id || ele.name} className='sweets-main-container'>
-                                        {console.log(ele, '4444')}
                                         <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
                                             <div className='sweets-img-div'>
                                                 <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
@@ -278,7 +242,6 @@ export const Sweets = () => {
                     )}
                 </div>
             )}
-
             {isInvitationSweets && (
                 <div className='sweet-select'>
                     <div className='btn-done' onClick={handleInvitationSweetDone} >Done</div>

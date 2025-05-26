@@ -36,8 +36,11 @@ export const DiscoverCategory = () => {
     const handleSweetInfo = (data) => {
         setRecentView(data)
 
-        sweetsInfo(data)
-        navigate('/sweets-info')
+        sweetsInfo(data)    
+        // navigate('/sweets-info')
+        const url = 'home';
+        navigate(`/sweets-info/${data?._id}/${url}`);
+
     }
 
     return (
