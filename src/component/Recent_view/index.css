@@ -42,6 +42,10 @@
   color: #5d4037;
 }
 
+.recent-view-img {
+  cursor: pointer;
+}
+
 @media (max-width: 500px) {
   .recent-view-top {
     text-align: center;

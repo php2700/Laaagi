@@ -26,7 +26,7 @@ export const ViewSweetHistory = () => {
         })
     }
 
-    
+
 
     useEffect(() => {
         getSweetData()
@@ -68,6 +68,7 @@ export const ViewSweetHistory = () => {
                             <th style={{ width: '20%' }}>Name </th>
                             <th >Address </th>
                             <th>WEIHGT</th>
+                            <th>pincode</th>
                             <th>PAYMENT_DATE</th>
                         </tr>
                     </thead>
@@ -80,6 +81,7 @@ export const ViewSweetHistory = () => {
                                 {sweetsInfo.address}
                             </td>
                             <td>{sweetsInfo.quantity}kg</td>
+                            <td>{sweetsInfo?.pincode}</td>
                             <td>{sweetsInfo?.createdAt}</td>
                         </tr>
                     </tbody>

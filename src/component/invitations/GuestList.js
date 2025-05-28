@@ -40,7 +40,7 @@ export const GuestList = () => {
       }
     }).then((res) => {
       setGuestList(res?.data?.guestList)
-      console.log(res?.data?.guestList)
+      console.log(res?.data?.guestList, '555888877777')
     }).catch((error) => {
       if (error?.response?.data?.Message === 'jwt expired') {
         logout()
@@ -48,6 +48,8 @@ export const GuestList = () => {
       console.log(error)
     })
   };
+
+  console.log(guest, 'ss9999900000000000000')
 
   const getUserData = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
@@ -64,13 +66,14 @@ export const GuestList = () => {
     })
   };
 
+
   useEffect(() => {
     getGuestList()
   }, [searchText, userId])
 
   useEffect(() => {
     getUserData()
-  }, [userId])
+  }, [userId, searchText])
 
   const countFun = () => {
     const countBox = checkedItems?.reduce((ele1, ele2) => ele1 + Number(ele2?.quantity), 0);
@@ -86,31 +89,41 @@ export const GuestList = () => {
     setTotalPrice(price)
   };
 
+
   useEffect(() => {
+    console.log("2222222222222")
     countFun();
   }, [checkedItems, boxes, isUserAddressChecked, userBox]);
 
   useEffect(() => {
+
     const updatedGuest = checkedItems.map((item) => {
       const box = boxes.find((b) => b.idx === item.idx);
       const quantity = box?.quantity || 1;
 
-      const existing = guest.find((g) => g.idx === item.idx);
+      const existing = guest.find((g) => g.idx == item.idx );
+console.log(existing,"ddddddd")
       return {
         idx: item.idx,
         guestId: existing?.guestId || '',
         quantity,
         name: existing?.name || '',
         address: existing?.address || '',
+        pincode: existing?.pincode || ''
       };
     });
-
+     const userGuest = guest.find((g) => g.guestId === userId);
+  if (userGuest) {
+    setGuest([...updatedGuest, userGuest]);
+  } else {
     setGuest(updatedGuest);
+  }
+    // setGuest(updatedGuest);
   }, [boxes, checkedItems]);
 
 
-
   const handleChecked = (index, guestData) => {
+
     const isExist = checkedItems?.some((ele) => (ele?.idx == index))
     if (isExist) {
       setCheckedItems(checkedItems.filter((ele) => (ele?.idx) != index))
@@ -118,7 +131,6 @@ export const GuestList = () => {
       const checkedData = (boxes.filter((ele) => ele.idx == index))
       setCheckedItems([...checkedItems, { idx: index, quantity: checkedData[0]?.quantity || 1 }])
     }
-
     const isGuestExist = guest?.some((item) => item.idx === index);
     if (isGuestExist) {
       setGuest(guest.filter((item) => item.idx !== index));
@@ -130,10 +142,11 @@ export const GuestList = () => {
         name: guestData.name,
         address: guestData.address,
         quantity,
+        pincode: guestData?.pincode || ''
       }]);
     }
-
   }
+
 
   const handleBox = (value, index) => {
     const isExist = boxes.some((ele) => ele.idx == index)
@@ -157,7 +170,6 @@ export const GuestList = () => {
     }
   }
 
-
   const handleUser = (boxes) => {
     setUserBox(boxes);
   }
@@ -167,14 +179,11 @@ export const GuestList = () => {
   }, [userBox])
 
   const handleCheckUser = (isChecked) => {
-
-
     if (isChecked) {
       setIsUserAddressChecked(true);
 
       setGuest((prevGuest) => {
         const isAlreadyAdded = prevGuest.some((ele) => ele.guestId === userId);
-
         if (isAlreadyAdded) {
           return prevGuest?.map((ele) =>
             ele.guestId === userId
@@ -182,8 +191,7 @@ export const GuestList = () => {
               : ele
           );
         } else {
-          console.log()
-          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId, name: userData?.name, address: userData?.address }];
+          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId, name: userData?.name, address: userData?.address, pincode: userData?.pincode }];
         }
       });
     }
@@ -192,6 +200,8 @@ export const GuestList = () => {
       setGuest(guest?.filter((ele) => ele.guestId != userId) || []);
     }
   }
+
+
 
   const handlePayment = () => {
     if (!paymentHistory?.length) {
@@ -213,7 +223,7 @@ export const GuestList = () => {
     }, 50);
   }
 
-
+console.log(guest,'aaaaaaaaaa+')
   return (
     <div className="guest-list-container">
       <div className="guest-list-header">

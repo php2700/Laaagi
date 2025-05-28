@@ -51,7 +51,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (recentView) {
-            let newRecent = { name: recentView?.name, image: recentView?.image }
+            let newRecent = {
+                _id: recentView._id, name: recentView?.name, image: recentView?.image,
+                price: recentView?.price ?? null,
+                isSweet: recentView?.isSweet ?? null
+            }
             RecentView(newRecent)
         }
     }, [recentView])

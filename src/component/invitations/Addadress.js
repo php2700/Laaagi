@@ -8,23 +8,27 @@ export const Addadress = ({ open, onClose, userData }) => {
   const context = useContext(AuthContext);
   const logout = context?.logout;
   const token = context?.token || localStorage.getItem('token');
-  const id = localStorage.getItem("_id");
-  const [_id] = useState(id);
+  const _id = localStorage.getItem('_id');
+
   const [address, setAddress] = useState('');
   const [googleAddress, setGoogleAddress] = useState('');
-  const [error, setError] = useState('');
-  const [addressError, setAddressError] = useState('');
+  const [error, setError] = useState({});
+  const [pincode, setPincode] = useState('');
 
   const handleClose = () => {
-    setError('');
-    setAddressError('');
+    setError({});
     setAddress('');
     setGoogleAddress('');
+    setPincode('');
     onClose();
   };
 
   useEffect(() => {
     if (open) {
+      console.log(userData, 'aaaaaaaaaaa')
+      if (userData?.pincode) {
+        setPincode(userData?.pincode || '')
+      }
       if (userData?.addressBy === 'custom') {
         setAddress(userData?.address || '');
         setGoogleAddress('');
@@ -35,8 +39,7 @@ export const Addadress = ({ open, onClose, userData }) => {
         setAddress('');
         setGoogleAddress('');
       }
-      setError('');
-      setAddressError('');
+      setError({});
     }
   }, [open, userData]);
 
@@ -44,38 +47,44 @@ export const Addadress = ({ open, onClose, userData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newError = {};
 
-    if (address && googleAddress) {
-      setError('Only one address field can be filled.');
-      return;
-    } else if (!address?.trim() && !googleAddress?.trim()) {
-      setError('Both address fields cannot be empty.');
-      return;
-    } else if (address && address.trim().length < 3) {
-      setAddressError('Address must be at least 3 characters long.');
-      return;
+    if (!pincode) {
+      newError.pincode = 'Pincode required';
+    } else if (!pincode.trim()) {
+      newError.pincode = 'Can Not Be Empty';
     }
 
-    const addressBy = address ? 'custom' : 'google';
+    if (address && googleAddress) {
+      newError.googleAddress = 'Only one address field can be filled.';
+    } else if (!address?.trim() && !googleAddress?.trim()) {
+      newError.googleAddress = 'Both address fields cannot be empty.';
+    } else if (address && address.trim().length < 3) {
+      newError.address = 'Address must be at least 3 characters long.';
+    }
 
+    setError(newError);
+    if (Object.keys(newError)?.length > 0) return;
+
+    const addressBy = address ? 'custom' : 'google';
     const payload = {
-      _id: _id,
+      _id,
       address: address || googleAddress,
-      addressBy: addressBy
+      addressBy,
+      pincode,
     };
 
-    axios.patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, payload, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(() => {
-      handleClose();
-    }).catch((error) => {
-      if (error?.response?.data?.Message === 'jwt expired') {
-        logout();
-      }
-      console.error("Update address error:", error);
-    });
+    axios
+      .patch(`${process.env.REACT_APP_BASE_URL}api/user/update`, payload, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => handleClose())
+      .catch((error) => {
+        if (error?.response?.data?.Message === 'jwt expired') {
+          logout();
+        }
+        console.error('Update address error:', error);
+      });
   };
 
   return (
@@ -93,16 +102,28 @@ export const Addadress = ({ open, onClose, userData }) => {
           <input
             type="text"
             className="modal-input"
+            placeholder="Pincode"
+            value={pincode}
+            onChange={(e) => {
+              setPincode(e.target.value);
+              setError(prev => ({ ...prev, pincode: '' }));
+            }}
+          />
+          {error.pincode && <div style={{ color: 'red' }}>{error.pincode}</div>}
+
+          <input
+            type="text"
+            className="modal-input"
             placeholder="Enter Full Address"
             value={address}
             onChange={(e) => {
               setAddress(e.target.value);
               setGoogleAddress('');
-              setError('');
-              setAddressError('');
+              setError(prev => ({ ...prev, googleAddress: '', address: '' }));
             }}
           />
-          {addressError && <div style={{ color: 'red' }}>{addressError}</div>}
+          {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
+
           <input
             type="text"
             className="modal-input"
@@ -111,11 +132,11 @@ export const Addadress = ({ open, onClose, userData }) => {
             onChange={(e) => {
               setGoogleAddress(e.target.value);
               setAddress('');
-              setError('');
-              setAddressError('');
+              setError(prev => ({ ...prev, address: '', googleAddress: '' }));
             }}
           />
-          {error && <div style={{ color: 'red' }}>{error}</div>}
+          {error.address && <div style={{ color: 'red' }}>{error.address}</div>}
+
           <button type="submit" className="modal-submit-button">
             Submit
           </button>

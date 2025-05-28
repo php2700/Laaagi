@@ -10,18 +10,18 @@ export const AddGuestHeader = () => {
         <div>
             <div ><img className="guestImg" src={GuestImg} /></div>
             <div className="add-guest-nav">
-            <NavLink
+                <NavLink
                     to='/guest-add'
-                    className={({ isActive }) =>
-                        "nav-button" + (isActive ? " active-nav-button" : "")
+                    className={({ isActive }) => {
+                        return "nav-button" + (isActive ? " active-nav-button" : "")
+                    }
                     }
                 >
                     Add Guest
                 </NavLink>
-                {/* <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div> */}
-                {/* <div className="guest-list"><Link to='/guest'>Guest List</Link></div> */}
+
                 <NavLink
-                    to='/guest' // This will be the default if your router is set up to show /guest by default
+                    to='/guest'
                     className={({ isActive }) =>
                         "nav-button" + (isActive ? " active-nav-button" : "")
                     }

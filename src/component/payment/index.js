@@ -26,9 +26,11 @@ export const Payment = ({ amount, guest, userId }) => {
     const userData = context?.storeUserData;
     const invitation = context?.selectSweet;
     const paymentHistory = context?.paymentHistory;
+    const setPaymentHistory = context?.setPaymentHistory;
     const boxName = context?.boxName;
     const boxweight = useSelector((state) => state?.weight?.value);
     const amounts = context?.amounts;
+    
     useEffect(() => {
         handlePayment();
     }, []);
@@ -42,11 +44,11 @@ export const Payment = ({ amount, guest, userId }) => {
             amount: amount * 100,
         });
         const options = {
-            // key: `${process.env.REACT_APP_RAZORPAY_APIKEY`,
-            key: 'rzp_test_QpiAXSeb8pm1CJ',
+            key: `${process.env.REACT_APP_RAZORPAY_APIKEY}`,
+            // key: 'rzp_test_QpiAXSeb8pm1CJ',
             amount: data.amount,
             currency: data.currency,
-            name: 'Your Company Name',
+            name: 'Laaagi',
             description: 'Payment for Order',
             order_id: data.id,
             handler: function (response) {
@@ -58,7 +60,7 @@ export const Payment = ({ amount, guest, userId }) => {
                     weight: boxweight,
                     invitationName: invitation?.name,
                     guest: guest?.map((ele) => (
-                        { guestId: ele?.guestId, quantity: ele?.quantity, name: ele?.name, address: ele?.address }
+                        { guestId: ele?.guestId, quantity: ele?.quantity, name: ele?.name, address: ele?.address, pincode: ele?.pincode }
                     )),
                     boxName: boxName,
                     invAmounts: amounts,
@@ -71,6 +73,7 @@ export const Payment = ({ amount, guest, userId }) => {
                 response = { ...response, ...storeHistory }
                 axios.post(`${process.env.REACT_APP_BASE_URL}verifyOrder`, response).then((res) => {
                     if (res?.status == 200) {
+                        setPaymentHistory([])
                         toast.success("Your Order Confirmed", {
                             position: "top-right"
                         });
