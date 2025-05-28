@@ -80,16 +80,16 @@ export const Guest = () => {
                     />
                     <div className="add-guest-button" onClick={() => handleModel()} > + Add My Address</div>
                 </div>
-                <div className="table-wrapper">
+                <div className="table-wrapper" id ="tables-wrappers">
                     <table>
                         <thead>
-                            <tr>
-                                <th>'#'</th>
-                                <th >NAME</th>
-                                <th>ADDRESS</th>
-                                <th>GUEST NUMBER</th>
-                                <th>CATEGORIES</th>
-                                <th>Action</th>
+                            <tr id="trs">
+                                <th className="ths">'#'</th>
+                                <th className="ths">NAME</th>
+                                <th className="ths">ADDRESS</th>
+                                <th className="ths">GUEST NUMBER</th>
+                                <th className="ths">CATEGORIES</th>
+                                <th className="ths">Action</th>
                             </tr>
                         </thead>
                         <tbody>
