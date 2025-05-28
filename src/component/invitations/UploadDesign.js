@@ -77,7 +77,7 @@ export const UploadDesign = () => {
 
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}api/user/add_invitation`,
+                `${process.env.REACT_APP_BASE_URL}api/user/upload-design-quote`,
                 formData,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }

@@ -5,6 +5,7 @@ import { AuthContext } from "../context";
 import leftArrow from "../../assets/sweet/left_arrow.png"
 import axios from "axios";
 import { PaymentSingleItem } from "../payment/sweet_payment";
+import PaymentDetailsModel from "./payment_details";
 
 const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
 
@@ -23,6 +24,10 @@ export const SweetsInfo = () => {
     const [openRazorpay, setOpenRazorPay] = useState(false)
     const [error, setError] = useState()
     const [userData, setUserData] = useState({})
+    const [paymentDetails, setPaymentDetails] = useState(false)
+    const [name, setName] = useState()
+    const [address, setAddress] = useState()
+    const [pincode, setPincode] = useState()
 
     const getUserData = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
@@ -44,6 +49,21 @@ export const SweetsInfo = () => {
         if (token)
             getUserData()
     }, [token])
+
+    const addDetails = () => {
+        if (!sweetkg) {
+            setError('please Select Quantity')
+            return;
+        }
+        if (!token) {
+            navigate("/signup")
+        }
+        setPaymentDetails(true)
+    }
+
+    const closePayment = () => {
+        setPaymentDetails(false)
+    }
 
     const handlePayment = () => {
         if (!sweetkg) {
@@ -103,7 +123,7 @@ export const SweetsInfo = () => {
                     back</button>
             </div>
             <div className="sweet-info-home-container">
-                <div className="sweets-info-home-button" onClick={handleHome}>Home</div>
+                <div className="sweets-info-home-button" onClick={handleHome}>Home ></div>
                 <div> &nbsp; &nbsp;Detail</div>
             </div>
             <div className="sweets-info-details">
@@ -130,12 +150,16 @@ export const SweetsInfo = () => {
                     </div>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
                     <div className="sweets-info-price">Total Price:{price} /-</div>
+                    <div className="shipping">Extra Shipping Charges ₹49</div>
                     <div className="sweets-info-button">
-                        <button onClick={handlePayment}>Pay</button>
+                        {/* <button onClick={handlePayment}>Pay</button> */}
+                        <button onClick={addDetails}>Pay</button>
+
                     </div>
                 </div>
             </div>
-            {openRazorpay && <  PaymentSingleItem amount={price} description={sweetsInfo?.description} img={sweetsInfo?.image} Sweet={sweetsInfo?.name} rate={sweetsInfo?.amount} weight={sweetkg} quantity={sweetkg} name={userData?.name} />}
+            {paymentDetails && <PaymentDetailsModel isOpen={paymentDetails} onClose={closePayment} isAddress={setAddress} isName={setName} isPincode={setPincode} openRazorpay={handlePayment} />}
+            {openRazorpay && <  PaymentSingleItem amount={price} description={sweetsInfo?.description} img={sweetsInfo?.image} Sweet={sweetsInfo?.name} rate={sweetsInfo?.amount} weight={sweetkg} quantity={sweetkg} name={name} address={address} pincode={pincode} />}
         </div>
     )
 }

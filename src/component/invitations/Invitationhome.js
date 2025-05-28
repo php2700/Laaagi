@@ -74,16 +74,11 @@ export const Invitationhome = () => {
   const amounts = context?.amounts;
   const boxName = context?.boxName;
   const setBoxName = context?.setBoxName;
-  // const invitation = context?.selectSweet;
   const setPaymentHistory = context?.setPaymentHistory;
   const paymentHistory = context?.paymentHistory;
-
-  // const [price, serPrice] = useState(invitation?.price)
-  // const [invitationId, setinvitationId] = useState(invitation?._id)
   const [price, serPrice] = useState()     //these lines used  for reload data
   const [invitationId, setinvitationId] = useState()
   const [invitation, setInvitation] = useState({})
-
   const getSweet = location?.state;
   const [selectedSweet, setSelectedSweet] = useState(getSweet)
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -237,15 +232,15 @@ export const Invitationhome = () => {
   }
 
   useEffect(() => {
+
     if (selectedSweet?.index >= 0 && selectedSweet?.index < amounts?.length) {
       const updatedAmounts = [...amounts];
       const calculateAmount = calculateTotalAmount((selectedSweet?.amount)?.split("/")[0], weight);
       updatedAmounts[selectedSweet?.index] = calculateAmount;
       setId(getSweet?.showId)
       setAmounts(updatedAmounts);
-
       const updatedHistory = paymentHistory?.filter((ele) => ele?.index != selectedSweet?.index) || [];
-      updatedHistory.push({ index: selectedSweet?.index, name: selectedSweet?.sweetName })
+      updatedHistory.push({ index: selectedSweet?.index, name: selectedSweet?.sweetName, img: selectedSweet?.image })
       setPaymentHistory(updatedHistory)
     }
   }, [selectedSweet]);
@@ -318,6 +313,7 @@ export const Invitationhome = () => {
       setAmounts([0, 0, 0, 0, 0]);
     }
   }, [lastURL]);
+
 
   return (
     <div className="invitation-details-container">
@@ -417,47 +413,27 @@ export const Invitationhome = () => {
 
       <div className='invitation-select-sweet-box-list'>
         <div className='invitation-box-select-header'>
-          <div >sections</div>
-          <div>sweets</div>
+          <div >Sections</div>
+          <div>Sweets</div>
+          <div>SweetName</div>
           <div>Price</div>
         </div>
         {id == 1 ?
-          normalBox?.map((ele, index) => (
-            <div className='invitation-select-arrow'>
-              <div className='invitation-section-align'>
-                <div><img src={ele?.sectionImg} /></div>
-                <div><img src={ele?.arrow} /></div>
-                <div>
-                  <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
-                    <img className='select-sweet-img' src={ele?.sweetImg} />
-                  </Link>
-                  {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
-                </div>
-              </div>
-
-
-              <div className='invitation-select-box-sweet-price'>  {
-                (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
-                  ? (amounts[index] ?? 0)
-                  : '₹0'
-              }</div>
-
-            </div>
-          )) : (id == 2) ?
-            sectionBox4?.map((ele, index) => (
+          normalBox?.map((ele, index) => {
+            const data = paymentHistory?.find((ele1) => ele1.index === index);
+            return (
               <div className='invitation-select-arrow'>
                 <div className='invitation-section-align'>
                   <div><img src={ele?.sectionImg} /></div>
                   <div><img src={ele?.arrow} /></div>
                   <div>
-                    <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
-                      <img className='select-sweet-img' src={ele?.sweetImg} />
+                    <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
+                      {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                     </Link>
-                    {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
+                    {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
                   </div>
+                  <div> {data ? data?.name : <span>Sweet Name</span>}</div>
                 </div>
-
-
                 <div className='invitation-select-box-sweet-price'>  {
                   (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                     ? (amounts[index] ?? 0)
@@ -465,18 +441,22 @@ export const Invitationhome = () => {
                 }</div>
 
               </div>
-            )) : (id == 3) ?
-              sectionBox3?.map((ele, index) => (
+            )
+          }) : (id == 2) ?
+            sectionBox4?.map((ele, index) => {
+              const data = paymentHistory?.find((ele1) => ele1.index === index);
+              return (
                 <div className='invitation-select-arrow'>
                   <div className='invitation-section-align'>
                     <div><img src={ele?.sectionImg} /></div>
                     <div><img src={ele?.arrow} /></div>
                     <div>
                       <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
-                        <img className='select-sweet-img' src={ele?.sweetImg} />
+                        {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                       </Link>
-                      {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
+                      {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
                     </div>
+                    <div> {data ? data?.name : <span>Sweet Name</span>}</div>
                   </div>
 
 
@@ -486,30 +466,61 @@ export const Invitationhome = () => {
                       : '₹0'
                   }</div>
 
-                </div>
-              )) :
-              specialBox?.map((ele, index) => (
-                <div className='invitation-select-arrow'>
-                  <div className='invitation-section-align'>
-                    <div><img src={ele?.sectionImg} /></div>
-                    <div><img src={ele?.arrow} /></div>
-                    <div>
-                      <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
-                        <img className='select-sweet-img' src={ele?.sweetImg} />
-                      </Link>
-                      {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
+                </div>)
+            }) : (id == 3) ?
+              sectionBox3?.map((ele, index) => {
+                const data = paymentHistory?.find((ele1) => ele1.index === index);
+
+                return (
+                  <div className='invitation-select-arrow'>
+                    <div className='invitation-section-align'>
+                      <div><img src={ele?.sectionImg} /></div>
+                      <div><img src={ele?.arrow} /></div>
+                      <div>
+                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                          {/* <img className='select-sweet-img' src={ele?.sweetImg} /> */}
+                          {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
+                        </Link>
+                        {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
+                      </div>
+                      <div> {data ? data?.name : <span>Sweet Name</span>}</div>
+
                     </div>
+
+
+                    <div className='invitation-select-box-sweet-price'>  {
+                      (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
+                        ? (amounts[index] ?? 0)
+                        : '₹0'
+                    }</div>
+
                   </div>
+                )
+              }) :
+              specialBox?.map((ele, index) => {
+                const data = paymentHistory?.find((ele1) => ele1.index === index);
+                return (
+                  <div className='invitation-select-arrow'>
+                    <div className='invitation-section-align'>
+                      <div><img src={ele?.sectionImg} /></div>
+                      <div><img src={ele?.arrow} /></div>
+                      <div>
+                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                          {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
+                        </Link>
+                        {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
+                      </div>
+                      <div> {data ? data?.name : <span>Sweet Name</span>}</div>
+                    </div>
+                    <div className='invitation-select-box-sweet-price'>  {
+                      (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
+                        ? (amounts[index] ?? 0)
+                        : '₹0'
+                    }</div>
 
-
-                  <div className='invitation-select-box-sweet-price'>  {
-                    (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
-                      ? (amounts[index] ?? 0)
-                      : '₹0'
-                  }</div>
-
-                </div>
-              ))
+                  </div>
+                )
+              })
         }
       </div>
 

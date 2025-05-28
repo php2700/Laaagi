@@ -26,7 +26,7 @@ import rightArrow from "../../assets/invitations/right-icon.png"
 import axios from 'axios';
 import { Logout } from '../header/logout';
 import backArrow from "../../assets/sweet/left_arrow.png"
-
+import './viewHistory.css'
 
 
 const sectionBox4 = [
@@ -93,8 +93,6 @@ export const ViewHistory = () => {
     useEffect(() => {
         getPaymentData()
     }, [_id])
-
-    // const weight = useSelector((state) => state.weight?.value);
 
     const handleBack = () => {
         navigate('/payment-history')
@@ -190,8 +188,9 @@ export const ViewHistory = () => {
 
             <div className='invitation-select-sweet-box-list'>
                 <div className='invitation-box-select-header'>
-                    <div >sections</div>
-                    <div>sweets</div>
+                    <div >Sections</div>
+                    <div>Sweets</div>
+                    <div>Sweets Name</div>
                     <div>Price</div>
                 </div>
                 {invitation.boxName == 'Normal Box' ?
@@ -200,6 +199,11 @@ export const ViewHistory = () => {
                             <div className='invitation-section-align'>
                                 <div><img src={ele?.sectionImg} /></div>
                                 <div><img src={ele?.arrow} /></div>
+                                <div>
+                                    {invitation?.sweets?.map((ele) => {
+                                        if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
+                                    })}
+                                </div>
                                 <div>
                                     {invitation?.sweets?.map((ele) => {
                                         if (ele.index == index) return <div>{ele?.name}</div>
@@ -222,6 +226,11 @@ export const ViewHistory = () => {
                                     <div><img src={ele?.arrow} /></div>
                                     <div>
                                         {invitation?.sweets?.map((ele) => {
+                                            if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
+                                        })}
+                                    </div>
+                                    <div>
+                                        {invitation?.sweets?.map((ele) => {
                                             if (ele.index == index) return <div>{ele?.name}</div>
                                         })}
                                     </div>
@@ -236,6 +245,11 @@ export const ViewHistory = () => {
                                     <div className='invitation-section-align'>
                                         <div><img src={ele?.sectionImg} /></div>
                                         <div><img src={ele?.arrow} /></div>
+                                        <div>
+                                            {invitation?.sweets?.map((ele) => {
+                                                if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
+                                            })}
+                                        </div>
                                         <div>
                                             {invitation?.sweets?.map((ele) => {
                                                 if (ele.index == index) return <div>{ele?.name}</div>
@@ -256,6 +270,11 @@ export const ViewHistory = () => {
                                     <div className='invitation-section-align'>
                                         <div><img src={ele?.sectionImg} /></div>
                                         <div><img src={ele?.arrow} /></div>
+                                        <div>
+                                            {invitation?.sweets?.map((ele) => {
+                                                if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
+                                            })}
+                                        </div>
                                         <div>
                                             {invitation?.sweets?.map((ele) => {
                                                 if (ele.index == index) return <div>{ele?.name}</div>
@@ -281,6 +300,7 @@ export const ViewHistory = () => {
                             <th style={{ width: '20%' }}>GUEST </th>
                             <th >Address </th>
                             <th>WEIHGT</th>
+                            <th>pincode</th>
                             <th>PAYMENT_DATE</th>
                             <th >Box-Quantity </th>
                         </tr>
@@ -295,7 +315,8 @@ export const ViewHistory = () => {
                                     <td>
                                         {ele.address}
                                     </td>
-                                    <td>{invitation.weight} g</td>
+                                    <td>{invitation?.weight} g</td>
+                                    <td>{ele?.pincode}</td>
                                     <td>{invitation?.createdAt}</td>
                                     <td>{ele?.quantity}
                                     </td>

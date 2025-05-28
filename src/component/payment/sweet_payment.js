@@ -19,11 +19,10 @@ const loadRazorpayScript = () => {
         document.body.appendChild(script);
     });
 };
-export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quantity, name }) => {
+export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quantity, name, address, pincode }) => {
     const navigate = useNavigate()
-    const token = localStorage.getItem('token')
     const userId = localStorage.getItem("_id");
-   
+    amount = amount + 49;
 
     useEffect(() => {
         handlePayment();
@@ -38,11 +37,11 @@ export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quant
             amount: amount * 100,
         });
         const options = {
-            // key: `${process.env.REACT_APP_RAZORPAY_APIKEY`,
-            key: 'rzp_test_QpiAXSeb8pm1CJ',
+            key: `${process.env.REACT_APP_RAZORPAY_APIKEY}`,
+            // key: 'rzp_test_QpiAXSeb8pm1CJ',
             amount: data.amount,
             currency: data.currency,
-            name: 'Your Company Name',
+            name: 'Laaagi',
             description: 'Payment for Order',
             order_id: data.id,
             handler: function (response) {
@@ -54,7 +53,9 @@ export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quant
                     rate: rate,
                     amount: amount,
                     quantity: quantity,
-                    name: name
+                    name: name,
+                    address: address,
+                    pincode: pincode
                 }
                 response = { ...response, ...storeHistory }
                 axios.post(`${process.env.REACT_APP_BASE_URL}verifyOrder`, response).then((res) => {
@@ -73,7 +74,6 @@ export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quant
                     toast.error("Something wrong!", {
                         position: "bottom-right"
                     });
-                    console.log(error, "3333333+++++")
                 })
             },
             prefill: {

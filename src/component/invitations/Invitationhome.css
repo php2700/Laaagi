@@ -502,6 +502,10 @@
   cursor: pointer;
 }
 
+.selected-img{
+  height: 80px;
+  width: 80px;
+}
 @media (max-width: 1000px) {
   .invitation-section-align {
     width: 43%;

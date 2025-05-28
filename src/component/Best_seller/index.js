@@ -1,10 +1,8 @@
 import './index.css'
-import bestSellerImg from '../../assets/best_seller.png'
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import leftIcon from "../../assets/icon/left_arrow-right.png"
-import { AuthContext } from '../context'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -13,16 +11,16 @@ export const Best_seller = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(3)
     const [bestSellerData, setBestSellerData] = useState([])
-    const context = useContext(AuthContext);
-    const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
     const BestSellerList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user//best-seller`, {
+            params: {
+                bestSeller: true
+            }
         })
             .then((res) => {
-                setBestSellerData(res?.data?.sweetsData);
-                console.log(res?.data?.sweetsData)
+                setBestSellerData(res?.data?.bestSeller);
             }).catch((error) => {
                 console.log(error);
             })
@@ -32,6 +30,7 @@ export const Best_seller = () => {
     useEffect(() => {
         BestSellerList()
     }, [])
+
 
     const handleForward = () => {
         const totalItems = bestSellerData?.length || 0;
@@ -45,14 +44,24 @@ export const Best_seller = () => {
 
     const handleBack = () => {
         const prevStart = Math.max(0, startIndex - 4)
-        const prevEnd = Math.max(3, lastIndex - 4)
+        const prevEnd = Math.max(3, startIndex - 1)
         setStartIndex(prevStart)
         setLastIndex(prevEnd)
     }
 
-    const handleDryFruitInfo = (data) => {
-        sweetsInfo(data)
-        navigate('/sweets-info')
+    const handleView = (data) => {
+        if (data?.price) {
+            const url = 'home'
+            navigate(`/invitation-detail/${data?._id}/${url}`)
+        }
+        else if (Object?.keys(data).includes("isSweet")) {
+            const url = 'home';
+            navigate(`/sweets-info/${data?._id}/${url}`)
+        }
+        else {
+            navigate(`/dry-fruit_info/${data?._id}`)
+        }
+
     }
     return (
         <div className='best-seller'>
@@ -70,8 +79,8 @@ export const Best_seller = () => {
                 }
                 {bestSellerData?.slice(startIndex, lastIndex + 1)?.map((item) => (
                     <div key={item?.id} className='best-seller-wrapper'>
-                        <div className='best-seller-img-parent'>
-                            <img className='best-seller-img' onClick={() => handleDryFruitInfo(item)} src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                        <div className='best-seller-img-parent' onClick={() => handleView(item)}>
+                            <img className='best-seller-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
                         </div>
                         <div className='best-seller-img-text'>{item?.name}</div>
                     </div>

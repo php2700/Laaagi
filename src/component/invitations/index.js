@@ -10,6 +10,7 @@ import axios from 'axios';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AuthContext } from '../context';
 
+
 const invitationHeader = [
     { name: 'Only Invitation', category: 'Invitation' },
     { name: 'Invitation on Wooden Box', category: 'Wooden Box' },
@@ -23,6 +24,8 @@ export const Invitation = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
     const setRecentView = context?.setRecentView;
+    const setPaymentHistory = context?.setPaymentHistory;
+
     const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
@@ -42,6 +45,10 @@ export const Invitation = () => {
             setLastIndex(Math.min(nextStart + itemsToShow - 1, totalItems - 1));
         }
     };
+
+    useEffect(() => {
+        setPaymentHistory([])
+    }, [])
 
     const handlePrev = () => {
         const itemsToShow = 2;

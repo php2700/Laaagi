@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { Payment } from "../payment";
 import leftArrow from "../../assets/sweet/left_arrow.png"
 import axios from "axios";
+import PaymentDetailsModel from "./payment_details";
+import { PaymentSingleItem } from "../payment/sweet_payment";
 
 const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
 
@@ -18,6 +20,11 @@ export const DryFruitInfo = () => {
     const [price, setPrice] = useState(0)
     const [openRazorpay, setOpenRazorPay] = useState(false)
     const [error, setError] = useState()
+    const [paymentDetails, setPaymentDetails] = useState(false)
+    const [name, setName] = useState()
+    const [address, setAddress] = useState()
+    const [pincode, setPincode] = useState()
+
 
     const handlePayment = () => {
         if (!sweetkg) {
@@ -32,6 +39,22 @@ export const DryFruitInfo = () => {
                 setOpenRazorPay(true)
             }, 50);
         }
+    }
+
+    const closePayment = () => {
+        setPaymentDetails(false)
+    }
+
+
+    const addDetails = () => {
+        if (!sweetkg) {
+            setError('please Select Quantity')
+            return;
+        }
+        if (!token) {
+            navigate("/signup")
+        }
+        setPaymentDetails(true)
     }
 
     const getSweetData = () => {
@@ -103,12 +126,17 @@ export const DryFruitInfo = () => {
                     </div>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
                     <div className="sweets-info-price">Total Price:{price} /-</div>
+                    <div className="shipping">Extra Shipping Charges ₹49</div>
+
                     <div className="sweets-info-button">
-                        <button onClick={handlePayment}>Pay</button>
+                        <button onClick={addDetails}>Pay</button>
                     </div>
                 </div>
             </div>
-            {openRazorpay && <  Payment amount={price} />}
+            {paymentDetails && <PaymentDetailsModel isOpen={paymentDetails} onClose={closePayment} isAddress={setAddress} isName={setName} isPincode={setPincode} openRazorpay={handlePayment} />}
+            {openRazorpay && <  PaymentSingleItem amount={price} description={sweetsInfo?.description} img={sweetsInfo?.image} Sweet={sweetsInfo?.name} rate={sweetsInfo?.amount} weight={sweetkg} quantity={sweetkg} name={name} address={address} pincode={pincode} />}
+
+            {/* {openRazorpay && <  Payment amount={price} />} */}
         </div>
     )
 }
