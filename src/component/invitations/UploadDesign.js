@@ -4,7 +4,8 @@ import './UploadDesignForm.css';
 import { useNavigate } from 'react-router-dom';
 import { invitationCategory as invitationCategoryList } from '../category';
 
-export const UploadDesign = () => {
+export const 
+UploadDesign = () => {
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
