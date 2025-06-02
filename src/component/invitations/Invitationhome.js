@@ -1,4 +1,4 @@
-import React, { use, useContext, useEffect, useState } from 'react';
+import React, { use, useContext, useEffect, useRef, useState } from 'react';
 import { data, Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Invitationhome.css';
 import CustomizationModal from './CustomizationModal';
@@ -65,6 +65,9 @@ const boxType = [
 ]
 
 export const Invitationhome = () => {
+  const hasFetchedRef = useRef(false);
+  const token = localStorage.getItem("token")
+  const userId = localStorage.getItem("_id")
   const { _id, url } = useParams()
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,7 +79,7 @@ export const Invitationhome = () => {
   const setBoxName = context?.setBoxName;
   const setPaymentHistory = context?.setPaymentHistory;
   const paymentHistory = context?.paymentHistory;
-  const [price, serPrice] = useState()     //these lines used  for reload data
+  const [price, serPrice] = useState()
   const [invitationId, setinvitationId] = useState()
   const [invitation, setInvitation] = useState({})
   const getSweet = location?.state;
@@ -118,8 +121,31 @@ export const Invitationhome = () => {
   }
 
   useEffect(() => {
+    if (!_id || hasFetchedRef.current) return;
     getInvitationData()
+    hasFetchedRef.current = true;
   }, [_id])
+
+  useEffect(() => {
+    if (!userId) return
+
+    const recentData = {
+      userId: userId,
+      fruitId: invitation?._id, name: invitation?.name, image: invitation?.image,
+      price: invitation?.price ?? null,
+      isSweet: invitation?.isSweet ?? null
+    }
+    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/recent-view`, recentData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
+      console.log(res);
+    }).catch((error) => {
+      console.log(error, "error")
+    })
+
+  }, [invitation])
 
   const validate = () => {
     const newError = []

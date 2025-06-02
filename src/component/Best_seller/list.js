@@ -1,33 +1,46 @@
-
 import { useContext, useEffect, useState } from 'react';
 import './index.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
 
-export const Dry_fruit = () => {
+export const BestSeller = () => {
     const navigate = useNavigate();
     const context = useContext(AuthContext);
     const sweetsInfo = context?.setSweetsInfo
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/best-seller`, {
+            params: {
+                bestSeller: true
+            }
+        })
             .then((res) => {
-                setData(res?.data?.dryFruitData || []);
+                setData(res?.data?.bestSeller);
             }).catch((error) => {
-                console.error("Error fetching dry fruits:", error);
-                setData([]);
-            });
-    }, []);
+                console.log(error);
+            })
+    }, [])
 
 
-    const handleItemDetailNavigation = (item) => {
-        if (sweetsInfo) {
-            sweetsInfo(item);
+
+
+
+    const handleView = (data) => {
+        if (data?.price) {
+            const url = 'home'
+            navigate(`/invitation-detail/${data?._id}/${url}`)
         }
-        navigate(`/dry-fruit_info/${item?._id}`);
-    };
+        else if (Object?.keys(data).includes("isSweet")) {
+            const url = 'home';
+            navigate(`/sweets-info/${data?._id}/${url}`)
+        }
+        else {
+            navigate(`/dry-fruit_info/${data?._id}`)
+        }
+    }
+
 
     return (
         <div className='sweets' >
@@ -37,17 +50,19 @@ export const Dry_fruit = () => {
                         <>
                             {data?.map((ele) => (
                                 <div key={ele.id || ele.name} className='sweets-main-container'>
-                                    <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
+                                    <div className='sweets-content-img' onClick={() => handleView(ele)}>
                                         <div className='sweets-img-div'>
                                             <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
                                         </div>
                                         <div className='sweets-name'>{ele?.name}</div>
-                                        {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                                     </div>
                                 </div>
                             ))}
                         </>}
                 </div>
+                {!data?.length > 0 && (
+                    <div className='no-found'>No Data Found</div>
+                )}
             </div>
         </div>
     )

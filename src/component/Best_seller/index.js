@@ -14,7 +14,7 @@ export const Best_seller = () => {
     const navigate = useNavigate();
 
     const BestSellerList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user//best-seller`, {
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/best-seller`, {
             params: {
                 bestSeller: true
             }
@@ -61,13 +61,16 @@ export const Best_seller = () => {
         else {
             navigate(`/dry-fruit_info/${data?._id}`)
         }
+    }
 
+    const handleBestSeller = (e) => {
+        navigate('/best-seller')
     }
     return (
         <div className='best-seller'>
             <div className='best-seller-top'>
                 <div className='best-seller-left-text'> Best Sellers</div>
-                {/* <div className='best-seller-right-text'> see more</div> */}
+                <div className='best-seller-right-text' onClick={handleBestSeller}> see more</div>
             </div>
             <div className='best-seller-img-list'>
                 {

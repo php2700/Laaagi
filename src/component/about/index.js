@@ -2,9 +2,11 @@ import './index.css'
 import video from "../../assets/video/sample.mp4"
 import rightIcon from '../../assets/icon/li_arrow-right.png'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 
-export const About = () => {
+// export const About = () => {
+export const About = forwardRef((props, ref) => {
+
     const [aboutData, setAboutData] = useState({})
     const [learnMore, setLearnMore] = useState(false)
 
@@ -22,8 +24,9 @@ export const About = () => {
         aboutList()
     }, [])
 
+
     return (
-        <div className='about' id="about-us">
+        <div ref={ref} className='about' id="about-us">
             <div className='about-us'>
                 <div className='about-heading'>About Us</div>
                 <div className='about-desc'>
@@ -51,4 +54,4 @@ export const About = () => {
             </div>
         </div>
     )
-}
+})

@@ -15,6 +15,7 @@
 .best-seller-right-text {
   font-weight: 600;
   font-size: 14px;
+  cursor: pointer;
 }
 .best-seller-img-list {
   display: flex;

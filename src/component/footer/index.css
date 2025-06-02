@@ -158,6 +158,13 @@
   background-color: #800000;
 }
 
+.handle-about:hover{
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
 @media (min-width: 300px) and (max-width: 500px) {
   .footer {
     display: flex;

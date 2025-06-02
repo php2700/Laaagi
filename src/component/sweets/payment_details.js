@@ -19,21 +19,25 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
         const newError = {};
         if (!name?.trim())
             newError.name = 'name is required'
-        else if (name?.length < 3)
+        if (!/^[a-zA-Z\s]*$/.test(name)) {
+            newError.name = 'Only Character allowed'
+        } else if (name?.length < 3)
             newError.name = 'min 3 character required'
 
         if (!address?.trim())
             newError.address = 'address is required'
+        else if (!/^[a-zA-Z\s0-9]*$/.test(address)) {
+            newError.address = 'Not allowed special character'
+        }
         else if (address?.length < 3)
             newError.address = 'min 3 character required'
 
         if (!pincode?.trim())
             newError.pincode = 'pincode is required'
-        else if (pincode?.length < 6)
+        else if (!/^[0-9]*$/.test(pincode)) {
+            newError.pincode = 'Only Number Allowed'
+        } else if (pincode?.length < 6)
             newError.pincode = 'min 6 character required'
-
-
-
 
         setError(newError)
         return Object.keys(newError)?.length;

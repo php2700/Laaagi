@@ -21,7 +21,6 @@ export const Sweets = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const context = useContext(AuthContext);
-    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo
     const isInvitationSweets = location.state?.data;
     const invitationId = location.state?.invitationId;
@@ -126,7 +125,6 @@ export const Sweets = () => {
         if (sweetsInfo) {
             sweetsInfo(item);
         }
-        setRecentView(item)
         const url = 'sweets';
         navigate(`/sweets-info/${item?._id}/${url}`);
 

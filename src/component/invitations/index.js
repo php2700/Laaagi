@@ -23,7 +23,6 @@ const invitationHeader = [
 export const Invitation = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
-    const setRecentView = context?.setRecentView;
     const setPaymentHistory = context?.setPaymentHistory;
 
     const navigate = useNavigate()
@@ -100,7 +99,6 @@ export const Invitation = () => {
     }
 
     const handleInvitationImg = (ele) => {
-        setRecentView(ele)
         setInvitationsweet(ele)
         const url = 'invitation'
         navigate(`/invitation-detail/${ele?._id}/${url}`)

@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import './info.css'
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Payment } from "../payment";
 import leftArrow from "../../assets/sweet/left_arrow.png"
 import axios from "axios";
@@ -23,8 +23,9 @@ export const DryFruitInfo = () => {
     const [paymentDetails, setPaymentDetails] = useState(false)
     const [name, setName] = useState()
     const [address, setAddress] = useState()
-    const [pincode, setPincode] = useState()
-
+    const [pincode, setPincode] = useState();
+    const userId = localStorage.getItem("_id")
+    const hasFetchedRef = useRef(false);
 
     const handlePayment = () => {
         if (!sweetkg) {
@@ -67,8 +68,31 @@ export const DryFruitInfo = () => {
     }
 
     useEffect(() => {
-        getSweetData()
-    }, [_id])
+        if (!_id || hasFetchedRef.current) return;
+        getSweetData();
+        hasFetchedRef.current = true;
+    }, [_id]);
+
+
+    useEffect(() => {
+        if (!userId || !sweetsInfo?._id) return
+        const recentData = {
+            userId: userId,
+            fruitId: sweetsInfo?._id, name: sweetsInfo?.name, image: sweetsInfo?.image,
+            price: sweetsInfo?.price ?? null,
+            isSweet: sweetsInfo?.isSweet ?? null
+        }
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/recent-view`, recentData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            console.log(res);
+        }).catch((error) => {
+            console.log(error, "error")
+        })
+
+    }, [sweetsInfo])
 
     const calculatePrice = (quantity) => {
         if (quantity === "Select quantity")
@@ -91,7 +115,6 @@ export const DryFruitInfo = () => {
     return (
         <div className="sweets-info">
             <div className="sweets-info-back-button">
-                {/* <Link onClick={() => handleBack()} to='/sweets'><button className="sweets-info-back-button">back</button></Link> */}
                 <button onClick={() => handleBack()} className="sweets-info-back-button">
                     <img src={leftArrow} />
                     back</button>

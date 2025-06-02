@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import './info.css'
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../context";
 import leftArrow from "../../assets/sweet/left_arrow.png"
 import axios from "axios";
@@ -11,6 +11,7 @@ const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { nam
 
 
 export const SweetsInfo = () => {
+    const hasFetchedRef = useRef(false);
     const context = useContext(AuthContext);
     const logout = context?.logout;
     const { _id, url } = useParams();
@@ -90,8 +91,31 @@ export const SweetsInfo = () => {
     }
 
     useEffect(() => {
+        if (!_id || hasFetchedRef.current) return;
         getSweetData()
+        hasFetchedRef.current = true;
     }, [_id])
+
+    useEffect(() => {
+        if (!userId) return
+
+        const recentData = {
+            userId: userId,
+            fruitId: sweetsInfo?._id, name: sweetsInfo?.name, image: sweetsInfo?.image,
+            price: sweetsInfo?.price ?? null,
+            isSweet: sweetsInfo?.isSweet ?? null
+        }
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/recent-view`, recentData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            console.log(res);
+        }).catch((error) => {
+            console.log(error, "error")
+        })
+
+    }, [sweetsInfo])
 
     const calculatePrice = (quantity) => {
         if (quantity === "Select quantity")

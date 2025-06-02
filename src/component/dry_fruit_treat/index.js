@@ -15,9 +15,10 @@ export const Dry_Fruit_Treat = () => {
     const [lastIndex, setLastIndex] = useState(2)
     const [dryFruitData, setDryFruitData] = useState([])
     const context = useContext(AuthContext);
-    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem("_id")
 
     const dryFruitsList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`, {
@@ -53,10 +54,11 @@ export const Dry_Fruit_Treat = () => {
         setLastIndex(prevLast);
     }
 
+
+
+
     const handleDryFruitInfo = (data) => {
-        setRecentView(data)
         sweetsInfo(data)
-        // navigate('/sweets-info')
         navigate(`/dry-fruit_info/${data?._id}`);
     }
 

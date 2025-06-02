@@ -20,7 +20,7 @@ export const PaymentHistory = () => {
                 Authorization: `Bearer ${token}`
             },
             params: {
-                q: searchText
+                q: searchText?.trim()
             }
         }).then((res) => {
             setPaymentHistory(res?.data?.paymentHistory)

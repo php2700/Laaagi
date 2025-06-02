@@ -8,7 +8,6 @@ export const InvitationBox = () => {
     const navigate = useNavigate()
     const [invitationBoxData, setInvitationBoxData] = useState([])
     const context = useContext(AuthContext);
-    const setRecentView = context?.setRecentView;
     const setInvitationsweet = context.setSelectSweet;
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(2)
@@ -34,7 +33,6 @@ export const InvitationBox = () => {
     }, [])
 
     const handleInvitationBoxInfo = (data) => {
-        setRecentView(data)
 
         setInvitationsweet(data)
         // navigate('/invitation-detail')
