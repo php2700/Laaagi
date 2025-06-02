@@ -118,7 +118,7 @@ tbody tr:hover {
   border-radius: 4px;
   font-size: 12px;
   font-weight: bold;
-  cursor: default;
+  cursor: pointer;
 }
 
 .invite-guest-list {

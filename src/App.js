@@ -46,6 +46,7 @@ import { DryFruitInfo } from './component/sweets/dry_fruit_info';
 import { Dry_fruit } from './component/sweets/dry_fruit';
 import { ViewHistory } from './component/invitations/viewHistory';
 import { ViewSweetHistory } from './component/sweets/sweet-history';
+import { BestSeller } from './component/Best_seller/list';
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -97,6 +98,7 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             {/* <Route path="/invitation-detail" element={<Invitationhome />} /> */}
             <Route path="/invitation-detail/:_id/:url" element={<Invitationhome />} />
+            <Route path='best-seller' element={<BestSeller />} />
 
 
             <Route path='/invitation-GuestList/:total' element={<PrivateRoute><GuestList /></PrivateRoute>} />

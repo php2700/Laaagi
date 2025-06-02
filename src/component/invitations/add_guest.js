@@ -77,8 +77,16 @@ export const Add_Guest = () => {
         if (openAddress) {
             if (!address) {
                 newError.address = 'Please Add Address'
+            } else if (!/^[a-zA-Z\s0-9]+$/.test(address)) {
+                newError.address = 'Not Allowed Special Character'
+            } else if (!address?.trim()) {
+                newError.address = 'Please Add Address'
             }
             if (!pincode) {
+                newError.pincode = 'Please Enter PinCode'
+            } else if (!/^[0-9]+$/.test(pincode)) {
+                newError.pincode = 'Only accept Number'
+            } else if (!pincode?.trim()) {
                 newError.pincode = 'Please Enter PinCode'
             }
         }

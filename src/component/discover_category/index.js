@@ -9,7 +9,6 @@ export const DiscoverCategory = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(2)
     const context = useContext(AuthContext);
-    const setRecentView = context?.setRecentView;
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
@@ -34,7 +33,6 @@ export const DiscoverCategory = () => {
 
 
     const handleSweetInfo = (data) => {
-        setRecentView(data)
 
         sweetsInfo(data)    
         // navigate('/sweets-info')

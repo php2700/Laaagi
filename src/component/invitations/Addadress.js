@@ -51,7 +51,10 @@ export const Addadress = ({ open, onClose, userData }) => {
 
     if (!pincode) {
       newError.pincode = 'Pincode required';
-    } else if (!pincode.trim()) {
+    } else if (!/^[0-9]+$/.test(pincode)) {
+      newError.pincode = 'Only number allowed';
+    }
+    else if (!pincode.trim()) {
       newError.pincode = 'Can Not Be Empty';
     }
 
@@ -61,6 +64,8 @@ export const Addadress = ({ open, onClose, userData }) => {
       newError.googleAddress = 'Both address fields cannot be empty.';
     } else if (address && address.trim().length < 3) {
       newError.address = 'Address must be at least 3 characters long.';
+    } else if (!/^[a-zA-Z\s0-9]+$/.test(address)) {
+      newError.address = 'Not Allowed special character';
     }
 
     setError(newError);
@@ -122,7 +127,8 @@ export const Addadress = ({ open, onClose, userData }) => {
               setError(prev => ({ ...prev, googleAddress: '', address: '' }));
             }}
           />
-          {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
+          {error.address && <div style={{ color: 'red' }}>{error.address}</div>}
+
 
           <input
             type="text"
@@ -135,7 +141,7 @@ export const Addadress = ({ open, onClose, userData }) => {
               setError(prev => ({ ...prev, address: '', googleAddress: '' }));
             }}
           />
-          {error.address && <div style={{ color: 'red' }}>{error.address}</div>}
+          {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
 
           <button type="submit" className="modal-submit-button">
             Submit

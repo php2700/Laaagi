@@ -10,9 +10,26 @@ import instIcon from '../../assets/icon/insta.png'
 import twittericon from '../../assets/icon/twitter.png'
 import facebook from "../../assets/icon/face.png"
 import linked from "../../assets/icon/linked.png"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Footer = () => {
+
+    const navigate = useNavigate();
+    const handleAbout = () => {
+        const currentPath = window.location.pathname;
+        localStorage.setItem("scrollToAbout", "true");
+        if (currentPath === "/") {
+            window.dispatchEvent(new Event("scrollToAbout"));
+        } else {
+            navigate("/");
+        }
+    };
+
+
+    const scrolltop=()=>{
+         window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     return (
         <div>
             <div className='whole-footer'>
@@ -45,15 +62,16 @@ export const Footer = () => {
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Account</div>
-                        <div className='footer-left-middle-text'><Link to='/sweets'>Sweets</Link></div>
-                        <div className='footer-left-middle-text'> <Link to='/invitation'>Invitation</Link></div>
-                        <div className='footer-left-middle-text'><Link to='/decorations'>Decoration</Link></div>
-                        <div className='footer-left-middle-text'><Link to='/planning-tool'>Planning Tool</Link></div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop}  to='/sweets'>Sweets</Link></div>
+                        <div className='footer-left-middle-text'> <Link onClick={scrolltop} to='/invitation'>Invitation</Link></div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/decorations'>Decoration</Link></div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/planning-tool'>Planning Tool</Link></div>
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Useful links</div>
-                        <div className='footer-left-middle-text'><Link to="/#about-us" >About Us</Link></div>
-                        <div className='footer-left-middle-text'><Link to='/contact-us'>Contact</Link></div>
+                        <div className='footer-left-middle-text'><div className='handle-about' onClick={handleAbout} >About Us</div></div>
+
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/contact-us'>Contact</Link></div>
                         <div className='footer-left-middle-text'>Promotions</div>
                     </div>
                     <div className='footer-left-middle'>
@@ -75,7 +93,7 @@ export const Footer = () => {
                     </div>
                     <div className='footer-right-icon'>
                         <div className='footer-right-img-icon' ><a target='_blank' rel='noopener noreferrer' href='https://www.facebook.com/'><img src={facebook} /></a></div>
-                        <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/'><img src={linked} /></a></div>
+                        <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://in.linkedin.com/'><img src={linked} /></a></div>
                         <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://www.twitter.com/'><img src={twittericon} /></a></div>
                         <div className='footer-right-img-icon'><a target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/'><img src={instIcon} /></a></div>
                     </div>

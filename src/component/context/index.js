@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +15,6 @@ export const AuthProvider = ({ children }) => {
     const [headerUpdate, setHeaderUpdate] = useState(false)
     const [sweetsInfo, setSweetsInfo] = useState({})
     const [storeUserData, setStoreUserData] = useState({});
-    const [recentView, setRecentView] = useState({});
     const [paymentHistory, setPaymentHistory] = useState([])
     const [totalAmountInv, setTotalAmountInv] = useState(0)
 
@@ -40,27 +40,7 @@ export const AuthProvider = ({ children }) => {
 
     };
 
-    const RecentView = (recentView) => {
-        if (!recentView?.image) return;
-        let getItem = JSON.parse(localStorage.getItem("recentView")) || [];
-        getItem = getItem.filter((v) => v.image !== recentView.image);
-        getItem.unshift(recentView);
-        if (getItem?.length > 4) getItem.pop();
-        localStorage.setItem("recentView", JSON.stringify(getItem));
-    };
-
-    useEffect(() => {
-        if (recentView) {
-            let newRecent = {
-                _id: recentView._id, name: recentView?.name, image: recentView?.image,
-                price: recentView?.price ?? null,
-                isSweet: recentView?.isSweet ?? null
-            }
-            RecentView(newRecent)
-        }
-    }, [recentView])
-
     return (
-        <AuthContext.Provider value={{ totalAmountInv, setTotalAmountInv, setPaymentHistory, paymentHistory, setRecentView, recentView, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ totalAmountInv, setTotalAmountInv, setPaymentHistory, paymentHistory, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
     )
 }

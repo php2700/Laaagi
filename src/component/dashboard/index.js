@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom"
 import { About } from "../about"
 import { Ads } from "../ads"
 import { Banner } from "../banner"
@@ -10,21 +11,50 @@ import { Recent_view } from "../Recent_view"
 import { Review } from "../review"
 import { Shop } from "../shop"
 import { WeddingSpecial } from "../wedding_special"
-// import {guestList} from '../../utils/guestList'
-// import GuestList from "../GuestList"
+import { useEffect, useRef } from "react"
 
 export const Dashboard = () => {
+const token=localStorage.getItem('token') ;
+
+  const aboutRef = useRef(null);
+  useEffect(() => {
+    const scrollToAbout = () => {
+      const shouldScroll = localStorage.getItem("scrollToAbout");
+
+      if (shouldScroll === "true") {
+        console.log(aboutRef.current, "aboutRef.current")
+        const checkAndScroll = () => {
+          if (aboutRef.current) {
+            aboutRef.current.scrollIntoView({ behavior: "smooth" });
+            localStorage.removeItem("scrollToAbout");
+          } else {
+            setTimeout(checkAndScroll, 100);
+          }
+        };
+        setTimeout(checkAndScroll, 300);
+      }
+    };
+
+    scrollToAbout();
+    window.addEventListener("scrollToAbout", scrollToAbout);
+
+    return () => {
+      window.removeEventListener("scrollToAbout", scrollToAbout);
+    };
+  }, []);
+
+
   return (
     <>
       <Banner />
       <WeddingSpecial />
       <Dry_Fruit_Treat />
       <Best_seller />
-      <Recent_view />
+      {token && <Recent_view />}
       <DiscoverCategory />
       <InvitationBox />
       <Ads />
-      <About />
+      <About ref={aboutRef} />
       <Review />
       <Shop />
       {/* <GuestList/> */}

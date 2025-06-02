@@ -17,6 +17,20 @@ function GuestRow({ guestList, guestListData }) {
     setOpenDelete(false)
   }
 
+  const sentRequest = (guest) => {
+    try {
+      if (guest?.mobile) {
+        const linkWithToken = `${process.env.REACT_APP_URL}update-address-person?mobile=${guest?.mobile}`;
+        const message = `Hi please share your address for the invitation : ${linkWithToken}`;
+        const encodedMsg = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/91${guest?.mobile}?text=${encodedMsg}`;
+        window.open(whatsappUrl, '_blank');
+      }
+    } catch (error) {
+      console.log(error, "fffffff")
+    }
+  }
+
   return (
     <>
       {guestListData?.map((guest, index) => (
@@ -24,7 +38,7 @@ function GuestRow({ guestList, guestListData }) {
           <td>{index + 1}</td>
           <td>{guest.name}</td>
           <td>{!guest.address ? (
-            <button className="sent-request-button">Sent Request</button>
+            <button className="sent-request-button" onClick={() => sentRequest(guest)} >Sent Request</button>
           ) : (guest?.address)}</td>
           <td>
             {guest.guestNo}
