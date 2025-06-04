@@ -43,6 +43,13 @@
     display: flex;
     flex-direction: column;
   }
+  .shop-desc {
+    text-align: center;
+  }
+  .shop-img {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -58,5 +65,10 @@
   .shop-img {
     flex-direction: column;
     gap: 10px;
+  }
+  .shop-header {
+    color: #253d4e;
+    font-weight: 700;
+    font-size: 49px;
   }
 }

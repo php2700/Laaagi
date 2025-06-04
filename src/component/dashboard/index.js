@@ -14,7 +14,7 @@ import { WeddingSpecial } from "../wedding_special"
 import { useEffect, useRef } from "react"
 
 export const Dashboard = () => {
-const token=localStorage.getItem('token') ;
+  const token = localStorage.getItem('token');
 
   const aboutRef = useRef(null);
   useEffect(() => {

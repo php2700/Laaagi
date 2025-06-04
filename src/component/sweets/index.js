@@ -137,12 +137,14 @@ export const Sweets = () => {
                 <div className='sweets-header'>
                     {isMobile ? (
                         <>
-                            {startIndex > 0 && (
+                            {/* {startIndex > 0 && (
                                 <div onClick={handlePrev} className='sweets-header-arrow'>
                                     <img src={leftIcon} alt="Previous categories" />
                                 </div>
-                            )}
-                            {sweetsHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => (
+                            )} */}
+                            {/* {sweetsHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => ( */}
+                            {sweetsHeader?.map((ele) => (
+
                                 <div
                                     key={ele.id}
                                     className={`sweets-header-item ${ele.category === category ? 'active-url' : ''}`}
@@ -169,11 +171,14 @@ export const Sweets = () => {
                                         <div className='sweets-name'>{ele?.name}</div>
                                         <div className='sweets-price'>{ele?.amount} </div>
                                     </Link> */}
-                            {(lastIndex < (sweetsHeader?.length || 0) - 1) && (
+
+
+
+                            {/* {(lastIndex < (sweetsHeader?.length || 0) - 1) && (
                                 <div onClick={handleForwardIcon} className='sweets-header-arrow'>
                                     <img src={rightIcon} alt="Next categories" />
                                 </div>
-                            )}
+                            )} */}
                         </>
                     ) : (
                         <>

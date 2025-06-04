@@ -18,7 +18,7 @@
   width: 30%;
 }
 .about-video-section {
-  width: 30%;
+  width: 25%;
 }
 .about-heading {
   font-size: 30px;
@@ -42,38 +42,58 @@
   font-weight: 400;
 }
 .about-video {
-  min-height: 340px;
-  max-width: 552px;
+  width: 100%;
 }
 
 @media (max-width: 850px) {
+  .about-us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 70%;
+  }
   .about {
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding: 0 50px;
   }
-  .about-video {
-    width: 100%;
+  .about-video-section {
+    width: 80%;
+    text-align: center;
   }
 }
 
 @media (max-width: 720px) {
-  .about-video {
-    width: 100%;
-    max-width: 552px;
+  .about-us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+  .about-video-section {
+    width: 80%;
+    text-align: center;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+  .about-us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
   .about {
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding: 0 50px;
   }
-  .about-video {
+  .about-video-section {
     width: 100%;
-    max-width: 552px;
   }
 }

@@ -63,8 +63,8 @@ export const PaymentHistory = () => {
                         <tr>
                             <th>'#'</th>
                             <th>ORDERID</th>
-                            <th>TITLE</th>
-                            <th>WEIHGT</th>
+                            <th >TITLE</th>
+                            <th >WEIHGT</th>
                             <th>AMOUNT</th>
                             <th>PAYMENT_DATE</th>
                             <th>VIEW</th>
@@ -78,9 +78,8 @@ export const PaymentHistory = () => {
                                 <tr key={payment._id || index}>
                                     <td>{index + 1}</td>
                                     <td>{payment?.razorpay_order_id}</td>
-                                    <td>{payment?.invitationName || payment?.sweet}</td>
-                                    {/* <td>{(payment.weight)g || (payment?.quantity)kg}</td> */}
-                                    <td>
+                                    <td >{payment?.invitationName || payment?.sweet}</td>
+                                    <td >
                                         {payment.weight ? `${payment.weight} g` : payment.quantity ? `${payment.quantity} kg` : ''}
                                     </td>
 

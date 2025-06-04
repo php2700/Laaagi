@@ -20,7 +20,6 @@
 .dry-fruit-treat-img-list {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 35px;
   position: relative;
 }
@@ -80,22 +79,23 @@
 .dry-fruit-treat-img:hover {
   border: 2px solid #777;
 }
+@media(max-width:1000px){
+  .dry-fruit-treat-img-text {
+    margin: 22px 0;
+    text-align: center;
+}
+}
 
 @media (max-width: 850px) {
   .dry-fruit-treat {
     padding: 10px 30px !important;
   }
-  .dry-fruit-treat-img {
+  /* .dry-fruit-treat-img {
     height: 350px;
-  }
+  } */
 }
 
-@media (max-width: 720px) {
-  .dry-fruit-treat-img {
-    height: 350px;
-  }
-}
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .dry-fruit-treat-img-list {
     gap: 25x;
   }

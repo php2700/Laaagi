@@ -5,17 +5,18 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #f4f4f4;
+  padding: 25px;
 }
 
 .upload-design-form-content {
-    background-color: #fff;
-    padding: 25px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px; /* फॉर्म की अधिकतम चौड़ाई */
-    box-sizing: border-box;
-    margin: 0 auto; /* केंद्र में संरेखित करें */
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .upload-design-form-content h2 {
@@ -26,9 +27,7 @@
   font-size: 1.8em;
 }
 
-/* हैडर में शीर्षक और क्लोज बटन को संरेखित करने के लिए */
 .upload-design-form-content .header-container {
-  /* यदि आपने JSX में div.header-container जोड़ा है */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,18 +81,18 @@
 }
 
 .form-group input[type="file"] {
-  padding: 8px; /* फ़ाइल इनपुट के लिए थोड़ी अलग पैडिंग */
+  padding: 8px;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #007bff; /* फोकस पर बॉर्डर का रंग */
-  outline: none; /* डिफ़ॉल्ट आउटलाइन हटाएं */
+  border-color: #007bff;
+  outline: none;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .form-group textarea {
-  resize: vertical; /* केवल वर्टिकल रूप से आकार बदलने की अनुमति दें */
+  resize: vertical;
   min-height: 80px;
 }
 
@@ -106,7 +105,7 @@
   cursor: pointer;
   font-size: 1.1em;
   font-weight: 600;
-  width: 100%; /* बटन को पूरी चौड़ाई दें */
+  width: 100%;
   transition: background-color 0.3s ease;
 }
 
@@ -119,7 +118,6 @@
   cursor: not-allowed;
 }
 
-/* संदेशों के लिए स्टाइलिंग */
 .message {
   margin-top: 20px;
   padding: 12px;
@@ -140,10 +138,9 @@
   border: 1px solid #f5c6cb;
 }
 
-/* मोबाइल उपकरणों के लिए उत्तरदायी डिजाइन */
 @media (max-width: 768px) {
   .upload-design-form-content {
-    margin: 20px; /* मोबाइल पर किनारों से थोड़ा मार्जिन */
+    margin: 20px;
     padding: 20px;
   }
 
@@ -162,18 +159,52 @@
   margin-top: 4px;
 }
 .error {
-    color: red;
-    font-size: 0.85rem;
-    margin-top: 5px;
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 5px;
 }
 
 .message.success {
-    color: green;
-    margin-top: 10px;
+  color: green;
+  margin-top: 10px;
 }
 
 .message.error {
-    color: red;
-    margin-top: 10px;
+  color: red;
+  margin-top: 10px;
 }
 
+@media (max-width: 1000px) {
+  .upload-design-page-container {
+    width: 40%;
+  }
+}
+
+@media (max-width: 850px) {
+  .upload-design-page-container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .upload-design-page-container {
+    width: 60%;
+  }
+}
+@media (max-width: 700px) {
+  .upload-design-page-container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 600px) {
+  .upload-design-page-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .upload-design-page-container {
+    width: 95%;
+  }
+}

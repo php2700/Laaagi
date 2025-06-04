@@ -49,6 +49,8 @@ import { ViewSweetHistory } from './component/sweets/sweet-history';
 import { BestSeller } from './component/Best_seller/list';
 
 function App() {
+
+  /*------------------------- this is the private route -------------------*/
   const PrivateRoute = ({ children }) => {
     const content = useContext(AuthContext)
     const token = content?.token || localStorage.getItem('token')

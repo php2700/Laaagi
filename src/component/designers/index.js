@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
-import rightIcon from "../../assets/icon/li_arrow-right.png"
-import leftIcon from "../../assets/icon/left_arrow-right.png"
 
 import './index.css'
-import { Link } from 'react-router-dom';
-import { designerCategory } from '../category';
 import axios from 'axios';
 import { Model } from './Model';
 
@@ -13,7 +9,6 @@ const designerHeader = [
     { name: 'Groom', category: 'Groom' },
     { name: 'Suits', category: 'Suits' },
     { name: 'Other', category: 'Other' },
-
 ]
 
 export const Designers = () => {
@@ -21,26 +16,8 @@ export const Designers = () => {
     const [open, setOpen] = useState(false)
     const [imgData, setImgData] = useState();
     const [data, setData] = useState([])
-    const [startIndex, setStartIndex] = useState(0)
-    const [lastIndex, setLastIndex] = useState(2)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
 
-    const handleForwardIcon = () => {
-        const totalItems = designerHeader?.length || 0;
-        const nextStart = lastIndex + 1;
-        const nextLast = lastIndex + 3;
-        if (nextStart < totalItems) {
-            setStartIndex(nextStart);
-            setLastIndex(Math.min(nextLast, totalItems - 1));
-        }
-    }
-
-    const handlePrev = () => {
-        const prevStart = Math.max(0, startIndex - 3);
-        const prevLast = Math.max(2, startIndex - 1);
-        setStartIndex(prevStart);
-        setLastIndex(prevLast);
-    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -86,15 +63,16 @@ export const Designers = () => {
                 {
                     isMobile ?
                         <>
-                            {startIndex > 0 &&
+                            {/* {startIndex > 0 &&
                                 <div onClick={handlePrev}><img src={leftIcon} /></div>
-                            }
-                            {designerHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => (
-                                <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            } */}
+                            {/* {designerHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => ( */}
+                            {designerHeader?.map((ele) => (
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
-                            {(lastIndex < (designerHeader?.length || 0) - 1) &&
+                            {/* {(lastIndex < (designerHeader?.length || 0) - 1) &&
                                 <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
-                            }
+                            } */}
                         </> :
                         <>
                             {designerHeader?.map((ele) => (

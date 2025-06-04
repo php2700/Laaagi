@@ -30,7 +30,7 @@ export const Invitation = () => {
     const [data, setData] = useState([])
     const [startIndex, setStartIndex] = useState(0)
     const [lastIndex, setLastIndex] = useState(1)
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
     const [menuOpen, setMenuOpen] = useState(false)
     const [category, setCategory] = useState('Invitation')
 
@@ -62,7 +62,7 @@ export const Invitation = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            const mobileCheck = window.innerWidth <= 500;
+            const mobileCheck = window.innerWidth <= 600;
             setIsMobile(mobileCheck);
             setMenuOpen(!mobileCheck);
         };
@@ -85,7 +85,7 @@ export const Invitation = () => {
             .then((res) => {
                 setData(res?.data?.invitationData || []);
             }).catch((error) => {
-                console.error("Error fetching invitation list:", error); // Log errors
+                console.error("Error fetching invitation list:", error);
                 setData([]);
             });
     };
@@ -114,16 +114,16 @@ export const Invitation = () => {
                 {
                     isMobile ?
                         <>
-                            {startIndex > 0 &&
+                            {/* {startIndex > 0 &&
                                 <div onClick={handlePrev}><img src={leftIcon} /></div>
-                            }
-                            {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => (
-                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
+                            } */}
+                            {/* {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => ( */}
+                            {invitationHeader?.map((ele) => (
                                 <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
-                            {(lastIndex < (invitationHeader?.length || 0) - 1) &&
+                            {/* {(lastIndex < (invitationHeader?.length || 0) - 1) &&
                                 <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
-                            }
+                            } */}
                         </> :
                         <>
                             {invitationHeader?.map((ele) => (
@@ -153,20 +153,24 @@ export const Invitation = () => {
                 </div>
                 <div className='invitations-content-header'>
                     < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</Link>
-                    <div className='invitation-content-list'>
-                        {
-                            data?.map((ele) => (
-                                <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
-                                    <div className='invitation-content-main-img'>
-                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                    {data?.length > 0 ?
+                        <div className='invitation-content-list'>
+                            {
+                                data?.map((ele) => (
+                                    <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
+                                        <div className='invitation-content-main-img'>
+                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        </div>
+                                        <div className='invitation-content-img-name' >
+                                            <div >{ele?.name}</div>
+                                            <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
+                                        </div>
                                     </div>
-                                    <div className='invitation-content-img-name' >
-                                        <div >{ele?.name}</div>
-                                        <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
+                                ))}
+                        </div>
+                        :
+                        <div className='record-not-found'>No Data</div>
+                    }
                 </div>
             </div>
         </div>
