@@ -80,6 +80,10 @@
 }
 
 @media (max-width: 600px) {
+  .about-heading {
+    font-size: 28px;
+    font-weight: 600;
+  }
   .about-us {
     display: flex;
     flex-direction: column;

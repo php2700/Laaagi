@@ -169,7 +169,7 @@ export const SignUp = () => {
         // if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
         //     navigate(`${secondLastURL}`)
         // } else {
-            navigate(`${lastURL}`)
+        navigate(`${lastURL}`)
         // }
 
     }

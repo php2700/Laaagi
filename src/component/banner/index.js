@@ -37,8 +37,6 @@ export const Banner = () => {
                     <img
                         style={{
                             width: '100%',
-                            // height: 'auto',
-                            // maxHeight: '466px',
                             aspectRatio: 16 / 4
                         }}
                         alt="Banner" src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`} />

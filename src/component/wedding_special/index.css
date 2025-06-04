@@ -111,6 +111,10 @@
 }
 
 @media (max-width: 600px) {
+  .wedding-left-text {
+    font-weight: 600;
+    font-size: 26px;
+  }
   .wedding-img-list {
     flex-direction: column;
     gap: 20px;
