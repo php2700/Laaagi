@@ -52,6 +52,10 @@
 }
 
 @media (max-width: 600px) {
+  .invitation-box-left-text {
+    font-weight: 600;
+    font-size: 26px;
+}
   .invitation-box-wrapper {
     width: 100%;
   }

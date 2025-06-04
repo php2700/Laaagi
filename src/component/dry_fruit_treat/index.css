@@ -96,6 +96,10 @@
 }
 
 @media (max-width: 600px) {
+  .dry-fruit-treat-left-text {
+    font-weight: 600;
+    font-size: 26px;
+}
   .dry-fruit-treat-img-list {
     gap: 25x;
   }

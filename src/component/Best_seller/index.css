@@ -137,6 +137,10 @@
 }
 
 @media (max-width: 600px) {
+  .best-seller-left-text {
+    font-weight: 600;
+    font-size: 26px;
+  }
   .best-seller-wrapper {
     width: 100%;
   }

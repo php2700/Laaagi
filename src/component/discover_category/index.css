@@ -59,6 +59,13 @@
 }
 
 @media (max-width: 600px) {
+  .discover-category-heading {
+    font-size: 30px;
+  }
+  .discover-category-left-text {
+    font-weight: 600;
+    font-size: 26px;
+}
   .discover-category-wrapper {
     width: 100%;
   }
