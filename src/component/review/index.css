@@ -37,6 +37,14 @@
   gap: 10px;
   justify-content: center;
 }
+@media (max-width: 1000px) {
+  .review {
+    padding: 12px 18px;
+  }
+  .review-list {
+    width: 70%;
+  }
+}
 
 @media (max-width: 850px) {
   .review {
@@ -52,6 +60,6 @@
     padding: 12px 20px;
   }
   .review-list {
-    width: 60%;
+    width: 71%;
   }
 }

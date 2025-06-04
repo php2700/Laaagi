@@ -29,8 +29,7 @@ export const Payment = ({ amount, guest, userId }) => {
     const setPaymentHistory = context?.setPaymentHistory;
     const boxName = context?.boxName;
     const boxweight = useSelector((state) => state?.weight?.value);
-    const amounts = context?.amounts;
-    
+    const amounts = context?.amounts; 
     useEffect(() => {
         handlePayment();
     }, []);

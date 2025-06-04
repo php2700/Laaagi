@@ -11,7 +11,20 @@
     z-index: 999;
   }
   
-  .model {
+  .des-model {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    gap: 15px;
+    background-color: white;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+  }
+
+    .model {
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -151,11 +151,11 @@ export const PlanningTool = () => {
                     </div>
                     <div className='plannig-category'>
                         {isMobile ? (<>
-                            {startIndex > 0 &&
+                            {/* {startIndex > 0 &&
                                 <div onClick={handlePrev} className='planning-arrow'><img className='planning-left-arrow' src={leftIcon} alt="Previous" /></div>
-                            }
+                            } */}
                             {
-                                planningCategory?.slice(startIndex, lastIndex + 1)?.map((ele) => (
+                                planningCategory?.map((ele) => (
                                     <div
                                         key={ele.name}
                                         onClick={() => handleUrl(ele)}
@@ -165,9 +165,9 @@ export const PlanningTool = () => {
                                     </div>
                                 ))
                             }
-                            {(lastIndex < (planningCategory?.length || 0) - 1) &&
+                            {/* {(lastIndex < (planningCategory?.length || 0) - 1) &&
                                 <div onClick={handleForwardIcon} className='planning-arrow'><img src={rightIcon} alt="Next" /></div>
-                            }
+                            } */}
                         </>) : (<>
                             {
                                 planningCategory?.map((ele) => (

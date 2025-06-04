@@ -110,8 +110,8 @@ export const Invitationhome = () => {
   }
 
 
-  const getInvitationData = () => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${_id}`).then((res) => {
+  const getInvitationData = async () => {
+    await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${_id}`).then((res) => {
       serPrice(res?.data?.invitation?.price)
       setinvitationId(res?.data?.invitation?._id)
       setInvitation(res?.data?.invitation)
@@ -127,7 +127,7 @@ export const Invitationhome = () => {
   }, [_id])
 
   useEffect(() => {
-    if (!userId) return
+    if (!userId || !invitation?._id) return
 
     const recentData = {
       userId: userId,
@@ -440,9 +440,9 @@ export const Invitationhome = () => {
       <div className='invitation-select-sweet-box-list'>
         <div className='invitation-box-select-header'>
           <div >Sections</div>
-          <div>Sweets</div>
-          <div>SweetName</div>
-          <div>Price</div>
+          <div className='invitation-names'>Image</div>
+          <div >Sweets</div>
+          <div className='invitation-names'>Price</div>
         </div>
         {id == 1 ?
           normalBox?.map((ele, index) => {
@@ -450,7 +450,7 @@ export const Invitationhome = () => {
             return (
               <div className='invitation-select-arrow'>
                 <div className='invitation-section-align'>
-                  <div><img src={ele?.sectionImg} /></div>
+                  <div className='show-selection'><img src={ele?.sectionImg} /></div>
                   <div><img src={ele?.arrow} /></div>
                   <div>
                     <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
@@ -458,8 +458,8 @@ export const Invitationhome = () => {
                     </Link>
                     {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
                   </div>
-                  <div> {data ? data?.name : <span>Sweet Name</span>}</div>
                 </div>
+                <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
                 <div className='invitation-select-box-sweet-price'>  {
                   (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                     ? (amounts[index] ?? 0)
@@ -474,7 +474,7 @@ export const Invitationhome = () => {
               return (
                 <div className='invitation-select-arrow'>
                   <div className='invitation-section-align'>
-                    <div><img src={ele?.sectionImg} /></div>
+                    <div className='show-selection'><img src={ele?.sectionImg} /></div>
                     <div><img src={ele?.arrow} /></div>
                     <div>
                       <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
@@ -482,10 +482,8 @@ export const Invitationhome = () => {
                       </Link>
                       {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
                     </div>
-                    <div> {data ? data?.name : <span>Sweet Name</span>}</div>
                   </div>
-
-
+                  <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
                   <div className='invitation-select-box-sweet-price'>  {
                     (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                       ? (amounts[index] ?? 0)
@@ -500,7 +498,7 @@ export const Invitationhome = () => {
                 return (
                   <div className='invitation-select-arrow'>
                     <div className='invitation-section-align'>
-                      <div><img src={ele?.sectionImg} /></div>
+                      <div className='show-selection'><img src={ele?.sectionImg} /></div>
                       <div><img src={ele?.arrow} /></div>
                       <div>
                         <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
@@ -509,10 +507,10 @@ export const Invitationhome = () => {
                         </Link>
                         {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
                       </div>
-                      <div> {data ? data?.name : <span>Sweet Name</span>}</div>
 
                     </div>
 
+                    <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
 
                     <div className='invitation-select-box-sweet-price'>  {
                       (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
@@ -528,7 +526,7 @@ export const Invitationhome = () => {
                 return (
                   <div className='invitation-select-arrow'>
                     <div className='invitation-section-align'>
-                      <div><img src={ele?.sectionImg} /></div>
+                      <div className='show-selection'><img src={ele?.sectionImg} /></div>
                       <div><img src={ele?.arrow} /></div>
                       <div>
                         <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
@@ -536,8 +534,9 @@ export const Invitationhome = () => {
                         </Link>
                         {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
                       </div>
-                      <div> {data ? data?.name : <span>Sweet Name</span>}</div>
                     </div>
+                    <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+
                     <div className='invitation-select-box-sweet-price'>  {
                       (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                         ? (amounts[index] ?? 0)

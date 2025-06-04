@@ -60,6 +60,7 @@ table {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  gap: 10px;
 }
 
 th,
@@ -224,19 +225,21 @@ input[type="checkbox"] {
   height: 16px;
 }
 
-.payment-back{
+.payment-back {
   margin: 12px;
   cursor: pointer;
 }
-@media (max-width: 850px) {
+
+@media (max-width: 1000px) {
   .guest-list-container {
-    width: 80%;
+    width: 95%;
   }
 }
 
 @media (max-width: 720px) {
   .guest-list-container {
     width: 95%;
+    overflow-x: auto;
   }
   th,
   td {
@@ -251,10 +254,18 @@ input[type="checkbox"] {
   }
   .guest-list-container {
     width: 100%;
+    overflow-x: auto;
+  }
+  .guest-list-header {
+    gap: 10px;
+  }
+
+   .add-guest-button {
+    white-space: nowrap;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 460px) {
   th,
   td {
     padding: 12px 6px;
@@ -263,31 +274,32 @@ input[type="checkbox"] {
   .search-input {
     min-width: 200px;
   }
+
+  .guest-list-header {
+    gap: 10px;
+  }
+
+  .add-guest-button {
+    white-space: nowrap;
+  }
 }
 
 .nav-button.active-nav-button {
-  background-color: #FFD700;
-  color: #1D1A1A; 
+  background-color: #ffd700;
+  color: #1d1a1a;
   font-weight: bold;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* .add-guest-nav {
-  display: flex;
-  justify-content: center; 
-  gap: 15px; 
-  padding: 10px 0;
-  background-color: #f0f0f0;
-} */
 .nav-button {
   padding: 10px 20px;
   text-decoration: none;
-  color: #FFD700; 
-  background-color: #800000; 
+  color: #ffd700;
+  background-color: #800000;
   border: 1px solid #ccc;
   font-weight: 500;
   border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease; 
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 table {
   width: 100%;
@@ -295,16 +307,19 @@ table {
   text-align: center;
 }
 
-th, td {
+th,
+td {
   padding: 12px 10px;
   vertical-align: middle;
 }
 
-th:nth-child(2), td:nth-child(2) { 
+th:nth-child(2),
+td:nth-child(2) {
   text-align: left;
 }
 
-th:nth-child(5), td:nth-child(5) { 
+th:nth-child(5),
+td:nth-child(5) {
   text-align: left;
 }
 table {
@@ -313,27 +328,28 @@ table {
   text-align: center;
 }
 
-.ths, #tds {
+.ths,
+#tds {
   padding: 12px 10px;
   vertical-align: middle;
 }
 
-.ths:nth-child(2), .tds:nth-child(2) {
+.ths:nth-child(2),
+.tds:nth-child(2) {
   text-align: left;
   padding-left: 20px;
-  min-width: 150px; 
+  min-width: 150px;
 }
 
-.ths:nth-child(3), .tds:nth-child(3) {
+.ths:nth-child(3),
+.tds:nth-child(3) {
   text-align: left;
-  padding-left: 30px;  
-  min-width: 180px;     
+  padding-left: 30px;
+  min-width: 180px;
 }
 
-.ths:nth-child(5), .tds:nth-child(5) {
+.ths:nth-child(5),
+.tds:nth-child(5) {
   text-align: left;
   padding-left: 20px;
 }
-
-
-

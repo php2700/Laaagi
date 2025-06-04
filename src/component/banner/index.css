@@ -13,3 +13,21 @@
   gap: 10px;
   justify-content: center;
 }
+
+@media (max-width: 1000px) {
+  .icon-wrapper {
+    bottom: 40px;
+  }
+}
+
+@media (max-width: 850px) {
+  .icon-wrapper {
+    bottom: 35px;
+  }
+}
+
+@media (max-width: 500px) {
+  .icon-wrapper {
+    bottom: 15px;
+  }
+}

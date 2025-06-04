@@ -190,28 +190,25 @@ export const ViewHistory = () => {
                 <div className='invitation-box-select-header'>
                     <div >Sections</div>
                     <div>Sweets</div>
-                    <div>Sweets Name</div>
-                    <div>Price</div>
+                    <div className='section-sweet-name'>Sweets Name</div>
+                    <div className='section-sweet-name'>Price</div>
                 </div>
                 {invitation.boxName == 'Normal Box' ?
                     normalBox?.map((ele, index) => (
                         <div className='invitation-select-arrow'>
-                            <div className='invitation-section-align'>
-                                <div><img src={ele?.sectionImg} /></div>
+                            <div className='invitation-sections-align'>
+                                <div className='section-images'><img src={ele?.sectionImg} /></div>
                                 <div><img src={ele?.arrow} /></div>
                                 <div>
                                     {invitation?.sweets?.map((ele) => {
                                         if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
                                     })}
                                 </div>
-                                <div>
-                                    {invitation?.sweets?.map((ele) => {
-                                        if (ele.index == index) return <div>{ele?.name}</div>
-                                    })}
-                                </div>
+
                             </div>
-
-
+                            {invitation?.sweets?.map((ele) => {
+                                if (ele.index == index) return <div className='name-sweet'>{ele?.name}</div>
+                            })}
                             <div className='invitation-select-box-sweet-price'>  {
                                 (amounts[index] ?? 0)
                             }
@@ -221,20 +218,21 @@ export const ViewHistory = () => {
                     )) : (invitation?.boxName == '4 Section in box') ?
                         sectionBox4?.map((ele, index) => (
                             <div className='invitation-select-arrow'>
-                                <div className='invitation-section-align'>
-                                    <div><img src={ele?.sectionImg} /></div>
+                                <div className='invitation-sections-align'>
+                                    <div className='section-images'><img src={ele?.sectionImg} /></div>
                                     <div><img src={ele?.arrow} /></div>
                                     <div>
                                         {invitation?.sweets?.map((ele) => {
                                             if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
                                         })}
                                     </div>
-                                    <div>
-                                        {invitation?.sweets?.map((ele) => {
-                                            if (ele.index == index) return <div>{ele?.name}</div>
-                                        })}
-                                    </div>
+
                                 </div>
+                                {/* <div> */}
+                                {invitation?.sweets?.map((ele) => {
+                                    if (ele.index == index) return <div className='name-sweet'>{ele?.name}</div>
+                                })}
+                                {/* </div> */}
                                 <div className='invitation-select-box-sweet-price'>
                                     {amounts[index] ?? 0}
                                 </div>
@@ -242,21 +240,19 @@ export const ViewHistory = () => {
                         )) : (invitation.boxName == '3 Section in box') ?
                             sectionBox3?.map((ele, index) => (
                                 <div className='invitation-select-arrow'>
-                                    <div className='invitation-section-align'>
-                                        <div><img src={ele?.sectionImg} /></div>
+                                    <div className='invitation-sections-align'>
+                                        <div className='section-images'><img src={ele?.sectionImg} /></div>
                                         <div><img src={ele?.arrow} /></div>
                                         <div>
                                             {invitation?.sweets?.map((ele) => {
                                                 if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
                                             })}
                                         </div>
-                                        <div>
-                                            {invitation?.sweets?.map((ele) => {
-                                                if (ele.index == index) return <div>{ele?.name}</div>
-                                            })}
-                                        </div>
-                                    </div>
 
+                                    </div>
+                                    {invitation?.sweets?.map((ele) => {
+                                        if (ele.index == index) return <div className='name-sweet'>{ele?.name}</div>
+                                    })}
 
                                     <div className='invitation-select-box-sweet-price'>  {
                                         (amounts[index] ?? 0)
@@ -267,22 +263,19 @@ export const ViewHistory = () => {
                             )) :
                             specialBox?.map((ele, index) => (
                                 <div className='invitation-select-arrow'>
-                                    <div className='invitation-section-align'>
-                                        <div><img src={ele?.sectionImg} /></div>
+                                    <div className='invitation-sections-align'>
+                                        <div className='section-images'><img src={ele?.sectionImg} /></div>
                                         <div><img src={ele?.arrow} /></div>
                                         <div>
                                             {invitation?.sweets?.map((ele) => {
                                                 if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
                                             })}
                                         </div>
-                                        <div>
-                                            {invitation?.sweets?.map((ele) => {
-                                                if (ele.index == index) return <div>{ele?.name}</div>
-                                            })}
-                                        </div>
+
                                     </div>
-
-
+                                    {invitation?.sweets?.map((ele) => {
+                                        if (ele.index == index) return <div className='name-sweet'>{ele?.name}</div>
+                                    })}
                                     <div className='invitation-select-box-sweet-price'>  {
                                         (amounts[index] ?? 0)
 
@@ -298,11 +291,11 @@ export const ViewHistory = () => {
                     <thead>
                         <tr>
                             <th style={{ width: '20%' }}>GUEST </th>
-                            <th >Address </th>
-                            <th>WEIHGT</th>
-                            <th>pincode</th>
-                            <th>PAYMENT_DATE</th>
-                            <th >Box-Quantity </th>
+                            <th className='width-cls' >Address </th>
+                            <th className='width-cls'>WEIHGT</th>
+                            <th className='width-cls'>pincode</th>
+                            <th className='width-cls'>PAYMENT DATE</th>
+                            <th className='align-left'>Box Quantity </th>
                         </tr>
                     </thead>
                     <tbody>

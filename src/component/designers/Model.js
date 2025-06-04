@@ -99,7 +99,7 @@ export const Model = ({ open, onClose, data }) => {
 
     return (
         <div className="modal-overlay" onClick={handleClose}>
-            <div className='model' onClick={(e) => e.stopPropagation()}>
+            <div className='des-model' onClick={(e) => e.stopPropagation()}>
                 <div className='close-model'>
                     <button onClick={handleClose}>X</button>
                 </div>

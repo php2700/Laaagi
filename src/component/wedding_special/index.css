@@ -19,7 +19,6 @@
 }
 .wedding-img-list {
   display: flex;
-  flex-wrap: wrap;
   gap: 35px;
   align-items: center;
   position: relative;
@@ -51,7 +50,6 @@
   background-color: white;
 }
 .wedding-img {
-  /* height: 400px; */
   aspect-ratio: 4/3;
   width: 100%;
 }
@@ -69,18 +67,21 @@
   font-weight: 600;
   color: #5d4037;
   margin: 35px 0px;
-  /* position: absolute;
-  bottom: 33px; */
 }
 
 .wedding-img-container {
-  /* cursor: pointer; */
   width: 100%;
 }
 
 .wedding-img:hover {
   border: 2px solid #777;
   cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .wedding-img-text {
+    margin: 12px 0px;
+  }
 }
 
 @media (max-width: 850px) {
@@ -90,26 +91,26 @@
   .wedding-img-text {
     bottom: 15px !important;
   }
-  .wedding-img {
+  /* .wedding-img {
     height: 350px;
     width: 100%;
-  }
+  } */
 }
 
 @media (max-width: 720px) {
-  .wedding-img-text {
-    bottom: 10px !important;
-  }
   .wedding {
     padding: 10px 20px !important;
   }
-  .wedding-img {
+  .wedding-img-text {
+    margin: 8px 0px;
+  }
+  /* .wedding-img {
     height: 350px;
     width: 100%;
-  }
+  } */
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .wedding-img-list {
     flex-direction: column;
     gap: 20px;
@@ -125,13 +126,7 @@
 
   .wedding-img {
     width: 100%;
-    max-width: 432px;
     height: auto;
-  }
-
-  .wedding-img-text {
-    position: absolute;
-    bottom: 25px;
   }
 
   .wedding-img-right-icon {

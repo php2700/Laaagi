@@ -1,4 +1,94 @@
-.img-view{
+.img-view {
+  height: 80px;
+  width: 80px;
+}
+.invitation-sections-align {
+  display: flex;
+  width: 26%;
+  justify-content: space-between;
+  align-items: center;
+}
+.name-sweet {
+  width: 10%;
+}
+.width-cls {
+  width: 15%;
+}
+.align-left {
+  text-align: left;
+}
+.payment-back {
+  width: 6%;
+}
+@media (max-width: 1000px) {
+  .section-images img {
+    height: 70px;
+  }
+  .invitation-sections-align {
+    width: 42%;
+  }
+}
+
+@media (max-width: 900px) {
+  .name-sweet {
+    width: 22%;
+  }
+}
+
+@media (max-width: 750px) {
+  .payment-back {
+    width: 21%;
+  }
+  .section-images img {
+    height: 60px;
+  }
+  .img-view {
+    height: 70px;
+    width: 72px;
+  }
+}
+
+@media (max-width: 600px) {
+  .invitation-select-sweet-box-list {
+    overflow-x: auto;
+  }
+  .invitation-size-box {
+    gap: 40px;
+    flex-direction: column;
+  }
+  .invitation-box-type {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .invittion-box-detail {
+    max-width: 183px;
+    text-align: center;
+  }
+
+  .invitation-sections-align {
+    width: 72%;
+  }
+  .select-sweet-img {
     height: 80px;
-    width: 80px;
+    width: 120px;
+  }
+  .selected-img {
+    height: 80px;
+    width: 120px;
+  }
+  .name-sweet {
+    width: 64%;
+    text-align: right;
+  }
+
+  .invitation-select-box-sweet-price {
+    text-align: right;
+    width: 54%;
+  }
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  .section-sweet-name {
+    display: none;
+  }
 }

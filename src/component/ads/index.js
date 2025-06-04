@@ -7,11 +7,7 @@ import axios from "axios";
 
 
 export const Ads = () => {
-    const list = [{ id: 1, img: firstImg, banner: 'Banner1' },
-    { id: 2, img: secondImg, banner: 'Banner2' },
-    { id: 3, img: thirdImg, banner: 'Banner3' }
-    ]
-    const [adsData, setAdsData] = useState([])
+       const [adsData, setAdsData] = useState([])
 
     const adsList = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/ads_list`)
