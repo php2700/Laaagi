@@ -4,6 +4,7 @@ import { AuthContext } from "../context";
 import axios from "axios";
 import GuestRow from "./GuestRow";
 import { Addadress } from "./Addadress";
+import './guest.css'
 
 export const Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
@@ -82,11 +83,11 @@ export const Guest = () => {
                     <table>
                         <thead>
                             <tr id="trs">
-                                <th className="ths">'#'</th>
+                                <th className="ids-width">'#'</th>
                                 <th className="ths">NAME</th>
                                 <th className="ths">ADDRESS</th>
-                                <th className="ths">GUEST NUMBER</th>
-                                <th className="ths">CATEGORIES</th>
+                                <th className="guest-number">GUEST NUMBER</th>
+                                <th className="guest-category">CATEGORIES</th>
                                 <th className="ths">Action</th>
                             </tr>
                         </thead>

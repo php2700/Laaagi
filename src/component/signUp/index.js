@@ -27,7 +27,7 @@ export const SignUp = () => {
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
-            console.log(tokenResponse)
+            console.log(tokenResponse,"aaaaaaaaaaaa")
             await axios.post(`${process.env.REACT_APP_BASE_URL}api/user/google-login`, {
                 access_token: tokenResponse?.access_token
             })
@@ -40,7 +40,7 @@ export const SignUp = () => {
                 })
         },
         onError: () => {
-            console.log('Login Failed');
+            console.log('Login Failed------------------------------------');
         }
     });
 

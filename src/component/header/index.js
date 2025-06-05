@@ -3,14 +3,16 @@ import seacrh from '../../assets/logo/search.png';
 import downArrow from "../../assets/logo/down.png";
 import { useEffect, useState, useRef, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link,  NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './index.css';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { Logout } from './logout';
 import defaultImg from "../../assets/login/default-profile.png"
 
+
 export const Header = () => {
+    const searchData = ['Wedding Special', 'Dry Fruit Treats', 'Invitation Boxes']
     const navigate = useNavigate();
     const context = useContext(AuthContext);
     const userData = context?.storeUserData;
@@ -23,6 +25,8 @@ export const Header = () => {
     const dropdownRef = useRef(null);
     const [open, setOpen] = useState(false)
     const headerUpdate = context?.headerUpdate;
+    const [query, setQuery] = useState('');
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -99,6 +103,8 @@ export const Header = () => {
         navigate('/signup')
     }
 
+
+
     return (
         <div>
             <div className='topbar'>
@@ -106,8 +112,38 @@ export const Header = () => {
             </div>
             <div className='header'>
                 <div className='search'>
-                    <input type="search" placeholder="Search" />
+                    <input type="search" placeholder="Search"
+                        onFocus={() => setShowSuggestions(true)}
+                    />
                     <img src={seacrh} alt="search" />
+                    {/* {showSuggestions && searchData?.length > 0 && (
+                        <ul style={{
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            width: '100%',
+                            background: '#fff',
+                            border: '1px solid #ccc',
+                            listStyle: 'none',
+                            padding: '0',
+                            margin: '4px 0 0 0',
+                            zIndex: 1000
+                        }}>
+                            {searchData.map((item, index) => (
+                                <li
+                                    key={index}
+                                    onMouseDown={() => setQuery(item)}
+                                    style={{
+                                        padding: '8px',
+                                        cursor: 'pointer',
+                                        borderBottom: '1px solid #eee'
+                                    }}
+                                >
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    )} */}
                 </div>
                 <div className='Laaagi'>
                     <Link to='/'><img className='laaagi-img' src={laaagiLogo} alt='Laaagi' /></Link>
@@ -159,5 +195,7 @@ export const Header = () => {
                 <div><NavLink to='/contact-us' className={({ isActive }) => (isActive ? 'active-link' : '')}>Contact Us</NavLink></div>
             </div>
         </div>
+
     );
+
 };

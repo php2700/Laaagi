@@ -1,3 +1,4 @@
+/* --- Global & Container --- */
 .guest-list-container {
   font-family: sans-serif;
   border: 1px solid #e4e2e2;
@@ -94,7 +95,11 @@ td:nth-child(3) {
   font-weight: 500;
   color: #333;
 }
-
+th:nth-child(5),
+td:nth-child(5) {
+  width: 120px;
+  text-align: center;
+}
 th:last-child,
 td:last-child {
   padding-right: 20px;
@@ -328,23 +333,12 @@ table {
   padding: 12px 10px;
   vertical-align: middle;
 }
-
-.ths:nth-child(2),
-.tds:nth-child(2) {
-  text-align: left;
-  padding-left: 20px;
-  min-width: 150px;
+.ths {
+  width: 25% !important;
 }
-
-.ths:nth-child(3),
-.tds:nth-child(3) {
-  text-align: left;
-  padding-left: 30px;
-  min-width: 180px;
+.guest-number {
+  width: 15% !important;
 }
-
-.ths:nth-child(5),
-.tds:nth-child(5) {
-  text-align: left;
-  padding-left: 20px;
+.guest-category {
+  width: 20% !important;
 }

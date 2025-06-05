@@ -14,20 +14,17 @@
 
 .modal-content {
   background-color: #ffffff;
-  padding: 55px 65px;
-  border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 80px 65px;
   position: relative;
-  width: 100%;
-  max-width: 450px;
+  width: 30%;
   text-align: center;
-  box-sizing: border-box;
+  border-radius: 70px;
 }
 
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 17px;
+  right: 60px;
   background: none;
   border: none;
   font-size: 1.8rem;
@@ -71,37 +68,56 @@
 .modal-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
 }
 
 .modal-input {
-  padding: 16px 20px;
+  font-size: 20px;
+  padding: 22px 72px;
   border-radius: 25px;
-  font-size: 1rem;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
-  outline: none;
-  transition: border-color 0.2s ease-in-out;
   background: #f5f1e6;
   border-style: none;
+  text-align: center;
 }
 
 .modal-submit-button {
-  padding: 12px 20px;
+  padding: 18px 20px;
   border: none;
   border-radius: 25px;
   background-color: #ffd700;
-  color: #333;
+  color: #800000;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
+  width: 30%;
+  margin: 0 auto;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1500px) {
+  .modal-content {
+    width: 40%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .modal-content {
+    width: 60%;
+  }
+}
+
+@media (max-width: 800px) {
+  .modal-content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
   .modal-content {
     padding: 20px 25px;
+  }
+  .modal-content {
+    width: 90%;
   }
   .modal-brand-name {
     font-size: 1.8rem;
