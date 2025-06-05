@@ -127,3 +127,21 @@
 .error-msg {
   color: red;
 }
+
+@media (max-width: 600px) {
+  .model {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 93%;
+  }
+  .model-text {
+    font-size: 26px;
+    font-weight: 700;
+    color: #253d4e;
+    margin-bottom: 15px;
+  }
+}

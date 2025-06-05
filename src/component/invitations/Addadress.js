@@ -129,7 +129,7 @@ export const Addadress = ({ open, onClose, userData }) => {
           />
           {error.address && <div style={{ color: 'red' }}>{error.address}</div>}
 
-
+          <div>OR</div>
           <input
             type="text"
             className="modal-input"

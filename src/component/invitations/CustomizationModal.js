@@ -19,14 +19,14 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
   const validate = () => {
     const newError = {};
     if (!firstName?.trim())
-      newError.firstName = 'FirstName is required'
+      newError.firstName = 'FirstName is required*'
     else if (firstName?.length < 3)
-      newError.firstName = 'min 3 character required'
+      newError.firstName = 'min 3 character required*'
 
     if (!lastName?.trim())
-      newError.lastName = 'LastName is required'
+      newError.lastName = 'LastName is required*'
     else if (lastName?.length < 3)
-      newError.lastName = 'min 3 character required'
+      newError.lastName = 'min 3 character required*'
 
     if (!mobile) {
       newError.mobile = 'Mobile number is required*';
@@ -39,9 +39,9 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
     }
 
     if (!message?.trim())
-      newError.message = 'Messsage is required'
+      newError.message = 'Messsage is required*'
     else if (message?.length < 3)
-      newError.message = 'min 10 character required'
+      newError.message = 'min 10 character required*'
 
 
     setError(newError)
@@ -77,9 +77,9 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
 
   return (
     <div className="modal-overlay" onClick={handleOnclose}>
-      <div className="modal-container" onClick={handleContainerClick}>
+      <div className="customization-container" onClick={handleContainerClick}>
         <h2 className="modal-title">Get Customization Box</h2>
-        <form className="modal-form" onSubmit={handleSubmit}>
+        <form className="customization-form" onSubmit={handleSubmit}>
           <div className="modal-row">
             <div>
               <input type="text" placeholder="First Name" className="modalinputs" value={firstName} onChange={(e) => {
