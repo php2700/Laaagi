@@ -12,8 +12,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    {/* <GoogleOAuthProvider clientId='159973373405-8gkuqkt9uu4ccm9qi1qb4t8pe6pvq836.apps.googleusercontent.com'> */}
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId='626503275864-4lj55f4a1av2j9km9stg9589rmiag9rn.apps.googleusercontent.com'>
+    {/* <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}> */}
       <Provider store={store} >
         <BrowserRouter>
           <AuthProvider>

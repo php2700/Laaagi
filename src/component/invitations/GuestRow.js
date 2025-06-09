@@ -47,7 +47,7 @@ function GuestRow({ guestList, guestListData }) {
           <td>
             <div className='guest-icon'>
               <Link to='/edit-guest' state={{ guestData: guest }} > <img src={editImg} /></Link>
-              <img onClick={() => handleDelete(guest)} src={deleteImg} />
+              <img className='delete-icon-guest' onClick={() => handleDelete(guest)} src={deleteImg} />
             </div>
           </td>
         </tr >

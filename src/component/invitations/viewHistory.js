@@ -169,7 +169,7 @@ export const ViewHistory = () => {
                 </div>
             </div>
             <div className='invitation-box-header'>
-                <div className='invitation-box-type-header'> select box type</div>
+                <div className='invitation-box-type-header'> Selected box type</div>
                 <div className='invitation-box-type' >
                     {boxType?.map((ele) => (
                         <div className={invitation.boxName == ele?.boxName && 'invittion-box-container'}  >
@@ -290,9 +290,12 @@ export const ViewHistory = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th style={{ width: '20%' }}>GUEST </th>
+                            <th style={{
+                                width: '20%', fontSize: '15px',
+                                fontWeight: '600'
+                            }}>GUEST </th>
                             <th className='width-cls' >Address </th>
-                            <th className='width-cls'>WEIHGT</th>
+                            <th className='width-cls'>WEIGHT</th>
                             <th className='width-cls'>pincode</th>
                             <th className='width-cls'>PAYMENT DATE</th>
                             <th className='align-left'>Box Quantity </th>

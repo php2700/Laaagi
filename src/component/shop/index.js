@@ -7,8 +7,8 @@ export const Shop = () => {
     return (
         <div className='shop'>
             <div className='shop-left-bar'>
-                <div className='shop-header'>Shop Faster with Our </div>
-                <div className='shop-header'>App will be live soon</div>
+                <div className='shop-header-home'>Shop Faster with Our App </div>
+                <div className='shop-header-home'>It will be live soon!</div>
                 <div className='shop-desc'>Availabe on both IOS & Android</div>
                 <div className='shop-img'>
                     <img src={AppleImg} />

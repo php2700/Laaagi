@@ -111,6 +111,7 @@
   color: red;
   font-size: 15px;
   font-family: system-ui;
+  min-height: 20px;
 }
 
 @media (max-width: 576px) {

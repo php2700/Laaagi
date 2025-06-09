@@ -25,9 +25,10 @@ export const SignUp = () => {
     const headerUpdate = context?.setHeaderUpdate;
     const [otpVerifyError, setOtpVerifyError] = useState()
 
+
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
-            console.log(tokenResponse,"aaaaaaaaaaaa")
+            console.log(tokenResponse, "aaaaaaaaaaaa")
             await axios.post(`${process.env.REACT_APP_BASE_URL}api/user/google-login`, {
                 access_token: tokenResponse?.access_token
             })
@@ -41,7 +42,7 @@ export const SignUp = () => {
         },
         onError: () => {
             console.log('Login Failed------------------------------------');
-        }
+        },
     });
 
 
@@ -213,7 +214,8 @@ export const SignUp = () => {
                                 </form>
                             </div>
                             <div className="sign-up-or">or</div>
-                            <div className="sign-up-google-login" onClick={() => login()} >
+                            <div className="sign-up-google-login" onClick={
+                                () => { login() }} >
                                 <img src={Google} />
                                 <div>
                                     &nbsp;sign in with google

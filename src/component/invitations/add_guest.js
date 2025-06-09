@@ -222,14 +222,20 @@ export const Add_Guest = () => {
 
                         </div>
                         <div className="guest-address-radio">
-                            <div><input type='radio' name='address' value='address_myself' onChange={(e) => {
+                            <div>
+                                <input className="radio" type='radio' name='address' value='address_myself' onChange={(e) => {
+                                    handleAddress(e.target.value)
+                                    setError({ ...error, selectRadio: '' })
+                                }} />
+                                <span className="address-myself">Add Address by my self</span>
+                            </div>
+                            <div>
+                                <input className="radio" type='radio' name='address' value='address_person' onChange={(e) => {
                                 handleAddress(e.target.value)
                                 setError({ ...error, selectRadio: '' })
-                            }} />Add Address by my self</div>
-                            <div><input type='radio' name='address' value='address_person' onChange={(e) => {
-                                handleAddress(e.target.value)
-                                setError({ ...error, selectRadio: '' })
-                            }} />Add Address by person itself</div>
+                            }} />
+                                <span className="address-myself">Add Address by person itself</span>
+                            </div>
                         </div>
                         {error?.selectRadio && (<div className='error-color'>{error?.selectRadio}</div>)}
                         {

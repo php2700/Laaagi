@@ -25,33 +25,21 @@ export const Header = () => {
     const dropdownRef = useRef(null);
     const [open, setOpen] = useState(false)
     const headerUpdate = context?.headerUpdate;
+
+
+
+    const searchRef = useRef(null);
     const [query, setQuery] = useState('');
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 500);
-            if (window.innerWidth > 500) {
-                setMenuOpen(false);
-            }
-        };
+    const handleSuggestionClick = (item) => {
+        setQuery(item);
+        setShowSuggestions(false);
+    };
 
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsDropdownOpen(false);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        if (isDropdownOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isDropdownOpen]);
+    const handleInputClick = () => {
+        setShowSuggestions(true);
+    };
 
 
     const toggleDropdown = (event) => {
@@ -103,7 +91,21 @@ export const Header = () => {
         navigate('/signup')
     }
 
-
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            console.log(dropdownRef.current.contains(event.target),"ssssssssssssssssss")
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setShowSuggestions(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
         <div>
@@ -111,39 +113,34 @@ export const Header = () => {
                 <div>Welcome to the Laaagi</div>
             </div>
             <div className='header'>
-                <div className='search'>
-                    <input type="search" placeholder="Search"
-                        onFocus={() => setShowSuggestions(true)}
+                <div className='search' ref={searchRef}>
+
+                    <div></div>
+                    <input
+                        type="search"
+                        placeholder="Search"
+                        value={query}
+                        onClick={handleInputClick}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') setShowSuggestions(false);
+                        }}
                     />
                     <img src={seacrh} alt="search" />
-                    {/* {showSuggestions && searchData?.length > 0 && (
-                        <ul style={{
-                            position: 'absolute',
-                            top: '100%',
-                            left: 0,
-                            width: '100%',
-                            background: '#fff',
-                            border: '1px solid #ccc',
-                            listStyle: 'none',
-                            padding: '0',
-                            margin: '4px 0 0 0',
-                            zIndex: 1000
-                        }}>
-                            {searchData.map((item, index) => (
-                                <li
-                                    key={index}
-                                    onMouseDown={() => setQuery(item)}
-                                    style={{
-                                        padding: '8px',
-                                        cursor: 'pointer',
-                                        borderBottom: '1px solid #eee'
-                                    }}
-                                >
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    )} */}
+                    <div>
+                        {showSuggestions && searchData.length > 0 && (
+                            <ul className="suggestion-list">
+                                {searchData.map((item, index) => (
+                                    <li
+                                        key={index}
+                                        onMouseDown={() => handleSuggestionClick(item)}
+                                    >
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+
                 </div>
                 <div className='Laaagi'>
                     <Link to='/'><img className='laaagi-img' src={laaagiLogo} alt='Laaagi' /></Link>
