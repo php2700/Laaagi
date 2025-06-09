@@ -30,8 +30,8 @@
 
 .sweets-info-img img {
   width: 100%;
+  aspect-ratio: 4/3;
   object-fit: cover;
-  height: 560px;
 }
 .sweets-info-name {
   display: flex;
@@ -84,7 +84,7 @@
 }
 
 .sweets-info-drop-down {
-  width: 35%;
+  width: 40%;
   margin-top: 25px;
 }
 
@@ -111,45 +111,47 @@
 .shipping {
   color: red;
 }
+
+@media (max-width: 1400px) {
+  .sweets-info-right-side {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 5px;
+  }
+  .sweets-info-drop-down {
+    width: 40%;
+    margin-top: 25px;
+  }
+}
+
 @media (max-width: 1100px) {
   .sweets-info {
-    padding: 12px 60px;
+    padding: 12px 50px;
   }
 
-  .sweets-info-img img {
-    height: 500px;
+  .sweets-info-right-side {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 5px;
   }
 }
 
 @media (max-width: 850px) {
-  .sweets-info-img {
-    width: 50%;
-  }
-
-  .sweets-info-img img {
-    height: 400px;
-  }
-
   .sweets-info-drop-down {
-    width: 30%;
+    width: 60%;
   }
 
   .sweets-info {
     padding: 12px 30px;
   }
-}
-
-@media (max-width: 750px) {
-  .sweets-info-img {
-    width: 60%;
-  }
-
-  .sweets-info-drop-down {
-    width: 30%;
+  .sweets-info-name {
+    flex-direction: column;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .sweets-info-right-side {
     display: flex;
     flex-direction: column;

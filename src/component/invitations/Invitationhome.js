@@ -73,6 +73,7 @@ export const Invitationhome = () => {
   const location = useLocation();
   const context = useContext(AuthContext);
   const setAmounts = context?.setAmounts;
+  const setInvitationsweet = context.setSelectSweet;
   const setTotalAmountInv = context?.setTotalAmountInv
   const amounts = context?.amounts;
   const boxName = context?.boxName;
@@ -112,9 +113,10 @@ export const Invitationhome = () => {
 
   const getInvitationData = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${_id}`).then((res) => {
-      serPrice(res?.data?.invitation?.price)
-      setinvitationId(res?.data?.invitation?._id)
-      setInvitation(res?.data?.invitation)
+      setInvitationsweet(res?.data?.invitation);
+      serPrice(res?.data?.invitation?.price);
+      setinvitationId(res?.data?.invitation?._id);
+      setInvitation(res?.data?.invitation);
     }).catch((error) => {
       console.log(error, "error")
     })
@@ -365,9 +367,9 @@ export const Invitationhome = () => {
       </div>
       <div className='select-size-header'>Select size of the box</div>
       <div className='invitation-size-box'>
-        <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : ''} >
+        <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : 'invitation-default-style'} >
           {weight != 750 && weight != 1000 && weight != 250 ?
-            <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <></>
+            <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
           }
           <div className='invitation-size-list' onClick={() => handleWeight(500)}>
             <div><img className='invittions-size-img' src={Rectangle} /></div>
@@ -378,9 +380,9 @@ export const Invitationhome = () => {
             </div>
           </div>
         </div>
-        <div className={weight == 750 ? 'right-icon-arrow' : ''} >
-          {weight == 750 &&
-            <div className='invitation-icon-shift'><img src={rightArrow} /></div>
+        <div className={weight == 750 ? 'right-icon-arrow' : 'invitation-default-style'} >
+          {weight == 750 ?
+            <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
           }
 
           <div className='invitation-size-list' onClick={() => handleWeight(750)}>
@@ -392,9 +394,9 @@ export const Invitationhome = () => {
             </div>
           </div>
         </div>
-        <div className={weight == 1000 ? 'right-icon-arrow' : ''} >
-          {weight == 1000 &&
-            <div className='invitation-icon-shift' ><img src={rightArrow} /></div>
+        <div className={weight == 1000 ? 'right-icon-arrow' : 'invitation-default-style'} >
+          {weight == 1000 ?
+            <div className='invitation-icon-shift' ><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
           }
           <div className='invitation-size-list' onClick={() => handleWeight(1000)}>
             <div ><img className='invitation-third-img' src={boxSize3} /></div>
@@ -405,9 +407,9 @@ export const Invitationhome = () => {
             </div>
           </div>
         </div>
-        <div className={weight == 250 ? 'right-icon-arrow' : ''} >
-          {weight == 250 &&
-            <div className='invitation-icon-shift'><img src={rightArrow} /></div>
+        <div className={weight == 250 ? 'right-icon-arrow' : 'invitation-default-style'} >
+          {weight == 250 ?
+            <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
           }
           <div className='invitation-size-list' onClick={() => handleWeight(250)}>
             <div><img className='invittions-size-img' src={Rectangle} /></div>
@@ -420,17 +422,18 @@ export const Invitationhome = () => {
         </div>
       </div>
       <div className='invitation-box-header'>
-        <div className='invitation-box-type-header'> select box type</div>
+        <div className='invitation-box-type-header'> Select box type</div>
         <div className='invitation-box-type' >
           {boxType?.map((ele) => (
-            <div className={boxName == ele?.boxName && 'invittion-box-container'}  >
+            <div className={boxName == ele?.boxName ? 'invittion-box-container' : 'invittion-default-style-container'}  >
               {
-                boxName == ele?.boxName && <div className='invitation-icon-shift'><img src={rightArrow} /></div>}
+                boxName == ele?.boxName ? <div className='invitation-icon-shift'><img src={rightArrow} /></div>
+                  : <div className='invitation-default-icon-shift'><img src={rightArrow} /></div>
+              }
               <div className='invittion-box-detail' onClick={() => handleBoxType(ele)}>
                 <div className='invitation-box-numbers'>{ele?.number}</div>
                 <div className='invitation-box-name'> {ele.boxName}</div>
                 <div className='invitation-box-type-img'><img src={ele?.boxImg} /></div>
-                <div className='invitation-box-desc'>{ele?.boxDesc}</div>
               </div>
             </div>
           ))}
@@ -459,7 +462,7 @@ export const Invitationhome = () => {
                     {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
                   </div>
                 </div>
-                <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                <div className='sweet-name'> {data ? data?.name : <span className='sweet-name'>Sweet Name</span>}</div>
                 <div className='invitation-select-box-sweet-price'>  {
                   (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                     ? (amounts[index] ?? 0)

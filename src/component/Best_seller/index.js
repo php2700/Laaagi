@@ -10,7 +10,7 @@ import { AuthContext } from '../context'
 
 export const Best_seller = () => {
     const context = useContext(AuthContext);
-    const setInvitationsweet = context.setSelectSweet;
+    // const setInvitationsweet = context.setSelectSweet;
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(3)
     const [bestSellerData, setBestSellerData] = useState([])
@@ -55,7 +55,7 @@ export const Best_seller = () => {
     const handleView = (data) => {
         if (data?.price) {
             const url = 'home'
-            setInvitationsweet(data)
+            // setInvitationsweet(data)
             navigate(`/invitation-detail/${data?._id}/${url}`)
         }
         else if (Object?.keys(data).includes("isSweet")) {

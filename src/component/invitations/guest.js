@@ -97,8 +97,7 @@ export const Guest = () => {
                     </table>
                 </div>
                 <div className="my-address-section">
-                    <div className="my-address-row">
-                        <div><input type="checkbox" /></div>
+                    <div className="my-address-guest-list">
                         <div>My Address</div>
                         {userData?.address && <div>{userData?.address}</div>}
                     </div>

@@ -17,34 +17,34 @@ export const Model = ({ open, onClose, data }) => {
         let newError = {};
 
         if (!name?.trim()) {
-            newError.name = 'Name is required'
+            newError.name = 'Name is required.'
         } else if (name?.length < 3) {
-            newError.name = 'minimum 3 character required'
+            newError.name = 'Minimum 3 character required.'
         }
         if (!lastName?.trim()) {
-            newError.lastName = 'Lastname is required'
+            newError.lastName = 'Last name is required.'
         } else if (lastName?.length < 3) {
-            newError.lastName = 'minimum 3 character required'
+            newError.lastName = 'Minimum 3 character required.'
         }
         if (!email) {
-            newError.email = 'Email is required'
+            newError.email = 'Email is required.'
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-            newError.email = 'email not valid'
+            newError.email = 'Email not valid'
         }
 
         if (!message?.trim()) {
-            newError.message = 'Message is required'
+            newError.message = 'Message is required.'
         } else if (message?.length < 3) {
-            newError.message = 'minimum 5 character required'
+            newError.message = 'Minimum 5 character required.'
         }
         if (!mobile) {
-            newError.mobile = 'Mobile number is required*';
+            newError.mobile = 'Mobile number is required.';
         } else if (!/^\d+$/.test(mobile)) {
-            newError.mobile = 'Mobile number must contain digits only';
+            newError.mobile = 'Mobile number must contain digits only.';
         } else if (mobile.length < 10) {
-            newError.mobile = 'Mobile number must be at least 10 digits';
+            newError.mobile = 'Mobile number must be at least 10 digits.';
         } else if (mobile.length > 12) {
-            newError.mobile = 'Mobile number must not exceed 12 digits';
+            newError.mobile = 'Mobile number must not exceed 12 digits.';
         }
 
         setError(newError);
@@ -115,14 +115,14 @@ export const Model = ({ open, onClose, data }) => {
                                     setName(e.target.value)
                                     setError({ ...error, name: '' })
                                 }} />
-                                {error?.name && (<div className='error-color'>{error?.name}</div>)}
+                                <div className='error-color'>{error?.name || ''}</div>
                             </div>
                             <div>
                                 <input type="text" placeholder="Last Name*" value={lastName} onChange={(e) => {
                                     setLastName(e.target.value)
                                     setError({ ...error, lastName: '' })
                                 }} />
-                                {error?.lastName && (<div className='error-color'>{error?.lastName}</div>)}
+                                <div className='error-color'>{error?.lastName || ''}</div>
                             </div>
                         </div>
                         <div>
@@ -130,7 +130,7 @@ export const Model = ({ open, onClose, data }) => {
                                 setEmail(e.target.value)
                                 setError({ ...error, email: '' })
                             }} />
-                            {error?.email && (<div className='error-color'>{error?.email}</div>)}
+                           <div className='error-color'>{error?.email || ''}</div>
                         </div>
                         <div>
                             <input type="text" placeholder="Phone Number*" value={mobile} onChange={(e) => {
@@ -141,14 +141,14 @@ export const Model = ({ open, onClose, data }) => {
 
                                 setError({ ...error, mobile: '' })
                             }} />
-                            {error?.mobile && (<div className='error-color'>{error?.mobile}</div>)}
+                            <div className='error-color'>{error?.mobile || ''}</div>
                         </div>
                         <div>
                             <textarea className='model-desc' placeholder="Your Message" value={message} onChange={(e) => {
                                 setMessage(e.target.value)
                                 setError({ ...error, message: '' })
                             }} />
-                            {error?.message && (<div className='error-color'>{error?.message}</div>)}
+                            <div className='error-color'>{error?.message || ''}</div>
                         </div>
                         <div>
                             <button className='model-button' type="submit">Send Message</button>

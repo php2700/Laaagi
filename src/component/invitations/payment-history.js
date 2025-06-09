@@ -64,7 +64,7 @@ export const PaymentHistory = () => {
                             <th>'#'</th>
                             <th>ORDERID</th>
                             <th >TITLE</th>
-                            <th >WEIHGT</th>
+                            <th >WEIGHT</th>
                             <th>AMOUNT</th>
                             <th>PAYMENT_DATE</th>
                             <th>VIEW</th>

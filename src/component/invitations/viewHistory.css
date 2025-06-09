@@ -13,12 +13,20 @@
 }
 .width-cls {
   width: 15%;
+  font-size: 15px;
+  font-weight: 600;
 }
 .align-left {
   text-align: left;
+  font-size: 15px;
+  font-weight: 600;
 }
 .payment-back {
   width: 6%;
+}
+.pay-button-container {
+  font-size: 16px;
+  font-weight: 600;
 }
 @media (max-width: 1000px) {
   .section-images img {

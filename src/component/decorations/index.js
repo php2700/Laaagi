@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
-import firstImg from '../../assets/invitations/image.png'
-import secondImg from '../../assets/invitations/image (1).png'
-import thirdImg from '../../assets/invitations/image (2).png'
-
 import './index.css'
-import { Link } from 'react-router-dom';
 import { Model } from './model';
 import axios from 'axios';
-
 
 const decorationHeader = [
     { name: 'Marriage', category: 'Marriage' },
@@ -30,11 +24,11 @@ export const Decorations = () => {
             }
         })
             .then((res) => {
-                  console.log(`Data for category: ${category}`, res.data); // <<--- YEH ADD KAREIN
-        // Specifically check what res.data.decorationData is for 'Birthday'
-        if (category === 'Birthday') {
-            console.log('Birthday API response data:', res.data?.decorationData);
-        }
+                console.log(`Data for category: ${category}`, res.data); // <<--- YEH ADD KAREIN
+                // Specifically check what res.data.decorationData is for 'Birthday'
+                if (category === 'Birthday') {
+                    console.log('Birthday API response data:', res.data?.decorationData);
+                }
                 setDecorationData(res?.data?.decorationData);
             }).catch((error) => {
                 console.log(error);
@@ -61,9 +55,9 @@ export const Decorations = () => {
     return (
         <div className='decorations' >
             <div className='decorations-header'>
-                { decorationHeader?.map((ele) => (
+                {decorationHeader?.map((ele) => (
                     <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
-                )) }
+                ))}
             </div>
             <div className='decorations-content'>
                 <div className='decorations-content-list'>

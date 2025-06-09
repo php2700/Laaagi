@@ -19,29 +19,29 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
   const validate = () => {
     const newError = {};
     if (!firstName?.trim())
-      newError.firstName = 'FirstName is required*'
+      newError.firstName = 'First name is required.'
     else if (firstName?.length < 3)
-      newError.firstName = 'min 3 character required*'
+      newError.firstName = 'Min 3 character required.'
 
     if (!lastName?.trim())
-      newError.lastName = 'LastName is required*'
+      newError.lastName = 'Last name is required.'
     else if (lastName?.length < 3)
-      newError.lastName = 'min 3 character required*'
+      newError.lastName = 'Min 3 character required.'
 
     if (!mobile) {
-      newError.mobile = 'Mobile number is required*';
+      newError.mobile = 'Mobile number is required.';
     } else if (!/^\d+$/.test(mobile)) {
-      newError.mobile = 'Mobile number must contain digits only';
+      newError.mobile = 'Mobile number must contain digits only.';
     } else if (mobile.length < 10) {
-      newError.mobile = 'Mobile number must be at least 10 digits';
+      newError.mobile = 'Mobile number must be at least 10 digits.';
     } else if (mobile.length > 12) {
-      newError.mobile = 'Mobile number must not exceed 12 digits';
+      newError.mobile = 'Mobile number must not exceed 12 digits.';
     }
 
     if (!message?.trim())
-      newError.message = 'Messsage is required*'
+      newError.message = 'Messsage is required.'
     else if (message?.length < 3)
-      newError.message = 'min 10 character required*'
+      newError.message = 'Min 10 character required.'
 
 
     setError(newError)
@@ -86,14 +86,15 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
                 setFirstName(e.target.value)
                 setError((prev) => ({ ...prev, firstName: '' }))
               }} />
-              {error?.firstName && <div className='customi-error-color'>{error?.firstName}</div>}
+              <div className='customi-error-color'>{error?.firstName || ''}</div>
             </div>
             <div>
               <input type="text" placeholder="Last Name" className="modalinputs" value={lastName} onChange={(e) => {
                 setError((prev) => ({ ...prev, setError, lastName: '' }))
                 setLastName(e.target.value)
               }} />
-              {error?.lastName && <div className='customi-error-color'>{error?.lastName}</div>}
+              <div className='customi-error-color'>{error?.lastName || ''}</div>
+
             </div>
           </div>
           <div>
@@ -106,7 +107,7 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
               }
               setError((prev) => ({ ...prev, setError, mobile: '' }))
             }} />
-            {error?.mobile && <div className='customi-error-color'>{error?.mobile}</div>}
+            <div className='customi-error-color'>{error?.mobile || ''}</div>
           </div>
           <div>
             <textarea placeholder="Your Message" className="modal-textarea" value={message} onChange={(e) => {
@@ -114,7 +115,7 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
               setMessage(e.target.value)
             }
             }></textarea>
-            {error?.message && <div className='customi-error-color'>{error?.message}</div>}
+            <div className='customi-error-color'>{error?.message || ''}</div> :
           </div>
           <button type="submit" className="modal-button">Get Customize</button>
         </form>

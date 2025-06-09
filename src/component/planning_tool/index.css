@@ -20,10 +20,10 @@
 }
 .planning-check-list {
   text-align: center;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
-  padding: 10px 150px;
-  display: flex;
+  padding: 25px 150px;
+  /* display: flex; */
   flex-direction: column;
   gap: 30px;
   box-shadow: 0px 1px 8px gray;
@@ -35,15 +35,19 @@
   text-align: center;
 }
 .planning-list {
-  display: flex;
+  /* display: flex;
   gap: 5px;
+  align-items: center; */
+  text-align: left;
+  margin: 12px 0px;
 }
 .planning-list div {
   font-weight: 400;
   font-size: 14px;
+  margin: 10px;
 }
 .planning-check-clear {
-  padding: 5px;
+  padding: 10px;
   background-color: #800000;
   color: #ffd700;
   border: 1px solid #b356c1;
@@ -53,7 +57,8 @@
   cursor: pointer;
 }
 .planning-check-save {
-  padding: 5px;
+  margin: 12px 0px;
+  padding: 10px;
   background-color: #ffd700;
   color: #982900;
   border: 1px solid #b356c1;
@@ -77,6 +82,32 @@
   background-color: #ffd700 !important;
   color: #1d1a1a !important;
   font-weight: bold;
+}
+
+.font-size-text {
+  font-size: 22px;
+  /* cursor: pointer; */
+}
+
+.font-size-help {
+  font-size: 22px;
+  cursor: pointer;
+  color: #166df3;
+}
+.planning-category-list {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+
+.dropdown-arrow {
+  cursor: pointer;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
 }
 
 @media (max-width: 500px) {

@@ -26,8 +26,8 @@ export const Footer = () => {
     };
 
 
-    const scrolltop=()=>{
-         window.scrollTo({ top: 0, behavior: "smooth" });
+    const scrolltop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     return (
@@ -51,18 +51,18 @@ export const Footer = () => {
                         </div>
                         <div className='footer-left-email'>
                             <img className='footer-left-email-icon' src={emailIcon} />
-                            <div className='footer-left-email-text'>&nbsp;Email</div>
+                            <div className='footer-left-email-text'>&nbsp; Email</div>
                             <div className='footer-left-email-right'>:support@laaagi.com</div>
                         </div>
                         <div className='footer-left-work'>
                             <img className='footer-left-work-icon' src={timeIcon} />
-                            <div className='footer-left-work-text'>&nbsp;Work hours</div>
+                            <div className='footer-left-work-text'>&nbsp; Work hours</div>
                             <div className='footer-left-work-right'>:8:00-20:00,Sunday-Thursday</div>
                         </div>
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Account</div>
-                        <div className='footer-left-middle-text'><Link onClick={scrolltop}  to='/sweets'>Sweets</Link></div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/sweets'>Sweets</Link></div>
                         <div className='footer-left-middle-text'> <Link onClick={scrolltop} to='/invitation'>Invitation</Link></div>
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/decorations'>Decoration</Link></div>
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/planning-tool'>Planning Tool</Link></div>
