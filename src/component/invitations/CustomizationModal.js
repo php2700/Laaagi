@@ -20,22 +20,26 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
     const newError = {};
     if (!firstName?.trim())
       newError.firstName = 'First name is required.'
-    else if (firstName?.length < 3)
+    else if (!/^[a-zA-Z\s]*$/.test(firstName)) {
+      newError.firstName = 'Plaese enter valid name.'
+    } else if (firstName?.length < 3)
       newError.firstName = 'Min 3 character required.'
+
 
     if (!lastName?.trim())
       newError.lastName = 'Last name is required.'
-    else if (lastName?.length < 3)
+    else if (!/^[a-zA-Z\s]*$/.test(lastName)) {
+      newError.firstName = 'Plaese enter valid name.'
+    } else if (lastName?.length < 3)
       newError.lastName = 'Min 3 character required.'
+
 
     if (!mobile) {
       newError.mobile = 'Mobile number is required.';
     } else if (!/^\d+$/.test(mobile)) {
       newError.mobile = 'Mobile number must contain digits only.';
-    } else if (mobile.length < 10) {
-      newError.mobile = 'Mobile number must be at least 10 digits.';
-    } else if (mobile.length > 12) {
-      newError.mobile = 'Mobile number must not exceed 12 digits.';
+    } else if(mobile?.length !=10){
+      newError.mobile = 'Please enter valid number.';
     }
 
     if (!message?.trim())
@@ -51,6 +55,10 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
   }
   const handleOnclose = () => {
     setError({})
+    setFirstName()
+    setLastName()
+    setMessage()
+    setMobile()
     onClose()
   }
   const handleSubmit = (e) => {

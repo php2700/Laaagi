@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom';
 
 export function LastUrl() {
     const location = useLocation();
-
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [location]);
-
-
+    console.log(location?.pathname)
+    useEffect(() => {
+        if (location?.pathname.startsWith('/sweets') || location?.pathname.startsWith('/sweets-info/') || location?.pathname.startsWith('/dry-fruit_info/') || location.pathname.startsWith('/invitation-detail/')) {
+            window.scrollTo(0, 0);
+        }
+    }, [location?.pathname]);
 
     useEffect(() => {
         const currentURL = localStorage.getItem('currentURL');

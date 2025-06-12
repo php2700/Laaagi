@@ -93,7 +93,7 @@ export const Invitationhome = () => {
   const [lastURL, setLastURL] = useState(localStorage.getItem('lastURL'));
   const [currentUrl, setCurrentUrl] = useState(localStorage.getItem('currentURL'))
 
-
+console.log(paymentHistory,"hjjjjjjjjjjjjjjjjjjjjjjjj--------------")
   const weight = useSelector((state) => state.weight?.value);
   const dispatch = useDispatch()
   const calculateTotalAmount = (price, weight) => {
@@ -450,9 +450,11 @@ export const Invitationhome = () => {
           <div >Sweets</div>
           <div className='invitation-names'>Price</div>
         </div>
+
         {id == 1 ?
           normalBox?.map((ele, index) => {
             const data = paymentHistory?.find((ele1) => ele1.index === index);
+            console.log(data,"ffffffffffffffffffffffffffffff")
             return (
               <div className='invitation-select-arrow'>
                 <div className='invitation-section-align'>

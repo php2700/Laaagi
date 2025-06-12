@@ -101,8 +101,8 @@ export const GuestList = () => {
       const box = boxes.find((b) => b.idx === item.idx);
       const quantity = box?.quantity || 1;
 
-      const existing = guest.find((g) => g.idx == item.idx );
-console.log(existing,"ddddddd")
+      const existing = guest.find((g) => g.idx == item.idx);
+      console.log(existing, "ddddddd")
       return {
         idx: item.idx,
         guestId: existing?.guestId || '',
@@ -112,12 +112,12 @@ console.log(existing,"ddddddd")
         pincode: existing?.pincode || ''
       };
     });
-     const userGuest = guest.find((g) => g.guestId === userId);
-  if (userGuest) {
-    setGuest([...updatedGuest, userGuest]);
-  } else {
-    setGuest(updatedGuest);
-  }
+    const userGuest = guest.find((g) => g.guestId === userId);
+    if (userGuest) {
+      setGuest([...updatedGuest, userGuest]);
+    } else {
+      setGuest(updatedGuest);
+    }
     // setGuest(updatedGuest);
   }, [boxes, checkedItems]);
 
@@ -223,7 +223,7 @@ console.log(existing,"ddddddd")
     }, 50);
   }
 
-console.log(guest,'aaaaaaaaaa+')
+  console.log(guest, 'aaaaaaaaaa+')
   return (
     <div className="guest-list-container">
       <div className="guest-list-header">
@@ -240,8 +240,8 @@ console.log(guest,'aaaaaaaaaa+')
         <table>
           <thead>
             <tr>
-              <th> <input type="checkbox" /></th>
               <th>'#'</th>
+              <th>No.</th>
               <th >NAME</th>
               <th>ADDRESS</th>
               <th>GUEST NUMBER</th>

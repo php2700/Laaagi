@@ -179,7 +179,6 @@ export const ViewHistory = () => {
                                 <div className='invitation-box-numbers'>{ele?.number}</div>
                                 <div className='invitation-box-name'> {ele.boxName}</div>
                                 <div className='invitation-box-type-img'><img src={ele?.boxImg} /></div>
-                                <div className='invitation-box-desc'>{ele?.boxDesc}</div>
                             </div>
                         </div>
                     ))}
@@ -187,7 +186,7 @@ export const ViewHistory = () => {
             </div>
 
             <div className='invitation-select-sweet-box-list'>
-                <div className='invitation-box-select-header'>
+                <div className='invitation-box-view-header'>
                     <div >Sections</div>
                     <div>Sweets</div>
                     <div className='section-sweet-name'>Sweets Name</div>
@@ -293,6 +292,8 @@ export const ViewHistory = () => {
                             <th style={{
                                 width: '20%', fontSize: '15px',
                                 fontWeight: '600'
+                                , color: ' #253d4e',
+                                fontSize: '18px'
                             }}>GUEST </th>
                             <th className='width-cls' >Address </th>
                             <th className='width-cls'>WEIGHT</th>
@@ -322,7 +323,7 @@ export const ViewHistory = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="pay-button-container">
+            <div className="pay-button-history">
                 Total Amount : {invitation?.amount} Rs. /-
             </div>
         </div>

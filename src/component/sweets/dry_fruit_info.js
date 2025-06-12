@@ -149,7 +149,7 @@ export const DryFruitInfo = () => {
                     </div>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
                     <div className="sweets-info-price">Total Price:{price} /-</div>
-                    <div className="shipping">Extra Shipping Charges ₹49</div>
+                    <div className="shipping">Extra Shipping Charges ₹49 /- </div>
 
                     <div className="sweets-info-button">
                         <button onClick={addDetails}>Pay</button>
