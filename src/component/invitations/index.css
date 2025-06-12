@@ -108,6 +108,9 @@
   background-color: #fff;
 }
 
+.invitation-content-img :hover {
+  cursor: pointer;
+}
 .invitation-content-img img {
   width: 100%;
   object-fit: cover;
@@ -275,6 +278,7 @@
     position: static;
     padding: 0;
     width: 100%;
+    cursor: pointer;
   }
 
   .invitation-price {

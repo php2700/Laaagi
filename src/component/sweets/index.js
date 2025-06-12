@@ -8,6 +8,7 @@ import leftIcon from "../../assets/icon/left_arrow-right.png";
 import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png";
 import { toast } from 'react-toastify';
+import { AddSweets } from './model';
 
 const sweetsHeader = [
     { id: 'sh1', name: 'Indian Sweets', category: 'Indian Sweets' },
@@ -36,6 +37,7 @@ export const Sweets = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(2);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    const [openModel, setOpenModel] = useState(false)
 
     const handleForwardIcon = () => {
         const totalItems = sweetsHeader?.length || 0;
@@ -106,7 +108,12 @@ export const Sweets = () => {
     const handleSweetForInvitation = (item) => {
         setOrderId(item?.orderId);
         setInvitationSelectSweet(item);
+        setOpenModel(true)
     };
+
+    const handleClose = () => {
+        setOpenModel(false)
+    }
 
     const handleInvitationSweetDone = () => {
         const url = 'invitation'
@@ -183,6 +190,7 @@ export const Sweets = () => {
                     ) : (
                         <>
                             {sweetsHeader?.map((ele) => (
+
                                 <div
                                     key={ele.id}
                                     className={`sweets-header-item ${ele.category === category ? 'active-url' : ''}`}
@@ -226,17 +234,20 @@ export const Sweets = () => {
                     <div className='sweets-content-list'>
                         {data?.length > 0 &&
                             <>
-                                {data?.map((ele) => (
-                                    <div key={ele.id || ele.name} className='sweets-main-container'>
-                                        <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
-                                            <div className='sweets-img-div'>
-                                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                {data?.map((ele) => {
+                                    let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
+                                    return (
+                                        <div key={ele.id || ele.name} className='sweets-main-container'>
+                                            <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
+                                                <div className='sweets-img-div'>
+                                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                                </div>
+                                                <div className='sweets-name'>{name}</div>
+                                                {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                                             </div>
-                                            <div className='sweets-name'>{ele?.name}</div>
-                                            {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                                         </div>
-                                    </div>
-                                ))}
+                                    )
+                                })}
                             </>}
                     </div>
 
@@ -245,11 +256,12 @@ export const Sweets = () => {
                     )}
                 </div>
             )}
-            {isInvitationSweets && (
+            {/* {isInvitationSweets && (
                 <div className='sweet-select'>
                     <div className='btn-done' onClick={handleInvitationSweetDone} >Done</div>
                 </div>
-            )}
+            )} */}
+            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} />
         </div>
     )
 }

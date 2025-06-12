@@ -1,5 +1,5 @@
 import './index.css'
-import logo from "../../assets/logo/laaagi.png"
+import logo from "../../assets/logo/footer.png"
 import locationIcon from "../../assets/icon/mapicon.png"
 import callIcon from '../../assets/icon/callIcon.png'
 import emailIcon from '../../assets/icon/li_mail.png'
@@ -13,7 +13,7 @@ import linked from "../../assets/icon/linked.png"
 import { Link, useNavigate } from 'react-router-dom'
 
 export const Footer = () => {
-
+    const token = localStorage.getItem('token')
     const navigate = useNavigate();
     const handleAbout = () => {
         const currentPath = window.location.pathname;
@@ -28,6 +28,14 @@ export const Footer = () => {
 
     const scrolltop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    const handleHistory = () => {
+        if (token) {
+            navigate('/payment-history')
+        } else {
+            navigate('/signup')
+        }
     }
 
     return (
@@ -76,7 +84,7 @@ export const Footer = () => {
                     </div>
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Help Center</div>
-                        <div className='footer-left-middle-text'><Link to='/payment-history'>Payments</Link></div>
+                        <div className='footer-left-middle-text' onClick={handleHistory}><Link to='/payment-history'>Payments</Link></div>
                         <div className='footer-left-middle-text'>Refund</div>
                         <div className='footer-left-middle-text'>Checkout</div>
                         <div className='footer-left-middle-text'>Shipping</div>

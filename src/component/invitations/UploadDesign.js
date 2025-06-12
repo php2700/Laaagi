@@ -30,16 +30,20 @@ export const
         const validate = () => {
             const newError = {};
 
-            if (!name?.trim()) newError.name = 'Name is required';
-            else if (name.trim().length < 3) newError.name = 'Name must be at least 3 characters';
+            if (!name?.trim()) newError.name = 'Name is required.';
+            else if (name.trim().length < 3) newError.name = 'Name must be at least 3 characters.';
 
-            if (!amount?.trim()) newError.amount = 'Amount is required';
-            else if (isNaN(amount)) newError.amount = 'Amount must be a number';
+            if (!amount?.trim()) newError.amount = 'Amount is required.';
+            else if (isNaN(amount)) newError.amount = 'Amount must be a number.';
 
-            if (!category) newError.category = 'Category is required';
+            if (!category) newError.category = 'Category is required.';
 
-            if (!notes?.trim()) newError.notes = 'Description is required';
-            else if (notes.trim().length < 10) newError.notes = 'Description must be at least 10 characters';
+            if (!notes?.trim()) newError.notes = 'Description is required.';
+            else if (notes.trim().length < 10) newError.notes = 'Description must be at least 10 characters.';
+
+            if (!designFile) {
+                setMessage('Please upload a design file.');
+            }
 
             setError(newError);
             return Object.keys(newError).length;
@@ -51,12 +55,6 @@ export const
             setIsLoading(true);
 
             if (validate()) {
-                setIsLoading(false);
-                return;
-            }
-
-            if (!designFile) {
-                setMessage('Please upload a design file.');
                 setIsLoading(false);
                 return;
             }
@@ -112,18 +110,20 @@ export const
                             <input
                                 type="text"
                                 id="name"
+                                placeholder='Enter Invitation Name'
                                 value={name}
                                 onChange={(e) => {
                                     setName(e.target.value);
                                     setError((prev) => ({ ...prev, name: '' }));
                                 }}
                             />
-                            {error.name && <div className="error">{error.name}</div>}
+                            <div className="error">{error?.name || ''}</div>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="category">Category:</label>
                             <select
+                                className='invitation-select-category'
                                 id="category"
                                 value={category}
                                 onChange={(e) => {
@@ -136,18 +136,19 @@ export const
                                     <option key={index} value={cat} >{cat}</option>
                                 ))}
                             </select>
-                            {error.category && <div className="error">{error.category}</div>}
+                            <div className="error">{error?.category || ''}</div>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="designFile">Upload Design (JPG, JPEG, PNG):</label>
                             <input
+                                className='invitation-upload-file'
                                 type="file"
                                 id="designFile"
                                 onChange={handleFileChange}
                                 accept=".jpg,.jpeg,.png"
                             />
-                            {!designFile && message.includes("upload") && <div className="error">{message}</div>}
+                            <div className="error">{message}</div>
 
                             {previewURL && (
                                 <div style={{ marginTop: '10px', position: 'relative', display: 'inline-block' }}>
@@ -205,13 +206,14 @@ export const
                                 }}
                                 placeholder="Enter amount"
                             />
-                            {error.amount && <div className="error">{error.amount}</div>}
+                            <div className="error">{error?.amount || ''}</div>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="notes">Description:</label>
                             <textarea
                                 id="notes"
+                                placeholder='Enter Description'
                                 value={notes}
                                 onChange={(e) => {
                                     setNotes(e.target.value);
@@ -219,7 +221,7 @@ export const
                                 }}
                                 rows="3"
                             ></textarea>
-                            {error.notes && <div className="error">{error.notes}</div>}
+                            <div className="error">{error?.notes || ''}</div>
                         </div>
 
                         <button id="sub" type="submit" disabled={isLoading}>

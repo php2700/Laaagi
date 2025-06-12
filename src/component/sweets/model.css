@@ -1,0 +1,39 @@
+.done-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.done-model {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  gap: 15px;
+  background-color: white;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.done-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #253d4e;
+  margin-bottom: 15px;
+}
+.done-btn {
+  background-color: #ffd700;
+  padding: 10px 30px;
+  border-radius: 8px;
+  border-style: none;
+  font-size: 17px;
+  font-weight: 500;
+}

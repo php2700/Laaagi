@@ -84,14 +84,19 @@ export const Best_seller = () => {
                         </div>
                     )
                 }
-                {bestSellerData?.slice(startIndex, lastIndex + 1)?.map((item) => (
-                    <div key={item?.id} className='best-seller-wrapper'>
-                        <div className='best-seller-img-parent' onClick={() => handleView(item)}>
-                            <img className='best-seller-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                {bestSellerData?.slice(startIndex, lastIndex + 1)?.map((item) => {
+                    let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
+
+
+                    return (
+                        <div key={item?.id} className='best-seller-wrapper'>
+                            <div className='best-seller-img-parent' onClick={() => handleView(item)}>
+                                <img className='best-seller-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                            </div>
+                            <div className='best-seller-img-text'>{name}</div>
                         </div>
-                        <div className='best-seller-img-text'>{item?.name}</div>
-                    </div>
-                ))}
+                    )
+                })}
                 {
                     (lastIndex < bestSellerData?.length - 1) && (
                         <div onClick={() => handleForward()} className='best-seller-right-icon'>

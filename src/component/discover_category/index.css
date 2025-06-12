@@ -1,5 +1,5 @@
 .discover-category {
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 .discover-category-heading {
   text-align: center;
@@ -65,7 +65,7 @@
   .discover-category-left-text {
     font-weight: 600;
     font-size: 26px;
-}
+  }
   .discover-category-wrapper {
     width: 100%;
   }

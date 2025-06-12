@@ -39,7 +39,7 @@
 .wedding-img-right-icon {
   display: flex;
   position: absolute;
-  right: -30px;
+  right: -20px;
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
@@ -61,7 +61,13 @@
   gap: 10px;
   border: 1px solid #e1e1e1;
   width: 32%;
+  cursor: pointer;
 }
+.wedding-img-wrapper:hover {
+  cursor: pointer;
+  border: 1px solid #777;
+}
+
 .wedding-img-text {
   font-size: 20px;
   font-weight: 600;
@@ -73,10 +79,10 @@
   width: 100%;
 }
 
-.wedding-img:hover {
+/* .wedding-img:hover {
   border: 2px solid #777;
   cursor: pointer;
-}
+} */
 
 @media (max-width: 1000px) {
   .wedding-img-text {
@@ -126,6 +132,7 @@
 
   .wedding-img-wrapper {
     width: 100%;
+    cursor: pointer;
   }
 
   .wedding-img {

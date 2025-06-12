@@ -12,7 +12,6 @@ import defaultImg from "../../assets/login/default-profile.png"
 
 
 export const Header = () => {
-    const searchData = ['Wedding Special', 'Dry Fruit Treats', 'Invitation Boxes']
     const navigate = useNavigate();
     const context = useContext(AuthContext);
     const userData = context?.storeUserData;
@@ -126,20 +125,7 @@ export const Header = () => {
                         }}
                     />
                     <img src={seacrh} alt="search" />
-                    <div>
-                        {showSuggestions && searchData.length > 0 && (
-                            <ul className="suggestion-list">
-                                {searchData.map((item, index) => (
-                                    <li
-                                        key={index}
-                                        onMouseDown={() => handleSuggestionClick(item)}
-                                    >
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
+                
 
                 </div>
                 <div className='Laaagi'>

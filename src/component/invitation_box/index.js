@@ -36,7 +36,7 @@ export const InvitationBox = () => {
 
         setInvitationsweet(data)
         // navigate('/invitation-detail')
-        const url='home'
+        const url = 'home'
         navigate(`/invitation-detail/${data?._id}/${url}`)
     }
 
@@ -45,12 +45,17 @@ export const InvitationBox = () => {
             <div className='invitation-box-left-text'>Invitation Boxes
             </div>
             <div className='invitation-box-list'>
-                {invitationBoxData.slice(startIndex, lastIndex + 1)?.map((item) => (
-                    <div key={item?.id} className='invitation-box-wrapper'>
-                        <img onClick={() => handleInvitationBoxInfo(item)} className='invitation-box-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
-                        <div className='invitation-box-img-text'>{item?.name}</div>
-                    </div>
-                ))}
+                {invitationBoxData.slice(startIndex, lastIndex + 1)?.map((item) => {
+                    let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
+
+
+                    return (
+                        <div key={item?.id} className='invitation-box-wrapper'>
+                            <img onClick={() => handleInvitationBoxInfo(item)} className='invitation-box-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                            <div className='invitation-box-img-text'>{name}</div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

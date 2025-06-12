@@ -1,5 +1,5 @@
 .invitation-box {
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 .invitation-box-left-text {
   font-weight: 600;
@@ -55,7 +55,7 @@
   .invitation-box-left-text {
     font-weight: 600;
     font-size: 26px;
-}
+  }
   .invitation-box-wrapper {
     width: 100%;
   }

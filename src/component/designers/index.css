@@ -60,10 +60,15 @@
   box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
 }
 
-.designers-content-img img:hover {
+.designer-parent-content:hover {
+  cursor: pointer;
+  border: 1px solid #777;
+}
+
+/* .designers-content-img img:hover {
   border: 1px solid #777;
   cursor: pointer;
-}
+} */
 
 .no-found {
   background-color: #800000;

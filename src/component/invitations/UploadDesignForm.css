@@ -162,6 +162,7 @@
   color: red;
   font-size: 0.85rem;
   margin-top: 5px;
+  min-height: 20px;
 }
 
 .message.success {
@@ -172,6 +173,12 @@
 .message.error {
   color: red;
   margin-top: 10px;
+}
+.invitation-select-category {
+  color: grey;
+}
+.invitation-upload-file {
+  color: grey;
 }
 
 @media (max-width: 1000px) {
