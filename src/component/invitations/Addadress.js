@@ -33,7 +33,6 @@ export const Addadress = ({ open, onClose, userData }) => {
 
   useEffect(() => {
     if (!open || !inputRef.current) return;
-
     const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
       componentRestrictions: { country: 'in' },
       fields: ['formatted_address', 'geometry'],
@@ -45,11 +44,10 @@ export const Addadress = ({ open, onClose, userData }) => {
         onSelect(place.formatted_address);
       }
     });
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     if (open) {
-      console.log(userData, 'aaaaaaaaaaa')
       if (userData?.pincode) {
         setPincode(userData?.pincode || '')
       }
@@ -90,8 +88,6 @@ export const Addadress = ({ open, onClose, userData }) => {
       newError.googleAddress = 'Both address fields cannot be empty.';
     } else if (address && address.trim().length < 3) {
       newError.address = 'Address must be at least 3 characters long.';
-    } else if (!/^[a-zA-Z\s0-9]+$/.test(address)) {
-      newError.address = 'Not Allowed special character.';
     }
 
     setError(newError);
