@@ -96,10 +96,6 @@
   display: flex;
 }
 
-.sweets-content-img img:hover {
-  border: 1px solid #777;
-}
-
 .sweets-info-select {
   cursor: pointer;
 }

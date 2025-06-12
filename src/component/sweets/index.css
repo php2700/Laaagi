@@ -34,9 +34,9 @@
   text-decoration: none;
   cursor: pointer;
 }
-.sweets-content-img img {
-  width: 100%;
-  height: 560px;
+.sweets-content-img:hover {
+  cursor: pointer;
+  border: 0.5px solid #777;
 }
 
 .sweets-name {
@@ -83,7 +83,6 @@
 }
 
 .sweets-img-div {
-  padding: 12px 0px;
   width: 100%;
 }
 

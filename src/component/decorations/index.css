@@ -46,6 +46,11 @@
   text-decoration: none;
 }
 
+.decorations-content-img:hover {
+  cursor: pointer;
+  border: 1px solid #777;
+}
+
 .decoration-img-wrapper {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -87,9 +92,9 @@
   text-decoration-thickness: 3px !important;
 }
 
-.decorations-content-img img:hover {
+/* .decorations-content-img img:hover {
   border: 1px solid #777;
-}
+} */
 
 .no-found {
   background-color: #800000;

@@ -357,7 +357,10 @@ export const Invitationhome = () => {
           <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
         </div>
         <div className="invitation-description">
-          <h2>{invitation?.name} (Rs. {price}/-)</h2>
+          <h2>
+            {invitation?.name?.charAt(0)?.toUpperCase() + invitation?.name?.slice(1)?.toLowerCase()}
+
+            (Rs. {price}/-)</h2>
           <p className="description-label">Description</p>
           <p>{invitation?.description}</p>
           <button className="customize-btn" onClick={handleOpenModal}>

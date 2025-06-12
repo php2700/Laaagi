@@ -74,14 +74,17 @@ export const WeddingSpecial = () => {
                         <img src={leftIcon} alt="prev" />
                     </div>
                 )}
-                {data?.slice(startIndex, lastIndex + 1).map((item) => (
-                    <div key={item?.id} className='wedding-img-wrapper'>
-                        <div className='wedding-img-container'>
-                            <img className='wedding-img' onClick={() => handleWeddingInfo(item)} src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="Wedding" />
+                {data?.slice(startIndex, lastIndex + 1).map((item) => {
+                    let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
+                    return (
+                        <div key={item?.id} className='wedding-img-wrapper' onClick={() => handleWeddingInfo(item)}>
+                            <div className='wedding-img-container'>
+                                <img className='wedding-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="Wedding" />
+                            </div>
+                            <div className='wedding-img-text'>{name}</div>
                         </div>
-                        <div className='wedding-img-text'>{item?.name}</div>
-                    </div>
-                ))}
+                    )
+                })}
                 {(lastIndex < (data?.length || 0) - 1) && (
                     <div onClick={() => { handleForwardIcon() }} className='wedding-img-right-icon'>
                         <img src={rightIcon} />

@@ -156,7 +156,7 @@ export const SweetsInfo = () => {
                 </div>
                 <div className="sweets-info-right-side">
                     <div className="sweets-info-name">
-                        <div>{sweetsInfo?.name}</div>
+                        <div>{sweetsInfo?.name?.charAt(0)?.toUpperCase() + sweetsInfo?.name?.slice(1)?.toLowerCase()}</div>
                         <div>&nbsp;(Rs. {sweetsInfo?.amount}&nbsp;/- )</div>
                     </div>
                     <div className="sweets-info-des">

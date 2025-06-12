@@ -36,6 +36,11 @@
   width: calc((100% - 60px) / 4);
   text-align: center;
 }
+.recent-view-img-wrapper:hover {
+  border: 2px solid #777;
+  cursor: pointer;
+}
+
 .recent-view-img-text {
   width: 100%;
   font-size: 20px;
