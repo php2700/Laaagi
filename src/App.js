@@ -94,7 +94,7 @@ function App() {
             <Route path='/planning-other' element={<PlanningRoomDecor />} />
             <Route path='/sweets-info/:_id/:url' element={<SweetsInfo />} />
             <Route path='/dry_fruit_list' element={<Dry_fruit />} />
-            <Route path='/dry-fruit_info/:_id' element={<DryFruitInfo />} />
+            <Route path='/dry-fruit_info/:_id/:url' element={<DryFruitInfo />} />
             {/* <Route path='/sweets-info/' element={<SweetsInfo />} /> */}
 
             <Route path='/signup' element={<SignUp />} />
@@ -119,6 +119,7 @@ function App() {
             <Route path='/payment-history' element={<PrivateRoute><PaymentHistory /></PrivateRoute>} />
             <Route path='/view-history/:_id' element={<PrivateRoute><ViewHistory /></PrivateRoute>} />
             <Route path='/view-sweet-history/:_id' element={<PrivateRoute><ViewSweetHistory /></PrivateRoute>} />
+             <Route path='/dry-fruit_info/:_id' element={<DryFruitInfo />} />
 
 
           </Routes>

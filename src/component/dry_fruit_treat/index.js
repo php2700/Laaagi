@@ -81,9 +81,9 @@ export const Dry_Fruit_Treat = () => {
                 {dryFruitData?.slice(startIndex, lastIndex + 1)?.map((item) => {
                     let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
                     return (
-                        <div key={item?.id} className='dry-fruit-treat-img-wrapper'>
+                        <div key={item?.id} className='dry-fruit-treat-img-wrapper' onClick={() => handleDryFruitInfo(item)}>
                             <div className='dry-fruit-img-container'>
-                                <img className='dry-fruit-treat-img' onClick={() => handleDryFruitInfo(item)} src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="dry-fruit-treat" />
+                                <img className='dry-fruit-treat-img'  src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="dry-fruit-treat" />
                             </div>
                             <div className='dry-fruit-treat-img-text'>{name}</div>
                         </div>
