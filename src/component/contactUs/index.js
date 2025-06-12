@@ -52,6 +52,8 @@ export const ContactUs = () => {
             newError.mobile = 'Mobile number required.'
         } else if (!/^[0-9]+$/.test(mobile)) {
             newError.mobile = 'Mobile number not valid.'
+        } else if (mobile?.length != 10) {
+            newError.mobile = 'Mobile number not valid.'
         }
         setError(newError);
         return (Object.keys(newError))?.length;

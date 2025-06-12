@@ -71,7 +71,7 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
                             setName(e.target.value)
                             setError((prev) => ({ ...prev, name: '' }))
                         }} />
-                        {error?.name && <div className='customi-error-color'>{error?.name}</div>}
+                        <div className='customi-error-color'>{error?.name || ''}</div>
                     </div>
 
                     <div>
@@ -79,14 +79,14 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
                             setError((prev) => ({ ...prev, setError, address: '' }))
                             setAddress(e.target.value)
                         }} />
-                        {error?.address && <div className='customi-error-color'>{error?.address}</div>}
+                        <div className='customi-error-color'>{error?.address || ''}</div>
                     </div>
                     <div>
                         <input type="text" placeholder="Pincode" className="modalinputs" value={pincode} onChange={(e) => {
                             setError((prev) => ({ ...prev, setError, pincode: '' }))
                             setPincode(e.target.value)
                         }} />
-                        {error?.pincode && <div className='customi-error-color'>{error?.pincode}</div>}
+                        <div className='customi-error-color'>{error?.pincode || ''}</div>
                     </div>
 
                     <button type="submit" className="modal-button">Submit</button>

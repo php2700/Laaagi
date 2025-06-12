@@ -359,7 +359,8 @@ export const Header = () => {
         setIsLoadingDryFruitTreats(true);
         try {
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`, { params: { isDryFruit: true } });
-            const mappedData = (res?.data?.dryFruitData || []).map(item => ({ id: item._id, name: item.name, path: `/dry-fruit_info/${item._id}/${item?.name?.replace(/\s+/g, '-')}` }));
+            const mappedData = (res?.data?.dryFruitData || []).map(item => ({ id: item._id, name: item.name, path: `/dry-fruit_info/${item._id}` }));
+            console.log("hgggggggggggggggggg")
             setDryFruitTreatsApiData(mappedData);
         } catch (err) { console.error("Error loading dry fruits:", err); } 
         finally { setIsLoadingDryFruitTreats(false); }

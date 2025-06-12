@@ -10,23 +10,34 @@
 }
 .name-sweet {
   width: 10%;
+  font-weight: 600;
 }
 .width-cls {
   width: 15%;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
+  color: #253d4e;
 }
 .align-left {
   text-align: left;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
+  color: #253d4e;
 }
 .payment-back {
   width: 6%;
 }
-.pay-button-container {
-  font-size: 16px;
+.pay-button-history {
+  text-align: end;
+  font-size: 30px;
   font-weight: 600;
+}
+.invitation-box-view-header {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 23px;
+  font-weight: 600;
+  color: #253d4e;
 }
 @media (max-width: 1000px) {
   .section-images img {

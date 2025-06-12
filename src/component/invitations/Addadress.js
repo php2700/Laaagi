@@ -1,170 +1,5 @@
 
 
-// import './AddAddressModal.css';
-// import logoImage from '../../assets/logo.png';
-// import { useContext, useEffect, useRef, useState } from 'react';
-// import axios from 'axios';
-// import { AuthContext } from '../context';
-
-// export const Addadress = ({ open, onClose, userData }) => {
-//   const context = useContext(AuthContext);
-//   const logout = context?.logout;
-//   const token = context?.token || localStorage.getItem('token');
-//   const _id = localStorage.getItem('_id');
-
-//   const [address, setAddress] = useState('');
-//   const [googleAddress, setGoogleAddress] = useState('');
-//   const [error, setError] = useState({});
-//   const [pincode, setPincode] = useState('');
-//   const inputRef = useRef(null);
-
-//   const handleClose = () => {
-//     setError({});
-//     setAddress('');
-//     setGoogleAddress('');
-//     setPincode('');
-//     onClose();
-//   };
-//   const onSelect = (formattedAddress) => {
-//     setGoogleAddress(formattedAddress);
-//     setAddress('');
-//     setError((prev) => ({ ...prev, googleAddress: '', address: '' }));
-//   };
-
-// useEffect(() => {
-//   if (!open || !inputRef.current) return;
-
-//   function initAutocomplete() {
-//     const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
-//       componentRestrictions: { country: 'in' },
-//       fields: ['formatted_address'],
-//       types: ['geocode'],
-//     });
-
-//     autocomplete.addListener('place_changed', () => {
-//       const place = autocomplete.getPlace();
-//       if (place?.formatted_address) {
-//         setGoogleAddress(place.formatted_address);
-//         setAddress('');
-//         setError((prev) => ({ ...prev, googleAddress: '', address: '' }));
-//       }
-//     });
-//   }
-
-//   if (window.google?.maps?.places) {
-//     initAutocomplete();
-//   } else {
-//     const interval = setInterval(() => {
-//       if (window.google?.maps?.places && inputRef.current) {
-//         clearInterval(interval);
-//         initAutocomplete();
-//       }
-//     }, 100);
-//     return () => clearInterval(interval);
-//   }
-// }, [open]);
-
-
-
-//   useEffect(() => {
-//     if (open) {
-//       console.log(userData, 'aaaaaaaaaaa')
-//       if (userData?.pincode) {
-//         setPincode(userData?.pincode || '')
-//       }
-//       if (userData?.addressBy === 'custom') {
-//         setAddress(userData?.address || '');
-//         setGoogleAddress('');
-//       } else if (userData?.addressBy === 'google') {
-//         setGoogleAddress(userData?.address || '');
-//         setAddress('');
-//       } else {
-//         setAddress('');
-//         setGoogleAddress('');
-//       }
-//       setError({});
-//     }
-//   }, [open, userData]);
-
-//   if (!open) return null;
-
-
-
-
-//   return (
-//     <div className="modal-overlay" onClick={onClose}>
-//       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-//         <button className="modal-close-button" onClick={handleClose} aria-label="Close modal">
-//           ×
-//         </button>
-     
-  
-      
-       
-
-//           <div>OR</div>
-//           <input ref={inputRef} type="text" placeholder="Google Address" />
-//           {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
-
-
-
-      
-//       </div>
-//     </div>
-//   );
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import './AddAddressModal.css';
 import logoImage from '../../assets/logo.png';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -197,7 +32,7 @@ export const Addadress = ({ open, onClose, userData }) => {
   };
 
   useEffect(() => {
-    if (!window.google || !window.google.maps || !inputRef.current) return;
+    if (!open || !inputRef.current) return;
 
     const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
       componentRestrictions: { country: 'in' },
@@ -239,12 +74,14 @@ export const Addadress = ({ open, onClose, userData }) => {
     const newError = {};
 
     if (!pincode) {
-      newError.pincode = 'Pincode required';
+      newError.pincode = 'Pincode required.';
     } else if (!/^[0-9]+$/.test(pincode)) {
-      newError.pincode = 'Only number allowed';
+      newError.pincode = 'Only number allowed.';
     }
     else if (!pincode.trim()) {
-      newError.pincode = 'Can Not Be Empty';
+      newError.pincode = 'Can not be empty.';
+    } else if (pincode?.length != 6) {
+      newError.pincode = 'Not a valid pincode.';
     }
 
     if (address && googleAddress) {
@@ -254,7 +91,7 @@ export const Addadress = ({ open, onClose, userData }) => {
     } else if (address && address.trim().length < 3) {
       newError.address = 'Address must be at least 3 characters long.';
     } else if (!/^[a-zA-Z\s0-9]+$/.test(address)) {
-      newError.address = 'Not Allowed special character';
+      newError.address = 'Not Allowed special character.';
     }
 
     setError(newError);
@@ -306,7 +143,7 @@ export const Addadress = ({ open, onClose, userData }) => {
               setError(prev => ({ ...prev, pincode: '' }));
             }}
           />
-          {error.pincode && <div style={{ color: 'red' }}>{error.pincode}</div>}
+          <div style={{ color: 'red', minHeight: '19px' }}>{error.pincode || ''}</div>
 
           <input
             type="text"
@@ -323,6 +160,7 @@ export const Addadress = ({ open, onClose, userData }) => {
 
           <div>OR</div>
           <input
+            ref={inputRef}
             type="text"
             className="modal-input"
             placeholder="Google Address"
@@ -335,7 +173,7 @@ export const Addadress = ({ open, onClose, userData }) => {
           />
           {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
 
-     
+
 
 
 
