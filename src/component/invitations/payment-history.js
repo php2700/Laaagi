@@ -63,7 +63,7 @@ export const PaymentHistory = () => {
                     <thead>
                         <tr>
                             <th className='payment-hash' >'#'</th>
-                            <th className='payment-order'>ORDERID</th>
+                            <th className='payment-order'>ORDER ID</th>
                             <th className='payment-title'>TITLE</th>
                             <th className='payment-weight'>WEIGHT</th>
                             <th className='payment-amount'>AMOUNT</th>

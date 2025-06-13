@@ -36,8 +36,8 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
             newError.pincode = 'pincode is required'
         else if (!/^[0-9]*$/.test(pincode)) {
             newError.pincode = 'Only Number Allowed'
-        } else if (pincode?.length < 6)
-            newError.pincode = 'min 6 character required'
+        } else if (pincode?.length != 6)
+            newError.pincode = 'Please enter valid pin code.'
 
         setError(newError)
         return Object.keys(newError)?.length;
