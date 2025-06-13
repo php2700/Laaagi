@@ -82,7 +82,6 @@ export const
                         headers: { 'Content-Type': 'multipart/form-data' }
                     }
                 );
-                setMessage(response.data.message || 'Request submitted successfully!');
                 setName('');
                 setCategory('');
                 setAmount('');
@@ -96,7 +95,7 @@ export const
                 setTimeout(() => {
                     setMessage('');
                     navigate('/invitation');
-                }, 3000);
+                }, 1000);
             } catch (error) {
                 setMessage(error.response?.data?.message || 'An error occurred. Please try again.');
                 console.error("Error submitting design quote:", error);
