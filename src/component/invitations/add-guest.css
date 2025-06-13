@@ -172,7 +172,6 @@ select {
 
 .add-guest-select-option {
   cursor: pointer;
-  color: grey;
 }
 
 @media (min-width: 768px) {

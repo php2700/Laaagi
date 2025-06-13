@@ -24,6 +24,7 @@ export const
                 setDesignFile(file);
                 const fileURL = URL.createObjectURL(file);
                 setPreviewURL(fileURL);
+                setMessage("")
             }
         };
 
@@ -32,9 +33,10 @@ export const
 
             if (!name?.trim()) newError.name = 'Name is required.';
             else if (name.trim().length < 3) newError.name = 'Name must be at least 3 characters.';
-            else if (!/^[a-zA-Z\s]$/.test(name)) {
+            else if (!/^[a-zA-Z\s]*$/.test(name)) {
                 newError.name = 'Please enter valid name.';
             }
+
 
             if (!amount?.trim()) newError.amount = 'Amount is required.';
             else if (isNaN(amount)) newError.amount = 'Amount must be a number.';
@@ -154,7 +156,7 @@ export const
                                 onChange={handleFileChange}
                                 accept=".jpg,.jpeg,.png"
                             />
-                            <div className="error">{message}</div>
+                            <div className="error">{message || ''}</div>
 
                             {previewURL && (
                                 <div style={{ marginTop: '10px', position: 'relative', display: 'inline-block' }}>
