@@ -112,7 +112,7 @@ export const ViewHistory = () => {
                     <p>{invitation?.invDesc}</p>
                 </div>
             </div>
-            <div className='select-size-header'>Select size of the box</div>
+            <div className='select-size-header'>Selected size of the box</div>
             <div className='invitation-size-box'>
                 <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : ''} >
                     {weight != 750 && weight != 1000 && weight != 250 ?
@@ -203,7 +203,6 @@ export const ViewHistory = () => {
                                         if (ele.index == index) return <div><img className='img-view' src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.img}`} /></div>
                                     })}
                                 </div>
-
                             </div>
                             {invitation?.sweets?.map((ele) => {
                                 if (ele.index == index) return <div className='name-sweet'>{ele?.name}</div>
@@ -289,33 +288,28 @@ export const ViewHistory = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th style={{
-                                width: '20%', fontSize: '15px',
-                                fontWeight: '600'
-                                , color: ' #253d4e',
-                                fontSize: '18px'
-                            }}>GUEST </th>
-                            <th className='width-cls' >Address </th>
-                            <th className='width-cls'>WEIGHT</th>
-                            <th className='width-cls'>pincode</th>
-                            <th className='width-cls'>PAYMENT DATE</th>
-                            <th className='align-left'>Box Quantity </th>
+                            <th className='view-payment-header-guest'>GUEST </th>
+                            <th className='view-payment-header-address' >Address </th>
+                            <th className='view-payment-header-weight'>WEIGHT</th>
+                            <th className='view-payment-header-pincode'>pincode</th>
+                            <th className='view-payment-header-date'>PAYMENT DATE</th>
+                            <th className='view-payment-header-quantity'>Box Quantity </th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             invitation.guest?.map((ele) => (
                                 <tr >
-                                    <td>
+                                    <td className='view-payment-guest'>
                                         {ele?.name}
                                     </td>
-                                    <td>
+                                    <td className='view-payment-address'>
                                         {ele.address}
                                     </td>
-                                    <td>{invitation?.weight} g</td>
-                                    <td>{ele?.pincode}</td>
-                                    <td>{invitation?.createdAt}</td>
-                                    <td>{ele?.quantity}
+                                    <td className='view-payment-weight'>{invitation?.weight} g</td>
+                                    <td className='view-payment-pincode'>{ele?.pincode}</td>
+                                    <td className='view-payment-date'>{invitation?.createdAt}</td>
+                                    <td className='view-payment-quantity'>{ele?.quantity}
                                     </td>
                                 </tr>
                             ))

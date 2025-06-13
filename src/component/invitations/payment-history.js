@@ -1,5 +1,6 @@
 import React, { use, useContext, useEffect, useState } from 'react';
 import './GuestList.css';
+import './payment-history.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
@@ -61,13 +62,13 @@ export const PaymentHistory = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>'#'</th>
-                            <th>ORDERID</th>
-                            <th >TITLE</th>
-                            <th >WEIGHT</th>
-                            <th>AMOUNT</th>
-                            <th>PAYMENT_DATE</th>
-                            <th>VIEW</th>
+                            <th className='payment-hash' >'#'</th>
+                            <th className='payment-order'>ORDERID</th>
+                            <th className='payment-title'>TITLE</th>
+                            <th className='payment-weight'>WEIGHT</th>
+                            <th className='payment-amount'>AMOUNT</th>
+                            <th className='payment-date'>PAYMENT_DATE</th>
+                            <th className='payment-view'>VIEW</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,15 +77,15 @@ export const PaymentHistory = () => {
                             const formatDate = `${newDate.getFullYear()}-${(newDate.getMonth() + 1).toString().padStart(2, '0')}-${newDate.getDate().toString().padStart(2, '0')}`;
                             return (
                                 <tr key={payment._id || index}>
-                                    <td>{index + 1}</td>
-                                    <td>{payment?.razorpay_order_id}</td>
-                                    <td >{payment?.invitationName || payment?.sweet}</td>
-                                    <td >
+                                    <td className='payment-hash'>{index + 1}</td>
+                                    <td className='payment-order'>{payment?.razorpay_order_id}</td>
+                                    <td className='payment-title'>{payment?.invitationName || payment?.sweet}</td>
+                                    <td className='payment-weight'>
                                         {payment.weight ? `${payment.weight} g` : payment.quantity ? `${payment.quantity} kg` : ''}
                                     </td>
 
-                                    <td>{payment.amount} Rs /-</td>
-                                    <td>{formatDate}</td>
+                                    <td className='payment-amount'>{payment.amount} Rs /-</td>
+                                    <td className='payment-date'>{formatDate}</td>
                                     <td className='handleview' onClick={() => handleView(payment)}>view</td>
                                 </tr>
                             );

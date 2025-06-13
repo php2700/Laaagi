@@ -167,7 +167,7 @@
 //     const toggleUserDropdown = () => {
 //         setIsUserDropdownOpen(!isUserDropdownOpen);
 //         setIsSearchDropdownOpen(false);
-        
+
 //     };
 //     const openSignupPage = () => navigate('/signup');
 
@@ -266,16 +266,18 @@
 //                 </div>
 //             )}
 //             <nav style={{ color: 'red' }} className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
-//                 <NavLink to='/invitation' onClick={() => setMenuOpen(false)}style={{ color: '#ffd700 ',textDecoration:'none' }}>Invitations</NavLink>
-//                 <NavLink to='/sweets' onClick={() => setMenuOpen(false)}style={{ color: '#ffd700 ',textDecoration:'none' }}>Sweets</NavLink>
-//                 <NavLink to='/decorations' onClick={() => setMenuOpen(false)}style={{ color: '#ffd700 ',textDecoration:'none' }}>Decorations</NavLink>
-//                 <NavLink to='/designers' onClick={() => setMenuOpen(false)}style={{ color: '#ffd700 ',textDecoration:'none' }}>Designer</NavLink>
-//                 <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)}style={{ color: '#ffd700 ',textDecoration:'none' }}>Planning Tools</NavLink>
-//                 <NavLink to='/contact-us' onClick={() => setMenuOpen(false)}style={{ color: '#ffd700 ' ,textDecoration:'none'}}>Contact Us</NavLink>
+//                 <NavLink to='/invitation' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ',textDecoration:'none' }}>Invitations</NavLink>
+//                 <NavLink to='/sweets' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ',textDecoration:'none' }}>Sweets</NavLink>
+//                 <NavLink to='/decorations' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ',textDecoration:'none' }}>Decorations</NavLink>
+//                 <NavLink to='/designers' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ',textDecoration:'none' }}>Designer</NavLink>
+//                 <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ',textDecoration:'none' }}>Planning Tools</NavLink>
+//                 <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ' ,textDecoration:'none'}}>Contact Us</NavLink>
 //             </nav>
 //         </div>
 //     );
 // };
+
+
 import laaagiLogo from '../../assets/logo/laaagi.png';
 import seacrh from '../../assets/logo/search.png';
 import downArrow from "../../assets/logo/down.png";
@@ -351,7 +353,7 @@ export const Header = () => {
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params: { isWedding: true } });
             const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
             setWeddingSpecialApiData(mappedData);
-        } catch (err) { console.error("Error loading wedding sweets:", err); } 
+        } catch (err) { console.error("Error loading wedding sweets:", err); }
         finally { setIsLoadingWeddingSpecial(false); }
     };
 
@@ -362,7 +364,7 @@ export const Header = () => {
             const mappedData = (res?.data?.dryFruitData || []).map(item => ({ id: item._id, name: item.name, path: `/dry-fruit_info/${item._id}` }));
             console.log("hgggggggggggggggggg")
             setDryFruitTreatsApiData(mappedData);
-        } catch (err) { console.error("Error loading dry fruits:", err); } 
+        } catch (err) { console.error("Error loading dry fruits:", err); }
         finally { setIsLoadingDryFruitTreats(false); }
     };
 
@@ -372,7 +374,7 @@ export const Header = () => {
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`);
             const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
             setClothesDisplayData(mappedData);
-        } catch (err) { console.error("Error loading sweets:", err); } 
+        } catch (err) { console.error("Error loading sweets:", err); }
         finally { setIsLoadingClothes(false); }
     };
 
@@ -429,7 +431,7 @@ export const Header = () => {
     const handleGuestClick = () => {
         navigate('/signup');
     };
-    
+
     return (
         <div>
             <div className='topbar'>Welcome to Laaagi</div>
@@ -511,12 +513,31 @@ export const Header = () => {
                 </div>
             )}
             <nav style={{ color: 'red' }} className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
-                <NavLink to='/invitation' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ', textDecoration: 'none' }}>Invitations</NavLink>
-                <NavLink to='/sweets' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ', textDecoration: 'none' }}>Sweets</NavLink>
-                <NavLink to='/decorations' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ', textDecoration: 'none' }}>Decorations</NavLink>
-                <NavLink to='/designers' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ', textDecoration: 'none' }}>Designer</NavLink>
-                <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ', textDecoration: 'none' }}>Planning Tools</NavLink>
-                <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} style={{ color: '#ffd700 ', textDecoration: 'none' }}>Contact Us</NavLink>
+                <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                    style={{
+                        color: '#ffd700'
+                    }}>Invitations</NavLink>
+                <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
+                    className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                    style={{
+                        color: '#ffd700'
+                    }}>Sweets</NavLink>
+                <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                    style={{
+                        color: '#ffd700'
+                    }}>Decorations</NavLink>
+                <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                    style={{
+                        color: '#ffd700'
+                    }}>Designer</NavLink>
+                <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                    style={{
+                        color: '#ffd700'
+                    }}>Planning Tools</NavLink>
+                <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                    style={{
+                        color: '#ffd700'
+                    }}>Contact Us</NavLink>
             </nav>
         </div>
     );

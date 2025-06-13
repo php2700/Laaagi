@@ -83,12 +83,12 @@ export const Guest = () => {
                     <table>
                         <thead>
                             <tr id="trs">
-                                <th className="ids-width">'#'</th>
-                                <th className="ths">NAME</th>
-                                <th className="ths">ADDRESS</th>
+                                <th className="ids">'#'</th>
+                                <th className="ths-name">NAME</th>
+                                <th className="ths-address">ADDRESS</th>
                                 <th className="guest-number">GUEST NUMBER</th>
                                 <th className="guest-category">CATEGORIES</th>
-                                <th className="ths">Action</th>
+                                <th className="ths-action">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,7 +98,7 @@ export const Guest = () => {
                 </div>
                 <div className="my-address-section">
                     <div className="my-address-guest-list">
-                        <div>My Address</div>
+                        <div className="my-address">My Address:</div>
                         {userData?.address && <div>{userData?.address}</div>}
                     </div>
                 </div>

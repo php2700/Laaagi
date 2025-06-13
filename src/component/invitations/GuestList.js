@@ -240,35 +240,35 @@ export const GuestList = () => {
         <table>
           <thead>
             <tr>
-              <th>'#'</th>
-              <th>No.</th>
-              <th >NAME</th>
-              <th>ADDRESS</th>
-              <th>GUEST NUMBER</th>
-              <th>CATEGORIES</th>
-              <th>Boxes quantity</th>
+              <th className='guest-hash'>'#'</th>
+              <th className='guest-no'>No.</th>
+              <th className='guest-name'>NAME</th>
+              <th className='guest-address'>ADDRESS</th>
+              <th className='number-guest'>GUEST NUMBER</th>
+              <th className='category-guest'>CATEGORIES</th>
+              <th className='guest-quantity'>Boxes quantity</th>
             </tr>
           </thead>
           <tbody>
             {guestList?.map((guest, index) => (
               <tr key={guest._id || index}>
-                <td>
+                <td className='guest-hash'>
                   {
                     guest.address ? <input type="checkbox" onChange={() => { handleChecked(index, guest) }} /> :
                       <input type="checkbox" disabled />
                   }
                   {/* <input type="checkbox" onChange={() => { handleChecked(index, guest) }} /> */}
                 </td>
-                <td>{index + 1}</td>
-                <td>{guest.name}</td>
-                <td>{!guest.address ? (
+                <td className='guest-no'>{index + 1}</td>
+                <td className='guest-name'>{guest.name}</td>
+                <td className='guest-address'>{!guest.address ? (
                   <button className="sent-request-button">Sent Request</button>
                 ) : (guest?.address)}</td>
-                <td>
+                <td className='number-guest'>
                   {guest.guestNo}
                 </td>
-                <td>{guest.category}</td>
-                <td>
+                <td className='category-guest'>{guest.category}</td>
+                <td className='guest-quantity'>
                   <input type='text' className='invite-guest-list' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => {
                     const isNumber = e.target.value;
                     if (/^\d*$/.test(isNumber)) {

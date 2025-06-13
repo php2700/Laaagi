@@ -141,9 +141,8 @@ export const Addadress = ({ open, onClose, userData }) => {
           />
           <div style={{ color: 'red', minHeight: '19px' }}>{error.pincode || ''}</div>
 
-          <input
-            type="text"
-            className="modal-input"
+          <textarea
+            className="modal-input-textarea"
             placeholder="Enter Full Address"
             value={address}
             onChange={(e) => {
@@ -151,14 +150,13 @@ export const Addadress = ({ open, onClose, userData }) => {
               setGoogleAddress('');
               setError(prev => ({ ...prev, googleAddress: '', address: '' }));
             }}
-          />
+          ></textarea>
           {error.address && <div style={{ color: 'red' }}>{error.address}</div>}
 
           <div>OR</div>
-          <input
+          <textarea
             ref={inputRef}
-            type="text"
-            className="modal-input"
+            className="modal-input-textarea"
             placeholder="Google Address"
             value={googleAddress}
             onChange={(e) => {
@@ -166,13 +164,8 @@ export const Addadress = ({ open, onClose, userData }) => {
               setAddress('');
               setError(prev => ({ ...prev, address: '', googleAddress: '' }));
             }}
-          />
+          ></textarea>
           {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
-
-
-
-
-
           <button type="submit" className="modal-submit-button">
             Submit
           </button>

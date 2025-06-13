@@ -92,8 +92,21 @@ export const Invitationhome = () => {
   const [error, setError] = useState([])
   const [lastURL, setLastURL] = useState(localStorage.getItem('lastURL'));
   const [currentUrl, setCurrentUrl] = useState(localStorage.getItem('currentURL'))
+  const targetRef = useRef(null);
 
-console.log(paymentHistory,"hjjjjjjjjjjjjjjjjjjjjjjjj--------------")
+  useEffect(() => {
+    const scrollToNext = () => {
+      if (targetRef.current) {
+        targetRef.current.scrollIntoView();
+      }
+    };
+    window.addEventListener('scrollToNext', scrollToNext);
+    return () => {
+      window.removeEventListener('scrollToNext', scrollToNext);
+    };
+  }, []);
+
+
   const weight = useSelector((state) => state.weight?.value);
   const dispatch = useDispatch()
   const calculateTotalAmount = (price, weight) => {
@@ -443,7 +456,7 @@ console.log(paymentHistory,"hjjjjjjjjjjjjjjjjjjjjjjjj--------------")
         </div>
       </div>
 
-      <div className='invitation-select-sweet-box-list'>
+      <div className='invitation-select-sweet-box-list' ref={targetRef}>
         <div className='invitation-box-select-header'>
           <div >Sections</div>
           <div className='invitation-names'>Image</div>
@@ -454,7 +467,7 @@ console.log(paymentHistory,"hjjjjjjjjjjjjjjjjjjjjjjjj--------------")
         {id == 1 ?
           normalBox?.map((ele, index) => {
             const data = paymentHistory?.find((ele1) => ele1.index === index);
-            console.log(data,"ffffffffffffffffffffffffffffff")
+            console.log(data, "ffffffffffffffffffffffffffffff")
             return (
               <div className='invitation-select-arrow'>
                 <div className='invitation-section-align'>

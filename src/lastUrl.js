@@ -5,9 +5,9 @@ export function LastUrl() {
     const location = useLocation();
     console.log(location?.pathname)
     useEffect(() => {
-        if (location?.pathname.startsWith('/sweets') || location?.pathname.startsWith('/sweets-info/') || location?.pathname.startsWith('/dry-fruit_info/') || location.pathname.startsWith('/invitation-detail/')) {
-            window.scrollTo(0, 0);
-        }
+        // if (location?.pathname.startsWith('/sweets') || location?.pathname.startsWith('/sweets-info/') || location?.pathname.startsWith('/dry-fruit_info/') || location.pathname.startsWith('/invitation-detail/')) {
+        window.scrollTo(0, 0);
+        // }
     }, [location?.pathname]);
 
     useEffect(() => {
