@@ -35,15 +35,15 @@ function GuestRow({ guestList, guestListData }) {
     <>
       {guestListData?.map((guest, index) => (
         <tr>
-          <td>{index + 1}</td>
-          <td>{guest.name}</td>
-          <td>{!guest.address ? (
+          <td className='ids'>{index + 1}</td>
+          <td className='ths-name'>{guest.name}</td>
+          <td className='ths-address'>{!guest.address ? (
             <button className="sent-request-button" onClick={() => sentRequest(guest)} >Sent Request</button>
           ) : (guest?.address)}</td>
-          <td>
+          <td className='guest-number'>
             {guest.guestNo}
           </td>
-          <td>{guest.category}</td>
+          <td className='guest-category'>{guest.category}</td>
           <td>
             <div className='guest-icon'>
               <Link to='/edit-guest' state={{ guestData: guest }} > <img src={editImg} /></Link>

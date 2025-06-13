@@ -18,11 +18,16 @@ export const Model = ({ open, onClose, data }) => {
 
         if (!name?.trim()) {
             newError.name = 'Name is required.'
-        } else if (name?.length < 3) {
+        } else if (!/^[a-zA-Z\s]*$/.test(name)) {
+            newError.name = 'Enter valid name.'
+        }
+        else if (name?.length < 3) {
             newError.name = 'Minimum 3 character required.'
         }
         if (!lastName?.trim()) {
             newError.lastName = 'Last name is required.'
+        }else if (!/^[a-zA-Z\s]*$/.test(lastName)) {
+            newError.lastName = 'Enter valid name.'
         } else if (lastName?.length < 3) {
             newError.lastName = 'Minimum 3 character required.'
         }

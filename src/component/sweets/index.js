@@ -121,6 +121,9 @@ export const Sweets = () => {
             navigate(`/invitation-detail/${invitationId}/${url}`, {
                 state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id }
             });
+            setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('scrollToNext'));
+            }, 500);
         } else {
             toast.error("Please Select Sweet !", {
                 position: "bottom-right"
@@ -209,21 +212,26 @@ export const Sweets = () => {
                 <div className='sweets-content'>
                     <div className='sweets-content-list'>
                         {data?.length > 0 &&
-                            data?.map((ele) => (
+                            data?.map((ele) => {
 
-                                <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
+                                let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
 
-                                    {orderId === ele?.orderId && (
-                                        <div className='show-arrow-right'>
-                                            <img src={rightArrow} alt="Selected" />
-                                        </div>
-                                    )}
-                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
-                                    <div className='sweets-name'>{ele?.name}</div>
+                                return (
 
-                                    {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
-                                </div>
-                            ))}
+                                    <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
+
+                                        {orderId === ele?.orderId && (
+                                            <div className='show-arrow-right'>
+                                                <img src={rightArrow} alt="Selected" />
+                                            </div>
+                                        )}
+                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                        <div className='sweets-name'>{name}</div>
+
+                                        {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
+                                    </div>
+                                )
+                            })}
                         {!data?.length > 0 && (
                             <div className='no-found'>No Data Found for Invitation Selection</div>
                         )}
@@ -261,7 +269,7 @@ export const Sweets = () => {
                     <div className='btn-done' onClick={handleInvitationSweetDone} >Done</div>
                 </div>
             )} */}
-            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} />
+            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} selectedSweet={invitationselectSweet} />
         </div>
     )
 }

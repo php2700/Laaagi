@@ -25,7 +25,6 @@ export const Footer = () => {
         }
     };
 
-
     const scrolltop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }

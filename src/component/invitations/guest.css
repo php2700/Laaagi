@@ -1,4 +1,3 @@
-/* --- Global & Container --- */
 .guest-list-container {
   font-family: sans-serif;
   border: 1px solid #e4e2e2;
@@ -21,11 +20,6 @@
 .payments-btn {
   display: flex;
   gap: 15px;
-}
-
-.handleview {
-  cursor: pointer;
-  color: blue;
 }
 
 .search-input {
@@ -80,35 +74,43 @@ thead th {
   text-transform: uppercase;
 }
 
-th:first-child,
-td:first-child {
-  padding-left: 20px;
-  width: 40px;
+table {
+  width: 100%;
+  border-collapse: collapse;
   text-align: center;
-}
-th:nth-child(2),
-td:nth-child(2) {
-  width: 40px;
-  text-align: center;
-}
-td:nth-child(3) {
-  font-weight: 500;
-  color: #333;
-}
-th:nth-child(5),
-td:nth-child(5) {
-  width: 120px;
-  text-align: center;
-}
-th:last-child,
-td:last-child {
-  padding-right: 20px;
-  text-align: center;
-  width: 100px;
+  table-layout: fixed;
 }
 
 tbody tr:hover {
   background-color: #f9f9f9;
+}
+.ids {
+  width: 2%;
+}
+
+.ths-name {
+  width: 20%;
+  text-align: left;
+  line-break: anywhere;
+}
+
+.ths-address {
+  text-align: left;
+  width: 20%;
+  line-break: anywhere;
+}
+
+.guest-number {
+  width: 15%;
+}
+
+.guest-category {
+  width: 15%;
+}
+
+.ths-action {
+  text-align: center;
+  width: 10%;
 }
 
 .sent-request-button {
@@ -147,7 +149,6 @@ tbody tr:hover {
   align-items: center;
   gap: 15px;
   font-size: 14px;
-  width: 32%;
   justify-content: space-between;
 }
 
@@ -244,6 +245,11 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.my-addres {
+  font-size: 18px;
+  font-weight: 500;
+}
+
 @media (max-width: 1000px) {
   .guest-list-container {
     width: 95%;
@@ -319,40 +325,4 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
-}
-
-th,
-td {
-  padding: 12px 10px;
-  vertical-align: middle;
-}
-
-th:nth-child(2),
-td:nth-child(2) {
-  text-align: left;
-}
-
-th:nth-child(5),
-td:nth-child(5) {
-  text-align: left;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-.ths,
-#tds {
-  padding: 12px 10px;
-  vertical-align: middle;
-}
-.ths {
-  width: 25% !important;
-}
-.guest-number {
-  width: 15% !important;
-}
-.guest-category {
-  width: 20% !important;
 }

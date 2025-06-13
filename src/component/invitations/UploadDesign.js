@@ -32,9 +32,15 @@ export const
 
             if (!name?.trim()) newError.name = 'Name is required.';
             else if (name.trim().length < 3) newError.name = 'Name must be at least 3 characters.';
+            else if (!/^[a-zA-Z\s]$/.test(name)) {
+                newError.name = 'Please enter valid name.';
+            }
 
             if (!amount?.trim()) newError.amount = 'Amount is required.';
             else if (isNaN(amount)) newError.amount = 'Amount must be a number.';
+            else if (amount <= 0) {
+                newError.amount = 'Amount should be positive.'
+            }
 
             if (!category) newError.category = 'Category is required.';
 

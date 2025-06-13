@@ -12,18 +12,66 @@
   width: 10%;
   font-weight: 600;
 }
-.width-cls {
+
+.view-payment-header-guest {
+  font-size: 18px;
+  font-weight: 600;
+  color: #253d4e;
+}
+.view-payment-header-address {
+  font-size: 18px;
+  font-weight: 600;
+  color: #253d4e;
+}
+.view-payment-header-weight {
+  font-size: 18px;
+  font-weight: 600;
+  color: #253d4e;
+  text-align: center;
+}
+.view-payment-header-pincode {
+  font-size: 18px;
+  font-weight: 600;
+  color: #253d4e;
+  text-align: center;
+}
+.view-payment-header-date {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #253d4e;
+}
+.view-payment-header-quantity {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #253d4e;
+}
+.view-payment-guest {
+  width: 20%;
+  line-break: anywhere;
+}
+.view-payment-address {
+  width: 20%;
+  line-break: anywhere;
+}
+.view-payment-weight {
+  text-align: center;
   width: 15%;
-  font-size: 17px;
-  font-weight: 600;
-  color: #253d4e;
 }
-.align-left {
-  text-align: left;
-  font-size: 17px;
-  font-weight: 600;
-  color: #253d4e;
+.view-payment-pincode {
+  text-align: center;
+  width: 15%;
 }
+.view-payment-date {
+  text-align: center;
+  width: 15%;
+}
+.view-payment-quantity {
+  text-align: center;
+  width: 15%;
+}
+
 .payment-back {
   width: 6%;
 }
