@@ -87,7 +87,7 @@ export const Footer = () => {
                         <div className='footer-left-middle-text'>Refund</div>
                         <div className='footer-left-middle-text'>Checkout</div>
                         <div className='footer-left-middle-text'>Shipping</div>
-                        <div className='footer-left-middle-text'>Privacy Policy</div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/privacy-policy'>Privacy policy</Link></div>
                     </div>
                 </div>
                 <div className='footer-middle'>

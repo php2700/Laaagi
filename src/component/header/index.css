@@ -344,7 +344,7 @@ button {
 }
 .header .search {
   display: flex;
-  width: 20%;
+  width: 18%;
   cursor: pointer;
 }
 .header .search input {
@@ -366,8 +366,17 @@ button {
 }
 
 .Laaagi {
+  width: 18%;
   display: flex;
   align-items: center;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: end;
+  width: 15%;
 }
 
 .Laaagi div a {
@@ -407,17 +416,17 @@ button {
   width: 30px;
 }
 
- .active-link {
+.active-link {
   text-decoration: underline;
   text-decoration-color: red;
   text-decoration-thickness: 2px;
 }
 
-.default{
+.default {
   text-decoration: none;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .menu-toggle {
     display: block;
     background-color: #800000;
@@ -425,6 +434,12 @@ button {
     color: white;
     padding-top: 5px;
     padding-right: 5px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .navbar {
@@ -451,6 +466,20 @@ button {
   .header .search,
   .topbar-right {
     display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .Laaagi {
+    width: 26%;
+    display: flex;
+    align-items: center;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
   }
 }
 
@@ -513,7 +542,7 @@ button {
   line-height: 100%;
   font-weight: 700;
 
-  padding: 8px 15px;
+  padding: 6px 15px;
   color: #800000;
   text-decoration: none;
   white-space: nowrap;
@@ -552,14 +581,7 @@ button {
   font-size: 16px;
   margin-left: 5px;
 }
-/* new2 */
-/* Responsive Improvements for 300px - 500px range */
-
-/* Base Styles - keep existing structure as is */
-/* ... [your existing styles, already pasted above] ... */
-
-/* Additional Responsive Fixes */
-@media (max-width: 500px) and (min-width: 300px) {
+/* @media (max-width: 500px) and (min-width: 300px) {
   .topbar div {
     font-size: 13px;
     text-align: center;
@@ -636,102 +658,96 @@ button {
     font-size: 14px;
     padding: 6px 12px;
   }
-}
+} */
 
 .user-dropdown-menu {
   transition: all 0.3s ease;
 }
 .main-navbar .nav-item.active {
-  background-color:red;
+  background-color: red;
 }
 
 .header .search {
-    position: relative; 
-    
+  position: relative;
 }
 
 .search input[type="search"] {
-
-  
-    cursor: pointer; 
+  cursor: pointer;
 }
 
 .search-dropdown-content {
-    position: absolute;
-    top: 100%; 
-    left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-top: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000; 
-    width: 100%; 
-    max-height: 300px; 
-    overflow-y: auto; 
-    border-radius: 0 0 4px 4px; 
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 0 0 4px 4px;
 }
 
 .search-dropdown-category-title {
-    padding: 10px 15px;
-    font-weight: bold;
-    color: #333;
-    background-color: #f9f9f9; 
-    border-bottom: 1px solid #eee;
+  padding: 10px 15px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
 }
 
 .search-dropdown-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .search-dropdown-content ul li {
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 0.9em;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
 .search-dropdown-content ul li:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
-
 .search img {
-   
-    cursor: pointer; 
+  cursor: pointer;
 }
 
 .search-dropdown-category-title.clickable-category {
-    cursor: pointer;
-
+  cursor: pointer;
 }
 
 .search-dropdown-category-title.clickable-category:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .category-item-list {
-    list-style: none;
-    padding: 0 0 0 20px; 
-    margin: 5px 0 10px 0;
+  list-style: none;
+  padding: 0 0 0 20px;
+  margin: 5px 0 10px 0;
 }
 
 .category-item-list li {
-    padding: 8px 15px; 
-    cursor: pointer;
-    font-size: 0.9em;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
 .category-item-list li:hover {
-    background-color: #e9e9e9; 
+  background-color: #e9e9e9;
 }
 
 .no-items-message {
-    padding: 8px 15px 8px 35px; 
-    font-style: italic;
-    color: #777;
-    font-size: 0.9em;
+  padding: 8px 15px 8px 35px;
+  font-style: italic;
+  color: #777;
+  font-size: 0.9em;
 }
-#nav{
-  color:#ffd700 !important;
+#nav {
+  color: #ffd700 !important;
 }

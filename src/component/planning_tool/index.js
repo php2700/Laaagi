@@ -155,6 +155,27 @@ export const PlanningTool = () => {
         setCategory(eventData.category)
     }
 
+    const handleHelp = (data) => {
+        const sendEventData = {
+            userId: userId,
+            planningId: data?._id,
+        }
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-help`, sendEventData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        })
+            .then((res) => {
+                if (res?.data)
+                    toast.success('Request sent successfully!', {
+                        position: 'top-right'
+                    })
+            }).catch((error) => {
+                console.error("Error saving planning history:", error);
+                toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+            })
+    }
+
     return (
         <>
             {
@@ -164,19 +185,21 @@ export const PlanningTool = () => {
                     </div>
 
                     <div className='planning-check-list'>
-                        <div className='planning-check-header'>Event List</div>
+                        <div className='planning-check-header'>Planning List</div>
                         {data?.map((item, idx) => (
                             <div className='planning-list' key={idx}>
                                 <div>
-                                    <label className='font-size-text' htmlFor={`checkbox-${idx}`}>
+                                    <label className='font-size-text' htmlFor={`checkbox-${idx}`} onClick={() => { handleEvent(item) }}>
                                         {item?.category}
-                                    </label>
-                                    <lable className='font-size-help' onClick={() => { handleEvent(item) }}> (Need Help):
                                         <img
                                             src={downArrow}
                                             alt="Open user menu"
                                         />
-                                    </lable>
+                                    </label>
+
+                                    <label className='font-size-help' onClick={() => { handleHelp(item) }} > (Need Help)?
+
+                                    </label>
                                 </div>
                                 {(category == item.category) &&
                                     <div>{eventData[0]?.description?.length > 0 ?
@@ -202,7 +225,7 @@ export const PlanningTool = () => {
                             </div>
                         ))}
                         < >
-                            <div className='planning-check-save' onClick={handleSave}>Send Request</div>
+                            <div className='planning-check-save' onClick={handleSave}>Add Planning</div>
                             <div className='planning-check-clear' onClick={handleClear} >Clear All</div>
                         </>
                     </div>

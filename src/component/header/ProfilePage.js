@@ -3,8 +3,9 @@ import './ProfilePage.css';
 import laaagiLogo from '../../assets/logo.png';
 import { AuthContext } from '../context';
 import axios from 'axios';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
+import { toast } from 'react-toastify';
 
 
 export const ProfilePage = () => {
@@ -37,7 +38,7 @@ export const ProfilePage = () => {
             setAddress(res?.data?.userData?.address)
             setProfilePreview(res?.data?.userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${res?.data?.userData?.profile}` : laaagiLogo)
         }).catch((error) => {
-             if (error?.response?.data?.Message === 'jwt expired') {
+            if (error?.response?.data?.Message === 'jwt expired') {
                 logout()
             }
             console.log(error);
@@ -63,7 +64,12 @@ export const ProfilePage = () => {
         }).then((res) => {
             setUserData(res?.data?.response)
             setDefaultProfile(true)
-            navigate('/')
+            toast.success('Profile update successfully', {
+                position: 'top-right'
+            })
+            setTimeout(() => {
+                navigate('/')
+            }, 1000)
         }).catch((error) => {
             console.log(error);
         })

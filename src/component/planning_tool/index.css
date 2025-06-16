@@ -21,7 +21,7 @@
 .planning-check-list {
   text-align: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 40px auto;
   padding: 25px 150px;
   /* display: flex; */
   flex-direction: column;
@@ -86,7 +86,7 @@
 
 .font-size-text {
   font-size: 22px;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .font-size-help {
@@ -99,8 +99,6 @@
   align-items: center;
   gap: 5px;
 }
-
-
 
 .dropdown-arrow {
   cursor: pointer;
@@ -128,7 +126,7 @@
     padding: 10px 20px;
   }
 }
-@media (max-width: 850px) {
+@media (max-width: 1100px) {
   .plannig-category {
     margin: 30px 0px;
     gap: 10px;
@@ -140,11 +138,11 @@
   .planning-check-list {
     text-align: center;
     width: 65%;
-    margin: 0 auto;
     padding: 10px 50px;
     display: flex;
+    margin: 40px auto;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     box-shadow: 0px 1px 8px gray;
   }
 }
@@ -158,14 +156,15 @@
     justify-content: center;
     padding-bottom: 10px;
   }
+
   .planning-check-list {
     text-align: center;
-    width: 65%;
-    margin: 0 auto;
+    width: 79%;
+    margin: 40px auto;
     padding: 10px 60px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 11px;
     box-shadow: 0px 1px 8px gray;
   }
 }

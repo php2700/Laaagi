@@ -47,6 +47,7 @@ import { Dry_fruit } from './component/sweets/dry_fruit';
 import { ViewHistory } from './component/invitations/viewHistory';
 import { ViewSweetHistory } from './component/sweets/sweet-history';
 import { BestSeller } from './component/Best_seller/list';
+import { PrivacyPolicy } from './component/privacy-policy';
 
 function App() {
 
@@ -119,7 +120,10 @@ function App() {
             <Route path='/payment-history' element={<PrivateRoute><PaymentHistory /></PrivateRoute>} />
             <Route path='/view-history/:_id' element={<PrivateRoute><ViewHistory /></PrivateRoute>} />
             <Route path='/view-sweet-history/:_id' element={<PrivateRoute><ViewSweetHistory /></PrivateRoute>} />
-             <Route path='/dry-fruit_info/:_id' element={<DryFruitInfo />} />
+            <Route path='/dry-fruit_info/:_id' element={<DryFruitInfo />} />
+
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+
 
 
           </Routes>
