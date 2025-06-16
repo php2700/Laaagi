@@ -39,55 +39,58 @@ export const Add_Guest = () => {
     const validate = () => {
         const newError = {};
         if (!name?.trim()) {
-            newError.name = 'Name is required'
+            newError.name = 'Name is required.'
         }
         else if (name?.length < 3) {
-            newError.name = 'Min 3 character required'
+            newError.name = 'Min 3 character required.'
         }
 
         if (!guestNo) {
-            newError.guestNo = 'Guest No is required'
+            newError.guestNo = 'Guest no is required.'
         }
         else if (!/^\d+$/.test(guestNo)) {
-            newError.guestNo = 'GuestNo number must contain digits only';
+            newError.guestNo = 'Guestno number must contain digits only.';
         }
 
         if (!mobile) {
-            newError.mobile = 'Mobile number is required*';
+            newError.mobile = 'Mobile number is required.';
         } else if (!/^\d+$/.test(mobile)) {
-            newError.mobile = 'Mobile number must contain digits only';
+            newError.mobile = 'Mobile number must contain digits only.';
         } else if (mobile.length < 10) {
-            newError.mobile = 'Mobile number must be at least 10 digits';
+            newError.mobile = 'Mobile number must be at least 10 digits.';
         } else if (mobile.length > 12) {
-            newError.mobile = 'Mobile number must not exceed 12 digits';
+            newError.mobile = 'Mobile number must not exceed 12 digits.';
         }
 
         if (!email) {
-            newError.email = 'Email is required'
+            newError.email = 'Email is required.'
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-            newError.email = 'Email not valid'
+            newError.email = 'Email not valid.'
         }
 
         if (!category?.trim())
-            newError.category = 'Category is required'
+            newError.category = 'Category is required.'
 
         if (!selectRadio)
-            newError.selectRadio = 'Please Select Address'
+            newError.selectRadio = 'Please select address.'
 
         if (openAddress) {
             if (!address) {
-                newError.address = 'Please Add Address'
+                newError.address = 'Please add address.'
             } else if (!/^[a-zA-Z\s0-9]+$/.test(address)) {
-                newError.address = 'Not Allowed Special Character'
+                newError.address = 'Not allowed special character.'
             } else if (!address?.trim()) {
-                newError.address = 'Please Add Address'
+                newError.address = 'Please add address.'
             }
             if (!pincode) {
-                newError.pincode = 'Please Enter PinCode'
+                newError.pincode = 'Please enter pinCode.'
             } else if (!/^[0-9]+$/.test(pincode)) {
-                newError.pincode = 'Only accept Number'
+                newError.pincode = 'Only accept number.'
             } else if (!pincode?.trim()) {
-                newError.pincode = 'Please Enter PinCode'
+                newError.pincode = 'Please enter pincode.'
+            }
+            else if (pincode?.length != 6) {
+                newError.pincode = 'Please enter valid pincode.'
             }
         }
 
@@ -231,9 +234,9 @@ export const Add_Guest = () => {
                             </div>
                             <div>
                                 <input className="radio" type='radio' name='address' value='address_person' onChange={(e) => {
-                                handleAddress(e.target.value)
-                                setError({ ...error, selectRadio: '' })
-                            }} />
+                                    handleAddress(e.target.value)
+                                    setError({ ...error, selectRadio: '' })
+                                }} />
                                 <span className="address-myself">Add Address by person itself</span>
                             </div>
                         </div>

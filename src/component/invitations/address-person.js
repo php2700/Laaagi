@@ -24,10 +24,20 @@ export const Add_Address_Person = () => {
         const newError = {};
 
         if (!address) {
-            newError.address = 'Please Add Address'
+            newError.address = 'Please add address'
+        } else if (!address?.trim()) {
+            newError.address = 'Please add address.'
         }
+
         if (!pincode) {
-            newError.pincode = 'Please Enter PinCode'
+            newError.pincode = 'Please enter pinCode.'
+        } else if (!/^[0-9]+$/.test(pincode)) {
+            newError.pincode = 'Only accept number.'
+        } else if (!pincode?.trim()) {
+            newError.pincode = 'Please enter pinCode.'
+        }
+        else if (pincode?.length != 6) {
+            newError.pincode = 'Please enter valid pincode.'
         }
 
         setError(newError)
