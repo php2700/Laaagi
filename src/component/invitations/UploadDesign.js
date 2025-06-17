@@ -3,6 +3,7 @@ import axios from 'axios';
 import './UploadDesignForm.css';
 import { useNavigate } from 'react-router-dom';
 import { invitationCategory } from "../category"
+import { toast } from 'react-toastify';
 
 export const
     UploadDesign = () => {
@@ -91,7 +92,9 @@ export const
 
                 const fileInput = document.getElementById('designFile');
                 if (fileInput) fileInput.value = '';
-
+                toast.success('your design add successfully', {
+                    position: 'top-right'
+                })
                 setTimeout(() => {
                     setMessage('');
                     navigate('/invitation');
