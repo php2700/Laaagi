@@ -44,14 +44,17 @@ export const Recent_view = () => {
                 <>
                     <div className='recent-view-top' >Recent Viewed Products</div>
                     <div className='recent-view-img-list' >
-                        {recentViewProduts?.map((item) => (
-                            <div key={item?.id} className='recent-view-img-wrapper' onClick={() => handleView(item)}>
-                                <div>
-                                    <img className='recent-view-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="recent-view" />
+                        {recentViewProduts?.map((item) => {
+                            let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
+                            return (
+                                <div key={item?.id} className='recent-view-img-wrapper' onClick={() => handleView(item)}>
+                                    <div>
+                                        <img className='recent-view-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="recent-view" />
+                                    </div>
+                                    <div className='recent-view-img-text'>{name}</div>
                                 </div>
-                                <div className='recent-view-img-text'>{item?.name}</div>
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
                 </>}
         </div>
