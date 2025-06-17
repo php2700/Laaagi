@@ -1,4 +1,5 @@
 import axios from "axios";
+import './index.css'
 import { useEffect, useState } from "react";
 
 export const PrivacyPolicy = () => {
@@ -14,7 +15,7 @@ export const PrivacyPolicy = () => {
             });
     }, []);
     return (
-        <div
+        <div className="privacy-policy"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
     )

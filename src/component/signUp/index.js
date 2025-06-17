@@ -21,10 +21,14 @@ export const SignUp = () => {
     const [error, setError] = useState({})
     const [nameModel, setNameModel] = useState(false)
     const context = useContext(AuthContext)
-    const token = context?.token;
+    const token = context?.token || localStorage.getItem('token');
     const headerUpdate = context?.setHeaderUpdate;
     const [otpVerifyError, setOtpVerifyError] = useState()
 
+
+    if (showsignUp && token) {
+        navigate("/")
+    }
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -33,6 +37,7 @@ export const SignUp = () => {
                 access_token: tokenResponse?.access_token
             })
                 .then((res) => {
+                    setShowSignUp(false)
                     loginData(res?.data?.token)
                     localStorage.setItem("_id", res?.data?.user?._id)
                     navigate("/")
@@ -77,6 +82,7 @@ export const SignUp = () => {
 
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/register`, signupData).then((res) => {
             console.log(res?.data)
+            setShowSignUp(false)
             setOtpModel(true)
             setOtp("")
             setData(res?.data?.userData)
@@ -98,6 +104,7 @@ export const SignUp = () => {
             if (res?.data?.user?.name) {
                 navigate("/")
             } else {
+                setOtpModel(false)
                 setNameModel(true)
             }
 
@@ -176,9 +183,10 @@ export const SignUp = () => {
     }
 
     return (
-        <>{
-            showsignUp && (
-                !otpModel ? (<div className="modal-overlay"  >
+
+        <>
+            {showsignUp && (
+                <div className="modal-overlay"  >
 
                     <div className='model' onClick={(e) => e.stopPropagation()}>
                         <div className='close-model'>
@@ -223,70 +231,210 @@ export const SignUp = () => {
                             </div>
                         </div>
                     </div>
-                </div>) : (nameModel ?
-                    (<div className="modal-overlay">
-                        <div className='model' onClick={(e) => e.stopPropagation()}>
-                            <div className="sign-up-top">
-                                <div className="sign-up-header">
-                                    <img src={laaagi} alt="laaagi" />
-                                    <div >Laaagi</div>
-                                </div>
-                                <div className='model-text'>Please Fill Details</div>
-                                <div className="sign-up-form-main" >
-                                    <form className="sign-up-form" onSubmit={handleName}>
-                                        <div className="sign-up-input">
-                                            <input
-                                                type="text"
-                                                placeholder="Enter Name"
-                                                value={name}
-                                                onChange={(e) => {
-                                                    const value = e.target.value;
-                                                    if (/^[a-zA-Z\s]*$/.test(value)) {
-                                                        setName(value);
-                                                    }
-                                                }}
-                                            />
+                </div>)}
+            {nameModel &&
+                (<div className="modal-overlay">
+                    <div className='model' onClick={(e) => e.stopPropagation()}>
+                        <div className="sign-up-top">
+                            <div className="sign-up-header">
+                                <img src={laaagi} alt="laaagi" />
+                                <div >Laaagi</div>
+                            </div>
+                            <div className='model-text'>Please Fill Details</div>
+                            <div className="sign-up-form-main" >
+                                <form className="sign-up-form" onSubmit={handleName}>
+                                    <div className="sign-up-input">
+                                        <input
+                                            type="text"
+                                            placeholder="Enter Name"
+                                            value={name}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                if (/^[a-zA-Z\s]*$/.test(value)) {
+                                                    setName(value);
+                                                }
+                                            }}
+                                        />
 
-                                        </div>
-                                        {error.name && (<div className="error-msg">{error?.name}</div>)}
-                                        <div className="sign-up-submit">
-                                            <button type="submit">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                    {error.name && (<div className="error-msg">{error?.name}</div>)}
+                                    <div className="sign-up-submit">
+                                        <button type="submit">Submit</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>)
-                    : (<div className="modal-overlay" onClick={handleOtpClose}>
-                        <div className='model' onClick={(e) => e.stopPropagation()}>
-                            <div className='close-model'>
-                                <button onClick={handleOtpClose}>X</button>
-                            </div>
-                            <div className="sign-up-top">
-                                <div className="sign-up-header">
-                                    <img src={laaagi} alt="laaagi" />
-                                    <div >Laaagi</div>
-                                </div>
-                                <div className='model-text'>We sent OTP on : {mobile}</div>
-                                <div className="sign-up-form-main" >
-                                    <form className="sign-up-form" onSubmit={handleVerify}>
-                                        <div className="sign-up-input">
-                                            <input type="text" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
-                                        </div>
-                                        {otpVerifyError && (<div className="error-msg">{otpVerifyError}</div>)}
-                                        <div className="sign-up-submit">
-                                            <button type="submit">Next</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div className="sign-up-or" onClick={handelResend}>Resend</div>
-                                <div>Your OTP: {data?.otp}</div>
-                            </div>
+                    </div>
+                </div>)
+
+            }
+            {
+                otpModel &&
+                (<div className="modal-overlay" onClick={handleOtpClose}>
+                    <div className='model' onClick={(e) => e.stopPropagation()}>
+                        <div className='close-model'>
+                            <button onClick={handleOtpClose}>X</button>
                         </div>
-                    </div>))
-            )
-        }
+                        <div className="sign-up-top">
+                            <div className="sign-up-header">
+                                <img src={laaagi} alt="laaagi" />
+                                <div >Laaagi</div>
+                            </div>
+                            <div className='model-text'>We sent OTP on : {mobile}</div>
+                            <div className="sign-up-form-main" >
+                                <form className="sign-up-form" onSubmit={handleVerify}>
+                                    <div className="sign-up-input">
+                                        <input type="text" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+                                    </div>
+                                    {otpVerifyError && (<div className="error-msg">{otpVerifyError}</div>)}
+                                    <div className="sign-up-submit">
+                                        <button type="submit">Next</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="sign-up-or" onClick={handelResend}>Resend</div>
+                            <div>Your OTP: {data?.otp}</div>
+                        </div>
+                    </div>
+                </div>)
+            }
         </>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // <>{
+        //     showsignUp && (
+        //         !otpModel ? (<div className="modal-overlay"  >
+
+        //             <div className='model' onClick={(e) => e.stopPropagation()}>
+        //                 <div className='close-model'>
+        //                     <button onClick={onClose}>X</button>
+        //                 </div>
+        //                 <div className="sign-up-top">
+        //                     <div className="sign-up-header">
+        //                         <img src={laaagi} alt="laaagi" />
+        //                         <div >Laaagi</div>
+        //                     </div>
+        //                     <div className='model-text'>Login/Signup with Laaagi</div>
+        //                     <div className="sign-up-form-main" >
+        //                         <form className="sign-up-form" onSubmit={handleSubmit}>
+        //                             <div className="sign-up-input">
+        //                                 <input type="text" placeholder="Enter Mobile Number" value={mobile} onChange={(e) => {
+        //                                     const newValue = e.target.value;
+        //                                     if (newValue?.length <= 10) {
+        //                                         setMobile(newValue)
+        //                                     }
+        //                                     setError({ ...error, mobile: '' })
+
+        //                                 }} />
+
+        //                                 {error.mobile && (<div className="error-msg">{error?.mobile}</div>)}
+
+        //                             </div>
+        //                             <div className="sign-up-submit">
+
+        //                             </div>
+        //                             <div className="sign-up-submit">
+        //                                 <button type="submit">Submit</button>
+        //                             </div>
+        //                         </form>
+        //                     </div>
+        //                     <div className="sign-up-or">or</div>
+        //                     <div className="sign-up-google-login" onClick={
+        //                         () => { login() }} >
+        //                         <img src={Google} />
+        //                         <div>
+        //                             &nbsp;sign in with google
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>) : (nameModel ?
+        //             (<div className="modal-overlay">
+        //                 <div className='model' onClick={(e) => e.stopPropagation()}>
+        //                     <div className="sign-up-top">
+        //                         <div className="sign-up-header">
+        //                             <img src={laaagi} alt="laaagi" />
+        //                             <div >Laaagi</div>
+        //                         </div>
+        //                         <div className='model-text'>Please Fill Details</div>
+        //                         <div className="sign-up-form-main" >
+        //                             <form className="sign-up-form" onSubmit={handleName}>
+        //                                 <div className="sign-up-input">
+        //                                     <input
+        //                                         type="text"
+        //                                         placeholder="Enter Name"
+        //                                         value={name}
+        //                                         onChange={(e) => {
+        //                                             const value = e.target.value;
+        //                                             if (/^[a-zA-Z\s]*$/.test(value)) {
+        //                                                 setName(value);
+        //                                             }
+        //                                         }}
+        //                                     />
+
+        //                                 </div>
+        //                                 {error.name && (<div className="error-msg">{error?.name}</div>)}
+        //                                 <div className="sign-up-submit">
+        //                                     <button type="submit">Submit</button>
+        //                                 </div>
+        //                             </form>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>)
+        //             : (<div className="modal-overlay" onClick={handleOtpClose}>
+        //                 <div className='model' onClick={(e) => e.stopPropagation()}>
+        //                     <div className='close-model'>
+        //                         <button onClick={handleOtpClose}>X</button>
+        //                     </div>
+        //                     <div className="sign-up-top">
+        //                         <div className="sign-up-header">
+        //                             <img src={laaagi} alt="laaagi" />
+        //                             <div >Laaagi</div>
+        //                         </div>
+        //                         <div className='model-text'>We sent OTP on : {mobile}</div>
+        //                         <div className="sign-up-form-main" >
+        //                             <form className="sign-up-form" onSubmit={handleVerify}>
+        //                                 <div className="sign-up-input">
+        //                                     <input type="text" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+        //                                 </div>
+        //                                 {otpVerifyError && (<div className="error-msg">{otpVerifyError}</div>)}
+        //                                 <div className="sign-up-submit">
+        //                                     <button type="submit">Next</button>
+        //                                 </div>
+        //                             </form>
+        //                         </div>
+        //                         <div className="sign-up-or" onClick={handelResend}>Resend</div>
+        //                         <div>Your OTP: {data?.otp}</div>
+        //                     </div>
+        //                 </div>
+        //             </div>))
+        //     )
+        // }
+        // </>
     )
 }
 

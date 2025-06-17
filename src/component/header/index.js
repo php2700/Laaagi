@@ -293,10 +293,12 @@ import defaultImg from "../../assets/login/default-profile.png";
 export const Header = () => {
     const navigate = useNavigate();
     const context = useContext(AuthContext);
-    const userData = context?.storeUserData;
-    const setUserData = context?.setStoreUserData;
-    const token = context?.token;
+    const [userData, setUserData] = useState()
+    // const userData = context?.storeUserData;
+    // const setUserData = context?.setStoreUserData;
+    const token = context?.token || localStorage.getItem('token')
     const headerUpdate = context?.headerUpdate;
+    const setHeaderUpdate = context?.setHeaderUpdate;
 
     const userId = localStorage.getItem("_id");
 
@@ -371,7 +373,6 @@ export const Header = () => {
     const fetchSweetsData = async () => {
         setIsLoadingClothes(true);
         try {
-            console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`);
             const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
             setClothesDisplayData(mappedData);
@@ -421,6 +422,7 @@ export const Header = () => {
 
     useEffect(() => {
         fetchUserData();
+        setHeaderUpdate(false)
     }, [headerUpdate, token, userId]);
 
     const toggleUserDropdown = () => {
