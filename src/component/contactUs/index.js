@@ -98,7 +98,7 @@ export const ContactUs = () => {
             <div className="contact-middle">
                 <div className="contact-us-condition">
                     <div className="contact-us-header">Let's Talk with us</div>
-                    <div className="contact-us-desc">Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.</div>
+                    <div className="contact-us-desc">Have Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.</div>
                     <div className="contact-us-content" >
                         <img src={locationIcon} />
                         <div>&nbsp;1055 Arthur ave Elk Groot, 67.India</div>

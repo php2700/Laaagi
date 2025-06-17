@@ -38,7 +38,7 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
       newError.mobile = 'Mobile number is required.';
     } else if (!/^\d+$/.test(mobile)) {
       newError.mobile = 'Mobile number must contain digits only.';
-    } else if(mobile?.length !=10){
+    } else if (mobile?.length != 10) {
       newError.mobile = 'Please enter valid number.';
     }
 
@@ -75,6 +75,10 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
     }
 
     axios.post(`${process.env.REACT_APP_BASE_URL}api/user/customization-requests`, customizationData).then((res) => {
+      setFirstName()
+      setLastName()
+      setMessage()
+      setMobile()
       onFormSubmitSuccess();
     }).catch((error) => {
       console.log(error)
@@ -102,7 +106,6 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
                 setLastName(e.target.value)
               }} />
               <div className='customi-error-color'>{error?.lastName || ''}</div>
-
             </div>
           </div>
           <div>

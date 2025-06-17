@@ -42,7 +42,7 @@ export const Recent_view = () => {
         <div className="recent-view" >
             {recentViewProduts?.length > 0 &&
                 <>
-                    <div className='recent-view-top' >Recent Viewed Products</div>
+                    <div className='recent-view-top' >Recently Viewed Products</div>
                     <div className='recent-view-img-list' >
                         {recentViewProduts?.map((item) => {
                             let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
