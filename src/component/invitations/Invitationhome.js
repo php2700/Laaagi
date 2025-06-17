@@ -93,6 +93,7 @@ export const Invitationhome = () => {
   const [lastURL, setLastURL] = useState(localStorage.getItem('lastURL'));
   const [currentUrl, setCurrentUrl] = useState(localStorage.getItem('currentURL'))
   const targetRef = useRef(null);
+  const [viewImg, setViewImg] = useState();
 
   useEffect(() => {
     const scrollToNext = () => {
@@ -355,6 +356,9 @@ export const Invitationhome = () => {
     }
   }, [lastURL]);
 
+  const handleViewImg = (img) => {
+    setViewImg(img)
+  }
 
   return (
     <div className="invitation-details-container">
@@ -367,7 +371,7 @@ export const Invitationhome = () => {
 
       <div className="top-section">
         <div className="image-container">
-          <img src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
+          <img src={`${process.env.REACT_APP_BASE_URL}uploads/${viewImg ? viewImg : invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
         </div>
         <div className="invitation-description">
           <h2>
@@ -380,6 +384,12 @@ export const Invitationhome = () => {
             Customize
           </button>
         </div>
+      </div>
+      <div className='multipleImg-container'>
+        <img className='multipleImg' onClick={() => handleViewImg(invitation?.image)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} />
+        <img className='multipleImg' onClick={() => handleViewImg(invitation?.image02)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image02}`} alt={`${invitation?.image} Invitation Box`} />
+        <img className='multipleImg' onClick={() => handleViewImg(invitation?.image03)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image03}`} alt={`${invitation?.image} Invitation Box`} />
+        <img className='multipleImg' onClick={() => handleViewImg(invitation?.image04)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image04}`} alt={`${invitation?.image} Invitation Box`} />
       </div>
       <div className='select-size-header'>Select size of the box</div>
       <div className='invitation-size-box'>

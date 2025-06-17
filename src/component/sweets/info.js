@@ -91,9 +91,11 @@ export const SweetsInfo = () => {
     }
 
     useEffect(() => {
-        if (!_id || hasFetchedRef.current) return;
+        if (!_id) return;
+        // if (!_id || hasFetchedRef.current) return;
+        if (hasFetchedRef.current === _id) return;
         getSweetData()
-        hasFetchedRef.current = true;
+        hasFetchedRef.current = _id;
     }, [_id])
 
     useEffect(() => {

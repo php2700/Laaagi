@@ -350,6 +350,7 @@ export const Header = () => {
     const fetchWeddingSweetsData = async () => {
         setIsLoadingWeddingSpecial(true);
         try {
+            console.log("ghghgh")
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params: { isWedding: true } });
             const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
             setWeddingSpecialApiData(mappedData);
@@ -362,7 +363,6 @@ export const Header = () => {
         try {
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`, { params: { isDryFruit: true } });
             const mappedData = (res?.data?.dryFruitData || []).map(item => ({ id: item._id, name: item.name, path: `/dry-fruit_info/${item._id}` }));
-            console.log("hgggggggggggggggggg")
             setDryFruitTreatsApiData(mappedData);
         } catch (err) { console.error("Error loading dry fruits:", err); }
         finally { setIsLoadingDryFruitTreats(false); }
@@ -371,6 +371,7 @@ export const Header = () => {
     const fetchSweetsData = async () => {
         setIsLoadingClothes(true);
         try {
+            console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`);
             const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
             setClothesDisplayData(mappedData);
@@ -380,10 +381,9 @@ export const Header = () => {
 
     const handleSearchInputClick = () => {
         setIsSearchDropdownOpen(true);
-        // Only fetch data if it hasn't been fetched yet
-        if (weddingSpecialApiData.length === 0) fetchWeddingSweetsData();
-        if (dryFruitTreatsApiData.length === 0) fetchDryFruitTreatsData();
-        if (clothesDisplayData.length === 0) fetchSweetsData();
+        if (weddingSpecialApiData?.length === 0) fetchWeddingSweetsData();
+        if (dryFruitTreatsApiData?.length === 0) fetchDryFruitTreatsData();
+        if (clothesDisplayData?.length === 0) fetchSweetsData();
     };
 
     const filteredItems = (items) =>
@@ -405,7 +405,7 @@ export const Header = () => {
 
     const fetchUserData = async () => {
         if (!userId || !token) {
-            setUserData(null); // Ensure user data is cleared if no token/id
+            setUserData(null);
             return;
         }
         try {
@@ -415,7 +415,7 @@ export const Header = () => {
             setUserData(res?.data?.userData || null);
         } catch (err) {
             console.error("Error fetching user data:", err);
-            setUserData(null); // Clear data on error
+            setUserData(null);
         }
     };
 
@@ -436,7 +436,6 @@ export const Header = () => {
         <div>
             <div className='topbar'>Welcome to Laaagi</div>
             <header className='header'>
-                {/* === SEARCH BAR AND ITS DROPDOWN (BILKUL SAHI) === */}
                 <div className='search' ref={searchContainerRef}>
                     <input
                         type="search"
@@ -466,18 +465,14 @@ export const Header = () => {
                     )}
                 </div>
 
-                {/* === LOGO (BILKUL SAHI) === */}
                 <div className='Laaagi'>
                     <Link to='/'><img src={laaagiLogo} alt="logo" className='laaagi-img' /></Link>
                     <div><Link to='/'>Laaagi</Link></div>
                 </div>
 
-                {/* === USER MENU (BILKUL SAHI) === */}
                 <div className='topbar-right'>
                     <div className='user-menu-container' ref={userDropdownRef}>
-                        {/* Shart: Agar userData मौजूद hai aur uska naam bhi hai */}
                         {userData && userData.name ? (
-                            // LOGGED-IN USER VIEW
                             <>
                                 <div className='login-name' onClick={toggleUserDropdown} role="button" tabIndex={0} aria-haspopup="true" aria-expanded={isUserDropdownOpen}>
                                     <img src={userData.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData.profile}` : defaultImg} alt="User avatar" className="user-avatar" />
@@ -495,7 +490,6 @@ export const Header = () => {
                                 )}
                             </>
                         ) : (
-                            // GUEST VIEW
                             <div className='login-name' onClick={handleGuestClick} role="button" tabIndex={0}>
                                 <img src={defaultImg} alt="Default user avatar" className="user-avatar" />
                                 <div className="user-display-name">Guest</div>
@@ -506,7 +500,6 @@ export const Header = () => {
                 <Logout open={openLogoutModal} handleClose={() => setOpenLogoutModal(false)} />
             </header>
 
-            {/* === MOBILE NAVBAR (BILKUL SAHI) === */}
             {isMobile && (
                 <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
                     <MenuIcon />

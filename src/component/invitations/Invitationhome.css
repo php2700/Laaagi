@@ -80,6 +80,22 @@
   margin-bottom: 25px;
 }
 
+.multipleImg {
+  height: 100px;
+  border-radius: 7px;
+  width: 100px;
+}
+
+.multipleImg:hover {
+  cursor: pointer;
+}
+.multipleImg-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
 .customize-btn {
   background-color: #ffd700;
   color: #333;
