@@ -68,7 +68,7 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className='footer-left-middle'>
-                        <div className='footer-left-middle-header'>Account</div>
+                        <div className='footer-left-middle-header'>Category</div>
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/sweets'>Sweets</Link></div>
                         <div className='footer-left-middle-text'> <Link onClick={scrolltop} to='/invitation'>Invitation</Link></div>
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/decorations'>Decoration</Link></div>
