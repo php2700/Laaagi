@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import './payment_details.css';
 import axios from 'axios';
 
-const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, openRazorpay }) => {
+const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, isMobile, openRazorpay }) => {
     const [name, setName] = useState();
     const [address, setAddress] = useState();
     const [pincode, setPincode] = useState();
+    const [mobile, setMobile] = useState();
     const [error, setError] = useState({})
 
     if (!isOpen) return null;
@@ -39,7 +40,11 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
         } else if (pincode?.length != 6)
             newError.pincode = 'Please enter valid pin code.'
 
-        setError(newError)
+        if (!mobile){
+            newError.mobile = 'Please enter mobile.'
+        }
+
+            setError(newError)
         return Object.keys(newError)?.length;
 
 
@@ -55,6 +60,7 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
         isAddress(address)
         isPincode(pincode)
         isName(name);
+        isMobile(mobile)
         onClose();
         openRazorpay()
     };
@@ -80,6 +86,13 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, op
                             setAddress(e.target.value)
                         }} />
                         <div className='customi-error-color'>{error?.address || ''}</div>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="mobile" className="modalinputs" value={mobile} onChange={(e) => {
+                            setError((prev) => ({ ...prev, setError, mobile: '' }))
+                            setMobile(e.target.value)
+                        }} />
+                        <div className='customi-error-color'>{error?.mobile || ''}</div>
                     </div>
                     <div>
                         <input type="text" placeholder="Pincode" className="modalinputs" value={pincode} onChange={(e) => {

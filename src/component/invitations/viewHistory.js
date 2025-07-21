@@ -114,16 +114,15 @@ export const ViewHistory = () => {
             </div>
             <div className='select-size-header'>Selected size of the box</div>
             <div className='invitation-size-box'>
-                <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : ''} >
-                    {weight != 750 && weight != 1000 && weight != 250 ?
+                <div className={weight != 750 && weight != 500 && weight != 250 ? 'right-icon-arrow' : ''} >
+                    {weight != 750 && weight != 500 && weight != 250 ?
                         <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <></>
                     }
                     <div className='invitation-size-list'>
                         <div><img className='invittions-size-img' src={Rectangle} /></div>
                         <div>
-                            <div className='invitation-len-h'>L:50cm</div>
-                            <div className='invitation-len-h'>W:50cm</div>
-                            <div className='invitation-box-we'>Weight:500gm</div>
+
+                            <div className='invitation-box-we'>Weight:1000gm</div>
                         </div>
                     </div>
                 </div>
@@ -135,22 +134,20 @@ export const ViewHistory = () => {
                     <div className='invitation-size-list' >
                         <div><img className='invitation-second-img' src={boxSize2} /></div>
                         <div>
-                            <div className='invitation-len-h'>L:50cm</div>
-                            <div className='invitation-len-h'>W:50cm</div>
+
                             <div className='invitation-box-we'>Weight:750gm</div>
                         </div>
                     </div>
                 </div>
-                <div className={weight == 1000 ? 'right-icon-arrow' : ''} >
-                    {weight == 1000 &&
+                <div className={weight == 500 ? 'right-icon-arrow' : ''} >
+                    {weight == 500 &&
                         <div className='invitation-icon-shift' ><img src={rightArrow} /></div>
                     }
                     <div className='invitation-size-list' >
                         <div ><img className='invitation-third-img' src={boxSize3} /></div>
                         <div>
-                            <div className='invitation-len-h'>L:50cm</div>
-                            <div className='invitation-len-h'>W:50cm</div>
-                            <div className='invitation-box-we'>Weight:1000gm</div>
+
+                            <div className='invitation-box-we'>Weight:500gm</div>
                         </div>
                     </div>
                 </div>
@@ -161,8 +158,6 @@ export const ViewHistory = () => {
                     <div className='invitation-size-list' >
                         <div><img className='invittions-size-img' src={Rectangle} /></div>
                         <div>
-                            <div className='invitation-len-h'>L:50cm</div>
-                            <div className='invitation-len-h'>W:50cm</div>
                             <div className='invitation-box-we'>Weight:250gm</div>
                         </div>
                     </div>
@@ -290,6 +285,7 @@ export const ViewHistory = () => {
                         <tr>
                             <th className='view-payment-header-guest'>GUEST </th>
                             <th className='view-payment-header-address' >Address </th>
+                            <th className='view-payment-header-address' >mobile </th>
                             <th className='view-payment-header-weight'>WEIGHT</th>
                             <th className='view-payment-header-pincode'>pincode</th>
                             <th className='view-payment-header-date'>PAYMENT DATE</th>
@@ -305,6 +301,9 @@ export const ViewHistory = () => {
                                     </td>
                                     <td className='view-payment-address'>
                                         {ele.address}
+                                    </td>
+                                    <td className='view-payment-address'>
+                                        {ele.mobile}
                                     </td>
                                     <td className='view-payment-weight'>{invitation?.weight} g</td>
                                     <td className='view-payment-pincode'>{ele?.pincode}</td>

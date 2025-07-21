@@ -10,18 +10,15 @@ export const InvitationBox = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
     const [startIndex, setStartIndex] = useState(0);
-    const [lastIndex, setLastIndex] = useState(2)
+    const [lastIndex, setLastIndex] = useState(4)
 
 
 
     const invitationBoxList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_list`, {
-            params: {
-                isInvitationBoxes: true
-            }
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/first-invitation-categroy-wise`, {
         })
             .then((res) => {
-                setInvitationBoxData(res?.data?.invitationData || []);
+                setInvitationBoxData(res?.data?.initation || []);
             }).catch((error) => {
                 console.error("Error fetching invitation list:", error);
                 // setData([]);

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const weightSlice=createSlice({
     name:'weight',
-    initialState:{value:500},
+    initialState:{value:1000},
     reducers:{
         chnageWeight:(state,action)=>{
             state.value=action?.payload;

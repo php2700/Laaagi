@@ -7,21 +7,16 @@ import { useNavigate } from 'react-router-dom'
 export const DiscoverCategory = () => {
     const [discoverData, setDiscoverData] = useState([])
     const [startIndex, setStartIndex] = useState(0);
-    const [lastIndex, setLastIndex] = useState(2)
+    const [lastIndex, setLastIndex] = useState(3)
     const context = useContext(AuthContext);
     const sweetsInfo = context?.setSweetsInfo;
     const navigate = useNavigate();
 
-
     const discoverSweetsList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, {
-            params: {
-                isSweet: true
-            }
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/first-sweet-categroy-wise`, {
         })
             .then((res) => {
                 setDiscoverData(res?.data?.sweetsData);
-                console.log(res?.data?.sweetsData)
             }).catch((error) => {
                 console.log(error);
             })
@@ -41,6 +36,7 @@ export const DiscoverCategory = () => {
 
     }
 
+    console.log(discoverData,"discovertdarta")
     return (
         <div className='discover-category'>
             <div className='discover-category-heading'>
@@ -52,7 +48,6 @@ export const DiscoverCategory = () => {
                 {discoverData.slice(startIndex, lastIndex + 1)?.map((item) => {
 
                     let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
-
                     return (
                         <div key={item?.id} className='discover-category-wrapper'>
                             <img onClick={() => handleSweetInfo(item)} className='discover-category-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />

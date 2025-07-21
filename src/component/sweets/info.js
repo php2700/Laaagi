@@ -7,7 +7,7 @@ import axios from "axios";
 import { PaymentSingleItem } from "../payment/sweet_payment";
 import PaymentDetailsModel from "./payment_details";
 
-const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
+const sweetsInKg = ['kg', 'gm']
 
 
 export const SweetsInfo = () => {
@@ -29,6 +29,8 @@ export const SweetsInfo = () => {
     const [name, setName] = useState()
     const [address, setAddress] = useState()
     const [pincode, setPincode] = useState()
+    const [unit, setUnit] = useState();
+    const [mobile, setMobile] = useState();
 
     const getUserData = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
@@ -119,14 +121,23 @@ export const SweetsInfo = () => {
 
     }, [sweetsInfo])
 
-    const calculatePrice = (quantity) => {
-        if (quantity === "Select quantity")
-            return;
+    const calculatePrice = (unit) => {
+        console.log(sweetkg, "ghgfhghgh")
+        let calculateAmount;
         setError('')
-        const calculateAmount = quantity * pricePerKg;
-        setPrice(calculateAmount)
-        setSweetkg(quantity)
+        if (unit == 'gm') {
+            calculateAmount = (sweetkg * pricePerKg / 1000)
+        } else {
+            calculateAmount = sweetkg * pricePerKg;
+        }
+        setPrice(calculateAmount || 0)
+        setUnit(unit)
     }
+
+    useEffect(() => {
+        // if (sweetkg)
+            calculatePrice(unit || 'kg')
+    }, [sweetkg])
 
     const handleHome = () => {
         navigate('/')
@@ -167,14 +178,26 @@ export const SweetsInfo = () => {
                     <div className="sweets-info-text">
                         {sweetsInfo?.description}
                     </div>
-                    <div className="sweets-info-drop-down">
-                        <select className="sweets-info-select" value={sweetkg} onChange={(e) => calculatePrice(e.target.value)} >
-                            {sweetsInKg?.map((ele, index) => (
-                                <option key={index} value={ele?.value}  >{ele?.name}</option>
-                            ))}
-                        </select>
+
+                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                        <input style={{
+                            borderRadius: '5px', border: '1px solid black', height: '42px', padding: '10px 8px',
+                            fontSize: '14px', fontSize: '16px',
+                        }} type="text" placeholder="Enter quantity" value={sweetkg} onChange={(e) => {
+                            setSweetkg(e.target.value)
+
+                        }} />
+                        <div className="sweets-info-drop-down">
+                            <select style={{ border: '1px solid black' }} className="sweets-info-select" value={unit} onChange={(e) => calculatePrice(e.target.value)} >
+                                {sweetsInKg?.map((ele, index) => (
+                                    <option key={index} value={ele}  >{ele}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
+
+
                     <div className="sweets-info-price">Total Price:{price} /-</div>
                     <div className="shipping">Extra Shipping Charges ₹49 /-</div>
                     <div className="sweets-info-button">
@@ -184,8 +207,11 @@ export const SweetsInfo = () => {
                     </div>
                 </div>
             </div>
-            {paymentDetails && <PaymentDetailsModel isOpen={paymentDetails} onClose={closePayment} isAddress={setAddress} isName={setName} isPincode={setPincode} openRazorpay={handlePayment} />}
-            {openRazorpay && <  PaymentSingleItem amount={price} description={sweetsInfo?.description} img={sweetsInfo?.image} Sweet={sweetsInfo?.name} rate={sweetsInfo?.amount} weight={sweetkg} quantity={sweetkg} name={name} address={address} pincode={pincode} />}
+            {paymentDetails && <PaymentDetailsModel isOpen={paymentDetails} onClose={closePayment} isAddress={setAddress} isName={setName} isPincode={setPincode} isMobile={setMobile} openRazorpay={handlePayment} />}
+            {openRazorpay && <  PaymentSingleItem amount={price} description={sweetsInfo?.description} img={sweetsInfo?.image} Sweet={sweetsInfo?.name} rate={sweetsInfo?.amount} weight={sweetkg} quantity={sweetkg} unit={unit} mobile={mobile} name={name} address={address} pincode={pincode} />}
         </div>
     )
 }
+
+
+
