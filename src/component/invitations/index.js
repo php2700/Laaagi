@@ -1,5 +1,5 @@
 import { use, useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './index.css'
 import { useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
@@ -21,13 +21,15 @@ export const Invitation = () => {
     const context = useContext(AuthContext);
     const setInvitationsweet = context.setSelectSweet;
     const setPaymentHistory = context?.setPaymentHistory;
+    const location = useLocation();
+    const searchCategory = location.state?.category;
 
     const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
     const [menuOpen, setMenuOpen] = useState(false)
-    const [category, setCategory] = useState('Invitation On Box')
+    const [category, setCategory] = useState(searchCategory || 'Invitation On Box')
 
 
     useEffect(() => {

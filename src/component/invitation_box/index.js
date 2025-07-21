@@ -18,6 +18,7 @@ export const InvitationBox = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/first-invitation-categroy-wise`, {
         })
             .then((res) => {
+                console.log(res?.data?.initation,'aaaaa')
                 setInvitationBoxData(res?.data?.initation || []);
             }).catch((error) => {
                 console.error("Error fetching invitation list:", error);
@@ -33,8 +34,10 @@ export const InvitationBox = () => {
 
         setInvitationsweet(data)
         // navigate('/invitation-detail')
-        const url = 'home'
-        navigate(`/invitation-detail/${data?._id}/${url}`)
+        // const url = 'home'
+        // navigate(`/invitation-detail/${data?._id}/${url}`)
+
+        navigate('/invitation',{state:{category:data?.category}})
     }
 
     return (
@@ -43,13 +46,13 @@ export const InvitationBox = () => {
             </div>
             <div className='invitation-box-list'>
                 {invitationBoxData.slice(startIndex, lastIndex + 1)?.map((item) => {
-                    let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
+                    let category = item?.category[0]?.toUpperCase() + item?.category.slice(1)?.toLowerCase();
 
 
                     return (
                         <div key={item?.id} className='invitation-box-wrapper'>
                             <img onClick={() => handleInvitationBoxInfo(item)} className='invitation-box-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
-                            <div className='invitation-box-img-text'>{name}</div>
+                            <div className='invitation-box-img-text'>{category}</div>
                         </div>
                     )
                 })}

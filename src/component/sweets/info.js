@@ -85,6 +85,7 @@ export const SweetsInfo = () => {
 
     const getSweetData = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweet/${_id}`).then((res) => {
+            console.log(res?.data?.sweetData,'tttt')
             setPricePerkg(res?.data?.sweetData?.amount?.split('/')[0])
             setSweetsInfo(res?.data?.sweetData)
         }).catch((error) => {
@@ -123,6 +124,8 @@ export const SweetsInfo = () => {
 
     const calculatePrice = (unit) => {
         console.log(sweetkg, "ghgfhghgh")
+
+
         let calculateAmount;
         setError('')
         if (unit == 'gm') {
@@ -130,13 +133,17 @@ export const SweetsInfo = () => {
         } else {
             calculateAmount = sweetkg * pricePerKg;
         }
+
+        if (sweetsInfo.isDeliveryCharge) {
+            calculateAmount = calculateAmount + 49;
+        }
         setPrice(calculateAmount || 0)
         setUnit(unit)
     }
 
     useEffect(() => {
         // if (sweetkg)
-            calculatePrice(unit || 'kg')
+        calculatePrice(unit || 'kg')
     }, [sweetkg])
 
     const handleHome = () => {
@@ -199,7 +206,10 @@ export const SweetsInfo = () => {
 
 
                     <div className="sweets-info-price">Total Price:{price} /-</div>
-                    <div className="shipping">Extra Shipping Charges ₹49 /-</div>
+
+                    {sweetsInfo.isDeliveryCharge &&
+                        <div className="shipping">Shipping Charges Added ₹49 /-</div>
+                    }
                     <div className="sweets-info-button">
                         {/* <button onClick={handlePayment}>Pay</button> */}
                         <button onClick={addDetails}>Pay</button>

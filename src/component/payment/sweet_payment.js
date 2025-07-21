@@ -22,7 +22,7 @@ const loadRazorpayScript = () => {
 export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quantity, unit, mobile, name, address, pincode }) => {
     const navigate = useNavigate()
     const userId = localStorage.getItem("_id");
-    amount = amount + 49;
+    amount = amount;
 
     useEffect(() => {
         handlePayment();

@@ -271,7 +271,7 @@ export const Invitationhome = () => {
     setTotalAmountInv(total + price)
     // navigate('/invitation-GuestList', { state: { amount: total + price } })
     const sum = total + price;
-    navigate(`/invitation-GuestList/${sum}`)
+    navigate(`/invitation-GuestList/${sum}`,{state:{invitationId:invitationId}})
 
   }
 
