@@ -16,7 +16,7 @@
   background-color: #ffffff;
   padding: 80px 65px;
   position: relative;
-  width: 30%;
+  width: 35%;
   text-align: center;
   border-radius: 70px;
 }
@@ -86,7 +86,7 @@
   background: #f5f1e6;
   border-style: none;
   text-align: center;
-  min-height: 130px;
+  min-height: 100px;
 }
 .modal-submit-button {
   padding: 18px 20px;

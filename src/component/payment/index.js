@@ -60,7 +60,10 @@ export const Payment = ({ amount, guest, userId }) => {
                     weight: boxweight,
                     invitationName: invitation?.name,
                     guest: guest?.map((ele) => (
-                        { guestId: ele?.guestId, quantity: ele?.quantity, name: ele?.name, address: ele?.address, pincode: ele?.pincode }
+                        {
+                            guestId: ele?.guestId, quantity: ele?.quantity, name: ele?.name, address: ele?.address, pincode: ele?.pincode,
+                            mobile: ele?.mobile
+                        }
                     )),
                     boxName: boxName,
                     invAmounts: amounts,

@@ -92,7 +92,7 @@ export const
 
                 const fileInput = document.getElementById('designFile');
                 if (fileInput) fileInput.value = '';
-                toast.success('your design add successfully', {
+                toast.success('your design added successfully', {
                     position: 'top-right'
                 })
                 setTimeout(() => {

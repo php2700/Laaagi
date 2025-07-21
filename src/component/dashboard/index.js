@@ -48,7 +48,7 @@ export const Dashboard = () => {
     <>
       <Banner />
       <WeddingSpecial />
-      <Dry_Fruit_Treat />
+      {/* <Dry_Fruit_Treat /> */}
       <Best_seller />
       {token && <Recent_view />}
       <DiscoverCategory />

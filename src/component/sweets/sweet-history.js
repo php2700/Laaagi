@@ -66,8 +66,10 @@ export const ViewSweetHistory = () => {
                     <thead>
                         <tr>
                             <th style={{ width: '20%' }}>Name </th>
+                            <th >mobile </th>
                             <th >Address </th>
                             <th>WEIHGT</th>
+                            <th>unit</th>
                             <th>pincode</th>
                             <th>PAYMENT_DATE</th>
                         </tr>
@@ -78,9 +80,13 @@ export const ViewSweetHistory = () => {
                                 {sweetsInfo?.name}
                             </td>
                             <td>
+                                {sweetsInfo?.mobile}
+                            </td>
+                            <td>
                                 {sweetsInfo.address}
                             </td>
-                            <td>{sweetsInfo.quantity}kg</td>
+                            <td>{sweetsInfo.quantity}</td>
+                            <td>{sweetsInfo.unit}</td>
                             <td>{sweetsInfo?.pincode}</td>
                             <td>{sweetsInfo?.createdAt}</td>
                         </tr>

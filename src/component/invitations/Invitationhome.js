@@ -125,6 +125,7 @@ export const Invitationhome = () => {
   }
 
 
+
   const getInvitationData = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${_id}`).then((res) => {
       setInvitationsweet(res?.data?.invitation);
@@ -162,6 +163,7 @@ export const Invitationhome = () => {
     })
 
   }, [invitation])
+
 
   const validate = () => {
     const newError = []
@@ -330,7 +332,7 @@ export const Invitationhome = () => {
     setAmounts([0, 0, 0, 0, 0])
     setPaymentHistory([])
     // setWeight(500)    ----->context   
-    dispatch(chnageWeight(500))   // redux
+    dispatch(chnageWeight(1000))   // redux
     setBoxName('Normal Box');
 
     if (url == 'home') {
@@ -359,6 +361,7 @@ export const Invitationhome = () => {
   const handleViewImg = (img) => {
     setViewImg(img)
   }
+
 
   return (
     <div className="invitation-details-container">
@@ -393,16 +396,16 @@ export const Invitationhome = () => {
       </div>
       <div className='select-size-header'>Select size of the box</div>
       <div className='invitation-size-box'>
-        <div className={weight != 750 && weight != 1000 && weight != 250 ? 'right-icon-arrow' : 'invitation-default-style'} >
-          {weight != 750 && weight != 1000 && weight != 250 ?
+        <div className={weight != 750 && weight != 500 && weight != 250 ? 'right-icon-arrow' : 'invitation-default-style'} >
+          {weight != 750 && weight != 500 && weight != 250 ?
             <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
           }
-          <div className='invitation-size-list' onClick={() => handleWeight(500)}>
+          <div className='invitation-size-list' onClick={() => handleWeight(1000)}>
             <div><img className='invittions-size-img' src={Rectangle} /></div>
             <div>
-              <div className='invitation-len-h'>L:50cm</div>
-              <div className='invitation-len-h'>W:50cm</div>
-              <div className='invitation-box-we'>Weight:500gm</div>
+              {/* <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div> */}
+              <div className='invitation-box-we'>Weight:1000gm</div>
             </div>
           </div>
         </div>
@@ -414,22 +417,22 @@ export const Invitationhome = () => {
           <div className='invitation-size-list' onClick={() => handleWeight(750)}>
             <div><img className='invitation-second-img' src={boxSize2} /></div>
             <div>
-              <div className='invitation-len-h'>L:50cm</div>
-              <div className='invitation-len-h'>W:50cm</div>
+              {/* <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div> */}
               <div className='invitation-box-we'>Weight:750gm</div>
             </div>
           </div>
         </div>
-        <div className={weight == 1000 ? 'right-icon-arrow' : 'invitation-default-style'} >
-          {weight == 1000 ?
+        <div className={weight == 500 ? 'right-icon-arrow' : 'invitation-default-style'} >
+          {weight == 500 ?
             <div className='invitation-icon-shift' ><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
           }
-          <div className='invitation-size-list' onClick={() => handleWeight(1000)}>
+          <div className='invitation-size-list' onClick={() => handleWeight(500)}>
             <div ><img className='invitation-third-img' src={boxSize3} /></div>
             <div>
-              <div className='invitation-len-h'>L:50cm</div>
-              <div className='invitation-len-h'>W:50cm</div>
-              <div className='invitation-box-we'>Weight:1000gm</div>
+              {/* <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div> */}
+              <div className='invitation-box-we'>Weight:500gm</div>
             </div>
           </div>
         </div>
@@ -440,8 +443,8 @@ export const Invitationhome = () => {
           <div className='invitation-size-list' onClick={() => handleWeight(250)}>
             <div><img className='invittions-size-img' src={Rectangle} /></div>
             <div>
-              <div className='invitation-len-h'>L:50cm</div>
-              <div className='invitation-len-h'>W:50cm</div>
+              {/* <div className='invitation-len-h'>L:50cm</div>
+              <div className='invitation-len-h'>W:50cm</div> */}
               <div className='invitation-box-we'>Weight:250gm</div>
             </div>
           </div>

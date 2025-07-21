@@ -15,7 +15,7 @@ const SuccessModal = ({ isOpen, onClose }) => {
         <img src={laaagiLogo} alt="Laaagi Logo" className="success-modal-logo" />
         <h3 className="success-modal-title">Laaagi</h3>
         <p className="success-modal-text">
-          Our team will contact you shortly. In the meantime, you can continue adding your sweets until our representative contact.
+          Our team will contact you shortly. In the meantime, you can continue adding your sweets until our representative contacts you.
         </p>
         <button onClick={onClose} className="success-modal-button">
           Ok

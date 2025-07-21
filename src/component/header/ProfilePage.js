@@ -54,6 +54,7 @@ export const ProfilePage = () => {
         const formData = new FormData();
         formData.append("_id", userId);
         formData.append("name", name);
+        formData.append("mobile",mobile)
         if (profile) {
             formData.append("profile", profile);
         }
@@ -151,7 +152,7 @@ export const ProfilePage = () => {
                             name="Mobile"
                             className="form-input"
                             value={mobile}
-                            readOnly
+                            onChange={(e)=>setMobile(e.target.value)}
                         />
                     </div>
                     <div className="form-group">

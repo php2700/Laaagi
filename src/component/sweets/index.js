@@ -3,12 +3,13 @@ import { useContext, useEffect, useState } from 'react';
 import './index.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import rightIcon from "../../assets/icon/li_arrow-right.png";
-import leftIcon from "../../assets/icon/left_arrow-right.png";
 import { AuthContext } from '../context';
 import rightArrow from "../../assets/invitations/right-icon.png";
 import { toast } from 'react-toastify';
 import { AddSweets } from './model';
+import MenuIcon from '@mui/icons-material/Menu';
+import { sweetFilterData } from '../category';
+
 
 const sweetsHeader = [
     { id: 'sh1', name: 'Indian Sweets', category: 'Indian Sweets' },
@@ -38,6 +39,9 @@ export const Sweets = () => {
     const [lastIndex, setLastIndex] = useState(2);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const [openModel, setOpenModel] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [selectedPrice, setSelectedPrice] = useState('');
+
 
     const handleForwardIcon = () => {
         const totalItems = sweetsHeader?.length || 0;
@@ -73,6 +77,9 @@ export const Sweets = () => {
         } else if (category) {
             params.category = category;
         }
+        if (selectedPrice) {
+            params.price = selectedPrice
+        }
 
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params })
             .then((res) => {
@@ -98,11 +105,12 @@ export const Sweets = () => {
             setPageHeading(currentCategoryObj ? currentCategoryObj.name : "Sweets");
             fetchSweetsData(false);
         }
-    }, [category, location.state?.filter]);
+    }, [category, location.state?.filter, selectedPrice]);
 
 
     const handleCategorySelect = (ele) => {
         setCategory(ele?.category);
+        setSelectedPrice('')
     };
 
     const handleSweetForInvitation = (item) => {
@@ -140,6 +148,9 @@ export const Sweets = () => {
 
     };
 
+    const handleFilter = (data) => {
+        setSelectedPrice(data)
+    }
 
     return (
         <div className='sweets' >
@@ -147,53 +158,19 @@ export const Sweets = () => {
                 <div className='sweets-header'>
                     {isMobile ? (
                         <>
-                            {/* {startIndex > 0 && (
-                                <div onClick={handlePrev} className='sweets-header-arrow'>
-                                    <img src={leftIcon} alt="Previous categories" />
-                                </div>
-                            )} */}
-                            {/* {sweetsHeader?.slice(startIndex, lastIndex + 1)?.map((ele) => ( */}
                             {sweetsHeader?.map((ele) => (
-
                                 <div
                                     key={ele.id}
                                     className={`sweets-header-item ${ele.category === category ? 'active-url' : ''}`}
                                     onClick={() => handleCategorySelect(ele)}
-
                                 >
                                     {ele?.name}
                                 </div>
                             ))}
-                            {/* </div>
-                    </div>
-                    : <div className='sweets-content'>
-                        <div className='sweets-content-list'>
-
-                            {data?.map((ele) => (
-                                <div className='sweets-main-container'>
-                                    <Link className='sweets-content-img' to='/sweets-info' onClick={() => {
-                                        setRecentView(ele)
-                                        sweetsInfo(ele)
-                                    }} state={{ data: ele }} >
-                                        <div className='sweets-img-div'>
-                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                        </div>
-                                        <div className='sweets-name'>{ele?.name}</div>
-                                        <div className='sweets-price'>{ele?.amount} </div>
-                                    </Link> */}
-
-
-
-                            {/* {(lastIndex < (sweetsHeader?.length || 0) - 1) && (
-                                <div onClick={handleForwardIcon} className='sweets-header-arrow'>
-                                    <img src={rightIcon} alt="Next categories" />
-                                </div>
-                            )} */}
                         </>
                     ) : (
                         <>
                             {sweetsHeader?.map((ele) => (
-
                                 <div
                                     key={ele.id}
                                     className={`sweets-header-item ${ele.category === category ? 'active-url' : ''}`}
@@ -207,68 +184,79 @@ export const Sweets = () => {
                 </div>
             )}
 
-            {isInvitationSweets ? (
 
-                <div className='sweets-content'>
-                    <div className='sweets-content-list'>
-                        {data?.length > 0 &&
-                            data?.map((ele) => {
-
-                                let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
-
-                                return (
-
-                                    <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
-
-                                        {orderId === ele?.orderId && (
-                                            <div className='show-arrow-right'>
-                                                <img src={rightArrow} alt="Selected" />
-                                            </div>
-                                        )}
-                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
-                                        <div className='sweets-name'>{name}</div>
-
-                                        {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
-                                    </div>
-                                )
-                            })}
-                        {!data?.length > 0 && (
-                            <div className='no-found'>No Data Found for Invitation Selection</div>
-                        )}
+            <div style={{ display: 'flex' }}>
+                <div className='invitations-price-left'>
+                    <div className='invitation-price-header'>Price Range filter</div>
+                    {
+                        isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
+                            <MenuIcon />
+                        </div>
+                    }
+                    <div className={`invitation-toggle ${isMobile ? (menuOpen ? 'open' : 'close') : ''}`}>
+                        {
+                            sweetFilterData?.map((ele) => (
+                                <div className='invitation-price' onClick={() => { handleFilter(ele) }}>{ele}</div>
+                            ))
+                        }
                     </div>
                 </div>
-            ) : (
-                <div className='sweets-content'>
-                    <div className='sweets-content-list'>
-                        {data?.length > 0 &&
-                            <>
-                                {data?.map((ele) => {
+
+
+                {isInvitationSweets ? (
+                    <div className='sweets-content'>
+                        <div className='sweets-content-list'>
+                            {data?.length > 0 &&
+                                data?.map((ele) => {
                                     let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
                                     return (
-                                        <div key={ele.id || ele.name} className='sweets-main-container'>
-                                            <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
-                                                <div className='sweets-img-div'>
-                                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+
+                                        <div key={ele.id || ele.orderId} className='sweets-content-img' onClick={() => handleSweetForInvitation(ele)}>
+
+                                            {orderId === ele?.orderId && (
+                                                <div className='show-arrow-right'>
+                                                    <img src={rightArrow} alt="Selected" />
                                                 </div>
-                                                <div className='sweets-name'>{name}</div>
-                                                {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
-                                            </div>
+                                            )}
+                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                            <div className='sweets-name'>{name}</div>
+
+                                            {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
                                         </div>
                                     )
                                 })}
-                            </>}
+                            {!data?.length > 0 && (
+                                <div className='no-found'>No Data Found for Invitation Selection</div>
+                            )}
+                        </div>
                     </div>
-
-                    {!data?.length > 0 && (
-                        <div className='no-found'>No Data Found</div>
-                    )}
-                </div>
-            )}
-            {/* {isInvitationSweets && (
-                <div className='sweet-select'>
-                    <div className='btn-done' onClick={handleInvitationSweetDone} >Done</div>
-                </div>
-            )} */}
+                ) : (
+                    <div className='sweets-content'>
+                        <div className='sweets-content-list'>
+                            {data?.length > 0 &&
+                                <>
+                                    {data?.map((ele) => {
+                                        let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
+                                        return (
+                                            <div key={ele.id || ele.name} className='sweets-main-container'>
+                                                <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
+                                                    <div className='sweets-img-div'>
+                                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                                    </div>
+                                                    <div className='sweets-name'>{name}</div>
+                                                    {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </>}
+                        </div>
+                        {!data?.length > 0 && (
+                            <div className='no-found'>No Data Found</div>
+                        )}
+                    </div>
+                )}
+            </div>
             <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} selectedSweet={invitationselectSweet} />
         </div>
     )

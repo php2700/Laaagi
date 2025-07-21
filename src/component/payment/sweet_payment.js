@@ -19,7 +19,7 @@ const loadRazorpayScript = () => {
         document.body.appendChild(script);
     });
 };
-export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quantity, name, address, pincode }) => {
+export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quantity, unit, mobile, name, address, pincode }) => {
     const navigate = useNavigate()
     const userId = localStorage.getItem("_id");
     amount = amount + 49;
@@ -55,7 +55,9 @@ export const PaymentSingleItem = ({ amount, description, img, Sweet, rate, quant
                     quantity: quantity,
                     name: name,
                     address: address,
-                    pincode: pincode
+                    pincode: pincode,
+                    unit: unit,
+                    mobile: mobile
                 }
                 response = { ...response, ...storeHistory }
                 axios.post(`${process.env.REACT_APP_BASE_URL}verifyOrder`, response).then((res) => {

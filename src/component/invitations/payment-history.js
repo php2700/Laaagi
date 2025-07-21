@@ -66,6 +66,7 @@ export const PaymentHistory = () => {
                             <th className='payment-order'>ORDER ID</th>
                             <th className='payment-title'>TITLE</th>
                             <th className='payment-weight'>WEIGHT</th>
+                            <th className='payment-weight'>UNIT</th>
                             <th className='payment-amount'>AMOUNT</th>
                             <th className='payment-date'>PAYMENT_DATE</th>
                             <th className='payment-view'>VIEW</th>
@@ -81,9 +82,9 @@ export const PaymentHistory = () => {
                                     <td className='payment-order'>{payment?.razorpay_order_id}</td>
                                     <td className='payment-title'>{payment?.invitationName || payment?.sweet}</td>
                                     <td className='payment-weight'>
-                                        {payment.weight ? `${payment.weight} g` : payment.quantity ? `${payment.quantity} kg` : ''}
+                                        {payment.weight ? `${payment.weight}` : payment.quantity}
                                     </td>
-
+                                    <td className='payment-amount'>{payment.unit ? payment?.unit : 'gm'}</td>
                                     <td className='payment-amount'>{payment.amount} Rs /-</td>
                                     <td className='payment-date'>{formatDate}</td>
                                     <td className='handleview' onClick={() => handleView(payment)}>view</td>

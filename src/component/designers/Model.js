@@ -84,7 +84,7 @@ export const Model = ({ open, onClose, data }) => {
                 setMobile("")
                 setMessage("")
                 onClose()
-                toast.success("Details added!", {
+                toast.success("Message sent successfully!!", {
                     position: "top-right"
                 });
             }).catch((error) => {

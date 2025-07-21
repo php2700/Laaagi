@@ -1,8 +1,5 @@
 import { use, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import rightIcon from "../../assets/icon/li_arrow-right.png"
-import leftIcon from "../../assets/icon/left_arrow-right.png"
 import './index.css'
 import { useNavigate } from 'react-router-dom';
 import { filterData, invitationCategory } from '../category';
@@ -12,9 +9,9 @@ import { AuthContext } from '../context';
 
 
 const invitationHeader = [
+    { name: 'Invitation on Box', category: 'Invitation On Box' },
     { name: 'Only Invitation', category: 'Invitation' },
     { name: 'Invitation on Wooden Box', category: 'Wooden Box' },
-    { name: 'Invitation on Box', category: 'Invitation On Box' },
     { name: 'Invitation on Glass Box', category: 'Glass Box' },
     { name: 'Misc Invitation', category: 'Misc Invitation' },
 ]
@@ -28,37 +25,14 @@ export const Invitation = () => {
     const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
-    const [startIndex, setStartIndex] = useState(0)
-    const [lastIndex, setLastIndex] = useState(1)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
     const [menuOpen, setMenuOpen] = useState(false)
-    const [category, setCategory] = useState('Invitation')
+    const [category, setCategory] = useState('Invitation On Box')
 
-    const handleForwardIcon = () => {
-        const totalItems = invitationHeader?.length || 0;
-        const itemsToShow = 2;
-        const nextStart = startIndex + itemsToShow;
-
-        if (nextStart < totalItems) {
-            setStartIndex(nextStart);
-            setLastIndex(Math.min(nextStart + itemsToShow - 1, totalItems - 1));
-        }
-    };
 
     useEffect(() => {
         setPaymentHistory([])
     }, [])
-
-    const handlePrev = () => {
-        const itemsToShow = 2;
-        const prevStart = Math.max(0, startIndex - itemsToShow);
-
-        if (prevStart !== startIndex) {
-            setStartIndex(prevStart);
-            setLastIndex(prevStart + itemsToShow - 1);
-        }
-    };
-
 
     useEffect(() => {
         const handleResize = () => {
@@ -74,7 +48,6 @@ export const Invitation = () => {
     }, []);
 
     const getInvitationList = () => {
-        const categoryToFetch = invitationCategory?.[0] || 'default_category';
 
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation_list`, {
             params: {
@@ -114,26 +87,17 @@ export const Invitation = () => {
                 {
                     isMobile ?
                         <>
-                            {/* {startIndex > 0 &&
-                                <div onClick={handlePrev}><img src={leftIcon} /></div>
-                            } */}
-                            {/* {invitationHeader?.slice(startIndex, lastIndex + 1).map((ele) => ( */}
                             {invitationHeader?.map((ele) => (
                                 <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
-                            {/* {(lastIndex < (invitationHeader?.length || 0) - 1) &&
-                                <div onClick={handleForwardIcon}><img src={rightIcon} /></div>
-                            } */}
                         </> :
                         <>
                             {invitationHeader?.map((ele) => (
-                                // <div><Link to={ele.url} >{ele?.name}</Link></div>
                                 <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
                             ))}
                         </>
                 }
             </div>
-
 
             <div className='invitations-content'>
                 <div className='invitations-price-left'>

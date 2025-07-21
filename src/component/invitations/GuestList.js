@@ -49,7 +49,6 @@ export const GuestList = () => {
     })
   };
 
-  console.log(guest, 'ss9999900000000000000')
 
   const getUserData = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
@@ -102,14 +101,14 @@ export const GuestList = () => {
       const quantity = box?.quantity || 1;
 
       const existing = guest.find((g) => g.idx == item.idx);
-      console.log(existing, "ddddddd")
       return {
         idx: item.idx,
         guestId: existing?.guestId || '',
         quantity,
         name: existing?.name || '',
         address: existing?.address || '',
-        pincode: existing?.pincode || ''
+        pincode: existing?.pincode || '',
+        mobile: existing?.mobile || ''
       };
     });
     const userGuest = guest.find((g) => g.guestId === userId);
@@ -142,7 +141,8 @@ export const GuestList = () => {
         name: guestData.name,
         address: guestData.address,
         quantity,
-        pincode: guestData?.pincode || ''
+        pincode: guestData?.pincode || '',
+        mobile: guestData?.mobile || ''
       }]);
     }
   }
@@ -191,7 +191,7 @@ export const GuestList = () => {
               : ele
           );
         } else {
-          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId, name: userData?.name, address: userData?.address, pincode: userData?.pincode }];
+          return [...prevGuest, { guestId: userId, quantity: userBox, idx: userId, name: userData?.name, address: userData?.address, pincode: userData?.pincode, mobile: userData?.mobile }];
         }
       });
     }
@@ -201,7 +201,7 @@ export const GuestList = () => {
     }
   }
 
-
+  console.log(guest, "ddddddd")
 
   const handlePayment = () => {
     if (!paymentHistory?.length) {
@@ -224,6 +224,25 @@ export const GuestList = () => {
   }
 
   console.log(guest, 'aaaaaaaaaa+')
+
+  const getcontact = async () => {
+    await axios.get(
+      'https://people.googleapis.com/v1/people/me/connections',
+      {
+        params: {
+          personFields: 'names,emailAddresses,phoneNumbers',
+        },
+        headers: {
+          Authorization: `Bearer ${userData?.token}`,
+        },
+      }
+    ).then((res) => {
+      console.log(res.data, '3333333333333')
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <div className="guest-list-container">
       <div className="guest-list-header">
@@ -234,6 +253,7 @@ export const GuestList = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
+        <button onClick={getcontact}>import contact</button>
         <Link to='/guest' className="add-guest-button">+ add Guest</Link>
       </div>
       <div className="table-wrapper">

@@ -48,6 +48,8 @@ import { ViewHistory } from './component/invitations/viewHistory';
 import { ViewSweetHistory } from './component/sweets/sweet-history';
 import { BestSeller } from './component/Best_seller/list';
 import { PrivacyPolicy } from './component/privacy-policy';
+import { DemoVideo } from './component/demo';
+import { LoginDemoVideo } from './component/demo/login-demo';
 
 function App() {
 
@@ -65,6 +67,7 @@ function App() {
         {/* <BrowserRouter> */}
         <LastUrl />
         <Header />
+        <DemoVideo />
         <div className='app-content'>
           <Routes>
             <Route index path='/' element={<Dashboard />} />
@@ -121,7 +124,7 @@ function App() {
             <Route path='/view-history/:_id' element={<PrivateRoute><ViewHistory /></PrivateRoute>} />
             <Route path='/view-sweet-history/:_id' element={<PrivateRoute><ViewSweetHistory /></PrivateRoute>} />
             <Route path='/dry-fruit_info/:_id' element={<DryFruitInfo />} />
-
+            <Route path='/sample-demo' element={<PrivateRoute><LoginDemoVideo /></PrivateRoute>} />
             <Route path='/privacy-policy' element={<PrivacyPolicy />} />
 
 
