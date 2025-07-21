@@ -26,13 +26,14 @@ export const Sweets = () => {
     const sweetsInfo = context?.setSweetsInfo
     const isInvitationSweets = location.state?.data;
     const invitationId = location.state?.invitationId;
+    const searchCategory = location.state?.category;
     const name = location.state?.name;
     const index = location.state?.idx;
     const id = location.state?.id;
     const [invitationselectSweet, setInvitationSelectSweet] = useState(null);
     const [orderId, setOrderId] = useState(null);
     const [data, setData] = useState([]);
-    const [category, setCategory] = useState(INITIAL_CATEGORY);
+    const [category, setCategory] = useState(searchCategory || INITIAL_CATEGORY);
     const [isSpecialView, setIsSpecialView] = useState(false);
     const [pageHeading, setPageHeading] = useState("Sweets");
     const [startIndex, setStartIndex] = useState(0);

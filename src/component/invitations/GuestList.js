@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import './GuestList.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context';
 import { Payment } from '../payment';
@@ -12,6 +12,8 @@ export const GuestList = () => {
   const context = useContext(AuthContext);
   const logout = context?.logout;
   const paymentHistory = context?.paymentHistory;
+  const location = useLocation();
+  const invitationId = location?.state?.invitationId;
   // const userData = context?.storeUserData;
   const id = localStorage.getItem('_id');
   const totalAmountPerBox = total;
@@ -29,6 +31,7 @@ export const GuestList = () => {
   const [openRazorpay, setOpenRazorPay] = useState(false)
   const [guest, setGuest] = useState([])
   const [userData, setUserData] = useState({})
+  const [isDeliverycharge, setIsDeliverycharge] = useState();
 
   const getGuestList = async () => {
     await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
@@ -65,6 +68,15 @@ export const GuestList = () => {
     })
   };
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${invitationId}`).then((res) => {
+      console.log(res?.data.invitation,"ggggggggggggggg")
+      setIsDeliverycharge(res?.data?.invitation?.isDeliveryCharge);
+    }).catch((error) => {
+      console.log(error, "error")
+    })
+  }, [])
+
 
   useEffect(() => {
     getGuestList()
@@ -78,10 +90,19 @@ export const GuestList = () => {
     const countBox = checkedItems?.reduce((ele1, ele2) => ele1 + Number(ele2?.quantity), 0);
     const countGuest = checkedItems?.length;
     let total = countBox;
-    let price = totalAmountPerBox * countBox + 49 * countBox;
+    let price = totalAmountPerBox * countBox;
+
+    if (isDeliverycharge) {
+      console.log(isDeliverycharge,"ghggggg")
+      price = price + 49 * countBox;
+    }
     if (isUserAddressChecked && userBox) {
       total += Number(userBox);
-      price += Number(20 * userBox + totalAmountPerBox * userBox)
+      price += Number(totalAmountPerBox * userBox);
+      if (isDeliverycharge) {
+        price = price + Number(20 * userBox)
+      }
+
     }
     setTotalBox(total);
     setTotalGuest(countGuest);
@@ -301,9 +322,11 @@ export const GuestList = () => {
           </tbody>
         </table>
       </div>
-      <div className="shipping-info">
+
+      {isDeliverycharge && <div className="shipping-info">
         <div>Extra Shipping Charges ₹49 per box</div>
-      </div>
+      </div>}
+
       <div className="my-address-section">
         <div className="my-address-row">
           <div>
@@ -327,9 +350,12 @@ export const GuestList = () => {
 
         </div>
       </div>
-      <div className="shipping-info">
-        <div>Extra Shipping Charges ₹20 per box</div>
-      </div>
+      {isDeliverycharge &&
+        <div className="shipping-info">
+          <div>Extra Shipping Charges ₹20 per box</div>
+        </div>
+      }
+
       <div className="totals-bar">
         <span>Total Guest:{totalGuest} </span>
         <span>Total Boxes:{totalbox} </span>

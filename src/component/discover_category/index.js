@@ -30,13 +30,14 @@ export const DiscoverCategory = () => {
     const handleSweetInfo = (data) => {
 
         sweetsInfo(data)
-        // navigate('/sweets-info')
-        const url = 'home';
-        navigate(`/sweets-info/${data?._id}/${url}`);
+        console.log(data, 'aaa')
+        // const url = 'home';
+        // navigate(`/sweets-info/${data?._id}/${url}`);
+        navigate(`/sweets`, { state: { category: data.category } })
 
     }
 
-    console.log(discoverData,"discovertdarta")
+    console.log(discoverData, "discovertdarta")
     return (
         <div className='discover-category'>
             <div className='discover-category-heading'>
@@ -47,11 +48,11 @@ export const DiscoverCategory = () => {
             <div className='discover-category-list'>
                 {discoverData.slice(startIndex, lastIndex + 1)?.map((item) => {
 
-                    let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
+                    let category = item?.category[0]?.toUpperCase() + item?.category.slice(1)?.toLowerCase();
                     return (
                         <div key={item?.id} className='discover-category-wrapper'>
                             <img onClick={() => handleSweetInfo(item)} className='discover-category-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
-                            <div className='discover-category-img-text'>{name}</div>
+                            <div className='discover-category-img-text'>{category}</div>
                         </div>
                     )
                 })}
