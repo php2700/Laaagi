@@ -1,0 +1,603 @@
+import React, { use, useContext, useEffect, useRef, useState } from 'react';
+import { data, Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import './Invitationhome.css';
+import CustomizationModal from './CustomizationModal';
+import SuccessModal from './SuccessModal';
+import Rectangle from "../../assets/invitations/type-box-1.png"
+import boxSize2 from '../../assets/invitations/type-box-2.png'
+import boxSize3 from "../../assets/invitations/type-box-3.png"
+import sweet1Img from "../../assets/invitations/sweet-1.jpg"
+import sweet2Img from "../../assets/invitations/sweet-2.jpg"
+import sweet3Img from "../../assets/invitations/sweet-3.jpg"
+import sweet4Img from "../../assets/invitations/sweet-4.jpg"
+import leftArrow from "../../assets/invitations/arrow-left.png"
+import section2 from "../../assets/invitations/section-type-2.png"
+import section4 from "../../assets/invitations/section-4.png"
+import section3 from "../../assets/invitations/box-3.jpg"
+import OneImg from "../../assets/invitations/one.jpg"
+import section1One from '../../assets/invitations/section-3-one.jpg';
+import section3two from "../../assets/invitations/section-3-two.jpg"
+import section3three from "../../assets/invitations/section-3-three.jpg"
+import specialBox1 from "../../assets/invitations/special-1.jpg"
+import specialBox2 from "../../assets/invitations/special-2.jpg"
+import specialBox3 from "../../assets/invitations/special-3.jpg"
+import specialBox4 from "../../assets/invitations/special-4.jpg"
+import specialBox5 from "../../assets/invitations/special-5.jpg"
+import selectSweet from "../../assets/invitations/select-sweet.jpg"
+import { AuthContext } from '../context';
+import rightArrow from "../../assets/invitations/right-icon.png"
+import { useDispatch, useSelector } from 'react-redux';
+import { chnageWeight } from '../redux/weightSlice';
+import backArrow from "../../assets/sweet/left_arrow.png"
+import axios from 'axios';
+
+const sectionBox4 = [
+    { name: 'section_box4', id: 1, sectionImg: sweet1Img, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'section_box4', id: 2, sectionImg: sweet2Img, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'section_box4', id: 3, sectionImg: sweet3Img, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'section_box4', id: 4, sectionImg: sweet4Img, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+]
+
+const normalBox = [
+    { name: "normal_box", id: 1, sectionImg: OneImg, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+]
+
+const sectionBox3 = [
+    { name: 'section_box3', id: 1, sectionImg: section1One, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'section_box3', id: 2, sectionImg: section3two, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'section_box3', id: 3, sectionImg: section3three, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+]
+
+const specialBox = [
+    { name: 'special_box', id: 1, sectionImg: specialBox1, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'special_box', id: 2, sectionImg: specialBox2, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'special_box', id: 3, sectionImg: specialBox3, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'special_box', id: 4, sectionImg: specialBox4, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+    { name: 'special_box', id: 4, sectionImg: specialBox5, arrow: leftArrow, sweetImg: selectSweet, price: 120, url: '/sweets' },
+]
+
+const boxType = [
+    { id: 1, number: 1, boxName: 'Normal Box', boxImg: Rectangle, boxDesc: 'Lorem Ipsum is simply dummy terxt for the printing' },
+    { id: 2, number: 2, boxName: '4 Section in box', boxImg: section2, boxDesc: 'this is the dummy content and the' },
+    { id: 3, number: 3, boxName: '3 Section in box', boxImg: section3, boxDesc: 'Lorem Ipsum is simply dummy' },
+    { id: 4, number: 4, boxName: 'Special box', boxImg: section4, boxDesc: 'Lorem Ipsum is simply' },
+]
+
+export const CartHome = () => {
+    const hasFetchedRef = useRef(false);
+    const token = localStorage.getItem("token")
+    const userId = localStorage.getItem("_id")
+    const { _id, url } = useParams()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const context = useContext(AuthContext);
+    const setAmounts = context?.setAmounts;
+    const setInvitationsweet = context.setSelectSweet;
+    const setTotalAmountInv = context?.setTotalAmountInv
+    const amounts = context?.amounts;
+    const boxName = context?.boxName;
+    const setBoxName = context?.setBoxName;
+    const setPaymentHistory = context?.setPaymentHistory;
+    const paymentHistory = context?.paymentHistory;
+    const [price, serPrice] = useState()
+    const [invitationId, setinvitationId] = useState()
+    const [invitation, setInvitation] = useState({})
+    const getSweet = location?.state;
+    const [selectedSweet, setSelectedSweet] = useState(getSweet)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const [id, setId] = useState(1)
+    const [total, setTotal] = useState(0)
+    const [error, setError] = useState([])
+    const [storeSweet, setStoreSweet] = useState([])
+    const targetRef = useRef(null);
+    const [viewImg, setViewImg] = useState();
+    const [cartId, setCartId] = useState();
+
+
+    useEffect(() => {
+        const scrollToNext = () => {
+            if (targetRef.current) {
+                targetRef.current.scrollIntoView();
+            }
+        };
+        window.addEventListener('scrollToNext', scrollToNext);
+        return () => {
+            window.removeEventListener('scrollToNext', scrollToNext);
+        };
+    }, []);
+
+
+    const weight = useSelector((state) => state.weight?.value);
+    const dispatch = useDispatch()
+
+    const getInvitationData = async () => {
+        await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/cart-details-id/${_id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            setInvitationsweet(res?.data?.cartDetail?.invitationId);
+            serPrice(res?.data?.cartDetail?.invitationId?.price);
+            setinvitationId(res?.data?.cartDetail?.invitationId?._id);
+            setInvitation(res?.data?.cartDetail?.invitationId);
+            dispatch(chnageWeight(res?.data?.cartDetail?.weight))
+            setBoxName(res?.data?.cartDetail?.boxName)
+            setStoreSweet(res?.data?.updated)
+            setCartId(res?.data?.cartDetail?._id)
+            setId(res?.data?.cartDetail?.tempId)
+        }).catch((error) => {
+            console.log(error, "error")
+        })
+    }
+
+    useEffect(() => {
+        let sweetData;
+        let newObj = {};
+
+        if (selectedSweet) {
+            newObj = {
+                amount: selectedSweet?.amount,
+                image: selectedSweet?.image,
+                index: selectedSweet?.index,
+                invitationId: selectedSweet?.invitationId,
+                name: selectedSweet?.name,
+                sweetId: selectedSweet?.sweetId,
+                sweetName: selectedSweet?.sweetName,
+                id: getSweet?.showId,
+                cartId: cartId || ''
+            };
+
+            const findIndex = storeSweet.findIndex((ele) => ele.index === newObj.index);
+
+            if (findIndex !== -1) {
+                sweetData = [...storeSweet];
+                sweetData[findIndex] = newObj;
+            } else {
+                sweetData = [...storeSweet, newObj];
+            }
+        } else {
+            sweetData = storeSweet;
+        }
+
+
+        const data = {
+            sweet: sweetData,
+            boxName,
+            weight,
+            newObj
+        };
+
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/calculate-price`, data)
+            .then((res) => {
+                console.log(res?.data);
+                setPaymentHistory(res?.data?.paymentHistory);
+                setAmounts(res?.data?.amounts);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }, [storeSweet, selectedSweet]);
+
+
+    useEffect(() => {
+        if (!_id || hasFetchedRef.current) return;
+        getInvitationData()
+        hasFetchedRef.current = true;
+    }, [_id])
+
+    useEffect(() => {
+        if (!userId || !invitation?._id) return
+
+        const recentData = {
+            userId: userId,
+            fruitId: invitation?._id, name: invitation?.name, image: invitation?.image,
+            price: invitation?.price ?? null,
+            isSweet: invitation?.isSweet ?? null
+        }
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/recent-view`, recentData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            console.log(res);
+        }).catch((error) => {
+            console.log(error, "error")
+        })
+
+    }, [invitation])
+
+
+    const validate = () => {
+        const newError = []
+
+        if (boxName == 'Normal Box') {
+            if (amounts[0] == 0) {
+                newError.push({
+                    id: 0,
+                    boxName: 'Normal Box'
+                })
+            }
+        }
+        else if (boxName == '4 Section in box') {
+            if (amounts[0] == 0) {
+                newError.push({
+                    id: 0,
+                    boxName: '4 Section in box'
+                })
+            }
+            if (amounts[1] == 0) {
+                newError.push({
+                    id: 1,
+                    boxName: '4 Section in box'
+                })
+            }
+            if (amounts[2] == 0) {
+                newError.push({
+                    id: 2,
+                    boxName: '4 Section in box'
+                })
+            }
+            if (amounts[3] == 0) {
+                newError.push({
+                    id: 3,
+                    boxName: '4 Section in box'
+                })
+            }
+        }
+        else if (boxName == '3 Section in box') {
+            if (amounts[0] == 0) {
+                newError.push({
+                    id: 0,
+                    boxName: '3 Section in box'
+                })
+            }
+            if (amounts[1] == 0) {
+                newError.push({
+                    id: 1,
+                    boxName: '3 Section in box'
+                })
+            }
+            if (amounts[2] == 0) {
+                newError.push({
+                    id: 2,
+                    boxName: '3 Section in box'
+                })
+            }
+        } else {
+            if (amounts[0] == 0) {
+                newError.push({
+                    id: 0,
+                    boxName: 'Special box'
+                })
+            }
+            if (amounts[1] == 0) {
+                newError.push({
+                    id: 1,
+                    boxName: 'Special box'
+                })
+            }
+            if (amounts[2] == 0) {
+                newError.push({
+                    id: 2,
+                    boxName: 'Special box'
+                })
+            }
+            if (amounts[3] == 0) {
+                newError.push({
+                    id: 3,
+                    boxName: 'Special box'
+                })
+            }
+            if (amounts[4] == 0) {
+                newError.push({
+                    id: 4,
+                    boxName: 'Special box'
+                })
+            }
+        }
+
+        setError(newError);
+        return newError?.length > 0
+    }
+
+    const handleAmount = () => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/signup')
+            return
+        }
+        if (validate()) {
+            return;
+        }
+        setTotalAmountInv(total + price)
+        const sum = total + price;
+        navigate(`/invitation-GuestList/${sum}`, { state: { invitationId: invitationId } })
+    }
+
+
+    useEffect(() => {
+        setTotal(amounts?.reduce((item1, item2) => item1 + item2))
+    }, [amounts])
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+        setIsSuccessModalOpen(false);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleFormSubmitSuccess = () => {
+        setIsModalOpen(false);
+        setIsSuccessModalOpen(true);
+    };
+
+    const handleCloseSuccessModal = () => {
+        setIsSuccessModalOpen(false);
+    };
+
+    const handleBoxType = (ele) => {
+        setTotalAmountInv(0)
+        setPaymentHistory([])
+        setAmounts([0, 0, 0, 0, 0])
+        setBoxName(ele?.boxName)
+        setId(ele?.id)
+    }
+
+    const handleWeight = (weight) => {
+        // setWeight(weight)   ----->  used for context
+        dispatch(chnageWeight(weight))      //------>  redux
+    }
+
+    const handleBack = () => {
+        setTotalAmountInv(0)
+        setAmounts([0, 0, 0, 0, 0])
+        setPaymentHistory([])
+        // setWeight(500)    ----->context   
+        dispatch(chnageWeight(1000))   // redux
+        setBoxName('Normal Box');
+        navigate("/cart-list")
+
+    }
+
+    const handleHome = () => {
+        navigate('/')
+    }
+
+
+    const handleViewImg = (img) => {
+        setViewImg(img)
+    }
+
+
+    return (
+        <div className="invitation-details-container">
+
+            <div className='back-button' onClick={handleBack}>   <img src={backArrow} />back</div>
+            <div className="invitation-detils-home-container">
+                <div className="invitation-detail-home" onClick={handleHome}>Home</div>
+                <div> &nbsp;> &nbsp;Detail</div>
+            </div>
+
+            <div className="top-section">
+                <div className="image-container">
+                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${viewImg ? viewImg : invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
+                </div>
+                <div className="invitation-description">
+                    <h2>
+                        {invitation?.name?.charAt(0)?.toUpperCase() + invitation?.name?.slice(1)?.toLowerCase()}
+
+                        (Rs. {price}/-)</h2>
+                    <p className="description-label">Description</p>
+                    <p>{invitation?.description}</p>
+                </div>
+            </div>
+            <div className='multipleImg-container'>
+                <img className='multipleImg' onClick={() => handleViewImg(invitation?.image)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} />
+                <img className='multipleImg' onClick={() => handleViewImg(invitation?.image02)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image02}`} alt={`${invitation?.image} Invitation Box`} />
+                <img className='multipleImg' onClick={() => handleViewImg(invitation?.image03)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image03}`} alt={`${invitation?.image} Invitation Box`} />
+                <img className='multipleImg' onClick={() => handleViewImg(invitation?.image04)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image04}`} alt={`${invitation?.image} Invitation Box`} />
+            </div>
+            <div className='select-size-header'>Select size of the box</div>
+            <div className='invitation-size-box'>
+                <div className={weight != 750 && weight != 500 && weight != 250 ? 'right-icon-arrow' : 'invitation-default-style'} >
+                    {weight != 750 && weight != 500 && weight != 250 ?
+                        <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
+                    }
+                    <div className='invitation-size-list' >
+                        <div><img className='invittions-size-img' src={Rectangle} /></div>
+                        <div>
+                            <div className='invitation-box-we'>Weight:1000gm</div>
+                        </div>
+                    </div>
+                </div>
+                <div className={weight == 750 ? 'right-icon-arrow' : 'invitation-default-style'} >
+                    {weight == 750 ?
+                        <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
+                    }
+
+                    <div className='invitation-size-list' >
+                        <div><img className='invitation-second-img' src={boxSize2} /></div>
+                        <div>
+
+                            <div className='invitation-box-we'>Weight:750gm</div>
+                        </div>
+                    </div>
+                </div>
+                <div className={weight == 500 ? 'right-icon-arrow' : 'invitation-default-style'} >
+                    {weight == 500 ?
+                        <div className='invitation-icon-shift' ><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
+                    }
+                    <div className='invitation-size-list' >
+                        <div ><img className='invitation-third-img' src={boxSize3} /></div>
+                        <div>
+                            <div className='invitation-box-we'>Weight:500gm</div>
+                        </div>
+                    </div>
+                </div>
+                <div className={weight == 250 ? 'right-icon-arrow' : 'invitation-default-style'} >
+                    {weight == 250 ?
+                        <div className='invitation-icon-shift'><img src={rightArrow} /></div> : <div className='invitation-icon-hide'><img src={rightArrow} /></div>
+                    }
+                    <div className='invitation-size-list' >
+                        <div><img className='invittions-size-img' src={Rectangle} /></div>
+                        <div>
+
+                            <div className='invitation-box-we'>Weight:250gm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='invitation-box-header'>
+                <div className='invitation-box-type-header'> Select box type</div>
+                <div className='invitation-box-type' >
+                    {boxType?.map((ele) => (
+                        <div className={boxName == ele?.boxName ? 'invittion-box-container' : 'invittion-default-style-container'}  >
+                            {
+                                boxName == ele?.boxName ? <div className='invitation-icon-shift'><img src={rightArrow} /></div>
+                                    : <div className='invitation-default-icon-shift'><img src={rightArrow} /></div>
+                            }
+                            <div className='invittion-box-detail' >
+                                <div className='invitation-box-numbers'>{ele?.number}</div>
+                                <div className='invitation-box-name'> {ele.boxName}</div>
+                                <div className='invitation-box-type-img'><img src={ele?.boxImg} /></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className='invitation-select-sweet-box-list' ref={targetRef}>
+                <div className='invitation-box-select-header'>
+                    <div >Sections</div>
+                    <div className='invitation-names'>Image</div>
+                    <div >Sweets</div>
+                    <div className='invitation-names'>Price</div>
+                </div>
+
+                {id == 1 ?
+                    normalBox?.map((ele, index) => {
+                        const data = paymentHistory?.find((ele1) => ele1.index === index);
+                        return (
+                            <div className='invitation-select-arrow'>
+                                <div className='invitation-section-align'>
+                                    <div className='show-selection'><img src={ele?.sectionImg} /></div>
+                                    <div><img src={ele?.arrow} /></div>
+                                    <div>
+                                        <Link to={ele?.url} state={{
+                                            data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id,
+                                            isCart: true, cartId: _id
+                                        }} >
+                                            {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
+                                        </Link>
+                                        {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
+                                    </div>
+                                </div>
+                                <div className='sweet-name'> {data ? data?.name : <span className='sweet-name'>Sweet Name</span>}</div>
+                                <div className='invitation-select-box-sweet-price'>  {
+                                    (amounts[index] ?? 0)
+                                }</div>
+
+                            </div>
+                        )
+                    }) : (id == 2) ?
+                        sectionBox4?.map((ele, index) => {
+                            const data = paymentHistory?.find((ele1) => ele1.index === index);
+                            return (
+                                <div className='invitation-select-arrow'>
+                                    <div className='invitation-section-align'>
+                                        <div className='show-selection'><img src={ele?.sectionImg} /></div>
+                                        <div><img src={ele?.arrow} /></div>
+                                        <div>
+                                            <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id }}>
+                                                {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
+                                            </Link>
+                                            {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
+                                        </div>
+                                    </div>
+                                    <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                                    <div className='invitation-select-box-sweet-price'>  {
+                                        (amounts[index] ?? 0)
+                                    }</div>
+
+                                </div>)
+                        }) : (id == 3) ?
+                            sectionBox3?.map((ele, index) => {
+                                const data = paymentHistory?.find((ele1) => ele1.index === index);
+
+                                return (
+                                    <div className='invitation-select-arrow'>
+                                        <div className='invitation-section-align'>
+                                            <div className='show-selection'><img src={ele?.sectionImg} /></div>
+                                            <div><img src={ele?.arrow} /></div>
+                                            <div>
+                                                <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id }}>
+                                                    {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
+                                                </Link>
+                                                {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
+                                            </div>
+
+                                        </div>
+
+                                        <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+
+                                        <div className='invitation-select-box-sweet-price'>  {
+                                            (amounts[index] ?? 0)
+                                        }</div>
+
+                                    </div>
+                                )
+                            }) :
+                            specialBox?.map((ele, index) => {
+                                const data = paymentHistory?.find((ele1) => ele1.index === index);
+                                return (
+                                    <div className='invitation-select-arrow'>
+                                        <div className='invitation-section-align'>
+                                            <div className='show-selection'><img src={ele?.sectionImg} /></div>
+                                            <div><img src={ele?.arrow} /></div>
+                                            <div>
+                                                <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id }}>
+                                                    {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
+                                                </Link>
+                                                {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
+                                            </div>
+                                        </div>
+                                        <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+
+                                        <div className='invitation-select-box-sweet-price'>  {
+                                            (amounts[index] ?? 0)
+                                        }</div>
+
+                                    </div>
+                                )
+                            })
+                }
+            </div>
+
+            <div className='invitation-total'>
+                <div>Total</div>
+                <div>{total + price}</div>
+            </div>
+            <div className='invitation-next' >
+                <div onClick={() => handleAmount()}>
+                    Next
+                </div>
+            </div>
+
+            <CustomizationModal
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                onFormSubmitSuccess={handleFormSubmitSuccess}
+                invitationId={invitationId}
+            />
+            <SuccessModal
+                isOpen={isSuccessModalOpen}
+                onClose={handleCloseSuccessModal}
+            />
+        </div>
+    );
+};
+

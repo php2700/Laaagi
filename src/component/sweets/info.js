@@ -129,7 +129,7 @@ export const SweetsInfo = () => {
         let calculateAmount;
         setError('')
         if (unit == 'gm') {
-            calculateAmount = (sweetkg * pricePerKg / 1000)
+            calculateAmount = Math.round(sweetkg * pricePerKg / 1000)
         } else {
             calculateAmount = sweetkg * pricePerKg;
         }

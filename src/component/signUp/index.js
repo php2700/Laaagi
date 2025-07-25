@@ -29,7 +29,7 @@ export const SignUp = () => {
     if (showsignUp && token) {
         navigate("/")
     }
-    console.log("show", showsignUp,token)
+    console.log("show", showsignUp, token)
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -49,9 +49,9 @@ export const SignUp = () => {
         onError: () => {
             console.log('Login Failed------------------------------------');
         },
-         scope: 'https://www.googleapis.com/auth/contacts.readonly',
+        // scope: 'https://www.googleapis.com/auth/contacts.readonly',
     });
-    console.log("sho----w", showsignUp,token)
+    console.log("sho----w", showsignUp, token)
 
 
     const validate = () => {
@@ -70,7 +70,7 @@ export const SignUp = () => {
         setError(newError);
         return Object.keys(newError)?.length;
     }
-    console.log("sho5555w", showsignUp,token)
+    console.log("sho5555w", showsignUp, token)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -96,7 +96,7 @@ export const SignUp = () => {
             console.log(error);
         })
     }
-    console.log("s44444how", showsignUp,token)
+    console.log("s44444how", showsignUp, token)
 
     const handleVerify = (e) => {
         e.preventDefault();
@@ -123,7 +123,7 @@ export const SignUp = () => {
     const handelResend = (e) => {
         handleSubmit(e);
     }
-    console.log("sho222233444w", showsignUp,token)
+    console.log("sho222233444w", showsignUp, token)
 
     const handleOtpClose = () => {
         setOtpModel(false)
@@ -174,7 +174,7 @@ export const SignUp = () => {
 
     }
 
-    console.log("sho222w", showsignUp,token)
+    console.log("sho222w", showsignUp, token)
 
     const onClose = () => {
         setShowSignUp(false)
@@ -189,7 +189,7 @@ export const SignUp = () => {
         // }
 
     }
-    console.log("sho1111w", showsignUp,token)
+    console.log("sho1111w", showsignUp, token)
 
 
     return (

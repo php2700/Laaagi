@@ -190,6 +190,10 @@
   display: block;
 }
 
+.main-container-sweet {
+  display: flex;
+}
+
 .sweets-name {
   color: #5d4037;
   font-size: 20px;
@@ -263,6 +267,10 @@
   .sweets-content-list > .sweets-content-img {
     width: calc((100% - 30px) / 2);
   }
+  .main-container-sweet {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 600px) {
@@ -278,3 +286,6 @@
 .sweets-content-img a {
   text-decoration: none;
 }
+
+ 
+

@@ -50,6 +50,8 @@ import { BestSeller } from './component/Best_seller/list';
 import { PrivacyPolicy } from './component/privacy-policy';
 import { DemoVideo } from './component/demo';
 import { LoginDemoVideo } from './component/demo/login-demo';
+import { Cart } from './component/cart';
+import { CartHome } from './component/invitations/cart.detail';
 
 function App() {
 
@@ -127,6 +129,8 @@ function App() {
             <Route path='/sample-demo' element={<PrivateRoute><LoginDemoVideo /></PrivateRoute>} />
             <Route path='/privacy-policy' element={<PrivacyPolicy />} />
 
+            <Route path='/cart-list' element={<PrivateRoute><Cart/></PrivateRoute>} />
+            <Route path='/cart-detail/:_id' element={<PrivateRoute><CartHome/></PrivateRoute>} /> 
 
 
           </Routes>
