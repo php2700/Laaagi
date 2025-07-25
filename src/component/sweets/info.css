@@ -83,11 +83,6 @@
   cursor: pointer;
 }
 
-.sweets-info-drop-down {
-  /* width: 40%; */
-  /* margin-top: 25px; */
-}
-
 .sweets-info-home-button {
   cursor: pointer;
 }
@@ -117,7 +112,6 @@
   }
   .sweets-info-drop-down {
     width: 40%;
-    margin-top: 25px;
   }
 }
 
@@ -147,7 +141,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .sweets-info-right-side {
     display: flex;
     flex-direction: column;

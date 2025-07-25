@@ -246,23 +246,23 @@ export const GuestList = () => {
 
   console.log(guest, 'aaaaaaaaaa+')
 
-  const getcontact = async () => {
-    await axios.get(
-      'https://people.googleapis.com/v1/people/me/connections',
-      {
-        params: {
-          personFields: 'names,emailAddresses,phoneNumbers',
-        },
-        headers: {
-          Authorization: `Bearer ${userData?.token}`,
-        },
-      }
-    ).then((res) => {
-      console.log(res.data, '3333333333333')
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+  // const getcontact = async () => {
+  //   await axios.get(
+  //     'https://people.googleapis.com/v1/people/me/connections',
+  //     {
+  //       params: {
+  //         personFields: 'names,emailAddresses,phoneNumbers',
+  //       },
+  //       headers: {
+  //         Authorization: `Bearer ${userData?.token}`,
+  //       },
+  //     }
+  //   ).then((res) => {
+  //     console.log(res.data, '3333333333333')
+  //   }).catch((err) => {
+  //     console.log(err)
+  //   })
+  // }
 
   return (
     <div className="guest-list-container">
@@ -274,7 +274,7 @@ export const GuestList = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button onClick={getcontact}>import contact</button>
+        {/* <button onClick={getcontact}>import contact</button> */}
         <Link to='/guest' className="add-guest-button">+ add Guest</Link>
       </div>
       <div className="table-wrapper">

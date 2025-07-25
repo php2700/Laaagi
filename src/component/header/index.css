@@ -426,7 +426,7 @@ button {
   text-decoration: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .menu-toggle {
     display: block;
     background-color: #800000;
@@ -518,7 +518,7 @@ button {
   line-height: 100%;
   letter-spacing: 0%;
   font-size: 16px;
-  height:220px;
+  height:260px;
   width: 125px;
   position: absolute;
   top: 100%;
@@ -541,7 +541,7 @@ button {
   font-size: 16px;
   line-height: 100%;
   font-weight: 700;
-
+margin:2px 0 ;
   padding: 6px 15px;
   color: #800000;
   text-decoration: none;

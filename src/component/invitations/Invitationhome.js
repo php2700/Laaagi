@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { chnageWeight } from '../redux/weightSlice';
 import backArrow from "../../assets/sweet/left_arrow.png"
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const sectionBox4 = [
@@ -259,6 +260,8 @@ export const Invitationhome = () => {
   }
 
 
+
+
   const handleAmount = () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -271,7 +274,7 @@ export const Invitationhome = () => {
     setTotalAmountInv(total + price)
     // navigate('/invitation-GuestList', { state: { amount: total + price } })
     const sum = total + price;
-    navigate(`/invitation-GuestList/${sum}`,{state:{invitationId:invitationId}})
+    navigate(`/invitation-GuestList/${sum}`, { state: { invitationId: invitationId } })
 
   }
 
@@ -284,7 +287,7 @@ export const Invitationhome = () => {
       setId(getSweet?.showId)
       setAmounts(updatedAmounts);
       const updatedHistory = paymentHistory?.filter((ele) => ele?.index != selectedSweet?.index) || [];
-      updatedHistory.push({ index: selectedSweet?.index, name: selectedSweet?.sweetName, img: selectedSweet?.image })
+      updatedHistory.push({ index: selectedSweet?.index, name: selectedSweet?.sweetName, img: selectedSweet?.image, sweetId: selectedSweet?.sweetId })
       setPaymentHistory(updatedHistory)
     }
   }, [selectedSweet]);
@@ -362,6 +365,24 @@ export const Invitationhome = () => {
     setViewImg(img)
   }
 
+  const handleCart = () => {
+    const cartDetails = {
+      invitationId, weight, paymentHistory,userId,tempId:id,boxName,sectionBoxName:selectedSweet?.name || 'normal_box'
+    }
+    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-cart`, cartDetails,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }).then((res) => {
+      toast.success("add cart successfully", {
+        position: 'top-right'
+      })
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
+  console.log(id, "paymentHistory", paymentHistory, "selectedSweet", selectedSweet)
 
   return (
     <div className="invitation-details-container">
@@ -487,7 +508,7 @@ export const Invitationhome = () => {
                   <div className='show-selection'><img src={ele?.sectionImg} /></div>
                   <div><img src={ele?.arrow} /></div>
                   <div>
-                    <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
+                    <Link to={ele?.url}  state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
                       {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                     </Link>
                     {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
@@ -504,6 +525,7 @@ export const Invitationhome = () => {
             )
           }) : (id == 2) ?
             sectionBox4?.map((ele, index) => {
+              console.log(ele, "ele-------")
               const data = paymentHistory?.find((ele1) => ele1.index === index);
               return (
                 <div className='invitation-select-arrow'>
@@ -511,7 +533,7 @@ export const Invitationhome = () => {
                     <div className='show-selection'><img src={ele?.sectionImg} /></div>
                     <div><img src={ele?.arrow} /></div>
                     <div>
-                      <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                      <Link to={ele?.url}   state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                         {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                       </Link>
                       {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
@@ -535,7 +557,7 @@ export const Invitationhome = () => {
                       <div className='show-selection'><img src={ele?.sectionImg} /></div>
                       <div><img src={ele?.arrow} /></div>
                       <div>
-                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                        <Link to={ele?.url}  state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                           {/* <img className='select-sweet-img' src={ele?.sweetImg} /> */}
                           {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                         </Link>
@@ -563,7 +585,7 @@ export const Invitationhome = () => {
                       <div className='show-selection'><img src={ele?.sectionImg} /></div>
                       <div><img src={ele?.arrow} /></div>
                       <div>
-                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                        <Link to={ele?.url}   state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                           {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                         </Link>
                         {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
@@ -590,6 +612,12 @@ export const Invitationhome = () => {
       <div className='invitation-next' >
         <div onClick={() => handleAmount()}>
           Next
+        </div>
+      </div>
+
+      <div className='invitation-next' >
+        <div onClick={() => handleCart()}>
+          Add to cart
         </div>
       </div>
       <CustomizationModal

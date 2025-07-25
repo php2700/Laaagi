@@ -29,7 +29,9 @@ export const Sweets = () => {
     const searchCategory = location.state?.category;
     const name = location.state?.name;
     const index = location.state?.idx;
+    const isCart = location?.state?.isCart;
     const id = location.state?.id;
+    const cartId = location?.state?.cartId;
     const [invitationselectSweet, setInvitationSelectSweet] = useState(null);
     const [orderId, setOrderId] = useState(null);
     const [data, setData] = useState([]);
@@ -42,6 +44,7 @@ export const Sweets = () => {
     const [openModel, setOpenModel] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
     const [selectedPrice, setSelectedPrice] = useState('');
+    const [sweetId, setSweetId] = useState()
 
 
     const handleForwardIcon = () => {
@@ -118,6 +121,7 @@ export const Sweets = () => {
         setOrderId(item?.orderId);
         setInvitationSelectSweet(item);
         setOpenModel(true)
+        setSweetId(item._id)
     };
 
     const handleClose = () => {
@@ -127,9 +131,17 @@ export const Sweets = () => {
     const handleInvitationSweetDone = () => {
         const url = 'invitation'
         if (invitationselectSweet) {
-            navigate(`/invitation-detail/${invitationId}/${url}`, {
-                state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id }
-            });
+            if (isCart) {
+                navigate(`/cart-detail/${cartId}`, {
+                    state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id, sweetId: sweetId }
+
+                })
+            }
+            else {
+                navigate(`/invitation-detail/${invitationId}/${url}`, {
+                    state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id, sweetId: sweetId }
+                });
+            };
             setTimeout(() => {
                 window.dispatchEvent(new CustomEvent('scrollToNext'));
             }, 500);
@@ -186,7 +198,7 @@ export const Sweets = () => {
             )}
 
 
-            <div style={{ display: 'flex' }}>
+            <div className='main-container-sweet'>
                 <div className='invitations-price-left'>
                     <div className='invitation-price-header'>Price Range filter</div>
                     {

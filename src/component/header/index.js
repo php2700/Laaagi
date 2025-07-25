@@ -201,6 +201,7 @@ export const Header = () => {
                                         <Link to='/guest' onClick={() => setIsUserDropdownOpen(false)}>Guest List</Link>
                                         <Link to='/planning-tool' onClick={() => setIsUserDropdownOpen(false)}>Planning Tool</Link>
                                         <Link to='/payment-history' onClick={() => setIsUserDropdownOpen(false)}>Payment History</Link>
+                                        <Link to='/cart-list' onClick={() => setIsUserDropdownOpen(false)}>Cart</Link>
                                         <Link to='/sample-demo' onClick={() => setIsUserDropdownOpen(false)}>Demo</Link>
                                         <button onClick={() => { setOpenLogoutModal(true); setIsUserDropdownOpen(false); }}>Logout</button>
                                     </div>
