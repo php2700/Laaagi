@@ -161,7 +161,13 @@ export const ProfilePage = () => {
                             name="Mobile"
                             className="form-input"
                             value={mobile}
-                            onChange={(e) => setMobile(e.target.value)}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val?.length <= 10) {
+                                    setMobile(e.target.value)
+                                }
+                            }
+                            }
                         />
                     </div>
                     <div className="form-group">
