@@ -40,11 +40,13 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
         } else if (pincode?.length != 6)
             newError.pincode = 'Please enter valid pin code.'
 
-        if (!mobile){
+        if (!mobile) {
             newError.mobile = 'Please enter mobile.'
+        }else if(!/^[0-9]*$/.test(mobile)){
+            newError.mobile = 'Only Number Allowed'
         }
 
-            setError(newError)
+        setError(newError)
         return Object.keys(newError)?.length;
 
 
@@ -89,8 +91,11 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                     </div>
                     <div>
                         <input type="text" placeholder="mobile" className="modalinputs" value={mobile} onChange={(e) => {
+                            const newValue = e.target.value;
+                            if (newValue?.length <= 10) {
+                                setMobile(newValue)
+                            }
                             setError((prev) => ({ ...prev, setError, mobile: '' }))
-                            setMobile(e.target.value)
                         }} />
                         <div className='customi-error-color'>{error?.mobile || ''}</div>
                     </div>

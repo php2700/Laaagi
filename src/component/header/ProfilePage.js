@@ -20,6 +20,7 @@ export const ProfilePage = () => {
     const [address, setAddress] = useState()
     const [profile, setProfile] = useState()
     const [profilePreview, setProfilePreview] = useState();
+    const [tempMobile, setTempMobile] = useState();
 
 
     const userId = localStorage.getItem("_id");
@@ -35,6 +36,7 @@ export const ProfilePage = () => {
             setName(res?.data?.userData?.name)
             setEmail(res?.data?.userData?.email)
             setMobile(res?.data?.userData?.mobile)
+            setTempMobile(res?.data?.userData?.mobile)
             setAddress(res?.data?.userData?.address)
             setProfilePreview(res?.data?.userData?.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${res?.data?.userData?.profile}` : laaagiLogo)
         }).catch((error) => {
@@ -54,7 +56,9 @@ export const ProfilePage = () => {
         const formData = new FormData();
         formData.append("_id", userId);
         formData.append("name", name);
-        formData.append("mobile",mobile)
+        if (mobile != tempMobile) {
+            formData.append("mobile", mobile)
+        }
         if (profile) {
             formData.append("profile", profile);
         }
@@ -72,7 +76,12 @@ export const ProfilePage = () => {
                 navigate('/')
             }, 1000)
         }).catch((error) => {
-            console.log(error);
+
+            if (error.response?.data?.message == 'mobile_exist') {
+                toast.error('Mobile Already Exist', {
+                    position: 'bottom-right'
+                })
+            }
         })
 
 
@@ -152,7 +161,7 @@ export const ProfilePage = () => {
                             name="Mobile"
                             className="form-input"
                             value={mobile}
-                            onChange={(e)=>setMobile(e.target.value)}
+                            onChange={(e) => setMobile(e.target.value)}
                         />
                     </div>
                     <div className="form-group">

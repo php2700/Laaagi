@@ -80,7 +80,7 @@ export const PaymentHistory = () => {
                                 <tr key={payment._id || index}>
                                     <td className='payment-hash'>{index + 1}</td>
                                     <td className='payment-order'>{payment?.razorpay_order_id}</td>
-                                    <td className='payment-title'>{payment?.invitationName || payment?.sweet}</td>
+                                    <td className='payment-title'>{payment?.invitationName || payment?.sweet[0].toUpperCase() + payment?.sweet?.slice(1).toLowerCase()}</td>
                                     <td className='payment-weight'>
                                         {payment.weight ? `${payment.weight}` : payment.quantity}
                                     </td>
