@@ -74,7 +74,7 @@ export const Best_seller = () => {
         <div className='best-seller'>
             <div className='best-seller-top'>
                 <div className='best-seller-left-text'> Best Sellers</div>
-                <div className='best-seller-right-text' onClick={handleBestSeller}> see more</div>
+                <div className='best-seller-right-text' onClick={handleBestSeller}> See More</div>
             </div>
             <div className='best-seller-img-list'>
                 {

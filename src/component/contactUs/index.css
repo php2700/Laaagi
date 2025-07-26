@@ -26,14 +26,14 @@
 .contact-middle {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
   margin: 25px auto;
   padding: 20px 5%;
   justify-content: space-between;
   width: 60%;
+  gap: 50px;
+  flex-wrap: nowrap;
 }
 
-/* Address and Info Block */
 .contact-us-condition {
   display: flex;
   flex-direction: column;
@@ -74,7 +74,6 @@
   font-size: 17px;
 }
 
-/* Form Styling */
 .contact-us-form {
   display: flex;
   padding: 25px;
@@ -121,7 +120,7 @@
 
 .contact-us-form-name {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 15px;
 }
 
@@ -139,69 +138,40 @@
   min-height: 20px;
 }
 
-@media (min-width: 700px) {
+@media (max-width: 1200px) {
   .contact-middle {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px auto;
+    padding: 20px 5%;
+    justify-content: space-between;
+    width: 100%;
     gap: 50px;
-    padding: 25px 8%;
-    flex-wrap: nowrap;
-  }
-
-  .contact-us-header {
-    font-size: 36px;
-  }
-
-  .contact-us-form {
-    padding: 35px;
-  }
-
-  .contact-us-form-name {
     flex-wrap: nowrap;
   }
 }
 
-/* Responsive Styles */
-@media (min-width: 500px) {
-  .contact-us-header {
-    font-size: 32px;
-  }
-}
-
-@media (max-width: 400px) {
+@media (max-width: 700px) {
   .contact-middle {
-    padding: 15px 4%;
-    gap: 20px;
-  }
-
-  .contact-us-form {
-    padding: 15px 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .contact-us-header {
-    font-size: 24px;
-  }
-
-  .contact-us-content div,
-  .contact-us-mail div {
-    font-size: 16px;
-  }
-
-  .contact-us-form button {
-    font-size: 16px;
-    height: 44px;
-  }
-
-  .contact-us-form-name {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .contact-us-form-name input {
+    margin: 25px auto;
+    padding: 20px 5%;
+    justify-content: space-between;
     width: 100%;
+    gap: 50px;
+    flex-wrap: nowrap;
+  }
+  .contact-us-form-name {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    flex-direction: column;
   }
 }
-@media (max-width: 500px) and (min-width: 300px) {
+
+@media (max-width: 600px) and (min-width: 300px) {
   .contact-middle {
     flex-direction: column;
     gap: 20px;

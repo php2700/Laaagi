@@ -226,28 +226,28 @@ export const Header = () => {
             <nav style={{ color: 'red' }} className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
                 <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700'
+                        color: '#ffd700',fontSize:'18px'
                     }}>Invitations</NavLink>
                 <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
                     className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700'
+                        color: '#ffd700',fontSize:'18px'
                     }}>Sweets</NavLink>
                 <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700'
+                        color: '#ffd700',fontSize:'18px'
                     }}>Decorations</NavLink>
                 <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700'
+                        color: '#ffd700',fontSize:'18px'
                     }}>Designer</NavLink>
                 <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700'
+                        color: '#ffd700',fontSize:'18px'
                     }}>Planning Tools</NavLink>
                 <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700'
+                        color: '#ffd700',fontSize:'18px'
                     }}>Contact Us</NavLink>
             </nav>
         </div>

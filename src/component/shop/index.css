@@ -52,7 +52,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .shop {
     padding: 10px 20px;
     display: flex;
@@ -70,5 +70,6 @@
     color: #253d4e;
     font-weight: 700;
     font-size: 48px;
+    text-align: center;
   }
 }
