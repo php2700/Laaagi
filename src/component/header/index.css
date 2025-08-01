@@ -426,6 +426,26 @@ button {
   text-decoration: none;
 }
 
+.cart {
+  text-decoration: none;
+}
+
+ .cart:hover::after {
+  content: "cart";
+  position: absolute;
+  top: 110%;
+  left: 15%;
+  background: black;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+
+
+
 @media (max-width: 700px) {
   .menu-toggle {
     display: block;
@@ -467,6 +487,8 @@ button {
   .topbar-right {
     display: none;
   }
+
+
 }
 
 @media (max-width: 1000px) {
@@ -504,6 +526,9 @@ button {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .login-name {
@@ -518,7 +543,7 @@ button {
   line-height: 100%;
   letter-spacing: 0%;
   font-size: 16px;
-  height:260px;
+  height: 260px;
   width: 125px;
   position: absolute;
   top: 100%;
@@ -541,7 +566,7 @@ button {
   font-size: 16px;
   line-height: 100%;
   font-weight: 700;
-margin:2px 0 ;
+  margin: 2px 0;
   padding: 6px 15px;
   color: #800000;
   text-decoration: none;

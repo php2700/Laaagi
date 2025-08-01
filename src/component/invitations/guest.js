@@ -5,6 +5,8 @@ import axios from "axios";
 import GuestRow from "./GuestRow";
 import { Addadress } from "./Addadress";
 import './guest.css'
+import { useParams } from "react-router-dom";
+import { HeaderPlanning } from "../planning_tool/heaader_planning";
 
 export const Guest = () => {
     const [openAddress, setOpenAddress] = useState(false)
@@ -15,6 +17,8 @@ export const Guest = () => {
     const [guestList, setGuestList] = useState([]);
     const [userData, setUserData] = useState();
     const [searchText, setSearchText] = useState();
+    const { name } = useParams()
+
 
     const getGuestList = async () => {
         await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/guest-list/${userId}`, {
@@ -67,7 +71,7 @@ export const Guest = () => {
     return (
         <>
 
-            <AddGuestHeader />
+            {name == 'guest' ? <AddGuestHeader /> : <HeaderPlanning />}
             <div className="guest-list-container">
                 <div className="guest-list-header">
                     <input

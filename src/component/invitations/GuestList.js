@@ -31,6 +31,8 @@ export const GuestList = () => {
   const [openRazorpay, setOpenRazorPay] = useState(false)
   const [guest, setGuest] = useState([])
   const [userData, setUserData] = useState({})
+  const [localInputs, setLocalInputs] = useState({});
+
   const [isDeliverycharge, setIsDeliverycharge] = useState();
 
   const getGuestList = async () => {
@@ -70,7 +72,7 @@ export const GuestList = () => {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${invitationId}`).then((res) => {
-      console.log(res?.data.invitation,"ggggggggggggggg")
+      console.log(res?.data.invitation, "ggggggggggggggg")
       setIsDeliverycharge(res?.data?.invitation?.isDeliveryCharge);
     }).catch((error) => {
       console.log(error, "error")
@@ -93,7 +95,7 @@ export const GuestList = () => {
     let price = totalAmountPerBox * countBox;
 
     if (isDeliverycharge) {
-      console.log(isDeliverycharge,"ghggggg")
+      console.log(isDeliverycharge, "ghggggg")
       price = price + 49 * countBox;
     }
     if (isUserAddressChecked && userBox) {
@@ -275,7 +277,7 @@ export const GuestList = () => {
           onChange={(e) => setSearchText(e.target.value)}
         />
         {/* <button onClick={getcontact}>import contact</button> */}
-        <Link to='/guest' className="add-guest-button">+ add Guest</Link>
+        {/* <Link to='/guest' className="add-guest-button">+ add Guest</Link> */}
       </div>
       <div className="table-wrapper">
         <table>
@@ -291,8 +293,11 @@ export const GuestList = () => {
             </tr>
           </thead>
           <tbody>
-            {guestList?.map((guest, index) => (
-              <tr key={guest._id || index}>
+            {guestList?.map((guest, index) => {
+              if (!guest?.address) {
+                return;
+              }
+              return <tr key={guest._id || index}>
                 <td className='guest-hash'>
                   {
                     guest.address ? <input type="checkbox" onChange={() => { handleChecked(index, guest) }} /> :
@@ -310,15 +315,26 @@ export const GuestList = () => {
                 </td>
                 <td className='category-guest'>{guest.category}</td>
                 <td className='guest-quantity'>
-                  <input type='text' className='invite-guest-list' value={boxes.find((ele) => ele.idx === index)?.quantity || 1} onChange={(e) => {
-                    const isNumber = e.target.value;
-                    if (/^\d*$/.test(isNumber)) {
-                      handleBox(isNumber, index)
-                    }
-                  }} />
+                  <input type='text' className='invite-guest-list'
+                  //  value={boxes.find((ele) => ele.idx === index)?.quantity || 1}
+                  //   onChange={(e) => {
+                  //   const isNumber = e.target.value;
+                  //   if (/^\d*$/.test(isNumber)) {
+                  //     handleBox(isNumber, index)
+                  //   }
+                  // }} 
+                    value={localInputs[index] ?? boxes.find((ele) => ele.idx === index)?.quantity ?? 1}
+  onChange={(e) => {
+    const value = e.target.value;
+    setLocalInputs(prev => ({ ...prev, [index]: value }));
+    if (/^\d*$/.test(value)) {
+      handleBox(value, index); 
+    }
+  }}
+                  />
                 </td>
               </tr >
-            ))}
+            })}
           </tbody>
         </table>
       </div>

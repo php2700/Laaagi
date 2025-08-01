@@ -155,7 +155,7 @@ export const Add_Guest = () => {
                     Add Guest
                 </NavLink>
                 <NavLink
-                    to="/guest"
+                    to="/guest/guest"
                     className={({ isActive }) => isActive ? 'nav-button Guest-List-active' : 'nav-button'}
                 >
                     Guest List

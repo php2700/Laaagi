@@ -21,7 +21,7 @@ export const AddGuestHeader = () => {
                 </NavLink>
 
                 <NavLink
-                    to='/guest'
+                    to='/guest/guest'
                     className={({ isActive }) =>
                         "nav-button" + (isActive ? " active-nav-button" : "")
                     }

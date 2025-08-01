@@ -26,9 +26,9 @@ export const SignUp = () => {
     const [otpVerifyError, setOtpVerifyError] = useState()
 
 
-    if (showsignUp && token) {
-        navigate("/")
-    }
+    // if (showsignUp && token) {
+    //     navigate("/")
+    // }
     console.log("show", showsignUp, token)
 
     const login = useGoogleLogin({

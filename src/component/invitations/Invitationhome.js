@@ -367,11 +367,11 @@ export const Invitationhome = () => {
 
   const handleCart = () => {
     const cartDetails = {
-      invitationId, weight, paymentHistory,userId,tempId:id,boxName,sectionBoxName:selectedSweet?.name || 'normal_box'
+      invitationId, weight, paymentHistory, userId, tempId: id, boxName, sectionBoxName: selectedSweet?.name || 'normal_box'
     }
-    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-cart`, cartDetails,{
-      headers:{
-        Authorization:`Bearer ${token}`
+    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-cart`, cartDetails, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
     }).then((res) => {
       toast.success("add cart successfully", {
@@ -383,6 +383,24 @@ export const Invitationhome = () => {
   }
 
   console.log(id, "paymentHistory", paymentHistory, "selectedSweet", selectedSweet)
+
+  const handleAddCart = (e) => {
+    const cartDetails = {
+      invitationId, weight, paymentHistory, userId, tempId: id, boxName, sectionBoxName: selectedSweet?.name || 'normal_box', status: true
+    }
+    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-cart`, cartDetails, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
+      toast.success("add cart successfully", {
+        position: 'top-right'
+      })
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
 
   return (
     <div className="invitation-details-container">
@@ -404,12 +422,22 @@ export const Invitationhome = () => {
             (Rs. {price}/-)</h2>
           <p className="description-label">Description</p>
           <p>{invitation?.description}</p>
-          <button className="customize-btn" onClick={handleOpenModal}>
-            Customize
-          </button>
+          <div className='invitation-customize-btn'>
+            <button className="customize-btn" onClick={handleOpenModal}>
+              Customize
+            </button>
+            {
+              token && <button className="customize-btn" onClick={handleAddCart}>
+                Save for Later
+              </button>
+            }
+          </div>
         </div>
       </div>
+
       <div className='multipleImg-container'>
+
+        <video style={{ height: '100px', width: '100px' }} controls   ><source src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`} type="video/mp4" /> </video>
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image02)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image02}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image03)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image03}`} alt={`${invitation?.image} Invitation Box`} />
@@ -508,7 +536,7 @@ export const Invitationhome = () => {
                   <div className='show-selection'><img src={ele?.sectionImg} /></div>
                   <div><img src={ele?.arrow} /></div>
                   <div>
-                    <Link to={ele?.url}  state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
+                    <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }} >
                       {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                     </Link>
                     {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
@@ -533,7 +561,7 @@ export const Invitationhome = () => {
                     <div className='show-selection'><img src={ele?.sectionImg} /></div>
                     <div><img src={ele?.arrow} /></div>
                     <div>
-                      <Link to={ele?.url}   state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                      <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                         {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                       </Link>
                       {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
@@ -557,7 +585,7 @@ export const Invitationhome = () => {
                       <div className='show-selection'><img src={ele?.sectionImg} /></div>
                       <div><img src={ele?.arrow} /></div>
                       <div>
-                        <Link to={ele?.url}  state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                           {/* <img className='select-sweet-img' src={ele?.sweetImg} /> */}
                           {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                         </Link>
@@ -585,7 +613,7 @@ export const Invitationhome = () => {
                       <div className='show-selection'><img src={ele?.sectionImg} /></div>
                       <div><img src={ele?.arrow} /></div>
                       <div>
-                        <Link to={ele?.url}   state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
+                        <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id }}>
                           {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                         </Link>
                         {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}

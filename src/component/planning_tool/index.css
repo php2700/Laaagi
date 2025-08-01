@@ -20,7 +20,7 @@
 }
 .planning-check-list {
   text-align: center;
-  width: 50%;
+  width: 55%;
   margin: 40px auto;
   padding: 25px 150px;
   /* display: flex; */
@@ -85,12 +85,12 @@
 }
 
 .font-size-text {
-  font-size: 22px;
+  font-size: 18px;
   cursor: pointer;
 }
 
 .font-size-help {
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
   color: #166df3;
 }
