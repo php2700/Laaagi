@@ -67,7 +67,7 @@ export const CartHome = () => {
     const hasFetchedRef = useRef(false);
     const token = localStorage.getItem("token")
     const userId = localStorage.getItem("_id")
-    const { _id, url } = useParams()
+    const { _id, status, url } = useParams()
     const navigate = useNavigate();
     const location = useLocation();
     const context = useContext(AuthContext);
@@ -359,7 +359,12 @@ export const CartHome = () => {
         // setWeight(500)    ----->context   
         dispatch(chnageWeight(1000))   // redux
         setBoxName('Normal Box');
-        navigate("/cart-list")
+
+        if (status == "true" || status == true)
+            navigate("/saved-cart-list")
+        else {
+            navigate("/cart-list")
+        }
 
     }
 

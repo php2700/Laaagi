@@ -5,8 +5,9 @@ import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import downArrow from "../../assets/logo/down.png";
+import { HeaderPlanning } from './heaader_planning'
 
 
 export const PlanningTool = () => {
@@ -185,8 +186,11 @@ export const PlanningTool = () => {
                     </div>
 
                     <div className='planning-check-list'>
-                        <div className='planning-check-header'>Planning List</div>
+                        <HeaderPlanning />
+                        {/* <div className='planning-check-header'>Planning List</div> */}
+                        <ol>
                         {data?.map((item, idx) => (
+                            <li>
                             <div className='planning-list' key={idx}>
                                 <div>
                                     <label className='font-size-text' htmlFor={`checkbox-${idx}`} onClick={() => { handleEvent(item) }}>
@@ -222,8 +226,9 @@ export const PlanningTool = () => {
                                     }
                                     </div>
                                 }
-                            </div>
+                            </div></li>
                         ))}
+                        </ol>
                         < >
                             <div className='planning-check-save' onClick={handleSave}>Add Planning</div>
                             <div className='planning-check-clear' onClick={handleClear} >Clear All</div>

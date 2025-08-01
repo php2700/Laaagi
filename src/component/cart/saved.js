@@ -4,7 +4,7 @@ import axios from 'axios';
 import './index.css'
 import { AuthContext } from '../context';
 
-export const Cart = () => {
+export const SavedCart = () => {
     const context = useContext(AuthContext);
     const navigate = useNavigate()
     const logout = context?.logout;
@@ -26,8 +26,8 @@ export const Cart = () => {
             headers: {
                 Authorization: `Bearer ${token}`
             },
-            params:{
-                status:false
+            params: {
+                status: true
             }
         }).then((res) => {
             setCartData(res?.data?.cartData)
@@ -46,7 +46,7 @@ export const Cart = () => {
 
 
     const handleBuy = (invitationData) => {
-        navigate(`/cart-detail/${invitationData?._id}/false`)
+        navigate(`/cart-detail/${invitationData?._id}/true`)
     }
 
     const handleDelete = (ele) => {
@@ -67,8 +67,6 @@ export const Cart = () => {
                             <th className='cart-hash' >'#'</th>
                             <th className='cart-name'>name</th>
                             <th className='cart-amount'>Amount</th>
-                            <th className='cart-weight'>WEIGHT</th>
-                            <th className='cart-box'>boxtype</th>
                             <th className='cart-date'>Date</th>
                             <th className='cart-view'>VIEW</th>
                             <th className='cart-delete'>DELETE</th>
@@ -84,8 +82,6 @@ export const Cart = () => {
                                     <td className='cart-hash'>{index + 1}</td>
                                     <td className='cart-name'>{cart.invitationId?.name}</td>
                                     <td className='cart-amount'>{cart?.invitationId?.price}</td>
-                                    <td className='cart-weight'>{cart?.weight}gm</td>
-                                    <td className='cart-box'>{cart.boxName}</td>
                                     <td className='cart-date'>{formatDate}</td>
                                     <td className='handleview' onClick={() => handleBuy(cart)}>view</td>
                                     <td className='handledelete' onClick={() => handleDelete(cart)}>delete</td>

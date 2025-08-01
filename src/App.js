@@ -52,6 +52,9 @@ import { DemoVideo } from './component/demo';
 import { LoginDemoVideo } from './component/demo/login-demo';
 import { Cart } from './component/cart';
 import { CartHome } from './component/invitations/cart.detail';
+import { Shipping } from './component/shipping';
+import { Refund } from './component/refund';
+import { SavedCart } from './component/cart/saved';
 
 function App() {
 
@@ -110,7 +113,7 @@ function App() {
 
 
             <Route path='/invitation-GuestList/:total' element={<PrivateRoute><GuestList /></PrivateRoute>} />
-            <Route path='/guest' element={<PrivateRoute><Guest /></PrivateRoute>} />
+            <Route path='/guest/:name' element={<PrivateRoute><Guest /></PrivateRoute>} />
             <Route path='/guest-add' element={<PrivateRoute><Add_Guest /></PrivateRoute>} />
             <Route path='/edit-guest' element={<PrivateRoute><Edit_Guest /></PrivateRoute>} />
 
@@ -130,8 +133,10 @@ function App() {
             <Route path='/privacy-policy' element={<PrivacyPolicy />} />
 
             <Route path='/cart-list' element={<PrivateRoute><Cart/></PrivateRoute>} />
-            <Route path='/cart-detail/:_id' element={<PrivateRoute><CartHome/></PrivateRoute>} /> 
-
+            <Route path='/saved-cart-list' element={<PrivateRoute><SavedCart/></PrivateRoute>} />
+            <Route path='/cart-detail/:_id/:status' element={<PrivateRoute><CartHome/></PrivateRoute>} /> 
+            <Route path='/Shipping' element={<PrivateRoute><Shipping/></PrivateRoute>} />
+            <Route path='/payment-refund' element={<PrivateRoute><Refund/></PrivateRoute>} />
 
           </Routes>
         </div>

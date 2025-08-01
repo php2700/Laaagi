@@ -191,8 +191,10 @@ export const SweetsInfo = () => {
                             borderRadius: '5px', border: '1px solid black', height: '42px', padding: '10px 8px',
                             fontSize: '14px', fontSize: '16px',
                         }} type="text" placeholder="Enter quantity" value={sweetkg} onChange={(e) => {
-                            setSweetkg(e.target.value)
-
+                            const sweet=e.target.value;
+                           if(/^\d*$/.test(sweet)){
+                            setSweetkg(sweet)
+                           }
                         }} />
                         <div className="sweets-info-drop-down">
                             <select style={{ border: '1px solid black' }} className="sweets-info-select" value={unit} onChange={(e) => calculatePrice(e.target.value)} >

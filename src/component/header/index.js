@@ -9,6 +9,7 @@ import axios from 'axios';
 import { AuthContext } from '../context';
 import { Logout } from './logout';
 import defaultImg from "../../assets/login/default-profile.png";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -190,6 +191,7 @@ export const Header = () => {
                     <div className='user-menu-container' ref={userDropdownRef}>
                         {userData && userData.name ? (
                             <>
+                                <div ><Link to='/cart-list' className='cart' ><ShoppingCartIcon/></Link></div>
                                 <div className='login-name' onClick={toggleUserDropdown} role="button" tabIndex={0} aria-haspopup="true" aria-expanded={isUserDropdownOpen}>
                                     <img src={userData.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData.profile}` : defaultImg} alt="User avatar" className="user-avatar" />
                                     <div className="user-display-name">{userData.name}</div>
@@ -198,10 +200,10 @@ export const Header = () => {
                                 {isUserDropdownOpen && (
                                     <div className='user-dropdown-menu'>
                                         <Link to='/profile' state={{ data: userData }} onClick={() => setIsUserDropdownOpen(false)}>Profile</Link>
-                                        <Link to='/guest' onClick={() => setIsUserDropdownOpen(false)}>Guest List</Link>
+                                        <Link to='/guest/guest' onClick={() => setIsUserDropdownOpen(false)}>Guest List</Link>
                                         <Link to='/planning-tool' onClick={() => setIsUserDropdownOpen(false)}>Planning Tool</Link>
                                         <Link to='/payment-history' onClick={() => setIsUserDropdownOpen(false)}>Payment History</Link>
-                                        <Link to='/cart-list' onClick={() => setIsUserDropdownOpen(false)}>Cart</Link>
+                                        <Link to='/saved-cart-list' onClick={() => setIsUserDropdownOpen(false)}>Save For Later</Link>
                                         <Link to='/sample-demo' onClick={() => setIsUserDropdownOpen(false)}>Demo</Link>
                                         <button onClick={() => { setOpenLogoutModal(true); setIsUserDropdownOpen(false); }}>Logout</button>
                                     </div>
@@ -226,28 +228,28 @@ export const Header = () => {
             <nav style={{ color: 'red' }} className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
                 <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700',fontSize:'18px'
+                        color: '#ffd700', fontSize: '18px'
                     }}>Invitations</NavLink>
                 <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
                     className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700',fontSize:'18px'
+                        color: '#ffd700', fontSize: '18px'
                     }}>Sweets</NavLink>
                 <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700',fontSize:'18px'
+                        color: '#ffd700', fontSize: '18px'
                     }}>Decorations</NavLink>
                 <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700',fontSize:'18px'
+                        color: '#ffd700', fontSize: '18px'
                     }}>Designer</NavLink>
                 <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700',fontSize:'18px'
+                        color: '#ffd700', fontSize: '18px'
                     }}>Planning Tools</NavLink>
                 <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#ffd700',fontSize:'18px'
+                        color: '#ffd700', fontSize: '18px'
                     }}>Contact Us</NavLink>
             </nav>
         </div>
