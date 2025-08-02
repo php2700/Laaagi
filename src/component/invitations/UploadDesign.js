@@ -18,6 +18,8 @@ export const
         const [previewURL, setPreviewURL] = useState(null);
         const [message, setMessage] = useState('');
         const [isLoading, setIsLoading] = useState(false);
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem("_id")
 
         const handleFileChange = (e) => {
             if (e.target.files && e.target.files[0]) {
@@ -74,13 +76,17 @@ export const
             formData.append('category', category);
             formData.append('description', notes.trim());
             formData.append('image', designFile);
+            formData.append('userId', userId)
 
             try {
                 const response = await axios.post(
                     `${process.env.REACT_APP_BASE_URL}api/user/upload-design-quote`,
                     formData,
                     {
-                        headers: { 'Content-Type': 'multipart/form-data' }
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            Authorization: `Bearer ${token}`
+                        }
                     }
                 );
                 setName('');
@@ -92,7 +98,7 @@ export const
 
                 const fileInput = document.getElementById('designFile');
                 if (fileInput) fileInput.value = '';
-                toast.success('your design added successfully', {
+                toast.success('Your design added successfully', {
                     position: 'top-right'
                 })
                 setTimeout(() => {

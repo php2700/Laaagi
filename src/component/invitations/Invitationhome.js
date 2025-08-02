@@ -112,16 +112,17 @@ export const Invitationhome = () => {
   const weight = useSelector((state) => state.weight?.value);
   const dispatch = useDispatch()
   const calculateTotalAmount = (price, weight) => {
+
     if (boxName == 'Normal Box') {
-      return parseInt(price / 1000 * weight)
+      return parseInt(price / 400 * weight)
     }
     else if (boxName == '4 Section in box') {
-      return parseInt((price / 1000) * weight / 4)
+      return parseInt((price / 400) * weight / 4)
     }
     else if (boxName == '3 Section in box') {
-      return parseInt((price / 1000) * weight / 3)
+      return parseInt((price / 400) * weight / 3)
     } else {
-      return parseInt((price / 1000) * weight / 5)
+      return parseInt((price / 400) * weight / 5)
     }
   }
 
@@ -260,8 +261,6 @@ export const Invitationhome = () => {
   }
 
 
-
-
   const handleAmount = () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -374,7 +373,7 @@ export const Invitationhome = () => {
         Authorization: `Bearer ${token}`
       }
     }).then((res) => {
-      toast.success("add cart successfully", {
+      toast.success("Added to cart successfully", {
         position: 'top-right'
       })
     }).catch((error) => {
@@ -393,7 +392,7 @@ export const Invitationhome = () => {
         Authorization: `Bearer ${token}`
       }
     }).then((res) => {
-      toast.success("add cart successfully", {
+      toast.success("Item saved for later.", {
         position: 'top-right'
       })
     }).catch((error) => {
@@ -437,7 +436,20 @@ export const Invitationhome = () => {
 
       <div className='multipleImg-container'>
 
-        <video style={{ height: '100px', width: '100px' }} controls   ><source src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`} type="video/mp4" /> </video>
+        {invitation?.videoFile && (
+          <div>
+            <video
+              style={{ height: '100px', width: '100px', objectFit: 'contain', borderRadius: '8px' }}
+              controls
+            >
+              <source
+                src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`}
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image02)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image02}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image03)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image03}`} alt={`${invitation?.image} Invitation Box`} />
@@ -644,9 +656,10 @@ export const Invitationhome = () => {
       </div>
 
       <div className='invitation-next' >
-        <div onClick={() => handleCart()}>
+        {token && <div onClick={() => handleCart()}>
           Add to cart
-        </div>
+        </div>}
+
       </div>
       <CustomizationModal
         isOpen={isModalOpen}
