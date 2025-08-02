@@ -25,17 +25,10 @@ export const Header = () => {
     const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
     const userDropdownRef = useRef(null);
     const searchContainerRef = useRef(null);
-    const [weddingSpecialApiData, setWeddingSpecialApiData] = useState([]);
-    const [dryFruitTreatsApiData, setDryFruitTreatsApiData] = useState([]);
     const [clothesDisplayData, setClothesDisplayData] = useState([]);
-    const [isLoadingWeddingSpecial, setIsLoadingWeddingSpecial] = useState(false);
-    const [isLoadingDryFruitTreats, setIsLoadingDryFruitTreats] = useState(false);
     const [isLoadingClothes, setIsLoadingClothes] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [openLogoutModal, setOpenLogoutModal] = useState(false);
-    const [weddingSpecialOpen, setWeddingSpecialOpen] = useState(false);
-    const [dryFruitOpen, setDryFruitOpen] = useState(false);
-    const [sweetsOpen, setSweetsOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -61,49 +54,37 @@ export const Header = () => {
         };
     }, []);
 
-    const fetchWeddingSweetsData = async () => {
-        setIsLoadingWeddingSpecial(true);
-        try {
-            console.log("ghghgh")
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params: { isWedding: true } });
-            const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
-            setWeddingSpecialApiData(mappedData);
-        } catch (err) { console.error("Error loading wedding sweets:", err); }
-        finally { setIsLoadingWeddingSpecial(false); }
-    };
-
-    const fetchDryFruitTreatsData = async () => {
-        setIsLoadingDryFruitTreats(true);
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/dry_fruit_list`, { params: { isDryFruit: true } });
-            const mappedData = (res?.data?.dryFruitData || []).map(item => ({ id: item._id, name: item.name, path: `/dry-fruit_info/${item._id}` }));
-            setDryFruitTreatsApiData(mappedData);
-        } catch (err) { console.error("Error loading dry fruits:", err); }
-        finally { setIsLoadingDryFruitTreats(false); }
-    };
 
     const fetchSweetsData = async () => {
         setIsLoadingClothes(true);
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`);
+
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`,
+                {
+                    params: {
+                        search: searchQuery
+                    }
+                }
+            );
             const mappedData = (res?.data?.sweetsData || []).map(item => ({ id: item._id, name: item.sweet_name || item.name, path: `/sweets-info/${item._id}/${item?.sweet_name?.replace(/\s+/g, '-')}` }));
+            setIsSearchDropdownOpen(true);
             setClothesDisplayData(mappedData);
         } catch (err) { console.error("Error loading sweets:", err); }
         finally { setIsLoadingClothes(false); }
     };
 
-    const handleSearchInputClick = () => {
-        setIsSearchDropdownOpen(true);
-        if (weddingSpecialApiData?.length === 0) fetchWeddingSweetsData();
-        if (dryFruitTreatsApiData?.length === 0) fetchDryFruitTreatsData();
-        if (clothesDisplayData?.length === 0) fetchSweetsData();
-    };
+    useEffect(() => {
+        if (searchQuery.trim()) {
+            fetchSweetsData();
+        } else {
+            setClothesDisplayData([]);
+            setIsSearchDropdownOpen(false);
+        }
+    }, [searchQuery])
 
-    const filteredItems = (items) =>
-        items.filter(item => item.name?.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const renderCategoryItems = (items) => {
-        const filtered = filteredItems(items);
+        const filtered = items;
         if (filtered.length === 0) return <div className="no-items">No items found.</div>;
         return (
             <ul className="category-item-list">
@@ -156,27 +137,13 @@ export const Header = () => {
                     <input
                         type="search"
                         placeholder="Search"
-                        onClick={handleSearchInputClick}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         value={searchQuery}
                     />
-                    <img src={seacrh} alt="search" onClick={handleSearchInputClick} />
+                    <img src={seacrh} alt="search" />
                     {isSearchDropdownOpen && (
                         <div className="search-dropdown-content">
-                            <div className="search-dropdown-category-title" onClick={() => { setWeddingSpecialOpen(!weddingSpecialOpen); setDryFruitOpen(false); setSweetsOpen(false); }}>
-                                Wedding Special
-                            </div>
-                            {weddingSpecialOpen && (isLoadingWeddingSpecial ? <p>Loading...</p> : renderCategoryItems(weddingSpecialApiData))}
-
-                            <div className="search-dropdown-category-title" onClick={() => { setDryFruitOpen(!dryFruitOpen); setWeddingSpecialOpen(false); setSweetsOpen(false); }}>
-                                Dry Fruit Treats
-                            </div>
-                            {dryFruitOpen && (isLoadingDryFruitTreats ? <p>Loading...</p> : renderCategoryItems(dryFruitTreatsApiData))}
-
-                            <div className="search-dropdown-category-title" onClick={() => { setSweetsOpen(!sweetsOpen); setWeddingSpecialOpen(false); setDryFruitOpen(false); }}>
-                                Sweets
-                            </div>
-                            {sweetsOpen && (isLoadingClothes ? <p>Loading...</p> : renderCategoryItems(clothesDisplayData))}
+                            {isLoadingClothes ? <p>Loading...</p> : renderCategoryItems(clothesDisplayData)}
                         </div>
                     )}
                 </div>
@@ -190,7 +157,7 @@ export const Header = () => {
                     <div className='user-menu-container' ref={userDropdownRef}>
                         {userData && userData.name ? (
                             <>
-                                <div ><Link to='/cart-list' className='cart' ><ShoppingCartIcon/></Link></div>
+                                <div ><Link to='/cart-list' className='cart' ><ShoppingCartIcon /></Link></div>
                                 <div className='login-name' onClick={toggleUserDropdown} role="button" tabIndex={0} aria-haspopup="true" aria-expanded={isUserDropdownOpen}>
                                     <img src={userData.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData.profile}` : defaultImg} alt="User avatar" className="user-avatar" />
                                     <div className="user-display-name">{userData.name}</div>
