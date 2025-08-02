@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import laaagi from "../../assets/logo/laaagi.png"
 import './index.css'
 import Google from "../../assets/sign-up/google 1.png"
@@ -9,7 +9,7 @@ import { AuthContext } from "../context"
 
 
 export const SignUp = () => {
-    const [showsignUp, setShowSignUp] = useState(true);
+    const [showsignUp, setShowSignUp] = useState(false);
     const navigate = useNavigate()
     const { loginData } = useContext(AuthContext)
     const [name, setName] = useState()
@@ -22,14 +22,35 @@ export const SignUp = () => {
     const [nameModel, setNameModel] = useState(false)
     const context = useContext(AuthContext)
     const token = context?.token || localStorage.getItem('token');
+    const userId = localStorage.getItem("_id");
     const headerUpdate = context?.setHeaderUpdate;
-    const [otpVerifyError, setOtpVerifyError] = useState()
+    const [otpVerifyError, setOtpVerifyError] = useState();
 
 
-    // if (showsignUp && token) {
-    //     navigate("/")
-    // }
-    console.log("show", showsignUp, token)
+
+    const fetchUserData = async () => {
+        if (!userId || !token) {
+            setShowSignUp(true);
+            return
+        }
+        try {
+            await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/data/${userId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            }).then((res) => {
+                navigate('/')
+            })
+        } catch (err) {
+            if (error?.response?.data?.Message === 'jwt expired') {
+                setShowSignUp(true);
+            }
+            console.error("Error fetching user data:", err);
+        }
+    };
+
+    useEffect(() => {
+        if (!nameModel)
+            fetchUserData();
+    }, [token, userId]);
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -65,12 +86,9 @@ export const SignUp = () => {
         } else if (mobile.length > 12) {
             newError.mobile = 'Mobile number must not exceed 12 digits';
         }
-
-
         setError(newError);
         return Object.keys(newError)?.length;
     }
-    console.log("sho5555w", showsignUp, token)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -96,7 +114,6 @@ export const SignUp = () => {
             console.log(error);
         })
     }
-    console.log("s44444how", showsignUp, token)
 
     const handleVerify = (e) => {
         e.preventDefault();
@@ -123,7 +140,6 @@ export const SignUp = () => {
     const handelResend = (e) => {
         handleSubmit(e);
     }
-    console.log("sho222233444w", showsignUp, token)
 
     const handleOtpClose = () => {
         setOtpModel(false)
@@ -170,27 +186,14 @@ export const SignUp = () => {
             }).catch((error) => {
                 console.log(error);
             })
-
-
     }
-
-    console.log("sho222w", showsignUp, token)
 
     const onClose = () => {
         setShowSignUp(false)
         const lastURL = localStorage.getItem('lastURL');
         const secondLastURL = localStorage.getItem('secondLastUrl');
-        console.log(lastURL, "lastURL", secondLastURL, "secondLastURL")
-
-        // if (lastURL == '/planning-tool' || lastURL == '/invitation-GuestList') {
-        //     navigate(`${secondLastURL}`)
-        // } else {
         navigate(`${lastURL}`)
-        // }
-
     }
-    console.log("sho1111w", showsignUp, token)
-
 
     return (
 
