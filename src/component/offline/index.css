@@ -1,0 +1,11 @@
+.bannerStyle{
+  background-color: #ff4d4f;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: "bold";
+  position: "fixed";
+  top: 0,;
+  width: "100%";
+  z-index: 9999,
+};

@@ -145,7 +145,6 @@ export const Header = () => {
     const handleGuestClick = () => {
         navigate('/signup');
     };
-
     return (
         <div style={{
             position: 'sticky', zIndex: '999', backgroundColor: '#fff',

@@ -85,7 +85,7 @@ export const SweetsInfo = () => {
 
     const getSweetData = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweet/${_id}`).then((res) => {
-            console.log(res?.data?.sweetData,'tttt')
+            console.log(res?.data?.sweetData, 'tttt')
             setPricePerkg(res?.data?.sweetData?.amount?.split('/')[0])
             setSweetsInfo(res?.data?.sweetData)
         }).catch((error) => {
@@ -129,9 +129,9 @@ export const SweetsInfo = () => {
         let calculateAmount;
         setError('')
         if (unit == 'gm') {
-            calculateAmount = Math.round(sweetkg * pricePerKg / 1000)
+            calculateAmount = Math.round(sweetkg * pricePerKg / 400)
         } else {
-            calculateAmount = sweetkg * pricePerKg;
+            calculateAmount = Math.round(sweetkg * pricePerKg * 1000 / 400);
         }
 
         if (sweetsInfo.isDeliveryCharge) {
@@ -191,10 +191,10 @@ export const SweetsInfo = () => {
                             borderRadius: '5px', border: '1px solid black', height: '42px', padding: '10px 8px',
                             fontSize: '14px', fontSize: '16px',
                         }} type="text" placeholder="Enter quantity" value={sweetkg} onChange={(e) => {
-                            const sweet=e.target.value;
-                           if(/^\d*$/.test(sweet)){
-                            setSweetkg(sweet)
-                           }
+                            const sweet = e.target.value;
+                            if (/^\d*$/.test(sweet)) {
+                                setSweetkg(sweet)
+                            }
                         }} />
                         <div className="sweets-info-drop-down">
                             <select style={{ border: '1px solid black' }} className="sweets-info-select" value={unit} onChange={(e) => calculatePrice(e.target.value)} >

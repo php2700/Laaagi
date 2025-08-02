@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
     const [paymentHistory, setPaymentHistory] = useState([])
     const [totalAmountInv, setTotalAmountInv] = useState(0)
 
+
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {
@@ -41,6 +42,6 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ totalAmountInv, setTotalAmountInv, setPaymentHistory, paymentHistory, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{  totalAmountInv, setTotalAmountInv, setPaymentHistory, paymentHistory, logout, storeUserData, setStoreUserData, setSweetsInfo, sweetsInfo, setHeaderUpdate, headerUpdate, token, loginData, selectSweet, setSelectSweet, amounts, setAmounts, boxName, setBoxName, weight, setWeight, setToken, setDefaultProfile, defaultProfile }} >{children}</AuthContext.Provider>
     )
 }

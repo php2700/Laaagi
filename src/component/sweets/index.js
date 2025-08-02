@@ -38,31 +38,12 @@ export const Sweets = () => {
     const [category, setCategory] = useState(searchCategory || INITIAL_CATEGORY);
     const [isSpecialView, setIsSpecialView] = useState(false);
     const [pageHeading, setPageHeading] = useState("Sweets");
-    const [startIndex, setStartIndex] = useState(0);
-    const [lastIndex, setLastIndex] = useState(2);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const [openModel, setOpenModel] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
     const [selectedPrice, setSelectedPrice] = useState('');
     const [sweetId, setSweetId] = useState()
-
-
-    const handleForwardIcon = () => {
-        const totalItems = sweetsHeader?.length || 0;
-        const nextStart = lastIndex + 1;
-        const nextLast = lastIndex + 3;
-        if (nextStart < totalItems) {
-            setStartIndex(nextStart);
-            setLastIndex(Math.min(nextLast, totalItems - 1));
-        }
-    };
-
-    const handlePrev = () => {
-        const prevStart = Math.max(0, startIndex - 3);
-        const prevLast = Math.max(2, lastIndex - 3);
-        setStartIndex(prevStart);
-        setLastIndex(Math.max(2, prevLast));
-    };
+    const [search, setSearch] = useState();
 
 
     useEffect(() => {
@@ -83,6 +64,9 @@ export const Sweets = () => {
         }
         if (selectedPrice) {
             params.price = selectedPrice
+        }
+        if (search) {
+            params.search = search;
         }
 
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/sweets_list`, { params })
@@ -109,7 +93,7 @@ export const Sweets = () => {
             setPageHeading(currentCategoryObj ? currentCategoryObj.name : "Sweets");
             fetchSweetsData(false);
         }
-    }, [category, location.state?.filter, selectedPrice]);
+    }, [category, location.state?.filter, selectedPrice, search]);
 
 
     const handleCategorySelect = (ele) => {
@@ -124,8 +108,14 @@ export const Sweets = () => {
         setSweetId(item._id)
     };
 
+  
+
     const handleClose = () => {
+        // setOpenModel(false)
+         setOrderId()
+        setInvitationSelectSweet()
         setOpenModel(false)
+        setSweetId()
     }
 
     const handleInvitationSweetDone = () => {
@@ -169,6 +159,10 @@ export const Sweets = () => {
         <div className='sweets' >
             {!isSpecialView && (
                 <div className='sweets-header'>
+                    {/* <div className='sweet-search-parent'> */}
+                    <input className='sweet-search' type='search' onChange={(e) => setSearch(e.target.value)} value={search} placeholder='Search..' />
+                    {/* </div> */}
+
                     {isMobile ? (
                         <>
                             {sweetsHeader?.map((ele) => (
@@ -270,7 +264,7 @@ export const Sweets = () => {
                     </div>
                 )}
             </div>
-            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} selectedSweet={invitationselectSweet} />
+            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} selectedSweet={invitationselectSweet}  />
         </div>
     )
 }

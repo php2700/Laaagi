@@ -234,7 +234,7 @@ export const GuestList = () => {
       return
     }
     if (!guest?.length) {
-      toast.error("Please Select User !", {
+      toast.error("Please select at least one recipient to continue.", {
         position: 'bottom-right'
       })
       return

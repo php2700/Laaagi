@@ -55,8 +55,12 @@ import { CartHome } from './component/invitations/cart.detail';
 import { Shipping } from './component/shipping';
 import { Refund } from './component/refund';
 import { SavedCart } from './component/cart/saved';
+import { TermCondition } from './component/termCondition';
+import { useOnlineStatus } from './component/context/custom';
+import { Offline } from './component/offline';
 
 function App() {
+  const isOnline = useOnlineStatus();
 
   /*------------------------- this is the private route -------------------*/
   const PrivateRoute = ({ children }) => {
@@ -66,8 +70,11 @@ function App() {
       <>{token ? children : < Navigate to='/' />}</>
     )
   }
+
+  console.log("ggggg")
   return (
     <>
+          {!isOnline && <Offline />}
       <div className='app-container'>
         {/* <BrowserRouter> */}
         <LastUrl />
@@ -119,7 +126,7 @@ function App() {
 
             <Route path='/payment' element={<PrivateRoute><Payment /></PrivateRoute>} />
             <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-            <Route path='/Design' element={<UploadDesign />} />
+            <Route path='/Design' element={<PrivateRoute><UploadDesign /></PrivateRoute>} />
 
             {/* update address by person */}
             <Route path='/update-address-person' element={<Add_Address_Person />} />
@@ -137,6 +144,7 @@ function App() {
             <Route path='/cart-detail/:_id/:status' element={<PrivateRoute><CartHome/></PrivateRoute>} /> 
             <Route path='/Shipping' element={<PrivateRoute><Shipping/></PrivateRoute>} />
             <Route path='/payment-refund' element={<PrivateRoute><Refund/></PrivateRoute>} />
+            <Route path='/term-condition' element={<TermCondition />} />
 
           </Routes>
         </div>

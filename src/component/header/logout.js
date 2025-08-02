@@ -37,10 +37,10 @@ export const Logout = ({ open, handleClose }) => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Typography id="modal-modal-description" sx={{ mt: 2, mb: 3 }}>
+                <Typography id="modal-modal-description" sx={{ mt: 2, mb: 3, textAlign:'center'}}>
                     Are you sure you want to Logout
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
                     <Button
                         variant="outlined"
                         color="secondary"
