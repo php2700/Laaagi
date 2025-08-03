@@ -262,7 +262,7 @@ export const Invitationhome = () => {
 
 
   const handleAmount = () => {
-    const token = localStorage.getItem('token')
+    const token = context?.token || localStorage.getItem('token')
     if (!token) {
       navigate('/signup')
       return
