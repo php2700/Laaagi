@@ -74,7 +74,7 @@ function App() {
   console.log("ggggg")
   return (
     <>
-          {!isOnline && <Offline />}
+      {!isOnline && <Offline />}
       <div className='app-container'>
         {/* <BrowserRouter> */}
         <LastUrl />
@@ -139,11 +139,11 @@ function App() {
             <Route path='/sample-demo' element={<PrivateRoute><LoginDemoVideo /></PrivateRoute>} />
             <Route path='/privacy-policy' element={<PrivacyPolicy />} />
 
-            <Route path='/cart-list' element={<PrivateRoute><Cart/></PrivateRoute>} />
-            <Route path='/saved-cart-list' element={<PrivateRoute><SavedCart/></PrivateRoute>} />
-            <Route path='/cart-detail/:_id/:status' element={<PrivateRoute><CartHome/></PrivateRoute>} /> 
-            <Route path='/Shipping' element={<PrivateRoute><Shipping/></PrivateRoute>} />
-            <Route path='/payment-refund' element={<PrivateRoute><Refund/></PrivateRoute>} />
+            <Route path='/cart-list' element={<PrivateRoute><Cart /></PrivateRoute>} />
+            <Route path='/saved-cart-list' element={<PrivateRoute><SavedCart /></PrivateRoute>} />
+            <Route path='/cart-detail/:_id/:status' element={<PrivateRoute><CartHome /></PrivateRoute>} />
+            <Route path='/Shipping' element={<PrivateRoute><Shipping /></PrivateRoute>} />
+            <Route path='/payment-refund' element={<PrivateRoute><Refund /></PrivateRoute>} />
             <Route path='/term-condition' element={<TermCondition />} />
 
           </Routes>

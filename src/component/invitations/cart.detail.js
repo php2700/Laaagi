@@ -494,14 +494,14 @@ export const CartHome = () => {
                                     <div>
                                         <Link to={ele?.url} state={{
                                             data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id,
-                                            isCart: true, cartId: _id
+                                            isCart: true, cartId: _id, status: status
                                         }} >
                                             {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                                         </Link>
                                         {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
                                     </div>
                                 </div>
-                                <div className='sweet-name'> {data ? data?.name : <span className='sweet-name'>Sweet Name</span>}</div>
+                                <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span className='sweet-name'>Sweet Name</span>}</div>
                                 <div className='invitation-select-box-sweet-price'>  {
                                     (amounts[index] ?? 0)
                                 }</div>
@@ -517,13 +517,13 @@ export const CartHome = () => {
                                         <div className='show-selection'><img src={ele?.sectionImg} /></div>
                                         <div><img src={ele?.arrow} /></div>
                                         <div>
-                                            <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id }}>
+                                            <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id, status: status }}>
                                                 {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                                             </Link>
                                             {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
                                         </div>
                                     </div>
-                                    <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                                    <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span>Sweet Name</span>}</div>
                                     <div className='invitation-select-box-sweet-price'>  {
                                         (amounts[index] ?? 0)
                                     }</div>
@@ -539,7 +539,7 @@ export const CartHome = () => {
                                             <div className='show-selection'><img src={ele?.sectionImg} /></div>
                                             <div><img src={ele?.arrow} /></div>
                                             <div>
-                                                <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id }}>
+                                                <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id, status: status }}>
                                                     {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                                                 </Link>
                                                 {error?.some((item) => item.id == index && item.boxName == '3 Section in box') && <div className='error-color'>please select sweet</div>}
@@ -547,7 +547,7 @@ export const CartHome = () => {
 
                                         </div>
 
-                                        <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                                        <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span>Sweet Name</span>}</div>
 
                                         <div className='invitation-select-box-sweet-price'>  {
                                             (amounts[index] ?? 0)
@@ -564,13 +564,13 @@ export const CartHome = () => {
                                             <div className='show-selection'><img src={ele?.sectionImg} /></div>
                                             <div><img src={ele?.arrow} /></div>
                                             <div>
-                                                <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id }}>
+                                                <Link to={ele?.url} state={{ data: true, idx: index, invitationId: invitationId, name: ele?.name, id: id, isCart: true, cartId: _id, status: status }}>
                                                     {data ? <img className='selected-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${data?.img}`} /> : <img className='select-sweet-img' src={ele?.sweetImg} />}
                                                 </Link>
                                                 {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
                                             </div>
                                         </div>
-                                        <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                                        <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span>Sweet Name</span>}</div>
 
                                         <div className='invitation-select-box-sweet-price'>  {
                                             (amounts[index] ?? 0)

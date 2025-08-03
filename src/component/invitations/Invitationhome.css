@@ -388,8 +388,8 @@
   background-color: #eeeeee;
 }
 .select-sweet-img {
-  height: 90px;
-  width: 150px;
+  height: 80px;
+  width: 130px;
 }
 .invitation-box-type-header {
   font-weight: 500;
@@ -466,9 +466,9 @@
 .invitation-box-select-header {
   display: flex;
   justify-content: space-evenly;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 600;
-  color: #253d4e;
+  color: #800000;
 }
 
 .right-icon-arrow {
@@ -498,10 +498,10 @@
 }
 
 .sweet-name {
-  width: 8%;
+  width: 10%;
   text-align: left;
   font-weight: 600;
-  font-size: 23px;
+  font-size: 18px;
   color: #253d4e;
 }
 
@@ -523,8 +523,6 @@
   margin: 12px;
 }
 
-
-
 .invitation-next div {
   color: #800000;
   background-color: #ffd700;
@@ -538,8 +536,6 @@
   cursor: pointer;
 }
 
-
-
 .invitation-detils-home-container {
   display: flex;
   margin: 12px 0px;
@@ -551,10 +547,10 @@
 
 .selected-img {
   height: 80px;
-  width: 145px;
+  width: 130px;
 }
 
-.invitation-customize-btn{
+.invitation-customize-btn {
   display: flex;
   gap: 12px;
 }
@@ -758,6 +754,9 @@
   }
 }
 @media (max-width: 600px) {
+  .invitation-total {
+    padding-left: 0;
+  }
   .customize-btn {
     width: 100%;
   }

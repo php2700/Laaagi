@@ -29,6 +29,7 @@ export const Sweets = () => {
     const searchCategory = location.state?.category;
     const name = location.state?.name;
     const index = location.state?.idx;
+    const status = location?.state?.status
     const isCart = location?.state?.isCart;
     const id = location.state?.id;
     const cartId = location?.state?.cartId;
@@ -108,21 +109,22 @@ export const Sweets = () => {
         setSweetId(item._id)
     };
 
-  
+
 
     const handleClose = () => {
         // setOpenModel(false)
-         setOrderId()
+        setOrderId()
         setInvitationSelectSweet()
         setOpenModel(false)
         setSweetId()
     }
 
+    console.log(status, 'aaaa')
     const handleInvitationSweetDone = () => {
         const url = 'invitation'
         if (invitationselectSweet) {
             if (isCart) {
-                navigate(`/cart-detail/${cartId}`, {
+                navigate(`/cart-detail/${cartId}/${status}`, {
                     state: { ...invitationselectSweet, sweetName: invitationselectSweet?.name, index: index, invitationId: invitationId, name: name, showId: id, sweetId: sweetId }
 
                 })
@@ -264,7 +266,7 @@ export const Sweets = () => {
                     </div>
                 )}
             </div>
-            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} selectedSweet={invitationselectSweet}  />
+            <AddSweets open={openModel} handleClose={handleClose} data={handleInvitationSweetDone} selectedSweet={invitationselectSweet} />
         </div>
     )
 }

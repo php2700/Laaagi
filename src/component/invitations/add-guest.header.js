@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import GuestImg from "../../assets/add-guest/add-guest.jpg"
+import GuestImg from "../../assets/add-guest/add-guest-.jpg"
 import './add-guest.css'
 import { Add_Guest } from "./add_guest";
 import { NavLink } from "react-router-dom";
