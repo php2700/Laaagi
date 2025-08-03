@@ -40,7 +40,7 @@ export const SignUp = () => {
                 navigate('/')
             })
         } catch (err) {
-            if (error?.response?.data?.Message === 'jwt expired') {
+            if (err?.response?.data?.Message === 'jwt expired') {
                 setShowSignUp(true);
             }
             console.error("Error fetching user data:", err);
