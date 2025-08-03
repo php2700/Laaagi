@@ -58,6 +58,10 @@ export const SweetsInfo = () => {
             setError('please Select Quantity')
             return;
         }
+        if (price == 0) {
+            setError('please Select Quantity')
+            return;
+        }
         if (!token) {
             navigate("/signup")
         }
