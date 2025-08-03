@@ -5,10 +5,15 @@
   color: #ffd700;
   background-color: #800000;
   height: 38px;
+  font-size: 18px;
 }
 .topbar div {
   font-size: 18px;
   font-weight: 400;
+}
+
+.user-display-name{
+  font-size: 18px;
 }
 
 .header {

@@ -263,10 +263,12 @@ export const Invitationhome = () => {
 
   const handleAmount = () => {
     const token = context?.token || localStorage.getItem('token')
+    console.log("token", token)
     if (!token) {
       navigate('/signup')
       return
     }
+    console.log("after", token)
     if (validate()) {
       return;
     }
@@ -554,7 +556,7 @@ export const Invitationhome = () => {
                     {error?.some((item) => item.id == index && item.boxName == 'Normal Box') && <div className='error-color'>please select sweet</div>}
                   </div>
                 </div>
-                <div className='sweet-name'> {data ? data?.name : <span className='sweet-name'>Sweet Name</span>}</div>
+                <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span className='sweet-name'>Sweet Name</span>}</div>
                 <div className='invitation-select-box-sweet-price'>  {
                   (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                     ? (amounts[index] ?? 0)
@@ -579,7 +581,7 @@ export const Invitationhome = () => {
                       {error?.some((item) => item.id == index && item.boxName == '4 Section in box') && <div className='error-color'>please select sweet</div>}
                     </div>
                   </div>
-                  <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                  <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span>Sweet Name</span>}</div>
                   <div className='invitation-select-box-sweet-price'>  {
                     (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
                       ? (amounts[index] ?? 0)
@@ -606,7 +608,7 @@ export const Invitationhome = () => {
 
                     </div>
 
-                    <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                    <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span>Sweet Name</span>}</div>
 
                     <div className='invitation-select-box-sweet-price'>  {
                       (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)
@@ -631,7 +633,7 @@ export const Invitationhome = () => {
                         {error?.some((item) => item.id == index && item.boxName == 'Special box') && <div className='error-color'>please select sweet</div>}
                       </div>
                     </div>
-                    <div className='sweet-name'> {data ? data?.name : <span>Sweet Name</span>}</div>
+                    <div className='sweet-name'> {data ? data?.name[0].toUpperCase() + data?.name.slice(1).toLowerCase() : <span>Sweet Name</span>}</div>
 
                     <div className='invitation-select-box-sweet-price'>  {
                       (selectedSweet?.invitationId === invitationId && ele.name === selectedSweet?.name)

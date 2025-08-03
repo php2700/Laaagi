@@ -157,7 +157,7 @@ export const Header = () => {
                     <div className='user-menu-container' ref={userDropdownRef}>
                         {userData && userData.name ? (
                             <>
-                                <div ><Link to='/cart-list' className='cart' ><ShoppingCartIcon /></Link></div>
+                                <div ><Link to='/cart-list' className='cart' ><ShoppingCartIcon style={{ color: '#800000' }} /></Link></div>
                                 <div className='login-name' onClick={toggleUserDropdown} role="button" tabIndex={0} aria-haspopup="true" aria-expanded={isUserDropdownOpen}>
                                     <img src={userData.profile ? `${process.env.REACT_APP_BASE_URL}uploads/${userData.profile}` : defaultImg} alt="User avatar" className="user-avatar" />
                                     <div className="user-display-name">{userData.name}</div>
