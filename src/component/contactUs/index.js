@@ -81,7 +81,7 @@ export const ContactUs = () => {
                 setLastName("")
                 setMobile("")
                 setDesc("")
-                toast.success("Details added!", {
+                toast.success(" Your message has been sent successfully !", {
                     position: "top-right"
                 });
             }).catch((error) => {
@@ -97,7 +97,7 @@ export const ContactUs = () => {
 
             <div className="contact-middle">
                 <div className="contact-us-condition">
-                    <div className="contact-us-header">Let's Talk with us</div>
+                    <div className="contact-us-header">Let's Talk with Us</div>
                     <div className="contact-us-desc">Have Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.</div>
                     <div className="contact-us-content" >
                         <img src={locationIcon} />
@@ -109,7 +109,7 @@ export const ContactUs = () => {
                     </div>
                     <div className="contact-us-mail" >
                         <img src={mailIcon} />
-                        <div>&nbsp;Contact@laaaggi.com</div>
+                        <div>&nbsp;contact@laaagi.com</div>
                     </div>
                 </div>
                 <div >

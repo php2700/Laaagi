@@ -43,7 +43,7 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
     }
 
     if (!message?.trim())
-      newError.message = 'Messsage is required.'
+      newError.message = 'Message is required.'
     else if (message?.length < 3)
       newError.message = 'Min 10 character required.'
 

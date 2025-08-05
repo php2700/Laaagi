@@ -109,32 +109,68 @@ export const PlanningTool = () => {
     }, [token, userId])
 
 
+    // const handleSave = () => {
+    //     const sendEventData = {
+    //         userId: userId,
+    //         planningId: planningId,
+    //         checked: checkedItems || []
+    //     }
+    //     axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`
+    //         },
+    //     })
+    //         .then((res) => {
+    //             if (clearToaster) {
+    //                 toast.success('Data Clear Successfully!', {
+    //                     position: 'top-right'
+    //                 })
+    //                 setClearToaster(false)
+    //             } else
+    //                 toast.success('Checklist Saved Successfully!', {
+    //                     position: 'top-right'
+    //                 })
+    //         }).catch((error) => {
+    //             console.error("Error saving planning history:", error);
+    //             toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+    //         })
+    // }
     const handleSave = () => {
-        const sendEventData = {
-            userId: userId,
-            planningId: planningId,
-            checked: checkedItems || []
-        }
-        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        })
-            .then((res) => {
-                if (clearToaster) {
-                    toast.success('Data Clear Successfully!', {
-                        position: 'top-right'
-                    })
-                    setClearToaster(false)
-                } else
-                    toast.success('Checklist Saved Successfully!', {
-                        position: 'top-right'
-                    })
-            }).catch((error) => {
-                console.error("Error saving planning history:", error);
-                toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
-            })
+    if (!checkedItems || checkedItems.length === 0) {
+        toast.error('Failed to save checklist. Please select at least one item.', {
+            position: 'top-right'
+        });
+        return;
     }
+
+    const sendEventData = {
+        userId: userId,
+        planningId: planningId,
+        checked: checkedItems
+    };
+
+    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    })
+    .then((res) => {
+        if (clearToaster) {
+            toast.success('Data Clear Successfully!', {
+                position: 'top-right'
+            });
+            setClearToaster(false);
+        } else {
+            toast.success('Checklist Saved Successfully!', {
+                position: 'top-right'
+            });
+        }
+    }).catch((error) => {
+        console.error("Error saving planning history:", error);
+        toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+    });
+};
+
 
     useEffect(() => {
         if (shouldSave) {

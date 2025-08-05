@@ -120,8 +120,11 @@
   justify-content: space-between ;
   gap:15px;
   overflow-x: auto;
-  padding: 0px 10px;
+  padding: 0px 15px;
+  
+  
 }
+
 
 @media (max-width: 600px) {
   .sweets-header {

@@ -2,7 +2,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"
-import GuestImg from "../../assets/add-guest/add-guest.jpg"
+// import GuestImg from "../../assets/add-guest/add-guest.jpg"
+import GuestImg from "../../assets/add-guest/add-guestnew.jpg"
+
 import './add-guest.css'
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -46,7 +48,7 @@ export const Add_Guest = () => {
         }
 
         if (!guestNo) {
-            newError.guestNo = 'Guest no is required.'
+            newError.guestNo = 'number of Guest is required.'
         }
         else if (!/^\d+$/.test(guestNo)) {
             newError.guestNo = 'Guestno number must contain digits only.';
@@ -75,13 +77,15 @@ export const Add_Guest = () => {
             newError.selectRadio = 'Please select address.'
 
         if (openAddress) {
-            if (!address) {
-                newError.address = 'Please add address.'
-            } else if (!/^[a-zA-Z\s0-9]+$/.test(address)) {
-                newError.address = 'Not allowed special character.'
-            } else if (!address?.trim()) {
-                newError.address = 'Please add address.'
-            }
+          // Address: letters + numbers + special characters (basic)
+if (!address?.trim()) {
+    newError.address = 'Please add address.';
+} else if (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address)) {
+    newError.address = 'Only letters, numbers, and basic special characters allowed.';
+} else if (address.length < 3) {
+    newError.address = 'Minimum 3 characters required.';
+}
+
             if (!pincode) {
                 newError.pincode = 'Please enter pinCode.'
             } else if (!/^[0-9]+$/.test(pincode)) {
@@ -130,7 +134,7 @@ export const Add_Guest = () => {
             setGuestNo('')
             setMobile('')
             setPincode('')
-            navigate('/guest')
+            navigate('/guest/guest')
         }).catch((error) => {
             const message = error?.response?.data?.message;
             if (message == 'mobile_already_exist') {

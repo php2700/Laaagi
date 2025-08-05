@@ -67,6 +67,7 @@
   font-weight: 600;
 }
 
+
 .invitation-description .description-label {
   font-weight: bold;
   margin-bottom: 5px;
@@ -469,6 +470,7 @@
   font-size: 23px;
   font-weight: 600;
   color: #800000;
+  padding: 0px 10px;
 }
 
 .right-icon-arrow {

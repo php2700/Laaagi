@@ -17,7 +17,7 @@ export const Model = ({ open, onClose, data }) => {
         let newError = {};
 
         if (!name?.trim()) {
-            newError.name = 'Name is required.'
+            newError.name = 'First name is required.'
         } else if (!/^[a-zA-Z\s]*$/.test(name)) {
             newError.name = 'Enter valid name.'
         }
@@ -44,7 +44,7 @@ export const Model = ({ open, onClose, data }) => {
         }
 
         if (!mobile) {
-            newError.mobile = 'Mobile number is required.';
+            newError.mobile = 'Phone number is required.';
         } else if (!/^\d+$/.test(mobile)) {
             newError.mobile = 'Mobile number must contain digits only.';
         } else if (mobile.length < 10) {
