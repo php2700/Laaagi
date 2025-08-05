@@ -38,7 +38,7 @@ export const Footer = () => {
     }
 
     return (
-        <div>
+        <div className='footers'>
             <div className='whole-footer'>
                 <div className='footer'>
                     <div className='footer-left-bar-align'>
@@ -49,7 +49,7 @@ export const Footer = () => {
                         <div className='footer-left-location'>
                             <img className='footer-left-icon' src={locationIcon} />
                             <div className='footer-left-location-text'>&nbsp; Address</div>
-                            <div className='footer-left-location-right'>:Indore M.P.</div>
+                            <div className='footer-left-location-right'>: Indore M.P.</div>
                         </div>
                         <div className='footer-left-call'>
                             <img className='footer-left-call-icon' src={callIcon} />
@@ -63,8 +63,8 @@ export const Footer = () => {
                         </div>
                         <div className='footer-left-work'>
                             <img className='footer-left-work-icon' src={timeIcon} />
-                            <div className='footer-left-work-text'>&nbsp; Work hours</div>
-                            <div className='footer-left-work-right'>:8:00-20:00,Sunday-Thursday</div>
+                            <div className='footer-left-work-text'>&nbsp; Work hours </div>
+                            <div className='footer-left-work-right'>: 8:00-20:00, Sunday-Thursday</div>
                         </div>
                     </div>
                     <div className='footer-left-middle'>
@@ -75,7 +75,7 @@ export const Footer = () => {
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/planning-tool'>Planning Tool</Link></div>
                     </div>
                     <div className='footer-left-middle'>
-                        <div className='footer-left-middle-header'>Useful links</div>
+                        <div className='footer-left-middle-header'>Useful Links</div>
                         <div className='footer-left-middle-text'><div className='handle-about' onClick={handleAbout} >About Us</div></div>
 
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/contact-us'>Contact</Link></div>
@@ -94,7 +94,7 @@ export const Footer = () => {
                     <img src={horizontalImg} />
                 </div>
                 <div className='footer-right'>
-                    <div className='footer-right-text'>2025,All rights reserved</div>
+                    <div className='footer-right-text'>2025, All rights reserved</div>
                     <div className='footer-img-center'>
                         <img src={payment} />
                     </div>

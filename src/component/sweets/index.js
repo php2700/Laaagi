@@ -196,7 +196,7 @@ export const Sweets = () => {
 
             <div className='main-container-sweet'>
                 <div className='invitations-price-left'>
-                    <div className='invitation-price-header'>Price Range filter</div>
+                    <div className='invitation-price-header'>Price Range Filter</div>
                     {
                         isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
                             <MenuIcon />
@@ -240,7 +240,7 @@ export const Sweets = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className='sweets-content'>
+                    <div className='sweets-content' >
                         <div className='sweets-content-list'>
                             {data?.length > 0 &&
                                 <>

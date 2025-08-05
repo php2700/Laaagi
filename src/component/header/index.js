@@ -29,6 +29,9 @@ export const Header = () => {
     const [isLoadingClothes, setIsLoadingClothes] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [openLogoutModal, setOpenLogoutModal] = useState(false);
+    const [highlightedIndex, setHighlightedIndex] = useState(-1);
+    const inputRef = useRef(null); // -1 means none selected
+    // const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -87,13 +90,28 @@ export const Header = () => {
         const filtered = items;
         if (filtered.length === 0) return <div className="no-items">No items found.</div>;
         return (
+            // <ul className="category-item-list">
+            //     {filtered.map(item => (
+            //         <li key={item.id} onClick={() => { setIsSearchDropdownOpen(false); navigate(item.path); }}>
+            //             {item.name}
+            //         </li>
+            //     ))}
+            // </ul>
             <ul className="category-item-list">
-                {filtered.map(item => (
-                    <li key={item.id} onClick={() => { setIsSearchDropdownOpen(false); navigate(item.path); }}>
-                        {item.name}
-                    </li>
-                ))}
-            </ul>
+  {clothesDisplayData.map((item, index) => (
+    <li
+      key={item.id}
+      onClick={() => {
+        navigate(item.path);
+        setIsSearchDropdownOpen(false);
+      }}
+      className={index === highlightedIndex ? 'highlighted' : ''}
+    >
+      {item.name}
+    </li>
+  ))}
+</ul>
+
         );
     };
 
@@ -134,12 +152,55 @@ export const Header = () => {
             <div className='topbar'>Welcome to Laaagi</div>
             <header className='header'>
                 <div className='search' ref={searchContainerRef}>
-                    <input
+                    {/* <input
                         type="search"
                         placeholder="Search"
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => {
+                            setSearchQuery(e.target.value);
+                            setHighlightedIndex(-1); // Reset highlight on text change
+                        }}
+
                         value={searchQuery}
-                    />
+                    /> */}
+                    <input
+  ref={inputRef}
+  type="search"
+  placeholder="Search"
+  onChange={(e) => {
+    setSearchQuery(e.target.value);
+    setHighlightedIndex(-1); // Reset selection
+  }}
+  onKeyDown={(e) => {
+    if (!isSearchDropdownOpen) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setHighlightedIndex((prev) =>
+        prev < clothesDisplayData.length - 1 ? prev + 1 : 0
+      );
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setHighlightedIndex((prev) =>
+        prev > 0 ? prev - 1 : clothesDisplayData.length - 1
+      );
+    }
+
+    if (e.key === 'Enter') {
+      if (highlightedIndex >= 0) {
+        navigate(clothesDisplayData[highlightedIndex].path);
+        setIsSearchDropdownOpen(false);
+      }
+    }
+
+    if (e.key === 'Escape') {
+      setIsSearchDropdownOpen(false);
+    }
+  }}
+  value={searchQuery}
+/>
+
                     <img src={seacrh} alt="search" />
                     {isSearchDropdownOpen && (
                         <div className="search-dropdown-content">

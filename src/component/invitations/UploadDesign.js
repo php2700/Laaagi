@@ -117,7 +117,7 @@ export const
             <div className="upload-design-page-container">
                 <div className="upload-design-form-content">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <h2>Upload Your Design for a Quote</h2>
+                        <h2> Upload your design and get a quote  </h2>
                     </div>
 
                     <form onSubmit={handleSubmit}>
@@ -147,7 +147,7 @@ export const
                                     setError((prev) => ({ ...prev, category: '' }));
                                 }}
                             >
-                                <option value=""> Choose Your Category </option>
+                                <option value=""> Choose your category </option>
                                 {invitationCategory.map((cat, index) => (
                                     <option key={index} value={cat} >{cat}</option>
                                 ))}
@@ -226,14 +226,14 @@ export const
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="notes">Description:</label>
+                            <label htmlFor="amount">Description:</label>
                             <textarea
-                                id="notes"
+                                id="amount"
                                 placeholder='Enter Description'
-                                value={notes}
+                                value={amount}
                                 onChange={(e) => {
                                     setNotes(e.target.value);
-                                    setError((prev) => ({ ...prev, notes: '' }));
+                                    setError((prev) => ({ ...prev, amount: '' }));
                                 }}
                                 rows="3"
                             ></textarea>

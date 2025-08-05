@@ -9,7 +9,7 @@ import { AuthContext } from '../context';
 
 
 const invitationHeader = [
-    { name: 'Invitation on Box', category: 'Invitation On Box' },
+    { name: 'Invitation on Box', category: 'Invitation With Box' },
     { name: 'Only Invitation', category: 'Invitation' },
     { name: 'Invitation on Wooden Box', category: 'Wooden Box' },
     { name: 'Invitation on Glass Box', category: 'Glass Box' },
@@ -103,7 +103,7 @@ export const Invitation = () => {
 
             <div className='invitations-content'>
                 <div className='invitations-price-left'>
-                    <div className='invitation-price-header'>Price Range filter</div>
+                    <div className='invitation-price-header'>Price Range Filter</div>
                     {
                         isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
                             <MenuIcon />

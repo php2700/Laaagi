@@ -534,7 +534,7 @@ export const Invitationhome = () => {
 
       <div className='invitation-select-sweet-box-list' ref={targetRef}>
         <div className='invitation-box-select-header'>
-          <div >Sections</div>
+          <div id ="section">Sections</div>
           <div className='invitation-names'>Image</div>
           <div >Sweets</div>
           <div className='invitation-names'>Price</div>

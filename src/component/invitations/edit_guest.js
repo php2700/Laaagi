@@ -108,7 +108,7 @@ export const Edit_Guest = () => {
             setGuestNo('')
             setMobile('')
             setPincode('')
-            navigate('/guest')
+            navigate('/guest/guest')
         }).catch((error) => {
             if (error?.response?.data?.Message === 'jwt expired') {
                 logout()
@@ -151,10 +151,10 @@ export const Edit_Guest = () => {
                         <div>
                             <select className='add-guest-select-option' value={category} onChange={(e) => setCategory(e.target.value)} >
                                 <option disabled>Select Relation</option>
-                                <option value='family'>Family</option>
-                                <option value='friends'>Friends</option>
-                                <option value='co-worker'>Co-workers</option>
-                                <option value='neighbors'>Neighbors</option>
+                                <option value='Family'>Family</option>
+                                <option value='Friends'>Friends</option>
+                                <option value='Co-worker'>Co-workers</option>
+                                <option value='Nighbors'>Neighbors</option>
                             </select>
                             {error?.category && (<div className='error-color'>{error?.category}</div>)}
                         </div>
