@@ -97,7 +97,7 @@ export const ContactUs = () => {
 
             <div className="contact-middle">
                 <div className="contact-us-condition">
-                    <div className="contact-us-header">Let's Talk with Us</div>
+                    <div className="contact-us-header">Let's Talk With Us</div>
                     <div className="contact-us-desc">Have Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.</div>
                     <div className="contact-us-content" >
                         <img src={locationIcon} className="contact-icons" />
