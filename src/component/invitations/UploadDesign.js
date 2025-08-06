@@ -229,6 +229,7 @@ export const
                             <label htmlFor="amount">Description:</label>
                             <textarea
                                 id="amount"
+                                className='uploadtextarea'
                                 placeholder='Enter Description'
                                 value={amount}
                                 onChange={(e) => {

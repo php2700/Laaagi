@@ -9,12 +9,14 @@ export const DemoVideo = () => {
     const [showDemo, setShowDemo] = useState(false);
     const context = useContext(AuthContext)
     const token = context?.token || localStorage.getItem('token');
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const onClose = () => {
         setShowDemo(false)
+        navigate('/');
     }
 
-    const location = useLocation();
     useEffect(() => {
         if (!token)
             setShowDemo(true)

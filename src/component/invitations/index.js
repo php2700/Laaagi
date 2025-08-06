@@ -9,7 +9,7 @@ import { AuthContext } from '../context';
 
 
 const invitationHeader = [
-    { name: 'Invitation on Box', category: 'Invitation With Box' },
+    { name: 'Invitation With Box', category: 'Invitation on Box' },
     { name: 'Only Invitation', category: 'Invitation' },
     { name: 'Invitation on Wooden Box', category: 'Wooden Box' },
     { name: 'Invitation on Glass Box', category: 'Glass Box' },
@@ -118,7 +118,7 @@ export const Invitation = () => {
                     </div>
                 </div>
                 <div className='invitations-content-header'>
-                    < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload Your Design and get quote for the same</Link>
+                    < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload your design and get a quote</Link>
                     {data?.length > 0 ?
                         <div className='invitation-content-list'>
                             {

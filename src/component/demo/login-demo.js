@@ -9,9 +9,12 @@ export const LoginDemoVideo = () => {
     const [showDemo, setShowDemo] = useState(true);
     const context = useContext(AuthContext)
     const token = context?.token || localStorage.getItem('token');
+    const navigate = useNavigate();
+    // const location = useLocation();
 
     const onClose = () => {
         setShowDemo(false)
+        navigate('/');
     }
 
     return (

@@ -214,21 +214,20 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
 
                     {/* Address */}
                     <div>
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            className="modalinputs"
-                            value={address}
-                            onChange={(e) => {
-                                const val = e.target.value;
-                                if (/^[a-zA-Z0-9\s]*$/.test(val)) {
-                                    setAddress(val);
-                                    setError((prev) => ({ ...prev, address: '' }));
-                                }
-                            }}
-                        />
+                    <input
+                        type="text"
+                        placeholder="Address"
+                        className="modalinputs"
+                        value={address}
+                        onChange={(e) => {
+                            const val = e.target.value;
+                            setAddress(val);
+                            setError((prev) => ({ ...prev, address: '' }));
+                        }}
+                    />
                         <div className="customi-error-color">{error.address}</div>
                     </div>
+
 
                     {/* Mobile */}
                     <div>
