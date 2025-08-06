@@ -48,7 +48,7 @@ export const Add_Guest = () => {
         }
 
         if (!guestNo) {
-            newError.guestNo = 'number of Guest is required.'
+            newError.guestNo = 'Number of Guest is required.'
         }
         else if (!/^\d+$/.test(guestNo)) {
             newError.guestNo = 'Guestno number must contain digits only.';
@@ -201,10 +201,10 @@ if (!address?.trim()) {
                                 }}
                             >
                                 <option value='Select Relation'>Select Relation</option>
-                                <option value='family'>Family</option>
-                                <option value='friends'>Friends</option>
-                                <option value='co-worker'>Co-workers</option>
-                                <option value='neighbors'>Neighbors</option>
+                                <option value='Family'>Family</option>
+                                <option value='Friends'>Friends</option>
+                                <option value='C-worker'>Co-workers</option>
+                                <option value='Neighbors'>Neighbors</option>
                             </select>
                             {error?.category && (<div className='error-color'>{error?.category}</div>)}
                         </div>

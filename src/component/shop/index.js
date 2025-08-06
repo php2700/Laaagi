@@ -9,7 +9,7 @@ export const Shop = () => {
             <div className='shop-left-bar'>
                 <div className='shop-header-home'>Shop Faster with Our App </div>
                 <div className='shop-header-home'>It will be live soon!</div>
-                <div className='shop-desc'>Available on both IOS & Android</div>
+                <div className='shop-desc'>Available on both iOS & Android</div>
                 <div className='shop-img'>
                     <img src={AppleImg} />
                     <img src={AndoridImg} />

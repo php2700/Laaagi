@@ -54,7 +54,7 @@
 
 .invitation-price-header {
   font-weight: 700;
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 
 .invitation-price:hover {
@@ -130,6 +130,7 @@
 }
 
 .invitation-toggle {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -282,6 +283,6 @@
   }
 
   .invitation-price {
-    margin: 10px 0;
+    /* margin: 10px 0; */
   }
 }

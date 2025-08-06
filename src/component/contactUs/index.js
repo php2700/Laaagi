@@ -100,16 +100,16 @@ export const ContactUs = () => {
                     <div className="contact-us-header">Let's Talk with Us</div>
                     <div className="contact-us-desc">Have Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.</div>
                     <div className="contact-us-content" >
-                        <img src={locationIcon} />
-                        <div>&nbsp;1055 Arthur ave Elk Groot, 67.India</div>
+                        <img src={locationIcon} className="contact-icons" />
+                        <div>1055 Arthur ave Elk Groot, 67.India</div>
                     </div>
                     <div className="contact-us-content" >
-                        <img src={mobileIcon} />
-                        <div>&nbsp; +1 234 678 9108 99</div>
+                        <img src={mobileIcon} className="contact-icons" />
+                        <div>+1 234 678 9108 99</div>
                     </div>
                     <div className="contact-us-mail" >
-                        <img src={mailIcon} />
-                        <div>&nbsp;contact@laaagi.com</div>
+                        <img src={mailIcon} className="contact-icons" id="mail" />
+                        <div>contact@laaagi.com</div>
                     </div>
                 </div>
                 <div >
@@ -153,7 +153,7 @@ export const ContactUs = () => {
                             <textarea value={desc} onChange={(e) => {
                                 setDesc(e.target.value)
                                 setError({ ...error, desc: '' })
-                            }} placeholder="Your Message" ></textarea>
+                            }} placeholder="Your Message" className="contactarea" ></textarea>
                             <div className="error-color">{error?.desc || ''}</div>
                         </div>
                         <div><button type="submit">Send Message</button></div>

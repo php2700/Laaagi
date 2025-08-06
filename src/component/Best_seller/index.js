@@ -93,7 +93,7 @@ export const Best_seller = () => {
                             <div className='best-seller-img-parent' onClick={() => handleView(item)}>
                                 <img className='best-seller-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
                             </div>
-                            <div className='best-seller-img-text'>{name}</div>
+                            <div  className='best-seller-img-text' onClick={() => handleView(item)}>{name}</div>
                         </div>
                     )
                 })}

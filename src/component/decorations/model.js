@@ -44,7 +44,7 @@ export const Model = ({ open, onClose, data }) => {
         }
 
         if (!mobile) {
-            newError.mobile = 'Phone number is required.';
+            newError.mobile = 'Mobile number is required.';
         } else if (!/^\d+$/.test(mobile)) {
             newError.mobile = 'Mobile number must contain digits only.';
         } else if (mobile.length < 10) {
@@ -137,7 +137,7 @@ export const Model = ({ open, onClose, data }) => {
                             <div className='error-color'>{error?.email || ''}</div>
                         </div>
                         <div>
-                            <input type="text" placeholder="Phone Number*" value={mobile} onChange={(e) => {
+                            <input type="text" placeholder="Mobile Number*" value={mobile} onChange={(e) => {
                                 const newValue = e.target.value;
                                 if (newValue?.length <= 10) {
                                     setMobile(newValue)

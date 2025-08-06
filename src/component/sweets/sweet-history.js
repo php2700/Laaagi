@@ -68,7 +68,7 @@ export const ViewSweetHistory = () => {
                             <th style={{ width: '20%' }}>Name </th>
                             <th >mobile </th>
                             <th >Address </th>
-                            <th>WEIHGT</th>
+                            <th>WEIGHT</th>
                             <th>unit</th>
                             <th>pincode</th>
                             <th>PAYMENT_DATE</th>

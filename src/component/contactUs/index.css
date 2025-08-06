@@ -12,9 +12,28 @@
   object-fit: cover;
   max-height: 496px;
 }
+.contact-icons {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    vertical-align: middle;
+    display: block;
+}
+.contactarea{
+  
+    padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  min-height: 100px;
+  resize: vertical;
+  width: 100%;
+  font-family: inherit;
+}
+
 
 .contact-us-top-img {
-  margin-top: 20px;
+  margin-top: 0px;
   width: 100%;
 }
 .contact-us-top-img img {
@@ -59,6 +78,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+#mail{
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
 }
 
 .contact-us-content img,

@@ -17,12 +17,16 @@
   font-size: 18px;
   cursor: pointer;
 }
+#cursor{
+  cursor: pointer;
+}
 .best-seller-img-list {
   display: flex;
   gap: 30px;
   justify-content: flex-start;
   position: relative;
   align-items: center;
+  cursor: pointer;
 }
 .best-seller-left-icon {
   display: flex;
@@ -60,6 +64,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  cursor: pointer;
 }
 .best-seller-wrapper:hover {
   cursor: pointer;
@@ -79,9 +84,11 @@
   text-align: center;
   margin: 10px 3px;
   min-height: 70px;
+  cursor: pointer;
 }
 
 .best-seller-img-parent {
+  cursor: pointer;
   width: 100%;
 }
 
@@ -124,6 +131,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    cursor: pointer;
   }
 }
 
