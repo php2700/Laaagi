@@ -38,70 +38,132 @@ export const Add_Guest = () => {
         }
     }
 
+    // const validate = () => {
+    //     const newError = {};
+    //     if (!name?.trim()) {
+    //         newError.name = 'Name is required.'
+    //     }
+    //     else if (name?.length < 3) {
+    //         newError.name = 'Min 3 character required.'
+    //     }
+
+    //     if (!guestNo) {
+    //         newError.guestNo = 'Number of Guest is required.'
+    //     }
+    //     else if (!/^\d+$/.test(guestNo)) {
+    //         newError.guestNo = 'Guestno number must contain digits only.';
+    //     }
+
+    //     if (!mobile) {
+    //         newError.mobile = 'Mobile number is required.';
+    //     } else if (!/^\d+$/.test(mobile)) {
+    //         newError.mobile = 'Mobile number must contain digits only.';
+    //     } else if (mobile.length < 10) {
+    //         newError.mobile = 'Mobile number must be at least 10 digits.';
+    //     } else if (mobile.length > 12) {
+    //         newError.mobile = 'Mobile number must not exceed 12 digits.';
+    //     }
+
+    //     if (!email) {
+    //         newError.email = 'Email is required.'
+    //     } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+    //         newError.email = 'Email not valid.'
+    //     }
+
+    //     if (!category?.trim())
+    //         newError.category = 'Category is required.'
+
+    //     if (!selectRadio)
+    //         newError.selectRadio = 'Please select address.'
+
+    //     if (openAddress) {
+    //         // Address: letters + numbers + special characters (basic)
+    //         if (!address?.trim()) {
+    //             newError.address = 'Please add address.';
+    //         } else if (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address)) {
+    //             newError.address = 'Only letters, numbers, and basic special characters allowed.';
+    //         } else if (address.length < 3) {
+    //             newError.address = 'Minimum 3 characters required.';
+    //         }
+
+    //         if (!pincode) {
+    //             newError.pincode = 'Please enter pinCode.'
+    //         } else if (!/^[0-9]+$/.test(pincode)) {
+    //             newError.pincode = 'Only accept number.'
+    //         } else if (!pincode?.trim()) {
+    //             newError.pincode = 'Please enter pincode.'
+    //         }
+    //         else if (pincode?.length != 6) {
+    //             newError.pincode = 'Please enter valid pincode.'
+    //         }
+    //     }
+
+    //     setError(newError)
+    //     return Object.keys(newError)?.length == 0;
+
+    // }
     const validate = () => {
-        const newError = {};
-        if (!name?.trim()) {
-            newError.name = 'Name is required.'
-        }
-        else if (name?.length < 3) {
-            newError.name = 'Min 3 character required.'
-        }
+    const newError = {};
 
-        if (!guestNo) {
-            newError.guestNo = 'Number of Guest is required.'
-        }
-        else if (!/^\d+$/.test(guestNo)) {
-            newError.guestNo = 'Guestno number must contain digits only.';
-        }
-
-        if (!mobile) {
-            newError.mobile = 'Mobile number is required.';
-        } else if (!/^\d+$/.test(mobile)) {
-            newError.mobile = 'Mobile number must contain digits only.';
-        } else if (mobile.length < 10) {
-            newError.mobile = 'Mobile number must be at least 10 digits.';
-        } else if (mobile.length > 12) {
-            newError.mobile = 'Mobile number must not exceed 12 digits.';
-        }
-
-        if (!email) {
-            newError.email = 'Email is required.'
-        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-            newError.email = 'Email not valid.'
-        }
-
-        if (!category?.trim())
-            newError.category = 'Category is required.'
-
-        if (!selectRadio)
-            newError.selectRadio = 'Please select address.'
-
-        if (openAddress) {
-          // Address: letters + numbers + special characters (basic)
-if (!address?.trim()) {
-    newError.address = 'Please add address.';
-} else if (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address)) {
-    newError.address = 'Only letters, numbers, and basic special characters allowed.';
-} else if (address.length < 3) {
-    newError.address = 'Minimum 3 characters required.';
-}
-
-            if (!pincode) {
-                newError.pincode = 'Please enter pinCode.'
-            } else if (!/^[0-9]+$/.test(pincode)) {
-                newError.pincode = 'Only accept number.'
-            } else if (!pincode?.trim()) {
-                newError.pincode = 'Please enter pincode.'
-            }
-            else if (pincode?.length != 6) {
-                newError.pincode = 'Please enter valid pincode.'
-            }
-        }
-
-        setError(newError)
-        return Object.keys(newError)?.length == 0;
-
+    // Validate name
+    if (!name?.trim()) {
+        newError.name = 'Name is required.';
+    } else if (name.length < 3) {
+        newError.name = 'Min 3 characters required.';
     }
+
+    // Validate mobile
+    if (!mobile) {
+        newError.mobile = 'Mobile number is required.';
+    } else if (!/^\d+$/.test(mobile)) {
+        newError.mobile = 'Mobile number must contain digits only.';
+    } else if (mobile.length < 10) {
+        newError.mobile = 'Mobile number must be at least 10 digits.';
+    } else if (mobile.length > 12) {
+        newError.mobile = 'Mobile number must not exceed 12 digits.';
+    }
+
+    // Other fields are optional - validate only if they have a value
+
+    // Optional: guestNo
+    if (guestNo && !/^\d+$/.test(guestNo)) {
+        newError.guestNo = 'Guest number must contain digits only.';
+    }
+
+    // Optional: email
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+        newError.email = 'Email not valid.';
+    }
+
+    // Optional: category
+    if (category && !category.trim()) {
+        newError.category = 'Category is invalid.';
+    }
+
+    // Optional: selectRadio
+    if (selectRadio && !selectRadio.trim()) {
+        newError.selectRadio = 'Invalid address selection.';
+    }
+
+    // Optional: address and pincode (only if openAddress is true)
+    if (openAddress) {
+        if (address && (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address) || address.length < 3)) {
+            newError.address = 'Invalid address.';
+        }
+
+        if (pincode) {
+            if (!/^\d+$/.test(pincode)) {
+                newError.pincode = 'Only digits allowed in pincode.';
+            } else if (pincode.length !== 6) {
+                newError.pincode = 'Pincode must be 6 digits.';
+            }
+        }
+    }
+
+    setError(newError);
+    return Object.keys(newError).length === 0;
+};
+
     const handleSumbit = async (e) => {
         e.preventDefault();
 

@@ -14,7 +14,7 @@ export const DemoVideo = () => {
 
     const onClose = () => {
         setShowDemo(false)
-        navigate('/');
+        // navigate('');
     }
 
     useEffect(() => {

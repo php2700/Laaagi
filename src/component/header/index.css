@@ -225,8 +225,8 @@
   line-height: 100%;
   letter-spacing: 0%;
   font-size: 16px;
-  height: 260px;
-  width: 125px;
+  height: 350px;
+  width: 260px;
   position: absolute;
   top: 100%;
   right: 0;
@@ -239,7 +239,12 @@
   min-width: 150px;
   margin-top: 5px;
 }
-
+.user-dropdown-menu a + a {
+  margin-top: 18px;      /* adds vertical space between items */
+}
+.user-dropdown-menu > *:not(:first-child) {
+  margin-top: 18px;
+}
 .user-dropdown-menu a,
 .user-dropdown-menu button {
   display: block;
