@@ -213,17 +213,17 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                     </div>
 
                     {/* Address */}
-                   <input
-  type="text"
-  placeholder="Address"
-  className="modalinputs"
-  value={address}
-  onChange={(e) => {
-    const val = e.target.value;
-    setAddress(val); // ✔️ Accepts all characters
-    setError((prev) => ({ ...prev, address: '' }));
-  }}
-/>
+                    <input
+                        type="text"
+                        placeholder="Address"
+                        className="modalinputs"
+                        value={address}
+                        onChange={(e) => {
+                            const val = e.target.value;
+                            setAddress(val); // ✔️ Accepts all characters
+                            setError((prev) => ({ ...prev, address: '' }));
+                        }}
+                    />
 
 
 

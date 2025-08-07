@@ -232,7 +232,7 @@ export const Header = () => {
                                         <Link to='/payment-history' onClick={() => setIsUserDropdownOpen(false)}>Payment History</Link>
                                         <Link to='/saved-cart-list' onClick={() => setIsUserDropdownOpen(false)}>Save For Later</Link>
                                         <Link to='/sample-demo' onClick={() => setIsUserDropdownOpen(false)}>Demo</Link>
-                                        <button onClick={() => { setOpenLogoutModal(true); setIsUserDropdownOpen(false); }}>Logout</button>
+                                        <button id="Logout " onClick={() => { setOpenLogoutModal(true); setIsUserDropdownOpen(false); }}>Logout</button>
                                     </div>
                                 )}
                             </>
