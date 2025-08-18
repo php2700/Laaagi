@@ -99,6 +99,12 @@ export const Sweets = () => {
     }, [category, location.state?.filter, selectedPrice, search]);
 
 
+        useEffect(() => {
+        if (sweetDropDown == '') return
+        setCategory(sweetDropDown);
+    }, [sweetDropDown])
+
+
     const handleCategorySelect = (ele) => {
         setCategory(ele?.category);
         setSelectedPrice('')

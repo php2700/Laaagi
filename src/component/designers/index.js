@@ -57,6 +57,10 @@ export const Designers = () => {
         designerLsit()
     }, [category])
 
+    useEffect(() => {
+        if (designDropDown == '') return
+        setCategory(designDropDown);
+    }, [designDropDown])
 
 
     const handleUrl = (ele) => {
