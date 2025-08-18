@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './index.css'
 import { Model } from './model';
 import axios from 'axios';
+import { AuthContext } from '../context';
 
 const decorationHeader = [
     { name: 'Marriage', category: 'Marriage' },
@@ -12,9 +13,12 @@ const decorationHeader = [
 ]
 
 export const Decorations = () => {
+    const context = useContext(AuthContext);
+    const decorationDropDown = context?.decorationDropDown;
+    const setDecorationDropDown = context?.setDecorationDropDown
     const [open, setOpen] = useState(false)
     const [imgData, setImgData] = useState();
-    const [category, setCategory] = useState('Marriage')
+    const [category, setCategory] = useState(decorationDropDown || 'Marriage')
     const [decorationData, setDecorationData] = useState([])
 
     const getDecorationList = () => {
@@ -48,9 +52,19 @@ export const Decorations = () => {
         setOpen(false)
     }
 
+    useEffect(() => {
+        if (decorationDropDown == '') return
+        setCategory(decorationDropDown);
+    }, [decorationDropDown])
+
+
     const handleUrl = (ele) => {
         setCategory(ele?.category);
+        if (decorationDropDown) {
+            setDecorationDropDown('')
+        }
     }
+
 
     return (
         <div className='decorations' >

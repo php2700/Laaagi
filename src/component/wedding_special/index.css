@@ -52,6 +52,7 @@
 .wedding-img {
   aspect-ratio: 4/3;
   width: 100%;
+  border-radius: 10px;
 }
 .wedding-img-wrapper {
   display: flex;

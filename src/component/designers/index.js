@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import './index.css'
 import axios from 'axios';
 import { Model } from './Model';
+import { AuthContext } from '../context';
 
 const designerHeader = [
     { name: 'Bridge', category: 'Bridge' },
@@ -12,7 +13,10 @@ const designerHeader = [
 ]
 
 export const Designers = () => {
-    const [category, setCategory] = useState('Bridge')
+    const context = useContext(AuthContext)
+    const designDropDown = context?.designDropDown;
+    const setDesignDropDown = context?.setDesignDropDown;
+    const [category, setCategory] = useState(designDropDown || 'Bridge')
     const [open, setOpen] = useState(false)
     const [imgData, setImgData] = useState();
     const [data, setData] = useState([])
@@ -53,8 +57,13 @@ export const Designers = () => {
         designerLsit()
     }, [category])
 
+
+
     const handleUrl = (ele) => {
         setCategory(ele?.category);
+        if (designDropDown) {
+            setDesignDropDown('')
+        }
     }
 
     return (

@@ -23,6 +23,8 @@ export const Sweets = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const context = useContext(AuthContext);
+    const sweetDropDown = context?.sweetDropDown;
+    const setSweetDropDown = context?.setSweetDropDown;
     const sweetsInfo = context?.setSweetsInfo
     const isInvitationSweets = location.state?.data;
     const invitationId = location.state?.invitationId;
@@ -36,7 +38,7 @@ export const Sweets = () => {
     const [invitationselectSweet, setInvitationSelectSweet] = useState(null);
     const [orderId, setOrderId] = useState(null);
     const [data, setData] = useState([]);
-    const [category, setCategory] = useState(searchCategory || INITIAL_CATEGORY);
+    const [category, setCategory] = useState(searchCategory || sweetDropDown || INITIAL_CATEGORY);
     const [isSpecialView, setIsSpecialView] = useState(false);
     const [pageHeading, setPageHeading] = useState("Sweets");
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
@@ -100,6 +102,9 @@ export const Sweets = () => {
     const handleCategorySelect = (ele) => {
         setCategory(ele?.category);
         setSelectedPrice('')
+        if (sweetDropDown) {
+            setSweetDropDown('')
+        }
     };
 
     const handleSweetForInvitation = (item) => {

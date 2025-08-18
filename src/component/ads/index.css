@@ -1,5 +1,5 @@
 .ads {
-  padding: 5px;
+  padding: 10px 50px;
   margin-top: 25px;
 }
 
@@ -17,18 +17,21 @@
 .ads-first-row-img {
   aspect-ratio: 21/9;
   width: 100%;
+  border-radius: 10px;
 }
 .ads-second-row-img {
   width: 100%;
+  border-radius: 10px;
   aspect-ratio: 16/4;
+  border-radius: 10px;
 }
 
 .ads-center {
-  width: 40%;
+  width: 47%;
 }
 
 .ads-second-center {
-  width: 85%;
+  width: 100%;
 }
 
 @media (max-width: 850px) {
@@ -75,9 +78,9 @@
   }
 
   .ads-second-row-img {
-  width: 100%;
-  aspect-ratio: 16/7;
-}
+    width: 100%;
+    aspect-ratio: 16/7;
+  }
 
   .ads-second-center {
     width: 90%;

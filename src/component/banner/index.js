@@ -10,6 +10,7 @@ export const Banner = () => {
 
     const bannerlist = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/banner_list`).then((res) => {
+            console.log(res?.data?.banner, '333')
             setData(res?.data?.banner);
         }).catch((error) => {
             console.log(error)
@@ -33,13 +34,36 @@ export const Banner = () => {
     return (
         <div className="banner">
             {
-                <div className="banner-img">
+                <div className="banner-img" style={{ position: 'relative' }}>
+
                     <img
                         style={{
                             width: '100%',
                             aspectRatio: 16 / 4
                         }}
-                        alt="Banner" src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`} />
+                        alt="Banner" src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`}
+                    />
+                    <div
+                        style={{
+                            position: 'absolute',
+                            bottom: '10px',
+                            right: '10px',
+                            backgroundColor: 'rgba(0,0,0,0.6)',
+                            color: 'white',
+                            padding: '5px 10px',
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                        }}
+                    >
+                        <a
+                            href={data[index]?.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link"
+                        >
+                            {data[index]?.link}
+                        </a>
+                    </div>
                     <div className="icon-wrapper">
                         {
                             data?.map((ele, i) => (

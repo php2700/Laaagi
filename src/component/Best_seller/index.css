@@ -76,6 +76,7 @@
   /* height: 340px; */
   aspect-ratio: 4/3;
   cursor: pointer;
+  border-radius: 10px;
 }
 .best-seller-img-text {
   font-size: 20px;

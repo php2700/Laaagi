@@ -11,6 +11,7 @@ import { Logout } from './logout';
 import defaultImg from "../../assets/login/default-profile.png";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+
 export const Header = () => {
     const navigate = useNavigate();
     const context = useContext(AuthContext);
@@ -18,6 +19,10 @@ export const Header = () => {
     const token = context?.token || localStorage.getItem('token')
     const headerUpdate = context?.headerUpdate;
     const setHeaderUpdate = context?.setHeaderUpdate;
+    const setInvitationDropdown = context?.setInvitationDropdown;
+    const setSweetDropDown = context?.setSweetDropDown;
+    const setDecorationDropDown = context?.setDecorationDropDown;
+    const setDesignDropDown = context?.setDesignDropDown;
     const userId = localStorage.getItem("_id");
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -98,19 +103,19 @@ export const Header = () => {
             //     ))}
             // </ul>
             <ul className="category-item-list">
-  {clothesDisplayData.map((item, index) => (
-    <li
-      key={item.id}
-      onClick={() => {
-        navigate(item.path);
-        setIsSearchDropdownOpen(false);
-      }}
-      className={index === highlightedIndex ? 'highlighted' : ''}
-    >
-      {item.name}
-    </li>
-  ))}
-</ul>
+                {clothesDisplayData.map((item, index) => (
+                    <li
+                        key={item.id}
+                        onClick={() => {
+                            navigate(item.path);
+                            setIsSearchDropdownOpen(false);
+                        }}
+                        className={index === highlightedIndex ? 'highlighted' : ''}
+                    >
+                        {item.name}
+                    </li>
+                ))}
+            </ul>
 
         );
     };
@@ -144,6 +149,7 @@ export const Header = () => {
     const handleGuestClick = () => {
         navigate('/signup');
     };
+
     return (
         <div style={{
             position: 'sticky', zIndex: '999', backgroundColor: '#fff',
@@ -163,43 +169,43 @@ export const Header = () => {
                         value={searchQuery}
                     /> */}
                     <input
-  ref={inputRef}
-  type="search"
-  placeholder="Search"
-  onChange={(e) => {
-    setSearchQuery(e.target.value);
-    setHighlightedIndex(-1); // Reset selection
-  }}
-  onKeyDown={(e) => {
-    if (!isSearchDropdownOpen) return;
+                        ref={inputRef}
+                        type="search"
+                        placeholder="Search"
+                        onChange={(e) => {
+                            setSearchQuery(e.target.value);
+                            setHighlightedIndex(-1); // Reset selection
+                        }}
+                        onKeyDown={(e) => {
+                            if (!isSearchDropdownOpen) return;
 
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setHighlightedIndex((prev) =>
-        prev < clothesDisplayData.length - 1 ? prev + 1 : 0
-      );
-    }
+                            if (e.key === 'ArrowDown') {
+                                e.preventDefault();
+                                setHighlightedIndex((prev) =>
+                                    prev < clothesDisplayData.length - 1 ? prev + 1 : 0
+                                );
+                            }
 
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setHighlightedIndex((prev) =>
-        prev > 0 ? prev - 1 : clothesDisplayData.length - 1
-      );
-    }
+                            if (e.key === 'ArrowUp') {
+                                e.preventDefault();
+                                setHighlightedIndex((prev) =>
+                                    prev > 0 ? prev - 1 : clothesDisplayData.length - 1
+                                );
+                            }
 
-    if (e.key === 'Enter') {
-      if (highlightedIndex >= 0) {
-        navigate(clothesDisplayData[highlightedIndex].path);
-        setIsSearchDropdownOpen(false);
-      }
-    }
+                            if (e.key === 'Enter') {
+                                if (highlightedIndex >= 0) {
+                                    navigate(clothesDisplayData[highlightedIndex].path);
+                                    setIsSearchDropdownOpen(false);
+                                }
+                            }
 
-    if (e.key === 'Escape') {
-      setIsSearchDropdownOpen(false);
-    }
-  }}
-  value={searchQuery}
-/>
+                            if (e.key === 'Escape') {
+                                setIsSearchDropdownOpen(false);
+                            }
+                        }}
+                        value={searchQuery}
+                    />
 
                     <img src={seacrh} alt="search" />
                     {isSearchDropdownOpen && (
@@ -211,7 +217,12 @@ export const Header = () => {
 
                 <div className='Laaagi'>
                     <Link to='/'><img src={laaagiLogo} alt="logo" className='laaagi-img' /></Link>
-                    <div><Link to='/'>Laaagi</Link></div>
+                    <div><Link to='/'
+                        style={{
+                            fontFamily: "'Dancing Script', cursive",
+                            fontSize: '40px'
+                        }}
+                    >Laaagi</Link></div>
                 </div>
 
                 <div className='topbar-right'>
@@ -253,23 +264,70 @@ export const Header = () => {
                 </div>
             )}
             <nav style={{ color: 'red' }} className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
-                <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
-                    style={{
-                        color: '#ffd700', fontSize: '18px'
-                    }}>Invitations</NavLink>
-                <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
-                    className={({ isActive }) => isActive ? 'active-link' : 'default'}
-                    style={{
-                        color: '#ffd700', fontSize: '18px'
-                    }}>Sweets</NavLink>
-                <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
-                    style={{
-                        color: '#ffd700', fontSize: '18px'
-                    }}>Decorations</NavLink>
-                <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
-                    style={{
-                        color: '#ffd700', fontSize: '18px'
-                    }}>Designer</NavLink>
+                <div className="nav-item">
+
+                    <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                        style={{
+                            color: '#ffd700', fontSize: '18px'
+                        }}>Invitations</NavLink>
+                    {!isMobile && (
+                        <div className="dropdown">
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation on Box') }} >Invitation With Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation') }} >Only Invitation</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Wooden Box') }} >Invitation on Wooden Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Glass Box') }}>Invitation on Glass Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Misc Invitation') }}>Misc Invitation</NavLink>
+                        </div>
+                    )}
+                </div>
+                <div className="nav-item">
+                    <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
+                        className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                        style={{
+                            color: '#ffd700', fontSize: '18px'
+                        }}>Sweets</NavLink>
+
+                    {!isMobile && (
+                        <div className="dropdown">
+                            <NavLink to="/sweets" onClick={() => { setSweetDropDown('Indian Sweets') }} >Indian Sweets</NavLink>
+                            <NavLink to="/sweets" onClick={() => { setSweetDropDown('Innovative Fusions') }} >Innovative Fusions</NavLink>
+                            <NavLink to="/sweets" onClick={() => { setSweetDropDown('Savouries') }} >Savouries</NavLink>
+                            <NavLink to="/sweets" onClick={() => { setSweetDropDown('Dry Fruits') }}>Dry Fruits</NavLink>
+                        </div>
+                    )}
+                </div>
+                <div className="nav-item">
+                    <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                        style={{
+                            color: '#ffd700', fontSize: '18px'
+                        }}>Decorations</NavLink>
+
+                    {!isMobile && (
+                        <div className="dropdown">
+                            <NavLink to="/decorations" onClick={() => { setDecorationDropDown('Marriage') }} >Marriage</NavLink>
+                            <NavLink to="/decorations" onClick={() => { setDecorationDropDown('BirthDay') }} >Birthday</NavLink>
+                            <NavLink to="/decorations" onClick={() => { setDecorationDropDown('Mehndi') }} >Mehndi</NavLink>
+                            <NavLink to="/decorations" onClick={() => { setDecorationDropDown('Room Decor') }}>Room Decor</NavLink>
+                            <NavLink to="/decorations" onClick={() => { setDecorationDropDown('Party') }}>Party</NavLink>
+                        </div>
+                    )}
+                </div>
+                <div className="nav-item">
+                    <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                        style={{
+                            color: '#ffd700', fontSize: '18px'
+                        }}>Designer</NavLink>
+                    {!isMobile && (
+                        <div className="dropdown">
+                            <NavLink to="/designers" onClick={() => { setDesignDropDown('Bridge') }} >Bridge</NavLink>
+                            <NavLink to="/designers" onClick={() => { setDesignDropDown('Groom') }} >Groom</NavLink>
+                            <NavLink to="/designers" onClick={() => { setDesignDropDown('Suits') }} >Suits</NavLink>
+                            <NavLink to="/designers" onClick={() => { setDesignDropDown('Other') }}>Other</NavLink>
+                        </div>
+                    )}
+                </div>
+
+
                 <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
                         color: '#ffd700', fontSize: '18px'

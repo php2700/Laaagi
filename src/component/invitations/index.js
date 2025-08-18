@@ -19,17 +19,18 @@ const invitationHeader = [
 
 export const Invitation = () => {
     const context = useContext(AuthContext);
+    const invitationDropdown = context?.invitationDropdown;
+    const setInvitationDropdown=context?.setInvitationDropdown;
     const setInvitationsweet = context.setSelectSweet;
     const setPaymentHistory = context?.setPaymentHistory;
     const location = useLocation();
     const searchCategory = location.state?.category;
-
     const navigate = useNavigate()
     const [selectedPrice, setSelectedPrice] = useState('');
     const [data, setData] = useState([])
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
     const [menuOpen, setMenuOpen] = useState(false)
-    const [category, setCategory] = useState(searchCategory || 'Invitation On Box')
+    const [category, setCategory] = useState(searchCategory || invitationDropdown || 'Invitation On Box')
 
 
     useEffect(() => {
@@ -81,6 +82,9 @@ export const Invitation = () => {
 
     const handleUrl = (ele) => {
         setCategory(ele?.category);
+        if(invitationDropdown){
+            setInvitationDropdown('')
+        }
     }
 
     return (

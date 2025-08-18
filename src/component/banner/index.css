@@ -6,6 +6,16 @@
   width: 100%;
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: rgb(20, 148, 222);
+}
+
 .icon-wrapper {
   position: absolute;
   bottom: 50px;

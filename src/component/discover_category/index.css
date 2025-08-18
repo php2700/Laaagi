@@ -1,5 +1,5 @@
 .discover-category {
-  padding: 10px 20px;
+  padding: 10px 50px;
 }
 .discover-category-heading {
   text-align: center;
@@ -26,6 +26,7 @@
   border: 1px solid #ccc;
   aspect-ratio: 4/3;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .discover-category-img-text {
