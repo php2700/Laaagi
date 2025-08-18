@@ -20,7 +20,7 @@ const invitationHeader = [
 export const Invitation = () => {
     const context = useContext(AuthContext);
     const invitationDropdown = context?.invitationDropdown;
-    const setInvitationDropdown=context?.setInvitationDropdown;
+    const setInvitationDropdown = context?.setInvitationDropdown;
     const setInvitationsweet = context.setSelectSweet;
     const setPaymentHistory = context?.setPaymentHistory;
     const location = useLocation();
@@ -80,9 +80,15 @@ export const Invitation = () => {
         navigate(`/invitation-detail/${ele?._id}/${url}`)
     }
 
+    useEffect(() => {
+        if (invitationDropdown == '') return
+        setCategory(invitationDropdown);
+    }, [invitationDropdown])
+
+
     const handleUrl = (ele) => {
         setCategory(ele?.category);
-        if(invitationDropdown){
+        if (invitationDropdown) {
             setInvitationDropdown('')
         }
     }
