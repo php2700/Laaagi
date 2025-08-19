@@ -12,11 +12,25 @@ import { Review } from "../review"
 import { Shop } from "../shop"
 import { WeddingSpecial } from "../wedding_special"
 import { useEffect, useRef } from "react"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 // import Loading from "../Loding.js"
 import { Lodings } from "../loder/Loding.js"
+import { Myannimation } from "../annimation/homeannimation.js"
+const BannerSection = () => <div style={{ height: '100vh', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h1>Hero Section</h1></div>;
+const AboutSection = () => <div style={{ height: '80vh', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>About Us Section</h2></div>;
+const WeddingSpecialSection = () => <div style={{ height: '80vh', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Our Services</h2></div>;
+const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Contact Us</h2></div>;
+
+
 
 export const Dashboard = () => {
   const token = localStorage.getItem('token');
+ useEffect(() => {
+    AOS.init({
+      duration: 1000 // एनिमेशन की अवधि
+    });
+  }, []);
 
   const aboutRef = useRef(null);
   useEffect(() => {
@@ -44,21 +58,43 @@ export const Dashboard = () => {
       window.removeEventListener("scrollToAbout", scrollToAbout);
     };
   }, []);
+  
 
 
   return (
     <>
+      
+    <Myannimation />
       <Lodings />
+
+      <Myannimation direction="right">
       <Banner />
+      </Myannimation>
+
+        <Myannimation direction="left">
       <WeddingSpecial />
+        </Myannimation>
+
       {/* <Dry_Fruit_Treat /> */}
+      <Myannimation direction="right">
+        <Dry_Fruit_Treat />
+      </Myannimation>
+      <Myannimation direction="up">
       <Best_seller />
+      </Myannimation>
+
       {token && <Recent_view />}
       <DiscoverCategory />
       <InvitationBox />
+      <Myannimation direction="down">
       <Ads />
+      </Myannimation>
+      <Myannimation direction="up">
       <About ref={aboutRef} />
+      </Myannimation>
+      <Myannimation direction="left">
       <Review />
+      </Myannimation>
       <Shop />
       {/* <GuestList/> */}
     </>
