@@ -26,6 +26,7 @@
 .footer-left-header {
   font-weight: 700;
   font-size: 45px;
+  margin-left: 4px;
 }
 .footer-left-location {
   display: flex;

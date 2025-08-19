@@ -59,6 +59,7 @@ import { TermCondition } from './component/termCondition';
 import { useOnlineStatus } from './component/context/custom';
 import { Offline } from './component/offline';
 
+
 function App() {
   const isOnline = useOnlineStatus();
 

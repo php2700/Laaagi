@@ -44,22 +44,25 @@ export const Footer = () => {
                     <div className='footer-left-bar-align'>
                         <div className='footer-left-bar'>
                             <img className='footer-left-logo' src={logo} />
-                            <div className='footer-left-header'>Laaagi</div>
+                            <div className='footer-left-header' style={{
+                                fontFamily: "'Dancing Script', cursive",
+
+                            }}>Laaagi</div>
                         </div>
                         <div className='footer-left-location'>
                             <img className='footer-left-icon' src={locationIcon} />
                             <div className='footer-left-location-text'>&nbsp; Address</div>
-                            <div className='footer-left-location-right'>: Indore M.P.</div>
+                            <div className='footer-left-location-right'>: Main Market, Sur Singh, Tarn Taran, Punjab-143302</div>
                         </div>
                         <div className='footer-left-call'>
                             <img className='footer-left-call-icon' src={callIcon} />
                             <div className='footer-left-call-text'>&nbsp; Call Us</div>
-                            <div className='footer-left-call-right'>: 1233-777</div>
+                            <div className='footer-left-call-right'>: 918699991906</div>
                         </div>
                         <div className='footer-left-email'>
                             <img className='footer-left-email-icon' src={emailIcon} />
                             <div className='footer-left-email-text'>&nbsp; Email</div>
-                            <div className='footer-left-email-right'>:support@laaagi.com</div>
+                            <div className='footer-left-email-right'>: yourpersonallaaagi@gmail.com</div>
                         </div>
                         <div className='footer-left-work'>
                             <img className='footer-left-work-icon' src={timeIcon} />
@@ -84,8 +87,8 @@ export const Footer = () => {
                     <div className='footer-left-middle'>
                         <div className='footer-left-middle-header'>Help Center</div>
                         <div className='footer-left-middle-text' onClick={handleHistory}><Link to='/payment-history'>Payments</Link></div>
-                        <div className='footer-left-middle-text'><Link onClick={scrolltop}  to='/payment-refund'>Refund</Link></div>
-                        <div className='footer-left-middle-text'><Link onClick={scrolltop}  to='/term-condition'>Terms and Conditions</Link></div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/payment-refund'>Refund</Link></div>
+                        <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/term-condition'>Terms and Conditions</Link></div>
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/shipping'>Shipping</Link></div>
                         <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/privacy-policy'>Privacy Policy</Link></div>
                     </div>
