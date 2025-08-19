@@ -65,6 +65,7 @@
   justify-content: center;
   gap: 10px;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
 }
 .best-seller-wrapper:hover {
   cursor: pointer;

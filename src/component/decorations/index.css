@@ -37,7 +37,7 @@
 
 .decorations-content-img {
   box-shadow: 0 2px 5px rgba(117, 65, 65, 0.3);
-  border-radius: 6px;
+  border-radius: 10px 10px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,7 +85,7 @@
   aspect-ratio: 4 / 3;
   cursor: pointer;
   width: 100%;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
 }
 .active-url {
   text-decoration: underline !important;
