@@ -48,20 +48,20 @@ export const Banner = () => {
                             position: 'absolute',
                             bottom: '10px',
                             right: '10px',
-                            backgroundColor: 'rgba(0,0,0,0.6)',
+                            // backgroundColor: 'rgba(0,0,0,0.6)',
                             color: 'white',
-                            padding: '5px 10px',
+                            // padding: '5px 10px',
                             borderRadius: '6px',
-                            fontSize: '14px',
+                            fontSize: '15px',
                         }}
                     >
                         <a
                             href={data[index]?.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="link"
+                            className="order-btn"
                         >
-                            {data[index]?.link}
+                            Order Now
                         </a>
                     </div>
                     <div className="icon-wrapper">

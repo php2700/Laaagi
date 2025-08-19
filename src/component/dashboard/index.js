@@ -12,6 +12,8 @@ import { Review } from "../review"
 import { Shop } from "../shop"
 import { WeddingSpecial } from "../wedding_special"
 import { useEffect, useRef } from "react"
+// import Loading from "../Loding.js"
+import { Lodings } from "../loder/Loding.js"
 
 export const Dashboard = () => {
   const token = localStorage.getItem('token');
@@ -46,6 +48,7 @@ export const Dashboard = () => {
 
   return (
     <>
+      <Lodings />
       <Banner />
       <WeddingSpecial />
       {/* <Dry_Fruit_Treat /> */}

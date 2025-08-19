@@ -101,15 +101,15 @@ export const ContactUs = () => {
                     <div className="contact-us-desc">Have Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.</div>
                     <div className="contact-us-content" >
                         <img src={locationIcon} className="contact-icons" />
-                        <div>1055 Arthur ave Elk Groot, 67.India</div>
+                        <div>Main Market, Sur Singh, Tarn Taran, Punjab-143302</div>
                     </div>
                     <div className="contact-us-content" >
                         <img src={mobileIcon} className="contact-icons" />
-                        <div>+1 234 678 9108 99</div>
+                        <div>+918699991906</div>
                     </div>
                     <div className="contact-us-mail" >
                         <img src={mailIcon} className="contact-icons" id="mail" />
-                        <div>contact@laaagi.com</div>
+                        <div>yourpersonallaaagi@gmail.com</div>
                     </div>
                 </div>
                 <div >
