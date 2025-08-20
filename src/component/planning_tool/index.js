@@ -1,14 +1,290 @@
 
+// import './index.css'
+// import planningImg from '../../assets/planning/planning.jpg'
+// import { useContext, useEffect, useState } from 'react'
+// import { AuthContext } from '../context'
+// import axios from 'axios'
+// import { toast } from 'react-toastify'
+// import { Navigate, useParams } from 'react-router-dom'
+// import downArrow from "../../assets/logo/down.png";
+// import { HeaderPlanning } from './heaader_planning'
+
+
+// export const PlanningTool = () => {
+//     const context = useContext(AuthContext);
+//     const logout = context?.logout;
+//     const token = context?.token || localStorage.getItem('token')
+//     const setToken = context?.setToken;
+//     const [data, setData] = useState()
+//     const [checkedItems, setCheckedItems] = useState([]);
+//     const userId = localStorage.getItem("_id")
+//     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500)
+//     const [shouldSave, setShouldSave] = useState(false);
+//     const [category, setCategory] = useState('')
+//     const [clearToaster, setClearToaster] = useState(false)
+//     const [eventData, setEventData] = useState({})
+//     const [checkEvent, setCheckEvent] = useState([])
+//     const [planningId, setPlanningId] = useState();
+//     const [eventLoading, setEventLoading] = useState(false)
+
+
+//     const handleCheck = (data, idx, events) => {
+//         const isExist = checkedItems.includes(idx)
+//         if (isExist) {
+//             setCheckedItems(checkedItems.filter((ele) => (ele !== idx)))
+//         }
+//         else {
+//             setCheckedItems([...checkedItems, idx])
+//         }
+//     }
+
+
+//     useEffect(() => {
+//         const handleResize = () => {
+//             setIsMobile(window.innerWidth <= 500);
+//         };
+//         window.addEventListener('resize', handleResize);
+//         return () => window.removeEventListener('resize', handleResize);
+//     }, []);
+
+//     const getPlanningData = () => {
+//         if (!userId || !token) {
+//             console.warn("User ID or Token missing, cannot fetch planning data.");
+//             // Optional: redirect to login or show message
+//             // navigate('/'); 
+//             return;
+//         }
+//         // console.log(token, "planninglist")
+//         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//         })
+//             .then((res) => {
+//                 setData(res?.data?.planningData);
+//             }).catch((error) => {
+//                 const message = error?.response?.data?.Message;
+//                 if (message === 'jwt expired') {
+//                     logout()
+//                 }
+//             })
+//     }
+
+//     const getcheckedEventData = () => {
+//         if (!userId || !token) {
+//             console.warn("User ID or Token missing, cannot fetch planning data.");
+//             // navigate('/'); 
+//             return;
+//         }
+//         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/event-list/${userId}`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//             params: {
+//                 category: category,
+//             }
+//         })
+//             .then((res) => {
+//                 setEventData(res?.data?.userCheckedEvent)
+//                 setCheckedItems(res.data?.userCheckedEvent[0]?.checked || []);
+//             })
+//             .catch((error) => {
+//                 const message = error?.response?.data?.Message;
+//                 if (message === 'jwt expired') {
+//                     logout()
+//                 }
+//             })
+//             .finally(() => {
+//                 setEventLoading(false)
+//             })
+//     }
+
+//     useEffect(() => {
+//         getcheckedEventData()
+//     }, [category])
+
+//     useEffect(() => {
+//         if (token)
+//             getPlanningData()
+//     }, [token, userId])
+
+
+//     // const handleSave = () => {
+//     //     const sendEventData = {
+//     //         userId: userId,
+//     //         planningId: planningId,
+//     //         checked: checkedItems || []
+//     //     }
+//     //     axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+//     //         headers: {
+//     //             Authorization: `Bearer ${token}`
+//     //         },
+//     //     })
+//     //         .then((res) => {
+//     //             if (clearToaster) {
+//     //                 toast.success('Data Clear Successfully!', {
+//     //                     position: 'top-right'
+//     //                 })
+//     //                 setClearToaster(false)
+//     //             } else
+//     //                 toast.success('Checklist Saved Successfully!', {
+//     //                     position: 'top-right'
+//     //                 })
+//     //         }).catch((error) => {
+//     //             console.error("Error saving planning history:", error);
+//     //             toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+//     //         })
+//     // }
+//     const handleSave = () => {
+//     if (!checkedItems || checkedItems.length === 0) {
+//         toast.error('Failed to save checklist. Please select at least one item.', {
+//             position: 'top-right'
+//         });
+//         return;
+//     }
+
+//     const sendEventData = {
+//         userId: userId,
+//         planningId: planningId,
+//         checked: checkedItems
+//     };
+
+//     axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         },
+//     })
+//     .then((res) => {
+//         if (clearToaster) {
+//             toast.success('Data Clear Successfully!', {
+//                 position: 'top-right'
+//             });
+//             setClearToaster(false);
+//         } else {
+//             toast.success('Checklist Saved Successfully!', {
+//                 position: 'top-right'
+//             });
+//         }
+//     }).catch((error) => {
+//         console.error("Error saving planning history:", error);
+//         toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+//     });
+// };
+
+
+//     useEffect(() => {
+//         if (shouldSave) {
+//             handleSave();
+//             setShouldSave(false);
+//         }
+//     }, [shouldSave, checkedItems]);
+
+//     const handleClear = () => {
+//         setClearToaster(true)
+//         setCheckedItems([]);
+//         setShouldSave(true);
+//     };
+
+//     const handleEvent = (eventData) => {
+//         setCheckEvent([])
+//         setCheckedItems([])
+//         setPlanningId(eventData?._id)
+//         setCategory(eventData.category)
+//     }
+
+//     const handleHelp = (data) => {
+//         const sendEventData = {
+//             userId: userId,
+//             planningId: data?._id,
+//         }
+//         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-help`, sendEventData, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//         })
+//             .then((res) => {
+//                 if (res?.data)
+//                     toast.success('Request sent successfully!', {
+//                         position: 'top-right'
+//                     })
+//             }).catch((error) => {
+//                 console.error("Error saving planning history:", error);
+//                 toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+//             })
+//     }
+
+//     return (
+//         <>
+//             {
+//                 token ? < div >
+//                     <div className='planning-img'>
+//                         <img src={planningImg} alt="Planning" />
+//                     </div>
+
+//                     <div className='planning-check-list'>
+//                         <HeaderPlanning />
+//                         {/* <div className='planning-check-header'>Planning List</div> */}
+//                         <ol>
+//                         {data?.map((item, idx) => (
+//                             <li>
+//                             <div className='planning-list' key={idx}>
+//                                 <div>
+//                                     <label className='font-size-text' htmlFor={`checkbox-${idx}`} onClick={() => { handleEvent(item) }}>
+//                                         {item?.category}
+//                                         <img
+//                                             src={downArrow}
+//                                             alt="Open user menu"
+//                                         />
+//                                     </label>
+
+//                                     <label className='font-size-help' onClick={() => { handleHelp(item) }} > (Need Help)?
+
+//                                     </label>
+//                                 </div>
+//                                 {(category == item.category) &&
+//                                     <div>{eventData[0]?.description?.length > 0 ?
+//                                         <>
+//                                             {eventData[0]?.description?.map((item1, index) => (
+
+//                                                 <div className='planning-category-list'>
+//                                                     <input
+//                                                         type='checkbox'
+//                                                         // id={`checkbox-${idx}`}
+//                                                         onChange={() => handleCheck(item1, index, item?.category)}
+//                                                         checked={checkedItems.includes(index)}
+//                                                     />
+//                                                     <span >{item1}.</span>
+//                                                 </div>
+//                                             ))}
+//                                         </>
+//                                         :
+//                                         <div className='no-items-message'>No items available for {category}.</div>
+//                                     }
+//                                     </div>
+//                                 }
+//                             </div></li>
+//                         ))}
+//                         </ol>
+//                         < >
+//                             <div className='planning-check-save' onClick={handleSave}>Add Planning</div>
+//                             <div className='planning-check-clear' onClick={handleClear} >Clear All</div>
+//                         </>
+//                     </div>
+//                 </div > :
+//                     <Navigate to='/signup' />
+//             }
+//         </>
+//     )
+// }
 import './index.css'
 import planningImg from '../../assets/planning/planning.jpg'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import downArrow from "../../assets/logo/down.png";
 import { HeaderPlanning } from './heaader_planning'
-
 
 export const PlanningTool = () => {
     const context = useContext(AuthContext);
@@ -27,7 +303,6 @@ export const PlanningTool = () => {
     const [planningId, setPlanningId] = useState();
     const [eventLoading, setEventLoading] = useState(false)
 
-
     const handleCheck = (data, idx, events) => {
         const isExist = checkedItems.includes(idx)
         if (isExist) {
@@ -37,7 +312,6 @@ export const PlanningTool = () => {
             setCheckedItems([...checkedItems, idx])
         }
     }
-
 
     useEffect(() => {
         const handleResize = () => {
@@ -50,11 +324,8 @@ export const PlanningTool = () => {
     const getPlanningData = () => {
         if (!userId || !token) {
             console.warn("User ID or Token missing, cannot fetch planning data.");
-            // Optional: redirect to login or show message
-            // navigate('/'); 
             return;
         }
-        // console.log(token, "planninglist")
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -73,7 +344,6 @@ export const PlanningTool = () => {
     const getcheckedEventData = () => {
         if (!userId || !token) {
             console.warn("User ID or Token missing, cannot fetch planning data.");
-            // navigate('/'); 
             return;
         }
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/event-list/${userId}`, {
@@ -108,69 +378,41 @@ export const PlanningTool = () => {
             getPlanningData()
     }, [token, userId])
 
-
-    // const handleSave = () => {
-    //     const sendEventData = {
-    //         userId: userId,
-    //         planningId: planningId,
-    //         checked: checkedItems || []
-    //     }
-    //     axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`
-    //         },
-    //     })
-    //         .then((res) => {
-    //             if (clearToaster) {
-    //                 toast.success('Data Clear Successfully!', {
-    //                     position: 'top-right'
-    //                 })
-    //                 setClearToaster(false)
-    //             } else
-    //                 toast.success('Checklist Saved Successfully!', {
-    //                     position: 'top-right'
-    //                 })
-    //         }).catch((error) => {
-    //             console.error("Error saving planning history:", error);
-    //             toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
-    //         })
-    // }
     const handleSave = () => {
-    if (!checkedItems || checkedItems.length === 0) {
-        toast.error('Failed to save checklist. Please select at least one item.', {
-            position: 'top-right'
-        });
-        return;
-    }
-
-    const sendEventData = {
-        userId: userId,
-        planningId: planningId,
-        checked: checkedItems
-    };
-
-    axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-    })
-    .then((res) => {
-        if (clearToaster) {
-            toast.success('Data Clear Successfully!', {
+        if (!checkedItems || checkedItems.length === 0) {
+            toast.error('Failed to save checklist. Please select at least one item.', {
                 position: 'top-right'
             });
-            setClearToaster(false);
-        } else {
-            toast.success('Checklist Saved Successfully!', {
-                position: 'top-right'
-            });
+            return;
         }
-    }).catch((error) => {
-        console.error("Error saving planning history:", error);
-        toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
-    });
-};
 
+        const sendEventData = {
+            userId: userId,
+            planningId: planningId,
+            checked: checkedItems
+        };
+
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        })
+            .then((res) => {
+                if (clearToaster) {
+                    toast.success('Data Clear Successfully!', {
+                        position: 'top-right'
+                    });
+                    setClearToaster(false);
+                } else {
+                    toast.success('Checklist Saved Successfully!', {
+                        position: 'top-right'
+                    });
+                }
+            }).catch((error) => {
+                console.error("Error saving planning history:", error);
+                toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+            });
+    };
 
     useEffect(() => {
         if (shouldSave) {
@@ -186,6 +428,11 @@ export const PlanningTool = () => {
     };
 
     const handleEvent = (eventData) => {
+        if (category === eventData.category) {
+            // close if clicked again
+            setCategory('');
+            return;
+        }
         setCheckEvent([])
         setCheckedItems([])
         setPlanningId(eventData?._id)
@@ -216,61 +463,67 @@ export const PlanningTool = () => {
     return (
         <>
             {
-                token ? < div >
+                token ? <div>
                     <div className='planning-img'>
                         <img src={planningImg} alt="Planning" />
                     </div>
 
                     <div className='planning-check-list'>
                         <HeaderPlanning />
-                        {/* <div className='planning-check-header'>Planning List</div> */}
                         <ol>
-                        {data?.map((item, idx) => (
-                            <li>
-                            <div className='planning-list' key={idx}>
-                                <div>
-                                    <label className='font-size-text' htmlFor={`checkbox-${idx}`} onClick={() => { handleEvent(item) }}>
-                                        {item?.category}
-                                        <img
-                                            src={downArrow}
-                                            alt="Open user menu"
-                                        />
-                                    </label>
+                            {data?.map((item, idx) => (
+                                <li key={idx}>
+                                    <div className='planning-list'>
+                                        <div
+                                            className="accordion-header"
+                                            onClick={() => handleEvent(item)}
+                                            style={{ display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer" }}
+                                        >
+                                            <span className="font-size-text">{item?.category}</span>
+                                            <img
+                                                src={downArrow}
+                                                alt="toggle"
+                                                className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
+                                            />
+                                        </div>
 
-                                    <label className='font-size-help' onClick={() => { handleHelp(item) }} > (Need Help)?
+                                        <label
+                                            className='font-size-help'
+                                            onClick={() => { handleHelp(item) }}
+                                        >
+                                            (Need Help)?
+                                        </label>
 
-                                    </label>
-                                </div>
-                                {(category == item.category) &&
-                                    <div>{eventData[0]?.description?.length > 0 ?
-                                        <>
-                                            {eventData[0]?.description?.map((item1, index) => (
-
-                                                <div className='planning-category-list'>
-                                                    <input
-                                                        type='checkbox'
-                                                        // id={`checkbox-${idx}`}
-                                                        onChange={() => handleCheck(item1, index, item?.category)}
-                                                        checked={checkedItems.includes(index)}
-                                                    />
-                                                    <span >{item1}.</span>
-                                                </div>
-                                            ))}
-                                        </>
-                                        :
-                                        <div className='no-items-message'>No items available for {category}.</div>
-                                    }
+                                        {category === item.category && (
+                                            <div className="accordion-content">
+                                                {eventData[0]?.description?.length > 0 ? (
+                                                    <>
+                                                        {eventData[0]?.description?.map((item1, index) => (
+                                                            <div key={index} className='planning-category-list'>
+                                                                <input
+                                                                    type='checkbox'
+                                                                    onChange={() => handleCheck(item1, index, item?.category)}
+                                                                    checked={checkedItems.includes(index)}
+                                                                />
+                                                                <span>{item1}.</span>
+                                                            </div>
+                                                        ))}
+                                                    </>
+                                                ) : (
+                                                    <div className='no-items-message'>No items available for {category}.</div>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
-                                }
-                            </div></li>
-                        ))}
+                                </li>
+                            ))}
                         </ol>
-                        < >
+                        <>
                             <div className='planning-check-save' onClick={handleSave}>Add Planning</div>
-                            <div className='planning-check-clear' onClick={handleClear} >Clear All</div>
+                            <div className='planning-check-clear' onClick={handleClear}>Clear All</div>
                         </>
                     </div>
-                </div > :
+                </div> :
                     <Navigate to='/signup' />
             }
         </>
