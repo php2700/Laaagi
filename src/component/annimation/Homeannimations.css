@@ -1,7 +1,6 @@
 /* HomeAnimation.css */
 
 .animation-container {
-  /* यह कंटेनर पेज पर स्क्रॉल करने के लिए जगह बनाता है */
   height: 150vh; 
   display: flex;
   align-items: center;
@@ -12,6 +11,6 @@
 .animated-box {
   width: 150px;
   height: 150px;
-  background-color: #7b2cbf; /* रंग बदल दिया है */
-  border-radius: 20px; /* थोड़ा गोल आकार दिया है */
+  background-color: #7b2cbf; 
+  border-radius: 20px; 
 }

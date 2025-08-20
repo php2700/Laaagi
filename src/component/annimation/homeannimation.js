@@ -39,7 +39,7 @@ import "./Homeannimations.css";
       variants={variants}
       initial="hidden"       // शुरुआत में 'hidden' variant लागू होगा
       whileInView="visible"  // जब व्यू में आएगा तो 'visible' variant लागू होगा
-      viewport={{ once: true, amount: 0.2 }} // एनिमेशन एक बार चलेगा और जब 20% हिस्सा दिखेगा तब चलेगा
+      viewport={{ once: false, amount: 0.2 }} // एनिमेशन एक बार चलेगा और जब 20% हिस्सा दिखेगा तब चलेगा
     >
       {children}
     </motion.section>
