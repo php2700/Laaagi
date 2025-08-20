@@ -105,7 +105,7 @@ export const ContactUs = () => {
                     </div>
                     <div className="contact-us-content" >
                         <img src={mobileIcon} className="contact-icons" />
-                        <div>+918699991906</div>
+                        <div>+91 8699991906</div>
                     </div>
                     <div className="contact-us-mail" >
                         <img src={mailIcon} className="contact-icons" id="mail" />
