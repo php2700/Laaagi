@@ -101,7 +101,7 @@ export const Invitation = () => {
     }
 
     return (
-        <Myannimation direction='down'>
+        <Myannimation direction='up'>
             <div className='invitations'>
                 <div className='invitations-header'>
                     {

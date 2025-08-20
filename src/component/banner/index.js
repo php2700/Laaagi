@@ -46,8 +46,8 @@ export const Banner = () => {
                     <div
                         style={{
                             // position: 'absolute',
-                            marginBottom: '45px',
-                            marginLeft: '800px',
+                            marginBottom: '100px',
+                            marginLeft: '10px',
                             bottom: '10px',
                             right: '10px',
                             // backgroundColor: 'rgba(0,0,0,0.6)',
