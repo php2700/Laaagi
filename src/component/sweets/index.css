@@ -49,6 +49,7 @@
 .sweets-content-img:hover {
   cursor: pointer;
   border: 0.5px solid #777;
+  border-radius: 10px 10px 0 0;
 }
 
 .sweets-name {

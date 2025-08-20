@@ -45,14 +45,14 @@ export const Banner = () => {
                     />
                     <div
                         style={{
-                            position: 'absolute',
+                            // position: 'absolute',
                             bottom: '10px',
                             right: '10px',
                             // backgroundColor: 'rgba(0,0,0,0.6)',
                             color: 'white',
                             // padding: '5px 10px',
                             borderRadius: '6px',
-                            fontSize: '15px',
+                            fontSize: '40px',
                         }}
                     >
                         <a
