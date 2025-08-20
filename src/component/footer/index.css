@@ -28,10 +28,47 @@
   font-size: 45px;
   margin-left: 4px;
 }
+/* .footer-left-location {
+  display: flex;
+} */
+ .footer-left-location {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap; /* line break allow karega */
+  gap: 6px;
+}
 .footer-left-location {
   display: flex;
+  align-items: flex-start;
+  gap: 8px; /* icon aur text ke beech space */
 }
+
 .footer-left-icon {
+  min-height: 18px;
+  min-width: 18px;
+  margin-top: 3px;
+}
+
+.footer-left-location-content {
+  display: flex;
+  flex-direction: column; /* Address label upar, value neeche */
+}
+
+.footer-left-location-text {
+  font-weight: 600;
+  font-size: 16px;
+  color: #253d4e;
+  margin-bottom: 2px;
+}
+
+.footer-left-location-right {
+  font-weight: 500;
+  font-size: 16px;
+  color: #253d4e;
+  /* line-height: 1.4; */
+}
+
+/* .footer-left-icon {
   min-height: 18px;
   min-width: 18px;
 }
@@ -44,7 +81,7 @@
   font-weight: 500;
   font-size: 16px;
   color: #253d4e;
-}
+} */
 .footer-left-call {
   display: flex;
 }

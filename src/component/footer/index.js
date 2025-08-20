@@ -223,11 +223,11 @@ export const Footer = () => {
                 <div className='footer-left-email-text'>&nbsp; Email</div>
                 <div className='footer-left-email-right'>: yourpersonallaaagi@gmail.com</div>
               </div>
-              <div className='footer-left-work'>
+              {/* <div className='footer-left-work'>
                 <img className='footer-left-work-icon' src={timeIcon} alt="time" />
                 <div className='footer-left-work-text'>&nbsp; Work hours </div>
                 <div className='footer-left-work-right'>: 8:00-20:00, Sunday-Thursday</div>
-              </div>
+              </div> */}
             </div>
 
             {/* Middle Section - Categories */}
