@@ -10,6 +10,8 @@ import { AuthContext } from '../context';
 import { Logout } from './logout';
 import defaultImg from "../../assets/login/default-profile.png";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {Myannimation} from "../annimation/homeannimation";  
+
 
 
 export const Header = () => {
@@ -89,6 +91,12 @@ export const Header = () => {
             setIsSearchDropdownOpen(false);
         }
     }, [searchQuery])
+const BannerSection = () => <div style={{ height: '100vh', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h1>Hero Section</h1></div>;
+const AboutSection = () => <div style={{ height: '80vh', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>About Us Section</h2></div>;
+const WeddingSpecialSection = () => <div style={{ height: '80vh', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Our Services</h2></div>;
+const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Contact Us</h2></div>;
+
+
 
 
     const renderCategoryItems = (items) => {
@@ -151,6 +159,7 @@ export const Header = () => {
     };
 
     return (
+        <Myannimation direction='down'>
         <div style={{
             position: 'sticky', zIndex: '999', backgroundColor: '#fff',
             top: '0'
@@ -338,5 +347,6 @@ export const Header = () => {
                     }}>Contact Us</NavLink>
             </nav>
         </div>
+        </Myannimation>
     );
 };
