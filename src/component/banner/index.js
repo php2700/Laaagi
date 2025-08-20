@@ -45,16 +45,19 @@ export const Banner = () => {
                     />
                     <div
                         style={{
-                            // position: 'absolute',
-                            marginBottom: '100px',
-                            marginLeft: '10px',
-                            bottom: '10px',
+                            position: 'absolute',
+                            // marginBottom: '100px',
+                            marginLeft: '400px',
+                            // height: 'auto',
+                            bottom: '70px',
                             right: '10px',
                             // backgroundColor: 'rgba(0,0,0,0.6)',
                             color: 'white',
                             // padding: '5px 10px',
                             borderRadius: '6px',
                             fontSize: '40px',
+                            //   top: "2px",
+    right: "42%",
                         }}
                     >
                         <a

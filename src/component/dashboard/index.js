@@ -98,7 +98,9 @@ export const Dashboard = () => {
       <Myannimation direction="up">
       <Review />
       </Myannimation>
+      <Myannimation direction="up">
       <Shop />
+      </Myannimation>
       {/* <GuestList/> */}
     </>
   )

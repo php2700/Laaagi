@@ -719,15 +719,28 @@ export const PlanningTool = () => {
                                         className="accordion-header"
                                         onClick={() => handleEvent(item)}
                                     >
-                                        <div className="accordion-title">
-                                           <span>{`${idx + 1}. ${item?.category}`}</span>
-                                            <small
-                                                className='help-text'
+                                        <div className="accordion-title" style={{ display: "flex", alignItems: "start", justifyContent: "space-between" }}>
+                                            <span>{`${idx + 1}. ${item?.category}`}</span>
+
+                                            <button
+                                                style={{
+                                                    display: "inline-flex",   // sirf text ke hisaab se
+                                                    backgroundColor: "#253d4e",
+                                                    color: "#fff",
+                                                    fontSize: "13px",
+                                                    fontWeight: "500",
+                                                    borderRadius: "6px",
+                                                    padding: "4px 10px",
+                                                    border: "none",
+                                                    cursor: "pointer",
+                                                    whiteSpace: "nowrap",     // text break na ho
+                                                }}
                                                 onClick={(e) => handleHelp(e, item)}
                                             >
-                                                (Need Help)?
-                                            </small>
+                                                Need Help?
+                                            </button>
                                         </div>
+
                                         <img
                                             src={downArrow}
                                             alt="toggle"

@@ -287,3 +287,9 @@
     min-height: auto;
   }
 }
+/* @media (max-width: 700px) {
+  .footer-left-location-text {
+    margin-bottom: 2px;
+  } */
+
+/* } */
