@@ -43,6 +43,7 @@
 }
 
 .order-btn {
+  position: absolute;
   align-items: center;
   appearance: none;
   background-color: #800000; /* Solid maroon background */
