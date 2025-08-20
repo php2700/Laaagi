@@ -67,35 +67,35 @@ export const Dashboard = () => {
     <Myannimation />
       <Lodings />
 
-      <Myannimation direction="right">
+      <Myannimation direction="up">
       <Banner />
       </Myannimation>
 
-        <Myannimation direction="left">
+        <Myannimation direction="up">
       <WeddingSpecial />
         </Myannimation>
 
       {/* <Dry_Fruit_Treat /> */}
-      <Myannimation direction="right">
+      <Myannimation direction="up">
         <Dry_Fruit_Treat />
       </Myannimation>
       <Myannimation direction="up">
       <Best_seller />
       </Myannimation>
-        <Myannimation direction="down">
+        <Myannimation direction="up">
       {token && <Recent_view />}
       </Myannimation>
       <DiscoverCategory />
-      <Myannimation direction="left">
+      <Myannimation direction="up">
       <InvitationBox />
       </Myannimation>
-      <Myannimation direction="down">
+      <Myannimation direction="up">
       <Ads />
       </Myannimation>
       <Myannimation direction="up">
       <About ref={aboutRef} />
       </Myannimation>
-      <Myannimation direction="left">
+      <Myannimation direction="up">
       <Review />
       </Myannimation>
       <Shop />
