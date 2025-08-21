@@ -323,7 +323,7 @@ export const Header = () => {
                         }}>Designer</NavLink>
                     {!isMobile && (
                         <div className="dropdown">
-                            <NavLink to="/designers" onClick={() => { setDesignDropDown('Bridge') }} >Bridge</NavLink>
+                            <NavLink to="/designers" onClick={() => { setDesignDropDown('Bridge') }} >Bride</NavLink>
                             <NavLink to="/designers" onClick={() => { setDesignDropDown('Groom') }} >Groom</NavLink>
                             <NavLink to="/designers" onClick={() => { setDesignDropDown('Suits') }} >Suits</NavLink>
                             <NavLink to="/designers" onClick={() => { setDesignDropDown('Other') }}>Other</NavLink>
