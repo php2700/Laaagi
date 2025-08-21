@@ -6,7 +6,7 @@ import { Model } from './Model';
 import { AuthContext } from '../context';
 
 const designerHeader = [
-    { name: 'Bridge', category: 'Bride' },
+    { name: 'Bride', category: 'Bridge' },
     { name: 'Groom', category: 'Groom' },
     { name: 'Suits', category: 'Suits' },
     { name: 'Other', category: 'Other' },

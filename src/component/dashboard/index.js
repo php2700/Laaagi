@@ -71,21 +71,26 @@ export const Dashboard = () => {
         <Banner />
       </Myannimation>
 
-      
+      <Myannimation direction="up">
         <WeddingSpecial />
-      
+      </Myannimation>
+
 
       {/* <Dry_Fruit_Treat /> */}
-      <Myannimation direction="up">
-        {/* <Dry_Fruit_Treat /> */}
-      </Myannimation>
+      {/* <Myannimation direction="up">
+        <Dry_Fruit_Treat />
+        <Myannimation />
+
+      </Myannimation> */}
       <Myannimation direction="up">
         <Best_seller />
       </Myannimation>
       <Myannimation direction="up">
         {token && <Recent_view />}
       </Myannimation>
-      <DiscoverCategory />
+      <Myannimation direction="up">
+        <DiscoverCategory />
+      </Myannimation>
       <Myannimation direction="up">
         <InvitationBox />
       </Myannimation>
