@@ -87,6 +87,7 @@ export const Banner = () => {
   const [data, setData] = useState([]);
   const [index, setIndex] = useState(0);
 
+  // ✅ Banner list API call
   const bannerlist = () => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}api/user/banner_list`)
@@ -98,6 +99,7 @@ export const Banner = () => {
       });
   };
 
+  // ✅ Slider interval
   useEffect(() => {
     if (!data?.length) return;
     const interval = setInterval(() => {
@@ -106,61 +108,63 @@ export const Banner = () => {
     return () => clearInterval(interval);
   }, [data.length]);
 
+  // ✅ Initial API call
   useEffect(() => {
     bannerlist();
   }, []);
-const BannerSection = () => <div style={{ height: '100vh', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h1>Hero Section</h1></div>;
-const AboutSection = () => <div style={{ height: '80vh', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>About Us Section</h2></div>;
-const WeddingSpecialSection = () => <div style={{ height: '80vh', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Our Services</h2></div>;
-const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Contact Us</h2></div>;
 
   return (
-    <Myannimation direction="up">
-    <div className="banner">
-      {/* ✅ wrapper hamesha render hoga */}
-      {data?.length > 0 ? (
-        <div className="banner-img" style={{ position: "relative" }}>
-          <img
-            style={{ width: "100%", aspectRatio: 16 / 4 }}
-            alt="Banner"
-            src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`}
-          />
-
-          <div
-            style={{
-              position: "absolute",
-              marginLeft: "400px",
-              bottom: "2px",
-              right: "42%",
-              color: "white",
-              fontSize: "40px",
-            }}
-          >
-            <a
-              href={data[index]?.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="order-btn"
-            >
-              Order Now
-            </a>
-          </div>
-
-          <div className="icon-wrapper">
-            {data.map((ele, i) => (
+    <section style={{ minHeight: "60vh" }}>
+      <Myannimation direction="up">
+        <div className="banner">
+          {data.length > 0 ? (
+            <div className="banner-img" style={{ position: "relative" }}>
+              {/* ✅ Banner Image */}
               <img
-                key={i}
-                className="icon"
-                src={i === index ? activeImg : deActive}
-                alt="activeImg"
+                style={{ width: "100%", aspectRatio: "16 / 4", objectFit: "cover" }}
+                alt="Banner"
+                src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`}
               />
-            ))}
-          </div>
+
+              {/* ✅ Order Now Button */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "2px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  color: "white",
+                  fontSize: "24px",
+                }}
+              >
+                <a
+                  href={data[index]?.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="order-btn"
+                >
+                  Order Now
+                </a>
+              </div>
+
+              {/* ✅ Pagination Icons */}
+              <div className="icon-wrapper">
+                {data.map((ele, i) => (
+                  <img
+                    key={i}
+                    className="icon"
+                    src={i === index ? activeImg : deActive}
+                    alt="activeImg"
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            // ✅ Placeholder bhi observer me dikhega
+            <div style={{ height: "40vh", background: "#f0f0f0" }} />
+          )}
         </div>
-      ) : (
-        <div style={{ height: "40vh" }} /> // ✅ placeholder (observer ko DOM milega)
-      )}
-    </div>
-    </Myannimation>
+      </Myannimation>
+    </section>
   );
 };
