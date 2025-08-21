@@ -167,6 +167,7 @@ export const Sweets = () => {
     const handleFilter = (data) => {
         setSelectedPrice(data)
     }
+    
 
     return (
         <div className='sweets' >

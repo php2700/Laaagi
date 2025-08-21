@@ -210,8 +210,8 @@ export const Footer = () => {
               </div>
               <div className='footer-left-location'>
                 <img className='footer-left-icon' src={locationIcon} alt="location" />
-                <div className='footer-left-location-text'>&nbsp; Address</div>
-                <div className='footer-left-location-right'>: Main Market, Sur Singh, Tarn Taran, Punjab-143302</div>
+                <div className='footer-left-location-text'>&nbsp;&nbsp;Address</div>
+                <div className='footer-left-location-right'>:Main Market, Sur Singh, Tarn Taran, Punjab-143302</div>
               </div>
               <div className='footer-left-call'>
                 <img className='footer-left-call-icon' src={callIcon} alt="call" />

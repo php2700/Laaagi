@@ -40,7 +40,7 @@
 .footer-left-location {
   display: flex;
   align-items: flex-start;
-  gap: 8px; /* icon aur text ke beech space */
+  gap: 2px; /* icon aur text ke beech space */
 }
 
 .footer-left-icon {
@@ -101,6 +101,7 @@
 }
 .footer-left-email {
   display: flex;
+  gap: 4px;
 }
 .footer-left-email-icon {
   min-height: 18px;
