@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react'
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context'
+import { Myannimation } from '../annimation/homeannimation'
 
 
 
@@ -70,7 +71,14 @@ export const Best_seller = () => {
     const handleBestSeller = (e) => {
         navigate('/best-seller')
     }
+    const BannerSection = () => <div style={{ height: '100vh', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h1>Hero Section</h1></div>;
+const AboutSection = () => <div style={{ height: '80vh', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>About Us Section</h2></div>;
+const WeddingSpecialSection = () => <div style={{ height: '80vh', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Our Services</h2></div>;
+const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Contact Us</h2></div>;
+
+    
     return (
+        <Myannimation direction="up">
         <div className='best-seller'>
             <div className='best-seller-top'>
                 <div className='best-seller-left-text'> Best Sellers</div>
@@ -108,5 +116,6 @@ export const Best_seller = () => {
             </div>
 
         </div>
+        </Myannimation>
     )
 }

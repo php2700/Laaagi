@@ -7,6 +7,7 @@ import axios from "axios";
 import PaymentDetailsModel from "./payment_details";
 import { PaymentSingleItem } from "../payment/sweet_payment";
 
+
 const sweetsInKg = [{ name: 'Select quantity', value: 'Select quantity' }, { name: '1kg', value: 1 }, { name: '2kg', value: 2 }, { name: '5kg', value: 5 }, { name: '10kg', value: 10 }]
 
 

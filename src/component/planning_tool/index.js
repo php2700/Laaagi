@@ -710,7 +710,7 @@ export const PlanningTool = () => {
                         <img src={planningImg} alt="Planning" />
                     </div>
 
-                    <div className='planning-container'>
+                    {/* <div className='planning-container'>
                         <HeaderPlanning />
                         <ul className="planning-list">
                             {data?.map((item, idx) => (
@@ -776,7 +776,83 @@ export const PlanningTool = () => {
                             <button className='btn btn-primary' onClick={handleSave}>Add Planning</button>
                             <button className='btn btn-secondary' onClick={handleClear}>Clear All</button>
                         </div>
+                    </div> */}
+                    <div className='planning-container'>
+    <HeaderPlanning />
+    <ul className="planning-list">
+        {data?.map((item, idx) => (
+            <li key={idx} className="planning-list-item">
+                <div
+                    className="accordion-header"
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
+                        cursor: "pointer",
+                        fontSize: "1.1rem",
+                    }}
+                    onClick={() => handleEvent(item)}
+                >
+                    {/* Title - Pushed to the left */}
+                    <span style={{ marginRight: "auto", paddingRight: "15px" }}>{`${idx + 1}. ${item?.category}`}</span>
+
+                    {/* Button - In the middle of the right-aligned group */}
+                    <button
+                        style={{
+                            backgroundColor: "#253d4e",
+                            color: "#fff",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            borderRadius: "6px",
+                            padding: "4px 10px",
+                            border: "none",
+                            cursor: "pointer",
+                            whiteSpace: "nowrap",
+                            marginRight: "70px" // Adds space between the button and the arrow
+                        }}
+                        onClick={(e) => handleHelp(e, item)}
+                    >
+                        Need Help?
+                    </button>
+
+                    {/* Arrow Icon - Pushed to the right */}
+                    <img
+                        src={downArrow}
+                        alt="toggle"
+                        className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
+                    />
+                </div>
+
+                {category === item.category && (
+                    <div className="accordion-content">
+                        {eventLoading ? (
+                            <div>Loading...</div>
+                        ) : eventData && eventData[0]?.description?.length > 0 ? (
+                            eventData[0]?.description?.map((item1, index) => (
+                                <label key={index} className='checkbox-container'>
+                                    <input
+                                        type='checkbox'
+                                        onChange={() => handleCheck(item1, index, item?.category)}
+                                        checked={checkedItems.includes(index)}
+                                    />
+                                    <span className="checkmark"></span>
+                                    <span>{item1}</span>
+                                </label>
+                            ))
+                        ) : (
+                            <div className='no-items-message'>No items available for {category}.</div>
+                        )}
                     </div>
+                )}
+            </li>
+        ))}
+    </ul>
+    <div className='button-group'>
+        <button className='btn btn-primary' onClick={handleSave}>Add Planning</button>
+        <button className='btn btn-secondary' onClick={handleClear}>Clear All</button>
+    </div>
+</div>
                 </div>
             ) : (
                 <Navigate to='/signup' />

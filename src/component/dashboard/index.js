@@ -26,7 +26,7 @@ const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0'
 
 export const Dashboard = () => {
   const token = localStorage.getItem('token');
- useEffect(() => {
+  useEffect(() => {
     AOS.init({
       duration: 1000 // एनिमेशन की अवधि
     });
@@ -58,48 +58,48 @@ export const Dashboard = () => {
       window.removeEventListener("scrollToAbout", scrollToAbout);
     };
   }, []);
-  
+
 
 
   return (
     <>
-      
-    <Myannimation />
+
+      <Myannimation />
       <Lodings />
 
       <Myannimation direction="up">
-      <Banner />
+        <Banner />
       </Myannimation>
 
-        <Myannimation direction="up">
-      <WeddingSpecial />
-        </Myannimation>
+      
+        <WeddingSpecial />
+      
 
       {/* <Dry_Fruit_Treat /> */}
       <Myannimation direction="up">
-        <Dry_Fruit_Treat />
+        {/* <Dry_Fruit_Treat /> */}
       </Myannimation>
       <Myannimation direction="up">
-      <Best_seller />
+        <Best_seller />
       </Myannimation>
-        <Myannimation direction="up">
-      {token && <Recent_view />}
+      <Myannimation direction="up">
+        {token && <Recent_view />}
       </Myannimation>
       <DiscoverCategory />
       <Myannimation direction="up">
-      <InvitationBox />
+        <InvitationBox />
       </Myannimation>
       <Myannimation direction="up">
-      <Ads />
+        <Ads />
       </Myannimation>
       <Myannimation direction="up">
-      <About ref={aboutRef} />
+        <About ref={aboutRef} />
       </Myannimation>
       <Myannimation direction="up">
-      <Review />
+        <Review />
       </Myannimation>
       <Myannimation direction="up">
-      <Shop />
+        <Shop />
       </Myannimation>
       {/* <GuestList/> */}
     </>

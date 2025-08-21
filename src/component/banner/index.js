@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import activeImg from "../../assets/banner/active.png"
 import deActive from "../../assets/banner/deActive.png"
 import './index.css'
+import { Myannimation } from "../annimation/homeannimation"
 
 export const Banner = () => {
     const [data, setData] = useState();
@@ -32,6 +33,7 @@ export const Banner = () => {
     if (!data?.length) return null;
 
     return (
+        <Myannimation direction="up">
         <div className="banner">
             {
                 <div className="banner-img" style={{ position: 'relative' }}>
@@ -49,7 +51,7 @@ export const Banner = () => {
                             // marginBottom: '100px',
                             marginLeft: '400px',
                             // height: 'auto',
-                            bottom: '70px',
+                            bottom: '2px',
                             right: '10px',
                             // backgroundColor: 'rgba(0,0,0,0.6)',
                             color: 'white',
@@ -79,5 +81,6 @@ export const Banner = () => {
                 </div>
             }
         </div>
+        </Myannimation>
     )
 }

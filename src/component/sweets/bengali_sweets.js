@@ -6,6 +6,8 @@ import axios from 'axios';
 import rightIcon from "../../assets/icon/li_arrow-right.png"
 import leftIcon from "../../assets/icon/left_arrow-right.png"
 
+
+
 const sweetsHeader = [
     { name: 'Sugar Free', url: '/sweets' },
     { name: 'Bengali Sweets', url: '/bengali-sweets' },

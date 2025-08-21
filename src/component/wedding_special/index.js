@@ -6,6 +6,7 @@ import axios from 'axios';
 import { AuthContext } from '../context';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Myannimation } from '../annimation/homeannimation';
 
 export const WeddingSpecial = () => {
     const [startIndex, setStartIndex] = useState(0)
@@ -60,9 +61,15 @@ export const WeddingSpecial = () => {
         const url = 'home';
         navigate(`/sweets-info/${data?._id}/${url}`);
     }
+    const BannerSection = () => <div style={{ height: '100vh', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h1>Hero Section</h1></div>;
+const AboutSection = () => <div style={{ height: '80vh', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>About Us Section</h2></div>;
+const WeddingSpecialSection = () => <div style={{ height: '80vh', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Our Services</h2></div>;
+const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Contact Us</h2></div>;
+
 
 
     return (
+        <Myannimation direction="up">
         <div className="wedding" >
             <div className='wedding-top' >
                 <div className='wedding-left-text'>Wedding special</div>
@@ -92,6 +99,7 @@ export const WeddingSpecial = () => {
                 )}
             </div>
         </div>
+        </Myannimation>
 
     )
 }
