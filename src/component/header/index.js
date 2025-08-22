@@ -276,11 +276,11 @@ export const Header = () => {
                         }}>Invitations</NavLink>
                     {!isMobile && (
                         <div className="dropdown">
-                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation on Box') }} >Invitation With Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation on Box') }} > Box</NavLink>
                             {/* <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation') }} >Only Invitation</NavLink> */}
-                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Wooden Box') }} >Invitation on Wooden Box</NavLink>
-                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Glass Box') }}>Invitation on Glass Box</NavLink>
-                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Misc Invitation') }}>Misc Invitation</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Wooden Box') }} > Wooden Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Glass Box') }}> Glass Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Misc Invitation') }}>Miscellaneous</NavLink>
                         </div>
                     )}
                 </div>
