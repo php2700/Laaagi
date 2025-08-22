@@ -40,9 +40,7 @@ export const GuestList = () => {
       headers: {
         Authorization: `Bearer ${token}`
       },
-      params: {
-        q: searchText
-      }
+    
     }).then((res) => {
       setGuestList(res?.data?.guestList)
       console.log(res?.data?.guestList, '555888877777')
@@ -70,14 +68,7 @@ export const GuestList = () => {
     })
   };
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}api/user/invitation/${invitationId}`).then((res) => {
-      console.log(res?.data.invitation, "ggggggggggggggg")
-      setIsDeliverycharge(res?.data?.invitation?.isDeliveryCharge);
-    }).catch((error) => {
-      console.log(error, "error")
-    })
-  }, [])
+
 
 
   useEffect(() => {
@@ -276,13 +267,13 @@ export const GuestList = () => {
   return (
     <div className="guest-list-container">
       <div className="guest-list-header">
-        <input
+        {/* <input
           type="search"
           placeholder="Search..."
           className="search-input"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-        />
+        /> */}
         {/* <button onClick={getcontact}>import contact</button> */}
         {/* <Link to='/guest' className="add-guest-button">+ add Guest</Link> */}
       </div>
