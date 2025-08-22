@@ -10,11 +10,11 @@ import { AuthContext } from '../context';
 
 
 const invitationHeader = [
-    { name: 'Invitation With Box', category: 'Invitation on Box' },
+    { name: 'Box', category: 'Invitation on Box' },
     // { name: 'Only Invitation', category: 'Invitation' },
-    { name: 'Invitation on Wooden Box', category: 'Wooden Box' },
-    { name: 'Invitation on Glass Box', category: 'Glass Box' },
-    { name: 'Misc Invitation', category: 'Misc Invitation' },
+    { name: 'Wooden Box', category: 'Wooden Box' },
+    { name: 'Glass Box', category: 'Glass Box' },
+    { name: 'miscellaneous ', category: 'Misc Invitation' },
 ]
 
 
