@@ -55,11 +55,11 @@ export const SweetsInfo = () => {
 
     const addDetails = () => {
         if (!sweetkg) {
-            setError('please Select Quantity')
+            setError('Please Enter Quantity')
             return;
         }
         if (price == 0) {
-            setError('please Select Quantity')
+            setError('Please Enter Quantity')
             return;
         }
         if (!token) {
@@ -74,7 +74,7 @@ export const SweetsInfo = () => {
 
     const handlePayment = () => {
         if (!sweetkg) {
-            setError('please Select Quantity')
+            setError('Please Enter Quantity')
             return;
         }
         if (!token) {

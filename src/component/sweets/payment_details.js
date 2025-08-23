@@ -145,13 +145,14 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
         }
 
         // Address: letters and numbers only
-        if (!address.trim()) {
-            newError.address = 'Address is required';
-        } else if (!/^[a-zA-Z0-9\s]+$/.test(address)) {
-            newError.address = 'Only letters and numbers allowed';
-        } else if (address.length < 3) {
-            newError.address = 'Minimum 3 characters required';
-        }
+      if (!address.trim()) {
+  newError.address = 'Address is required';
+} else if (!/^[a-zA-Z0-9\s,.\-/#@!()&]+$/.test(address)) {
+  newError.address = 'Only letters, numbers and some special characters allowed';
+} else if (address.length < 3) {
+  newError.address = 'Minimum 3 characters required';
+}
+
 
         // Pincode: 6 digits only
         if (!pincode.trim()) {
@@ -225,20 +226,20 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                         }}
                     /> */}
                     {/* Address */}
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            className="modalinputs"
-                            value={address}
-                            onChange={(e) => {
-                                const val = e.target.value;
-                                setAddress(val);
-                                setError((prev) => ({ ...prev, address: '' }));
-                            }}
-                        />
-                        <div className="customi-error-color">{error.address}</div>
-                    </div>
+<div>
+  <input
+    type="text"
+    placeholder="Address"
+    className="modalinputs"
+    value={address}
+    onChange={(e) => {
+      setAddress(e.target.value);   // sab kuch allow
+      setError((prev) => ({ ...prev, address: '' }));
+    }}
+  />
+  <div className="customi-error-color">{error.address}</div>
+</div>
+
 
 
 

@@ -173,10 +173,11 @@
 .record-not-found {
   margin-top: 15px;
   text-align: center;
-  background: #0606e5;
+  background: #800000;
   padding: 12px;
-  color: #ebb34b;
+  color: #ffd700;
 }
+
 @media (max-width: 1000px) {
   .invitations-header {
     display: flex;

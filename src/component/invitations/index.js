@@ -149,7 +149,7 @@ export const Invitation = () => {
                                     ))}
                             </div>
                             :
-                            <div className='record-not-found'>No Data</div>
+                            <div className='record-not-found'>No Data Found</div>
                         }
                     </div>
                 </div>
