@@ -110,6 +110,8 @@
 
 .invitation-content-img :hover {
   cursor: pointer;
+  border: 1px solid #777;
+  border-radius: 10px 10px 0 0;
 }
 .invitation-content-img img {
   width: 100%;
