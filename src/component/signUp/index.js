@@ -208,8 +208,21 @@ export const SignUp = () => {
                         <div className="sign-up-top">
                             <div className="sign-up-header">
                                 <img src={laaagi} alt="laaagi" />
-                                <div >Laaagi</div>
+                                <div
+                                    style={{
+                                        fontFamily: "'Dancing Script', cursive",
+                                        fontSize: '40px'
+                                    }}>Laaagi</div>
                             </div>
+                            {/* <div className='Laaagi'>
+                                <Link to='/'><img src={laaagiLogo} alt="logo" className='laaagi-img' /></Link>
+                                <div><Link to='/'
+                                    style={{
+                                        fontFamily: "'Dancing Script', cursive",
+                                        fontSize: '40px'
+                                    }}
+                                >Laaagi</Link></div>
+                            </div> */}
                             <div className='model-text'>Login/Signup with Laaagi</div>
                             <div className="sign-up-form-main" >
                                 <form className="sign-up-form" onSubmit={handleSubmit}>

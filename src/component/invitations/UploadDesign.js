@@ -10,9 +10,13 @@ export const
         const navigate = useNavigate();
 
         const [name, setName] = useState('');
+        const [mobile, setMobile] = useState('');
+
         const [category, setCategory] = useState('');
         const [error, setError] = useState({});
         const [amount, setAmount] = useState('');
+        const [description, setDiscription] = useState('');
+
         const [notes, setNotes] = useState('');
         const [designFile, setDesignFile] = useState(null);
         const [previewURL, setPreviewURL] = useState(null);
@@ -46,11 +50,17 @@ export const
             else if (amount <= 0) {
                 newError.amount = 'Amount should be positive.'
             }
+                if (!mobile?.trim()) newError.mobile = 'mobile Number is required.';
+            else if (isNaN(mobile)) newError.mobile = 'mobile Number must be a number.';
+            else if (mobile <= 0) {
+                newError.mobile = 'mobile Number should be positive.'
+            }
+
 
             if (!category) newError.category = 'Category is required.';
 
-            if (!notes?.trim()) newError.notes = 'Description is required.';
-            else if (notes.trim().length < 10) newError.notes = 'Description must be at least 10 characters.';
+            if (!description ?.trim()) newError.description = 'Description is required.';
+            else if (description.trim().length < 10) newError.description = 'Description must be at least 10 characters.';
 
             if (!designFile) {
                 setMessage('Please upload a design file.');
@@ -72,9 +82,11 @@ export const
 
             const formData = new FormData();
             formData.append('name', name.trim());
+            formData.append('mobile', mobile.trim());
+
             formData.append('price', amount.trim());
             formData.append('category', category);
-            formData.append('description', notes.trim());
+            formData.append('description', description.trim());
             formData.append('image', designFile);
             formData.append('userId', userId)
 
@@ -92,7 +104,7 @@ export const
                 setName('');
                 setCategory('');
                 setAmount('');
-                setNotes('');
+                setDiscription('');
                 setDesignFile(null);
                 setPreviewURL(null);
 
@@ -135,6 +147,23 @@ export const
                             />
                             <div className="error">{error?.name || ''}</div>
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="mobile">Mobile Number:</label>
+                            <input
+                                type="tel"
+                                id="mobile"
+                                placeholder="Enter Mobile Number"
+                                value={mobile}
+                                maxLength={10}  // sirf 10 digits tak
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\D/g, ""); // sirf numbers allow
+                                    setMobile(value);
+                                    setError((prev) => ({ ...prev, mobile: "" }));
+                                }}
+                            />
+                            <div className="error">{error?.mobile || ""}</div>
+                        </div>
+
 
                         <div className="form-group">
                             <label htmlFor="category">Category:</label>
@@ -210,35 +239,37 @@ export const
                             )}
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="amount">Amount:</label>
-                            <input
-                                type="text"
-                                id="amount"
-                                value={amount}
-                                onChange={(e) => {
-                                    setAmount(e.target.value);
-                                    setError((prev) => ({ ...prev, amount: '' }));
-                                }}
-                                placeholder="Enter amount"
-                            />
-                            <div className="error">{error?.amount || ''}</div>
-                        </div>
+<div className="form-group">
+  <label htmlFor="amount">Amount:</label>
+  <input
+    type="text"
+    id="amount"
+    value={amount}
+    onChange={(e) => {
+      const value = e.target.value.replace(/\D/g, ""); // sirf digits allow
+      setAmount(value);
+      setError((prev) => ({ ...prev, amount: "" }));
+    }}
+    placeholder="Enter amount"
+  />
+  <div className="error">{error?.amount || ""}</div>
+</div>
+
 
                         <div className="form-group">
                             <label htmlFor="amount">Description:</label>
                             <textarea
-                                id="amount"
+                                id="description"
                                 className='uploadtextarea'
                                 placeholder='Enter Description'
-                                value={amount}
+                                value={description}
                                 onChange={(e) => {
-                                    setNotes(e.target.value);
-                                    setError((prev) => ({ ...prev, amount: '' }));
+                                    setDiscription(e.target.value);
+                                    setError((prev) => ({ ...prev, description: '' }));
                                 }}
                                 rows="3"
                             ></textarea>
-                            <div className="error">{error?.notes || ''}</div>
+                            <div className="error">{error?.description|| ''}</div>
                         </div>
 
                         <button id="sub" type="submit" disabled={isLoading}>

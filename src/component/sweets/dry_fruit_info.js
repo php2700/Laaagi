@@ -30,7 +30,7 @@ export const DryFruitInfo = () => {
 
     const handlePayment = () => {
         if (!sweetkg) {
-            setError('please Select Quantity')
+            setError('please Enter Quantity')
             return;
         }
         if (!token) {

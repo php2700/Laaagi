@@ -153,23 +153,26 @@ export const ProfilePage = () => {
                             readOnly
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="Mobile" className="form-label">Mobile</label>
-                        <input
-                            type="Mobile"
-                            id="Mobile"
-                            name="Mobile"
-                            className="form-input"
-                            value={mobile}
-                            onChange={(e) => {
-                                const val = e.target.value;
-                                if (val?.length <= 10) {
-                                    setMobile(e.target.value)
-                                }
-                            }
-                            }
-                        />
-                    </div>
+<div className="form-group">
+  <label htmlFor="mobile" className="form-label">Mobile</label>
+  <input
+    type="tel"
+    id="mobile"
+    name="mobile"
+    className="form-input"
+    value={mobile}
+    onChange={(e) => {
+      const val = e.target.value.replace(/\D/g, ""); // sirf digits allow
+      if (val.length <= 10) {
+        setMobile(val);
+      }
+    }}
+    maxLength={10}
+    placeholder="Enter 10-digit mobile number"
+  />
+
+</div>
+
                     <div className="form-group">
                         <label htmlFor="location" className="form-label">Address</label>
                         <input
