@@ -79,7 +79,7 @@
   /* height: 340px; */
   aspect-ratio: 4/3;
   cursor: pointer;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px 10px 10px 10px;
 }
 .best-seller-img-text {
   font-size: 20px;
