@@ -104,6 +104,7 @@ export const
                 setName('');
                 setCategory('');
                 setAmount('');
+                setMobile('');
                 setDiscription('');
                 setDesignFile(null);
                 setPreviewURL(null);
