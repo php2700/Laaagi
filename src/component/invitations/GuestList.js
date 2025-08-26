@@ -1308,7 +1308,7 @@ export const GuestList = () => {
         </div>
       }
 
-      <div className="totals-bar">
+      <div className="totals-bar" >
         <span>Total Guest:{totalGuest} </span>
         <span>Total Boxes:{totalbox} </span>
       </div>
