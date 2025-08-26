@@ -817,7 +817,7 @@
 //   // FIX 1: Updated handleChecked to set quantity in 'boxes' state for display
 // const handleChecked = (index, guestData) => {
 //     const isExist = checkedItems?.some((ele) => ele.idx === index);
-    
+
 //     if (isExist) {
 //         // 1. checkedItems से हटाएं (यह पहले से सही है)
 //         setCheckedItems(checkedItems.filter((ele) => ele.idx !== index));
@@ -834,7 +834,7 @@
 //         const quantity = existingBox && existingBox.quantity > 0 ? existingBox.quantity : 1;
 
 //         setCheckedItems([...checkedItems, { idx: index, quantity: quantity }]);
-      
+
 //         const isBoxExist = boxes.some((b) => b.idx === index);
 //         if (isBoxExist) {
 //             setBoxes(
@@ -1061,10 +1061,10 @@ export const GuestList = () => {
   const [userId, setUserId] = useState(id);
   const token = context?.token || localStorage.getItem("token");
   const [guestList, setGuestList] = useState([]);
-  
+
   // FIX: 'checkedItems' state is no longer needed. 'boxes' is the single source of truth.
   const [boxes, setBoxes] = useState([]);
-  
+
   const [totalbox, setTotalBox] = useState(0);
   const [totalGuest, setTotalGuest] = useState(0);
   const [userBox, setUserBox] = useState("");
@@ -1105,7 +1105,7 @@ export const GuestList = () => {
   const countFun = () => {
     // Filter guests who have a quantity greater than 0
     const itemsWithQuantity = boxes.filter(box => box.quantity > 0);
-    
+
     const countBox = itemsWithQuantity.reduce(
       (total, box) => total + Number(box.quantity), 0
     );
@@ -1132,7 +1132,7 @@ export const GuestList = () => {
   // FIX: useEffect now depends on 'boxes' state to recalculate total
   useEffect(() => {
     countFun();
-    
+
     // Also update the final 'guest' list for payment based on 'boxes'
     const selectedGuests = boxes
       .filter(box => box.quantity > 0)
@@ -1159,9 +1159,9 @@ export const GuestList = () => {
 
     let newBoxes;
     if (isExist) {
-        newBoxes = boxes.map((ele) => ele.idx === index ? { ...ele, quantity } : ele);
+      newBoxes = boxes.map((ele) => ele.idx === index ? { ...ele, quantity } : ele);
     } else {
-        newBoxes = [...boxes, { idx: index, quantity }];
+      newBoxes = [...boxes, { idx: index, quantity }];
     }
     setBoxes(newBoxes);
   };
@@ -1187,7 +1187,7 @@ export const GuestList = () => {
   const handleCheckUser = (isChecked) => {
     setIsUserAddressChecked(isChecked);
   };
-  
+
   const handlePayment = () => {
     if (!paymentHistory?.length) {
       toast.error("Your data have been lose please Select One more time  !", {
@@ -1227,7 +1227,7 @@ export const GuestList = () => {
           <tbody>
             {guestList?.map((guest, index) => {
               if (!guest?.address) return null;
-              
+
               const currentBox = boxes.find((ele) => ele.idx === index);
               const quantity = currentBox?.quantity || 0;
 
@@ -1301,7 +1301,7 @@ export const GuestList = () => {
           />
         </div>
       </div>
-      
+
       {isDeliverycharge &&
         <div className="shipping-info">
           <div>Extra Shipping Charges ₹20 per box</div>
