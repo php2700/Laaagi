@@ -78,7 +78,7 @@ const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0'
 
     
     return (
-        <Myannimation direction="up">
+        
         <div className='best-seller'>
             <div className='best-seller-top'>
                 <div className='best-seller-left-text'> Best Sellers</div>
@@ -116,6 +116,6 @@ const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0'
             </div>
 
         </div>
-        </Myannimation>
+        
     )
 }
