@@ -67,7 +67,7 @@ export const Myannimation = ({ children, direction = "up" }) => {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 1.2, ease: "easeOut" },
+      transition: { duration: .7, ease: "easeOut" },
     },
   };
 

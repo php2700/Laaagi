@@ -114,14 +114,14 @@ export const Banner = () => {
   }, []);
 
   return (
-    <section style={{ minHeight: "60vh" }}>
+    <section style={{ minHeight: "20vh" }}>
       <Myannimation direction="up">
         <div className="banner">
           {data.length > 0 ? (
             <div className="banner-img" style={{ position: "relative" }}>
               {/* ✅ Banner Image */}
               <img
-                style={{ width: "100%", aspectRatio: "16 / 4", objectFit: "cover" }}
+                style={{ width: "100%", aspectRatio: "16 / 5", objectFit: "cover" }}
                 alt="Banner"
                 src={`${process.env.REACT_APP_BASE_URL}uploads/${data[index]?.banner}`}
               />
