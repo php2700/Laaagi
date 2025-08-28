@@ -82,9 +82,9 @@ export const Dashboard = () => {
         <Myannimation />
 
       </Myannimation> */}
-      <Myannimation direction="up">
+      
         <Best_seller />
-      </Myannimation>
+      
       <Myannimation direction="up">
         {token && <Recent_view />}
       </Myannimation>
