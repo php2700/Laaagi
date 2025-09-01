@@ -127,7 +127,7 @@ export const ProfilePage = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="name" className="form-label">Name</label>
+                        <label htmlFor="name" className="form-label"style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>Name</label>
                         <input
                             type="text"
                             id="name"

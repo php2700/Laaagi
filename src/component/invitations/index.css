@@ -108,11 +108,10 @@
   background-color: #fff;
 }
 
-.invitation-content-img :hover {
+/* .invitation-content-img :hover {
   cursor: pointer;
   border: 1px solid #777;
-  border-radius: 10px 10px 0 0;
-}
+} */
 .invitation-content-img img {
   width: 100%;
   object-fit: cover;
@@ -122,6 +121,11 @@
   cursor: pointer;
   border-radius:  10px;
 }
+/* .invitation-content-img ,img :hover{
+    cursor: pointer;
+  border: 1px solid #777;
+
+} */
 
 .invitation-content-img-name {
   width: 100%;
@@ -290,3 +294,8 @@
     /* margin: 10px 0; */
   }
 }
+.invitation-content-img:hover img {
+  cursor: pointer;
+  border: 1px solid #777;
+}
+
