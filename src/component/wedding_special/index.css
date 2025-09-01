@@ -68,13 +68,13 @@
 .wedding-img-wrapper:hover {
   cursor: pointer;
   border: 1px solid #777;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .wedding-img-text {
   font-size: 20px;
   font-weight: 600;
-  color: #5d4037;
+  color: #fff;
   margin: 35px 0px;
 }
 
@@ -146,4 +146,61 @@
   .wedding-img-right-icon {
     display: none;
   }
+}
+.wedding-img-wrapper {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.wedding-img-container {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+
+.wedding-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* .wedding-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(32, 32, 32, 0.55);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+} */
+.wedding-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.35); /* reduced opacity */
+  color: #fff;
+  padding: 12px 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px #000; /* still helps visibility */
+}
+
+
+.wedding-img-wrapper:hover .wedding-img {
+  transform: scale(1.1);
+}
+
+.wedding-img-wrapper:hover .wedding-img-overlay {
+  opacity: 1;
 }

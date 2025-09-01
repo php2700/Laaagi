@@ -82,9 +82,9 @@ export const Dashboard = () => {
         <Myannimation />
 
       </Myannimation> */}
-      
-        <Best_seller />
-      
+
+      <Best_seller />
+
       <Myannimation direction="up">
         {token && <Recent_view />}
       </Myannimation>
@@ -107,6 +107,35 @@ export const Dashboard = () => {
         <Shop />
       </Myannimation>
       {/* <GuestList/> */}
+      <a
+        href="https://wa.me/9827479905"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: 'fixed',
+          bottom: '60px',
+          right: '30px',
+          backgroundColor: '#25D366',
+          borderRadius: '50%',
+          width: '60px',
+          height: '60px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+          zIndex: 1000,
+          cursor: 'pointer'
+        }}
+      >
+
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          style={{ width: '35px', height: '35px' }}
+        />
+      </a>
     </>
+
   )
+
 }

@@ -2,11 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffd700;
-  background-color: #800000;
+  color: #8B0000;
+  background-color: #ebe6d2;
   height: 38px;
   font-size: 18px;
 }
+
 .topbar div {
   font-size: 18px;
   font-weight: 400;
@@ -76,10 +77,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #800000;
+  background-color:#ebe6d2;
   color: #ffd700;
   min-height: 38px;
 }
+.navbar :hover {
+  color: #ffd700;
+  
+}
+
 .navbar div a {
   text-decoration: none;
   color: #ffd700;
@@ -103,6 +109,7 @@
   text-decoration: underline;
   text-decoration-color: red;
   text-decoration-thickness: 2px;
+  
 }
 
 .default {
