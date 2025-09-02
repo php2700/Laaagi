@@ -244,7 +244,7 @@ export const Footer = () => {
               <div className='footer-left-middle-header'>Useful Links</div>
               <div className='footer-left-middle-text'><div className='handle-about' onClick={handleAbout}>About Us</div></div>
               <div className='footer-left-middle-text'><Link onClick={scrolltop} to='/contact-us'>Contact</Link></div>
-              <div className='footer-left-middle-text'>Promotions</div>
+              {/* <div className='footer-left-middle-text'>Promotions</div> */}
             </div>
 
             {/* Help Center */}

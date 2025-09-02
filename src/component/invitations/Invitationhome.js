@@ -456,6 +456,8 @@ export const Invitationhome = () => {
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image02)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image02}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image03)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image03}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image04)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image04}`} alt={`${invitation?.image} Invitation Box`} />
+        <img className='multipleImg' onClick={() => handleViewImg(invitation?.videoFile)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`} alt={`${invitation?.image} Invitation Boxss`} />
+
       </div>
       <div className='select-size-header'>Select size of the box</div>
       <div className='invitation-size-box'>

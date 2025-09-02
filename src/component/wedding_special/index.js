@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 export const WeddingSpecial = () => {
 
   const [startIndex, setStartIndex] = useState(0)
-  const [lastIndex, setLastIndex] = useState(2)
+  const [lastIndex, setLastIndex] = useState(3)
   const [data, setData] = useState([]);
   const context = useContext(AuthContext);
   const sweetsInfo = context?.setSweetsInfo;
@@ -43,7 +43,7 @@ export const WeddingSpecial = () => {
   const handleForwardIcon = () => {
     let totalItems = data?.length || 0;
     const nextStart = lastIndex + 1;
-    const nextLast = lastIndex + 3;
+    const nextLast = lastIndex + 4;
     console.log(nextStart, "nextStart", nextLast, "nextLast")
     if (nextStart < totalItems) {
       setStartIndex(nextStart);
@@ -53,7 +53,7 @@ export const WeddingSpecial = () => {
 
 
   const handlePrev = () => {
-    const prevStart = Math.max(0, startIndex - 3);
+    const prevStart = Math.max(0, startIndex - 4);
     const prevLast = Math.max(2, startIndex - 1);
 
     setStartIndex(prevStart);

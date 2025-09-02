@@ -187,7 +187,7 @@
   right: 0;
   background: rgba(0, 0, 0, 0.35); /* reduced opacity */
   color: #fff;
-  padding: 12px 10px;
+  padding: 2px 2px;
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -198,7 +198,7 @@
 
 
 .wedding-img-wrapper:hover .wedding-img {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .wedding-img-wrapper:hover .wedding-img-overlay {
