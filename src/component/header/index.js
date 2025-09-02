@@ -152,15 +152,24 @@ export const Header = () => {
     const handleGuestClick = () => {
         navigate('/signup');
     };
-
     return (
-        
+
         <div style={{
             position: 'sticky', zIndex: '999', backgroundColor: '#fff',
-            top: '0'
+            top: '0',
+              
+            zIndex: '999',
+            backgroundColor: '#fff',
+            top: '0',
+            borderBottom: '2px solid #FFD700'  // ← Add this line
+
         }} >
-            <div className='topbar' id ="Laaagi"style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
->Welcome to Laaagi</div>
+            {/* <div className='topbar' id ="Laaagi"style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
+>Welcome to Laaagi</div> */}
+            <div className='topbar' id="Laaagi" style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
+            >
+                Crafting Memories, Sweetening Celebrations
+            </div>
             <header className='header'>
                 <div className='search' ref={searchContainerRef}>
                     {/* <input
@@ -274,7 +283,7 @@ export const Header = () => {
 
                     <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px',fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 
                         }}>Invitations</NavLink>
                     {!isMobile && (
@@ -291,7 +300,7 @@ export const Header = () => {
                     <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
                         className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px',fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 
                         }}>Sweets</NavLink>
 
@@ -307,10 +316,10 @@ export const Header = () => {
                 <div className="nav-item">
                     <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px',fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 
                         }}
-                        >Decorations</NavLink>
+                    >Decorations</NavLink>
 
                     {!isMobile && (
                         <div className="dropdown">
@@ -325,7 +334,7 @@ export const Header = () => {
                 <div className="nav-item">
                     <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px',fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 
                         }}>Designer</NavLink>
                     {!isMobile && (
@@ -341,17 +350,17 @@ export const Header = () => {
 
                 <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#8B0000', fontSize: '18px',fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                        color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 
                     }}>Planning Tools</NavLink>
                 <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                     style={{
-                        color: '#8B0000', fontSize: '18px',fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                        color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 
                     }}
-                    >Contact Us</NavLink>
+                >Contact Us</NavLink>
             </nav>
         </div>
-        
+
     );
 };

@@ -294,8 +294,23 @@
     /* margin: 10px 0; */
   }
 }
-.invitation-content-img:hover img {
+/* .invitation-content-img:hover img {
   cursor: pointer;
   border: 1px solid #777;
+} */
+ .invitation-content-img {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+
 }
+
+.invitation-content-img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: 1px solid #777;
+
+}
+
+
+
 

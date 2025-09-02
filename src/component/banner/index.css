@@ -85,3 +85,37 @@
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
 }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+/* Base style */
+.btn-primary {
+  background: linear-gradient(135deg, var(--dark-gold), var(--gold));
+  color: var(--deep-red);
+  box-shadow: 0 6px 24px rgba(255, 215, 0, 0.4); /* yellow shadow */
+}
+
+/* Hover effect */
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
+  color: var(--deep-red);
+}
+
+/* Large size */
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 18px;
+}

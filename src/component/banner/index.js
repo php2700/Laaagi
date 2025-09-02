@@ -133,15 +133,18 @@ export const Banner = () => {
                   bottom: "2px",
                   left: "50%",
                   transform: "translateX(-50%)",
-                  color: "white",
-                  fontSize: "24px",
+                  // color: "white",
+                  // fontSize: "24px",
+                  fontSize: "16px",
+
                 }}
               >
                 <a
                   href={data[index]?.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="order-btn"
+                  // className="order-btn"
+                  class="btn btn-primary btn-lg"
                 >
                   Order Now
                 </a>
