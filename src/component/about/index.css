@@ -23,13 +23,14 @@
 .about-heading {
   font-size: 30px;
   font-weight: 600;
+  font-family: "'Playfair Display', serif" ;
+
 }
 .about-desc {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400;
   margin-bottom: 20px;
   color: #555555;
-  font-family: Quicksand;
   margin-top: 15px;
 }
 .about-button {
@@ -38,8 +39,9 @@
   min-width: 150px;
   padding: 5px 20px;
   border-radius: 20px;
+border: 1px solid ;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .about-video {
   width: 100%;

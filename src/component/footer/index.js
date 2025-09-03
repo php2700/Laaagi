@@ -281,8 +281,8 @@ export const Footer = () => {
         </div>
 
         {/* Background colors */}
-        <div className='footer-color-black'></div>
-        <div className='footer-color-red'></div>
+        {/* <div className='footer-color-black'></div>
+        <div className='footer-color-red'></div> */}
       </div>
     </Myannimation>
   )

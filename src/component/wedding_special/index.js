@@ -106,11 +106,11 @@ export const WeddingSpecial = () => {
     // </div>
     <div className="wedding">
       <div className="wedding-top">
-        <div className="wedding-left-text" style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>Wedding special</div>
+        <div className="wedding-left-text">Wedding special</div>
         <Link
           to="/sweets"
           state={{ filter: "wedding" }}
-          className="wedding-right-text"
+          className="wedding-right-text" 
         >
           See More
         </Link>

@@ -133,18 +133,21 @@ export const Banner = () => {
                   bottom: "2px",
                   left: "50%",
                   transform: "translateX(-50%)",
-                  // color: "white",
-                  // fontSize: "24px",
                   fontSize: "16px",
-
+                  letterSpacing: '0.6px',
+                  fontWeight: 'var(--font-weight-medium)',
                 }}
+     
               >
                 <a
                   href={data[index]?.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   // className="order-btn"
-                  class="btn btn-primary btn-lg"
+                  // className="btn btn-primary btn-lg"
+                  className="btn btn-primary btn-lg"
+                  style={{  background: 'linear-gradient(135deg, #ffd700 0%, #b8860b 100%)',
+}}
                 >
                   Order Now
                 </a>

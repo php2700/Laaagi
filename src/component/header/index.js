@@ -37,6 +37,12 @@ export const Header = () => {
     const [openLogoutModal, setOpenLogoutModal] = useState(false);
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
     const inputRef = useRef(null); // -1 means none selected
+    const [isHoveringInvitation, setIsHoveringInvitation] = useState(false);
+    const [isHoveringSweets, setIsHoveringSweets] = useState(false);
+    const [isHoveringDecoration, setIsHoveringDecoration] = useState(false);
+    const [isHoveringDesign, setIsHoveringDesign] = useState(false);
+    const [isHoveringPlanning, setIsHoveringPlanning] = useState(false);
+    const [isHoveringContact, setIsHoveringContact] = useState(false);
     // const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
     useEffect(() => {
@@ -157,19 +163,19 @@ export const Header = () => {
         <div style={{
             position: 'sticky', zIndex: '999', backgroundColor: '#fff',
             top: '0',
-              
+
             zIndex: '999',
             backgroundColor: '#fff',
             top: '0',
-            borderBottom: '2px solid #FFD700'  // ← Add this line
+            borderBottom: '1px solid #FFD700'
 
         }} >
-            {/* <div className='topbar' id ="Laaagi"style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
->Welcome to Laaagi</div> */}
-            <div className='topbar' id="Laaagi" style={{ fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
+
+            <div className='topbar' id="Laaagi" style={{ fontStyle: 'italic' }}
             >
                 Crafting Memories, Sweetening Celebrations
             </div>
+            <div style={{ borderBottom: '1px solid #FFD700' }} ></div>
             <header className='header'>
                 <div className='search' ref={searchContainerRef}>
                     {/* <input
@@ -279,12 +285,14 @@ export const Header = () => {
                 </div>
             )}
             <nav style={{ color: 'red' }} className={`navbar ${isMobile ? (menuOpen ? 'open' : 'collapsed') : ''}`}>
-                <div className="nav-item">
+                <div className="nav-item" onMouseEnter={() => setIsHoveringInvitation(true)}
+                    onMouseLeave={() => setIsHoveringInvitation(false)}>
 
                     <NavLink to='/invitation' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-
+                            color: isHoveringInvitation ? '#ffd700' : '#8B0000',
+                            textDecoration: isHoveringInvitation ? 'underline' : 'none',
+                        
                         }}>Invitations</NavLink>
                     {!isMobile && (
                         <div className="dropdown">
@@ -296,11 +304,14 @@ export const Header = () => {
                         </div>
                     )}
                 </div>
-                <div className="nav-item">
+                <div className="nav-item" onMouseEnter={() => setIsHoveringSweets(true)}
+                    onMouseLeave={() => setIsHoveringSweets(false)}>
                     <NavLink to='/sweets' onClick={() => setMenuOpen(false)}
                         className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            textDecoration: isHoveringSweets ? 'underline' : 'none',
+
+                            color: isHoveringSweets ? '#ffd700' : '#8B0000', fontSize: '18px', fontFamily: ' sans-serif',
 
                         }}>Sweets</NavLink>
 
@@ -313,10 +324,13 @@ export const Header = () => {
                         </div>
                     )}
                 </div>
-                <div className="nav-item">
+                <div className="nav-item" onMouseEnter={() => setIsHoveringDecoration(true)}
+                    onMouseLeave={() => setIsHoveringDecoration(false)}>
                     <NavLink to='/decorations' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            textDecoration: isHoveringDecoration ? 'underline' : 'none',
+
+                            color: isHoveringDecoration ? '#ffd700' : '#8B0000', fontSize: '18px',
 
                         }}
                     >Decorations</NavLink>
@@ -331,10 +345,13 @@ export const Header = () => {
                         </div>
                     )}
                 </div>
-                <div className="nav-item">
+                <div className="nav-item" onMouseEnter={() => setIsHoveringDesign(true)}
+                    onMouseLeave={() => setIsHoveringDesign(false)}>
                     <NavLink to='/designers' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
                         style={{
-                            color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            textDecoration: isHoveringDesign ? 'underline' : 'none',
+
+                            color: isHoveringDesign ? '#ffd700' : '#8B0000', fontSize: '18px',
 
                         }}>Designer</NavLink>
                     {!isMobile && (
@@ -347,18 +364,27 @@ export const Header = () => {
                     )}
                 </div>
 
+                <div onMouseEnter={() => setIsHoveringPlanning(true)}
+                    onMouseLeave={() => setIsHoveringPlanning(false)}>
+                    <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                        style={{
+                            textDecoration: isHoveringPlanning ? 'underline' : 'none',
 
-                <NavLink to='/planning-tool' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
-                    style={{
-                        color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            color: isHoveringPlanning ? '#ffd700' : '#8B0000', fontSize: '18px',
 
-                    }}>Planning Tools</NavLink>
-                <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
-                    style={{
-                        color: '#8B0000', fontSize: '18px', fontFamily: '"FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                        }}>Planning Tools</NavLink>
+                </div>
 
-                    }}
-                >Contact Us</NavLink>
+                <div onMouseEnter={() => setIsHoveringContact(true)}
+                    onMouseLeave={() => setIsHoveringContact(false)}>
+                    <NavLink to='/contact-us' onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active-link' : 'default'}
+                        style={{
+                            textDecoration: isHoveringContact ? 'underline' : 'none',
+                            color: isHoveringContact ? '#ffd700' : '#8B0000', fontSize: '18px',
+
+                        }}
+                    >Contact Us</NavLink>
+                </div>
             </nav>
         </div>
 

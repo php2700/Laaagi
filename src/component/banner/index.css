@@ -47,12 +47,13 @@
   position: absolute;
   align-items: center;
   appearance: none;
-  background-color: rgb(255, 215, 0 );
+  background-color: rgb(255, 215, 0);
   border: 0;
-  border-radius: 30px; /* rounded */
+  border-radius: 30px;
+  /* rounded */
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,
-              rgba(45, 35, 66, .3) 0 7px 13px -3px,
-              rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    rgba(45, 35, 66, .3) 0 7px 13px -3px,
+    rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
   color: #982900;
   cursor: pointer;
@@ -73,18 +74,21 @@
 }
 
 .order-btn:hover {
-  background-color: #660000; /* darker shade on hover */
+  background-color: #660000;
+  /* darker shade on hover */
   box-shadow: rgba(45, 35, 66, .4) 0 4px 8px,
-              rgba(45, 35, 66, .3) 0 7px 13px -3px,
-              #3c4fe0 0 -3px 0 inset;
+    rgba(45, 35, 66, .3) 0 7px 13px -3px,
+    #3c4fe0 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
 .order-btn:active {
-  background-color: #4d0000; /* even darker on click */
+  background-color: #4d0000;
+  /* even darker on click */
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
 }
+
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -103,15 +107,16 @@
 .btn-primary {
   background: linear-gradient(135deg, var(--dark-gold), var(--gold));
   color: var(--deep-red);
-  box-shadow: 0 6px 24px rgba(255, 215, 0, 0.4); /* yellow shadow */
+  box-shadow: 0 6px 24px rgba(255, 215, 0, 0.4);
+  /* yellow shadow */
 }
 
 /* Hover effect */
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+  /* background: linear-gradient(135deg, var(--gold), var(--dark-gold)); */
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
-  color: var(--deep-red);
+  /* box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4); */
+  /* color: var(--deep-red); */
 }
 
 /* Large size */

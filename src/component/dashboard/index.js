@@ -103,9 +103,9 @@ export const Dashboard = () => {
       <Myannimation direction="up">
         <Review />
       </Myannimation>
-      <Myannimation direction="up">
+      {/* <Myannimation direction="up">
         <Shop />
-      </Myannimation>
+      </Myannimation> */}
       {/* <GuestList/> */}
       <a
         href="https://wa.me/9827479905"
