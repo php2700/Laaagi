@@ -1,4 +1,4 @@
-.review {
+/* .review {
   display: flex;
   flex-direction: column;
   padding: 12px 80px;
@@ -68,4 +68,79 @@
 }
 
 
+ */
 
+.testimonials-container {
+  background-color: #f8efff;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.title {
+  color: #800000;
+  font-size: 28px;
+  margin-bottom: 5px;
+  font-family: "'Playfair Display', serif" ;
+
+}
+
+.subtitle {
+  color: #800000;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.testimonials {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  /* slightly reduced for better fit */
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background-color: #faf8e8;
+  padding: 10px 25px;
+  border-radius: 12px;
+  width: 40%;
+  /* ⬅️ Increased width */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.quote {
+  font-size: 24px;
+  color: #ffc107;
+  margin-bottom: 5px;
+}
+
+.stars {
+  color: #ffc107;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.review-description {
+  color: #800000;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.name {
+  color: #f1c40f;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.location {
+  color: #555;
+  font-size: 14px;
+}
+
+@media (max-width: 500px) {
+  .testimonial-card {
+    width: 90%;
+  }
+}

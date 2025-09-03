@@ -1,15 +1,21 @@
 .discover-category {
   padding: 10px 50px;
 }
+
 .discover-category-heading {
   text-align: center;
   font-weight: 600;
   font-size: 32px;
   margin: 20px 0;
+  font-family: "'Playfair Display', serif" ;
+
 }
+
 .discover-category-left-text {
   font-weight: 600;
   font-size: 30px;
+  font-family: "'Playfair Display', serif" ;
+
 }
 
 .discover-category-list {
@@ -21,9 +27,9 @@
   text-align: center;
   width: 24%;
 }
+
 .discover-category-img {
   width: 100%;
-  border: 1px solid #ccc;
   aspect-ratio: 4/3;
   cursor: pointer;
   border-radius: 10px;
@@ -37,11 +43,12 @@
   font-size: 20px;
 }
 
-.discover-category-img:hover {
+/* .discover-category-img:hover {
   border: 2px solid #777;
-}
+} */
 
 @media (max-width: 850px) {
+
   /* .discover-category-img {
     height: 300px;
   } */
@@ -51,6 +58,7 @@
 }
 
 @media (max-width: 720px) {
+
   /* .discover-category-img {
     height: 300px;
   } */
@@ -63,23 +71,93 @@
   .discover-category-heading {
     font-size: 30px;
   }
+
   .discover-category-left-text {
     font-weight: 600;
     font-size: 26px;
   }
+
   .discover-category-wrapper {
     width: 100%;
   }
+
   .discover-category-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
+
   .discover-category-left-text {
     text-align: center;
   }
+
   .discover-category-img {
     width: 100%;
     height: auto;
   }
+}
+
+
+.discover-category-wrapper {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.discover-category-img-container {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+
+.discover-category-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* .discover-category-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(32, 32, 32, 0.55);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+} */
+
+.discover-category-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.35);
+  /* reduced opacity */
+  color: #fff;
+  padding: 2px 2px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px #000;
+  /* still helps visibility */
+}
+
+.discover-category-img-text {
+  color: white;
+}
+
+.discover-category-wrapper:hover .discover-category-img {
+  transform: scale(1.2);
+}
+
+.discover-category-wrapper:hover .discover-category-img-overlay {
+  opacity: 1;
 }

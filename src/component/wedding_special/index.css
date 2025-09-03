@@ -7,15 +7,19 @@
   align-items: center;
   padding: 10px 12px;
 }
+
 .wedding-left-text {
   font-weight: 600;
   font-size: 30px;
+  font-family: "'Playfair Display', serif" ;
 }
 .wedding-right-text {
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
   color: #000000;
+  font-family: "'Playfair Display', serif" ;
+
 }
 .wedding-img-list {
   display: flex;
@@ -75,7 +79,7 @@
   font-size: 20px;
   font-weight: 600;
   color: #fff;
-  margin: 35px 0px;
+  /* margin: 10px 0px; */
 }
 
 .wedding-img-container {
@@ -180,6 +184,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 } */
+ 
 .wedding-img-overlay {
   position: absolute;
   bottom: 0;

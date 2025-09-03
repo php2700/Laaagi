@@ -32,20 +32,52 @@ export const Review = () => {
     }, [reviewListData]);
     const currentReview = reviewListData[currentIndex];
 
-
+const testimonials = [
+  {
+    name: 'Rajdeep & Simran',
+    location: 'Amritsar',
+    stars: 5,
+    message: 'Perfect invitations and delicious sweets for our wedding. Great service!',
+  },
+  {
+    name: 'Harpreet Singh',
+    location: 'Ludhiana',
+    stars: 5,
+    message: 'Professional service, beautiful cards, and on-time delivery. Highly recommended!',
+  },
+];
     return (
-        <div className='review'>
-            <div className='review-list'>
-                <div className='review-list-desc'>{currentReview?.description}</div>
-                <div className='review-list-img'><img src={`${process.env.REACT_APP_BASE_URL}uploads/${currentReview?.image}`} /></div>
-                <div className='review-list-name'>{currentReview?.name}</div>
-                <div className='review-list-designation'>{currentReview?.designation}</div>
-                <div className='review-icon'>
-                    {reviewListData?.map((ele, index) => (
-                        <img src={index == currentIndex ? activeReview : deactiveReview} />
-                    ))}
-                </div>
+        <>
+ <div className="testimonials-container">
+      <h2 className="title">What Our Clients Say</h2>
+      <p className="subtitle">Real experiences from satisfied families</p>
+      <div className="testimonials">
+        {testimonials.map((testimonial, index) => (
+          <div className="testimonial-card" key={index}>
+            <div className="quote">❝</div>
+            <div className="stars">
+              {'★'.repeat(testimonial.stars)}{'☆'.repeat(5 - testimonial.stars)}
             </div>
-        </div>
+            <p className="review-description"><i>"{testimonial.message}"</i></p>
+            <p className="name">{testimonial.name}</p>
+            <p className="location">{testimonial.location}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+        </>
+        // <div className='review'>
+        //     <div className='review-list'>
+        //         <div className='review-list-desc'>{currentReview?.description}</div>
+        //         <div className='review-list-img'><img src={`${process.env.REACT_APP_BASE_URL}uploads/${currentReview?.image}`} /></div>
+        //         <div className='review-list-name'>{currentReview?.name}</div>
+        //         <div className='review-list-designation'>{currentReview?.designation}</div>
+        //         <div className='review-icon'>
+        //             {reviewListData?.map((ele, index) => (
+        //                 <img src={index == currentIndex ? activeReview : deactiveReview} />
+        //             ))}
+        //         </div>
+        //     </div>
+        // </div>
     )
 }

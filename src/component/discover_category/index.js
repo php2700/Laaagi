@@ -50,9 +50,15 @@ export const DiscoverCategory = () => {
 
                     let category = item?.category[0]?.toUpperCase() + item?.category.slice(1)?.toLowerCase();
                     return (
-                        <div key={item?.id} className='discover-category-wrapper'>
-                            <img onClick={() => handleSweetInfo(item)} className='discover-category-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
-                            <div className='discover-category-img-text'>{category}</div>
+                        <div key={item?.id} className='discover-category-wrapper' onClick={() => handleSweetInfo(item)}>
+                            {/* <img onClick={() => handleSweetInfo(item)} className='discover-category-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
+                            <div className='discover-category-img-text'>{category}</div> */}
+                              <div className="discover-category-img-container">
+                      <img className="discover-category-img" src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="Wedding" />
+                      <div className="discover-category-img-overlay">
+                        <div className="discover-category-img-text" >{category}</div>
+                      </div>
+                    </div>
                         </div>
                     )
                 })}

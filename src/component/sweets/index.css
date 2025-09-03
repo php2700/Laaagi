@@ -275,7 +275,7 @@
 
 .active-link {
   text-decoration: underline !important;
-  text-decoration-color: red !important ;
+  text-decoration-color: rgb(245, 221, 4) !important ;
   text-decoration-thickness: 3px !important;
 }
 

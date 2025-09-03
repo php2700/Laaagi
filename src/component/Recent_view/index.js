@@ -84,10 +84,17 @@ export const Recent_view = () => {
                             let name = item?.name[0]?.toUpperCase() + item?.name.slice(1)?.toLowerCase();
                             return (
                                 <div key={item?.id} className='recent-view-img-wrapper' onClick={() => handleView(item)}>
-                                    <div>
+                                    {/* <div className='recent-img-overlay'>
                                         <img className='recent-view-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="recent-view" />
                                     </div>
-                                    <div className='recent-view-img-text'>{name}</div>
+                                    <div className='recent-view-img-text'>{name}</div> */}
+
+                                          <div className="recent-img-container">
+                      <img className="recent-view-img" src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="Wedding" />
+                      <div className="recent-img-overlay">
+                        <div className="recent-view-img-text" >{name}</div>
+                      </div>
+                    </div>
                                 </div>
                             )
                         })}

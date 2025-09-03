@@ -81,7 +81,7 @@ const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0'
         
         <div className='best-seller'>
             <div className='best-seller-top'>
-                <div className='best-seller-left-text'> Best Sellers</div>
+                <div className='best-seller-left-text' > Best Sellers</div>
                 <div className='best-seller-right-text' onClick={handleBestSeller}> See More</div>
             </div>
             <div className='best-seller-img-list'>
@@ -97,11 +97,18 @@ const ContactSection = () => <div style={{ height: '80vh', background: '#c0c0c0'
 
 
                     return (
-                        <div key={item?.id} className='best-seller-wrapper'>
-                            <div className='best-seller-img-parent' onClick={() => handleView(item)}>
+                        <div key={item?.id} className='best-seller-wrapper' onClick={() => handleView(item)}>
+                            {/* <div className='best-seller-img-parent' onClick={() => handleView(item)}>
                                 <img className='best-seller-img' src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} />
                             </div>
-                            <div  className='best-seller-img-text' onClick={() => handleView(item)}>{name}</div>
+                            <div  className='best-seller-img-text' onClick={() => handleView(item)}>{name}</div> */}
+                              <div className="best-seller-img-container">
+                      <img className="best-seller-img" src={`${process.env.REACT_APP_BASE_URL}uploads/${item?.image}`} alt="Wedding" />
+                      <div className="best-seller-img-overlay">
+                        <div className="best-seller-img-text" >{name}</div>
+                      </div>
+                    </div>
+
                         </div>
                     )
                 })}

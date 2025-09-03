@@ -20,6 +20,7 @@
   background-color: white;
   border-radius: 40px;
 }
+
 .close-model {
   display: flex;
   width: 100%;
@@ -49,6 +50,7 @@
   background-color: #f6f6f6;
   box-shadow: 0px 1px 5px #878585;
 }
+
 .model-name {
   display: flex;
   gap: 10px;
@@ -85,9 +87,10 @@
 }
 
 .model-button {
+  cursor: pointer;
   width: 93%;
   margin-top: 20px;
-  background-color: #ffd700;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
   color: #800000;
   font-size: 18px;
   font-weight: 600;
@@ -95,7 +98,13 @@
   border-radius: 24px;
   border: 1px solid #b356c1;
 }
+
 .error-color {
   color: red;
   min-height: 20px;
+}
+
+
+.model-button:hover {
+  background-color: #f0c800;
 }

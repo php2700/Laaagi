@@ -156,7 +156,7 @@ export const Model = ({ open, onClose, data }) => {
                             <div className='error-color'>{error?.message || ''}</div>
                         </div>
                         <div>
-                            <button className='model-button' type="submit">Send Message</button>
+                            <button className='model-button' type="submit">SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>
