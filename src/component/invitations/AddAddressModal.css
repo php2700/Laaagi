@@ -96,7 +96,8 @@
   padding: 18px 20px;
   border: none;
   border-radius: 25px;
-  background-color: #ffd700;
+   background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   color: #800000;
   font-size: 1rem;
   font-weight: bold;
@@ -104,6 +105,11 @@
   margin-top: 10px;
   width: 30%;
   margin: 0 auto;
+}
+
+.modal-submit-button:hover{
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }
 
 @media (max-width: 1500px) {

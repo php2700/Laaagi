@@ -126,7 +126,7 @@
   resize: vertical;
 }
 
-.contact-us-form button {
+.contact-us-send-btn{
   color: #800000;
   height: 48px;
   font-weight: 600;
@@ -134,13 +134,13 @@
   font-size: 18px;
   border: none;
   width: 100%;
-  background-color: #ffd700;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-.contact-us-form button:hover {
-  background-color: #f0c800;
-}
+
+
+
 
 .contact-us-form-name {
   display: flex;
@@ -232,4 +232,8 @@
   .contact-us-mail div {
     font-size: 15px;
   }
+}
+.contact-us-send-btn:hover {
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+ 
 }

@@ -785,31 +785,31 @@ export const PlanningTool = () => {
                 <div
                     className="accordion-header"
                     style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "100%",
-                        cursor: "pointer",
-                        fontSize: "1.1rem",
+                        // display: "flex",
+                        // justifyContent: "space-between",
+                        // alignItems: "center",
+                        // width: "100%",
+                        // cursor: "pointer",
+                        // fontSize: "1.1rem",
                     }}
                     onClick={() => handleEvent(item)}
                 >
                     {/* Title - Pushed to the left */}
-                    <span style={{ marginRight: "auto", paddingRight: "15px" }}>{`${idx + 1}. ${item?.category}`}</span>
+                    <span style={{ marginRight: "auto", paddingRight: "10px" }}>{`${idx + 1}. ${item?.category}`}</span>
 
                     {/* Button - In the middle of the right-aligned group */}
-                    <button
+                    <button  className='handle-help'
                         style={{
-                            backgroundColor: "#253d4e",
-                            color: "#fff",
-                            fontSize: "13px",
-                            fontWeight: "500",
-                            borderRadius: "6px",
-                            padding: "4px 10px",
-                            border: "none",
-                            cursor: "pointer",
-                            whiteSpace: "nowrap",
-                            marginRight: "70px" // Adds space between the button and the arrow
+                            // backgroundColor: "#253d4e",
+                            // color: "#fff",
+                            // fontSize: "13px",
+                            // fontWeight: "500",
+                            // borderRadius: "6px",
+                            // padding: "4px 10px",
+                            // border: "none",
+                            // cursor: "pointer",
+                            // whiteSpace: "nowrap",
+                            // marginRight: "70px" // Adds space between the button and the arrow
                         }}
                         onClick={(e) => handleHelp(e, item)}
                     >

@@ -7,7 +7,8 @@
 
 .sweets-info-back-button button {
   color: #800000;
-  background-color: #ffd700;
+      background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   border-radius: 10px;
   border-style: none;
   padding: 12px 5px;
@@ -16,6 +17,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.sweets-info-back-button button:hover{
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }
 
 .sweets-info-details {
@@ -92,14 +97,19 @@
   padding: 10px;
   width: 100px;
   font-weight: 500;
-  background-color: #ffd700;
+  /* background-color: #ffd700; */
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   border-radius: 10px;
   border-style: none;
   font-size: 16px;
   color: #800000;
   cursor: pointer;
 }
+.sweets-info-button button:hover{
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
 
+}
 .sweets-info-home-button {
   cursor: pointer;
 }

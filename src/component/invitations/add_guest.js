@@ -103,66 +103,66 @@ export const Add_Guest = () => {
 
     // }
     const validate = () => {
-    const newError = {};
+        const newError = {};
 
-    // Validate name
-    if (!name?.trim()) {
-        newError.name = 'Name is required.';
-    } else if (name.length < 3) {
-        newError.name = 'Min 3 characters required.';
-    }
-
-    // Validate mobile
-    if (!mobile) {
-        newError.mobile = 'Mobile number is required.';
-    } else if (!/^\d+$/.test(mobile)) {
-        newError.mobile = 'Mobile number must contain digits only.';
-    } else if (mobile.length < 10) {
-        newError.mobile = 'Mobile number must be at least 10 digits.';
-    } else if (mobile.length > 12) {
-        newError.mobile = 'Mobile number must not exceed 12 digits.';
-    }
-
-    // Other fields are optional - validate only if they have a value
-
-    // Optional: guestNo
-    if (guestNo && !/^\d+$/.test(guestNo)) {
-        newError.guestNo = 'Guest number must contain digits only.';
-    }
-
-    // Optional: email
-    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
-        newError.email = 'Email not valid.';
-    }
-
-    // Optional: category
-    if (category && !category.trim()) {
-        newError.category = 'Category is invalid.';
-    }
-
-    // Optional: selectRadio
-    if (selectRadio && !selectRadio.trim()) {
-        newError.selectRadio = 'Invalid address selection.';
-    }
-
-    // Optional: address and pincode (only if openAddress is true)
-    if (openAddress) {
-        if (address && (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address) || address.length < 3)) {
-            newError.address = 'Invalid address.';
+        // Validate name
+        if (!name?.trim()) {
+            newError.name = 'Name is required.';
+        } else if (name.length < 3) {
+            newError.name = 'Min 3 characters required.';
         }
 
-        if (pincode) {
-            if (!/^\d+$/.test(pincode)) {
-                newError.pincode = 'Only digits allowed in pincode.';
-            } else if (pincode.length !== 6) {
-                newError.pincode = 'Pincode must be 6 digits.';
+        // Validate mobile
+        if (!mobile) {
+            newError.mobile = 'Mobile number is required.';
+        } else if (!/^\d+$/.test(mobile)) {
+            newError.mobile = 'Mobile number must contain digits only.';
+        } else if (mobile.length < 10) {
+            newError.mobile = 'Mobile number must be at least 10 digits.';
+        } else if (mobile.length > 12) {
+            newError.mobile = 'Mobile number must not exceed 12 digits.';
+        }
+
+        // Other fields are optional - validate only if they have a value
+
+        // Optional: guestNo
+        if (guestNo && !/^\d+$/.test(guestNo)) {
+            newError.guestNo = 'Guest number must contain digits only.';
+        }
+
+        // Optional: email
+        if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+            newError.email = 'Email not valid.';
+        }
+
+        // Optional: category
+        if (category && !category.trim()) {
+            newError.category = 'Category is invalid.';
+        }
+
+        // Optional: selectRadio
+        if (selectRadio && !selectRadio.trim()) {
+            newError.selectRadio = 'Invalid address selection.';
+        }
+
+        // Optional: address and pincode (only if openAddress is true)
+        if (openAddress) {
+            if (address && (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address) || address.length < 3)) {
+                newError.address = 'Invalid address.';
+            }
+
+            if (pincode) {
+                if (!/^\d+$/.test(pincode)) {
+                    newError.pincode = 'Only digits allowed in pincode.';
+                } else if (pincode.length !== 6) {
+                    newError.pincode = 'Pincode must be 6 digits.';
+                }
             }
         }
-    }
 
-    setError(newError);
-    return Object.keys(newError).length === 0;
-};
+        setError(newError);
+        return Object.keys(newError).length === 0;
+    };
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -330,7 +330,7 @@ export const Add_Guest = () => {
                             <span>We will send address request to your guest via email/whatsapp</span>
                         </div>
                     </div>
-                    <div className='form-add-guest-header'><button type='submit'>Save</button></div>
+                    <div className='form-add-guest-header'><button className="add-guest-btn-save" type='submit'>Save</button></div>
                 </form>
             </div>
         </div>

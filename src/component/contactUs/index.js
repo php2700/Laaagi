@@ -156,8 +156,8 @@ export const ContactUs = () => {
                             }} placeholder="Your Message" className="contactarea" ></textarea>
                             <div className="error-color">{error?.desc || ''}</div>
                         </div>
-                        <div><button style={{ background: 'linear-gradient(135deg, #ffd700 0%, #b8860b 100%)', }}
-                            type="submit">SEND MESSAGE</button></div>
+                        <div ><button className="contact-us-send-btn"
+                            type="submit">Send Message</button></div>
                     </form >
                 </div>
             </div>

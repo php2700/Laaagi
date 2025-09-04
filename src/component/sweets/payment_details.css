@@ -67,7 +67,8 @@
 }
 
 .modal-button {
-  background-color: #ffd700;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   color: #333;
   border: none;
   padding: 12px 20px;
@@ -80,7 +81,7 @@
 }
 
 .modal-button:hover {
-  background-color: #e6c300;
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
 }
 
 .modal-close {
