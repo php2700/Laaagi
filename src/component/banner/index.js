@@ -144,10 +144,8 @@ export const Banner = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   // className="order-btn"
-                  // className="btn btn-primary btn-lg"
-                  className="btn btn-primary btn-lg"
-                  style={{  background: 'linear-gradient(135deg, #ffd700 0%, #b8860b 100%)',
-}}
+                  className="banner-btn"
+            
                 >
                   Order Now
                 </a>

@@ -209,9 +209,11 @@ export const Footer = () => {
                 </div>
               </div>
               <div className='footer-left-location'>
+                <div style={{display:'flex'}}>
                 <img className='footer-left-icon' src={locationIcon} alt="location" />
-                <div className='footer-left-location-text'>&nbsp;&nbsp;Address</div>
-                <div className='footer-left-location-right'>:Main Market, Sur Singh, Tarn Taran, Punjab-143302</div>
+                <div className='footer-left-location-text'>&nbsp;&nbsp;Address:</div>
+                </div>
+                <div className='footer-left-location-right'>Main Market, Sur Singh, Tarn Taran, Punjab-143302</div>
               </div>
               <div className='footer-left-call'>
                 <img className='footer-left-call-icon' src={callIcon} alt="call" />
@@ -219,9 +221,13 @@ export const Footer = () => {
                 <div className='footer-left-call-right'>: +91 8699991906</div>
               </div>
               <div className='footer-left-email'>
+                <div style={{display:'flex',justifyContent:'center'}}>
+
                 <img className='footer-left-email-icon' src={emailIcon} alt="email" />
-                <div className='footer-left-email-text'>&nbsp; Email</div>
-                <div className='footer-left-email-right'>: yourpersonallaaagi@gmail.com</div>
+                <div className='footer-left-email-text'>&nbsp; Email:</div>
+                </div>
+
+                <div className='footer-left-email-right' > yourpersonallaaagi@gmail.com</div>
               </div>
               {/* <div className='footer-left-work'>
                 <img className='footer-left-work-icon' src={timeIcon} alt="time" />

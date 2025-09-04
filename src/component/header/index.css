@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   color: #8B0000;
+  padding: 1 5px;
+  text-align: center;
   /* background-color: #ebe6d2; */
   /* background: rgba(254, 254, 254, 0.95); */
   height: 38px;
@@ -204,7 +206,6 @@
     display: none;
     flex-direction: column;
     gap: 10px;
-    background-color: #800000;
     color: #ffd700;
     padding: 10px 0;
   }
@@ -245,7 +246,7 @@
 
 @media (max-width: 700px) {
   .header {
-    padding: 0 10px;
+    padding: 0 2px;
   }
 
   .navbar {
@@ -253,13 +254,17 @@
     padding: 0 5px;
   }
 
+  .user-display-name {
+    font-size: 12px;
+  }
+
   .Laaagi div a {
-    font-size: 34px;
+    font-size: 30px;
   }
 
   .laaagi-img {
     height: 78px;
-    width: 67px;
+    width: 60px;
   }
 
   .topbar-right {

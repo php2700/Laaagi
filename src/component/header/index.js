@@ -241,7 +241,6 @@ export const Header = () => {
                     <div><Link to='/'
                         style={{
                             fontFamily: "'Dancing Script', cursive",
-                            fontSize: '40px'
                         }}
                     >Laaagi</Link></div>
                 </div>

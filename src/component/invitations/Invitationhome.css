@@ -99,8 +99,9 @@
 }
 
 .customize-btn {
-  background-color: #ffd700;
-  color: #333;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
+    color: #800000;
   border: none;
   padding: 12px 25px;
   font-size: 1em;
@@ -111,7 +112,8 @@
 }
 
 .customize-btn:hover {
-  background-color: #e6c300;
+    background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }
 
 .selection-section {
@@ -313,7 +315,8 @@
   justify-content: left;
   width: 119px;
   height: 40px;
-  background-color: #ffd700;
+   background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   color: #800000;
   font-size: 16px;
   font-weight: 500;
@@ -324,6 +327,10 @@
   border-radius: 10px;
   text-decoration: none;
   cursor: pointer;
+}
+.back-button:hover{
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }
 
 .select-size-header {
@@ -528,7 +535,7 @@
 
 .invitation-next div {
   color: #800000;
-  background-color: #ffd700;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
   font-size: 16px;
   padding: 9px 15px;
   font-weight: 500;
@@ -537,6 +544,11 @@
   text-align: center;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.invitation-next div:hover{
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }
 
 .invitation-detils-home-container {

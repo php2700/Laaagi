@@ -129,6 +129,7 @@
 
 
 .model-button:hover {
-  background-color: #f0c800;
+    background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 
 }

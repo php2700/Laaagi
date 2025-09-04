@@ -185,7 +185,8 @@ tbody tr:hover {
 }
 
 .pay-button {
-  background-color: #ffd700;
+   background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   color: #333;
   border: none;
   padding: 12px 40px;
@@ -197,7 +198,8 @@ tbody tr:hover {
 }
 
 .pay-button:hover {
-  background-color: #f0c400;
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+  
 }
 
 .footer-links {
