@@ -58,7 +58,7 @@ export const SavedCart = () => {
     }
 
     return (
-        <div className="guest-list-container">
+        <div className="cart-saved-list-container">
 
             <div className="table-wrapper">
                 <table>

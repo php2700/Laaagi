@@ -13,7 +13,8 @@
 }
 
 .nav-button.add-guest-active {
-  background-color: #ffd700;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   color: #1d1a1a;
   font-weight: bold;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);

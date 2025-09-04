@@ -1,7 +1,7 @@
 import React, { use, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './index.css'
+import './cart.css'
 import { AuthContext } from '../context';
 
 export const Cart = () => {
@@ -26,8 +26,8 @@ export const Cart = () => {
             headers: {
                 Authorization: `Bearer ${token}`
             },
-            params:{
-                status:false
+            params: {
+                status: false
             }
         }).then((res) => {
             setCartData(res?.data?.cartData)
@@ -58,7 +58,7 @@ export const Cart = () => {
     }
 
     return (
-        <div className="guest-list-container">
+        <div className="cart-list-container">
 
             <div className="table-wrapper">
                 <table>

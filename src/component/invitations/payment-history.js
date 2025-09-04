@@ -1,5 +1,5 @@
 import React, { use, useContext, useEffect, useState } from 'react';
-import './GuestList.css';
+import './index.css';
 import './payment-history.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -47,9 +47,9 @@ export const PaymentHistory = () => {
     }
 
     return (
-        <div className="guest-list-container">
+        <div className="payment-list-container">
 
-            <div className="guest-list-header">
+            <div className="payment-list-header">
                 <input
                     type="search"
                     placeholder="Search..."
