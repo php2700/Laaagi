@@ -23,17 +23,41 @@
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
+
 .done-text {
   font-size: 20px;
   font-weight: 700;
   color: #253d4e;
   margin-bottom: 15px;
 }
+
 .done-btn {
-  background-color: #ffd700;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
   padding: 10px 30px;
   border-radius: 8px;
   border-style: none;
   font-size: 17px;
   font-weight: 500;
+}
+
+.done-btn:hover {
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
+}
+
+
+.cancel-btn {
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+
+  padding: 10px 30px;
+  border-radius: 8px;
+  border-style: none;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }

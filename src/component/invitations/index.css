@@ -90,6 +90,7 @@
   text-decoration: none;
   color: #ffd700;
 }
+
 .invitation-content-list {
   display: flex;
   flex-wrap: wrap;
@@ -119,8 +120,9 @@
   background-color: #f0f0f0;
   aspect-ratio: 4 / 3;
   cursor: pointer;
-  border-radius:  10px;
+  border-radius: 10px;
 }
+
 /* .invitation-content-img ,img :hover{
     cursor: pointer;
   border: 1px solid #777;
@@ -290,15 +292,14 @@
     cursor: pointer;
   }
 
-  .invitation-price {
-    /* margin: 10px 0; */
-  }
 }
-/* .invitation-content-img:hover img {
-  cursor: pointer;
-  border: 1px solid #777;
-} */
- .invitation-content-img {
+
+.active-url {
+  background-color: #ffd700 !important;
+  color: #800000 !important;
+}
+
+.invitation-content-img {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 
 }
@@ -310,7 +311,3 @@
   border: 1px solid #777;
 
 }
-
-
-
-

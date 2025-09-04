@@ -1,31 +1,166 @@
-.payment-hash {
-  width: 3%;
+.payment-list-container {
+  font-family: sans-serif;
+  border: 1px solid #e4e2e2;
+  width: 65%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
+
+.payment-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e4e2e2;
+}
+
+
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 250px;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  overflow-x: scroll;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+thead th {
+  /* background-color: #f8f8f8; */
+  font-weight: bold;
+  color: #555;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+.payment-hash {
+  width: 5%;
+}
+
 .payment-order {
   width: 20%;
   line-break: anywhere;
 }
+
 .payment-title {
   width: 20%;
   line-break: anywhere;
 }
+
 .payment-weight {
   width: 10%;
 }
+
 .payment-amount {
   width: 10%;
 }
+
 .payment-date {
-  width: 10%;
+  width: 14%;
+  line-break: anywhere;
+
 }
 
-.handleview {
-  width: 10%;
-  cursor: pointer;
-  color: blue;
-}
-
-.payment-view
-{
+.payment-view {
   text-align: end;
+}
+
+@media (max-width: 1000px) {
+  .payment-list-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 720px) {
+  .payment-list-container {
+    width: 95%;
+    overflow-x: auto;
+  }
+
+  thead th {
+    background-color: #f8f8f8;
+    width: auto;
+    font-weight: bold;
+    color: #555;
+    font-size: 8px;
+    text-transform: uppercase;
+  }
+
+  th,
+  td {
+    padding: 12px 5px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .payment-list-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .payment-list-header {
+    gap: 10px;
+  }
+
+  .payment-order {
+    width: 20%;
+    line-break: anywhere;
+  }
+
+  .payment-title {
+    width: 20%;
+    line-break: anywhere;
+  }
+
+  .payment-weight {
+    width: 12%;
+  }
+
+  .payment-amount {
+    width: 15%;
+  }
+
+  .payment-date {
+    width: 17%;
+    line-break: anywhere;
+
+  }
+
+}
+
+@media (max-width: 460px) {
+  .search-input {
+    min-width: 200px;
+  }
+
+  .payment-list-header {
+    gap: 10px;
+  }
+
+
 }

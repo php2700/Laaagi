@@ -3,7 +3,7 @@ import laaagi from "../../assets/logo/laaagi.png"
 import Google from "../../assets/sign-up/google 1.png"
 import { useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../context"
-
+import './index.css'
 
 export const LoginDemoVideo = () => {
     const [showDemo, setShowDemo] = useState(true);
@@ -26,11 +26,16 @@ export const LoginDemoVideo = () => {
                         <div className='close-model'>
                             <button onClick={onClose}>X</button>
                         </div>
-                        <div className="sign-up-top">
+                        <div>
                             <video
                                 controls
                                 playsInline
-                                muted
+                                muted style={{
+                                    width: '100%',
+                                    maxWidth: '700px',
+                                    height: 'auto',
+                                    objectFit: 'contain'
+                                }}
                             >
                                 <source src='/video.mp4' type='video/mp4' />
                             </video>

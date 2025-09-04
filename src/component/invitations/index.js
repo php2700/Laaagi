@@ -97,64 +97,64 @@ export const Invitation = () => {
     }
 
     return (
-        
-            <div className='invitations'>
-                <div className='invitations-header'>
+
+        <div className='invitations'>
+            <div className='invitations-header'>
+                {
+                    isMobile ?
+                        <>
+                            {invitationHeader?.map((ele) => (
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            ))}
+                        </> :
+                        <>
+                            {invitationHeader?.map((ele) => (
+                                <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                            ))}
+                        </>
+                }
+            </div>
+
+            <div className='invitations-content'>
+                <div className='invitations-price-left'>
+                    <div className='invitation-price-header'>Price Range Filter</div>
                     {
-                        isMobile ?
-                            <>
-                                {invitationHeader?.map((ele) => (
-                                    <div onClick={() => handleUrl(ele)} >{ele?.name}</div>
+                        isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
+                            <MenuIcon />
+                        </div>
+                    }
+                    <div className={`invitation-toggle ${isMobile ? (menuOpen ? 'open' : 'close') : ''}`}>
+                        {
+                            filterData?.map((ele) => (
+                                <div className='invitation-price' onClick={() => { handleFilter(ele) }}>{ele}</div>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div className='invitations-content-header'>
+                    < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload your design and get a quote</Link>
+                    {data?.length > 0 ?
+                        <div className='invitation-content-list'>
+                            {
+                                data?.map((ele) => (
+                                    <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
+                                        <div className='invitation-content-main-img'>
+                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                        </div>
+                                        <div className='invitation-content-img-name' >
+                                            <div >{ele?.name}</div>
+                                            <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
+                                        </div>
+                                    </div>
                                 ))}
-                            </> :
-                            <>
-                                {invitationHeader?.map((ele) => (
-                                    <div className={ele.category == category ? 'active-url' : ''} onClick={() => handleUrl(ele)} >{ele?.name}</div>
-                                ))}
-                            </>
+                        </div>
+                        :
+                        <div className='record-not-found'>No Data Found</div>
                     }
                 </div>
-
-                <div className='invitations-content'>
-                    <div className='invitations-price-left'>
-                        <div className='invitation-price-header'>Price Range Filter</div>
-                        {
-                            isMobile && <div onClick={() => setMenuOpen(!menuOpen)}>
-                                <MenuIcon />
-                            </div>
-                        }
-                        <div className={`invitation-toggle ${isMobile ? (menuOpen ? 'open' : 'close') : ''}`}>
-                            {
-                                filterData?.map((ele) => (
-                                    <div className='invitation-price' onClick={() => { handleFilter(ele) }}>{ele}</div>
-                                ))
-                            }
-                        </div>
-                    </div>
-                    <div className='invitations-content-header'>
-                        < Link to="/Design" className='invitation-content-text' style={{ cursor: 'pointer', }}> Upload your design and get a quote</Link>
-                        {data?.length > 0 ?
-                            <div className='invitation-content-list'>
-                                {
-                                    data?.map((ele) => (
-                                        <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
-                                            <div className='invitation-content-main-img'>
-                                                <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                            </div>
-                                            <div className='invitation-content-img-name' >
-                                                <div >{ele?.name}</div>
-                                                <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
-                                            </div>
-                                        </div>
-                                    ))}
-                            </div>
-                            :
-                            <div className='record-not-found'>No Data Found</div>
-                        }
-                    </div>
-                </div>
             </div>
-        
-        
+        </div>
+
+
     )
 };

@@ -121,7 +121,7 @@ export const Edit_Guest = () => {
             <div ><img className="guestImg" src={GuestImg} /></div>
             <div className="add-guest-nav">
                 {/* <div className="add-guest"><Link to='/guest-add'>Add Guest</Link></div> */}
-                 <NavLink
+                <NavLink
                     to='/guest-add'
                     className={({ isActive }) =>
                         "nav-button" + (isActive ? " active-nav-button" : "")
@@ -129,7 +129,7 @@ export const Edit_Guest = () => {
                 >
                     Add Guest
                 </NavLink>
-                <div className="guest-list"><Link to='/guest'>Guest List</Link></div>
+                <div className="guest-list"><Link to='/guest/guest'>Guest List</Link></div>
             </div>
             <div className='add-guest-main-container'>
                 <div className='form-add-guest-header'>Edit Guest</div>
