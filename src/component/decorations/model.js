@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './model.css';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import './model.css';
 
 
 export const Model = ({ open, onClose, data }) => {
@@ -103,17 +103,17 @@ export const Model = ({ open, onClose, data }) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={handleClose}>
-            <div className='dec-model' onClick={(e) => e.stopPropagation()}>
-                <div className='close-model'>
+        <div className="decoration-model-overlay" onClick={handleClose}>
+            <div className='des-decoration-model' onClick={(e) => e.stopPropagation()}>
+                <div className='close-decoration-model'>
                     <button onClick={handleClose}>X</button>
                 </div>
                 <div>
-                    <div className='model-text'>Get Quote with Laaagi</div>
+                    <div className='decoration-model-text'>Get Quote with Laaagi</div>
                 </div>
-                <div  >
-                    <form className='model-form' onSubmit={handleSubmit}>
-                        <div className='model-name'>
+                <div className='decoration-model-form-model-container' >
+                    <form className='decoration-model-form' onSubmit={handleSubmit}>
+                        <div className='decoration-model-name'>
                             <div>
                                 <input type="text" placeholder="First Name*" value={name} onChange={(e) => {
                                     setName(e.target.value)
@@ -147,7 +147,7 @@ export const Model = ({ open, onClose, data }) => {
                             <div className='error-color'>{error?.mobile || ''}</div>
                         </div>
                         <div>
-                            <textarea className='model-desc' placeholder="Your Message" value={message} onChange={(e) => {
+                            <textarea className='decoration-model-desc' placeholder="Your Message" value={message} onChange={(e) => {
                                 setMessage(e.target.value)
                                 setError({ ...error, message: '' })
                             }} />
@@ -155,9 +155,8 @@ export const Model = ({ open, onClose, data }) => {
                         </div>
                         <div>
                             <button 
-                //   style={{  ,}}
 
-                             className='model-button' type="submit">SEND MESSAGE</button>
+                             className='decoration-model-button' type="submit">SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>

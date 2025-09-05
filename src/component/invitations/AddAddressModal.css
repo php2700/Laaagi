@@ -1,4 +1,4 @@
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -149,5 +149,190 @@
   .modal-input,
   .modal-submit-button {
     font-size: 0.95rem;
+  }
+} */
+
+
+
+.add-address-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 15px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.add-address-content {
+  background-color: #ffffff;
+  padding: 20px 35px;
+  position: relative;
+  width: 32%;
+  max-width: 480px;
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  animation: scaleIn 0.4s ease-in-out;
+  transition: all 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.add-address-close-button {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+
+.add-address-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.add-address-logo {
+  height: 70px;
+  width: 70px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.add-address-brand-name {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #bc7e55;
+}
+
+.add-address-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1d1a1a;
+  margin-bottom: 15px;
+}
+
+.add-address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-address-input,
+.add-address-input-textarea {
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background: #f9f6ef;
+  border: 1px solid #ddd;
+  width: 100%;
+  transition: box-shadow 0.2s ease;
+}
+
+.add-address-input:focus,
+.add-address-input-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffd700a3;
+}
+
+.add-address-input-textarea {
+  min-height: 80px;
+  resize: vertical;
+  text-align: left;
+}
+
+.add-address-submit-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  color: #800000;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 50%;
+  margin: 10px auto 0;
+  transition: all 0.3s ease;
+}
+
+.add-address-submit-button:hover {
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .add-address-content {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-address-content {
+    width: 75%;
+    padding: 20px 25px;
+  }
+
+  .add-address-brand-name {
+    font-size: 1.5rem;
+  }
+
+  .add-address-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-address-content {
+    width: 95%;
+    /* ✅ Wider add-address on small screens */
+    padding: 18px 15px;
+  }
+
+  .add-address-brand-name {
+    font-size: 1.3rem;
+  }
+
+  .add-address-title {
+    font-size: 1rem;
+  }
+
+  .add-address-submit-button {
+    width: 100%;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }

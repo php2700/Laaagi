@@ -53,7 +53,7 @@ export const PaymentHistory = () => {
                 <input
                     type="search"
                     placeholder="Search..."
-                    className="search-input"
+                    className="payment-input"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                 />

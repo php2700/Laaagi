@@ -169,6 +169,12 @@
 }
 
 @media (max-width: 700px) {
+
+  .sweets-info-name {
+    display: flex;
+    font-weight: 600;
+    font-size: 20px;
+}
   .sweets-info-right-side {
     display: flex;
     flex-direction: column;

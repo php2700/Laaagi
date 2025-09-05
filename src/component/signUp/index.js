@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import laaagi from "../../assets/logo/laaagi.png"
-import './index.css'
+import './signup.css'
 import Google from "../../assets/sign-up/google 1.png"
 import axios from "axios"
 import { useGoogleLogin } from '@react-oauth/google';
@@ -199,10 +199,10 @@ export const SignUp = () => {
 
         <>
             {showsignUp && (
-                <div className="modal-overlay"  >
+                <div className="signup-model-overlay"  >
 
-                    <div className='model' onClick={(e) => e.stopPropagation()}>
-                        <div className='close-model'>
+                    <div className='signup-model' onClick={(e) => e.stopPropagation()}>
+                        <div className='close-signup-model'>
                             <button onClick={onClose}>X</button>
                         </div>
                         <div className="sign-up-top">
@@ -223,7 +223,7 @@ export const SignUp = () => {
                                     }}
                                 >Laaagi</Link></div>
                             </div> */}
-                            <div className='model-text'>Login/Signup with Laaagi</div>
+                            <div className='signup-model-text'>Login/Signup with Laaagi</div>
                             <div className="sign-up-form-main" >
                                 <form className="sign-up-form" onSubmit={handleSubmit}>
                                     <div className="sign-up-input">
@@ -237,9 +237,6 @@ export const SignUp = () => {
                                         }} />
 
                                         {error.mobile && (<div className="error-msg">{error?.mobile}</div>)}
-
-                                    </div>
-                                    <div className="sign-up-submit">
 
                                     </div>
                                     <div className="sign-up-submit">
@@ -259,14 +256,14 @@ export const SignUp = () => {
                     </div>
                 </div>)}
             {nameModel &&
-                (<div className="modal-overlay">
-                    <div className='model' onClick={(e) => e.stopPropagation()}>
+                (<div className="signup-model-overlay">
+                    <div className='signup-model' onClick={(e) => e.stopPropagation()}>
                         <div className="sign-up-top">
                             <div className="sign-up-header">
                                 <img src={laaagi} alt="laaagi" />
-                                <div >Laaagi</div>
+                                <div  >Laaagi</div>
                             </div>
-                            <div className='model-text'>Please Fill Details</div>
+                            <div className='signup-model-text'>Please Fill Details</div>
                             <div className="sign-up-form-main" >
                                 <form className="sign-up-form" onSubmit={handleName}>
                                     <div className="sign-up-input">
@@ -296,17 +293,17 @@ export const SignUp = () => {
             }
             {
                 otpModel &&
-                (<div className="modal-overlay" onClick={handleOtpClose}>
-                    <div className='model' onClick={(e) => e.stopPropagation()}>
-                        <div className='close-model'>
+                (<div className="signup-model-overlay" onClick={handleOtpClose}>
+                    <div className='signup-model' onClick={(e) => e.stopPropagation()}>
+                        <div className='close-signup-model'>
                             <button onClick={handleOtpClose}>X</button>
                         </div>
                         <div className="sign-up-top">
                             <div className="sign-up-header">
                                 <img src={laaagi} alt="laaagi" />
-                                <div >Laaagi</div>
+                                <div style={{ fontFamily: "'Dancing Script', cursive" }} >Laaagi</div>
                             </div>
-                            <div className='model-text'>We sent OTP on : {mobile}</div>
+                            <div className='signup-model-text'>We sent OTP on : {mobile}</div>
                             <div className="sign-up-form-main" >
                                 <form className="sign-up-form" onSubmit={handleVerify}>
                                     <div className="sign-up-input">

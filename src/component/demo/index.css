@@ -1,4 +1,4 @@
-.modal-overlay {
+ .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -82,4 +82,9 @@
         color: #253d4e;
         margin-bottom: 15px;
     }
-}
+} 
+
+
+
+
+

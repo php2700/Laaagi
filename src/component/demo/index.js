@@ -3,6 +3,7 @@ import laaagi from "../../assets/logo/laaagi.png"
 import Google from "../../assets/sign-up/google 1.png"
 import { useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../context"
+import './demo.css'
 
 
 export const DemoVideo = () => {
@@ -25,10 +26,10 @@ export const DemoVideo = () => {
     return (
         <>
             {showDemo && (
-                <div className="modal-overlay"  >
+                <div className="demo-overlay"  >
 
-                    <div className='model' onClick={(e) => e.stopPropagation()}>
-                        <div className='close-model'>
+                    <div className='demo' onClick={(e) => e.stopPropagation()}>
+                        <div className='close-demo'>
                             <button onClick={onClose}>X</button>
                         </div>
                         <div className="sign-up-top">
