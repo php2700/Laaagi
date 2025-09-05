@@ -10,8 +10,7 @@ import { AuthContext } from '../context';
 
 
 const invitationHeader = [
-    { name: 'Box', category: 'Invitation on Box' },
-    // { name: 'Only Invitation', category: 'Invitation' },
+    { name: 'Box', category: 'Invitation On Box' },
     { name: 'Wooden Box', category: 'Wooden Box' },
     { name: 'Glass Box', category: 'Glass Box' },
     { name: 'miscellaneous ', category: 'Misc Invitation' },
@@ -84,7 +83,7 @@ export const Invitation = () => {
     }
 
     useEffect(() => {
-        if (invitationDropdown == '') return
+        if (!invitationDropdown) return
         setCategory(invitationDropdown);
     }, [invitationDropdown])
 
@@ -95,6 +94,7 @@ export const Invitation = () => {
             setInvitationDropdown('')
         }
     }
+
 
     return (
 

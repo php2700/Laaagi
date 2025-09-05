@@ -100,7 +100,7 @@ export const Sweets = () => {
 
 
         useEffect(() => {
-        if (sweetDropDown == '') return
+        if (!sweetDropDown ) return
         setCategory(sweetDropDown);
     }, [sweetDropDown])
 

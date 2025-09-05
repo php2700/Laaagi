@@ -58,7 +58,7 @@ export const Designers = () => {
     }, [category])
 
     useEffect(() => {
-        if (designDropDown == '') return
+        if (!designDropDown) return;
         setCategory(designDropDown);
     }, [designDropDown])
 
