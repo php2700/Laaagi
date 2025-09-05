@@ -1,4 +1,4 @@
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -41,7 +41,6 @@
   padding: 10px 12px;
   border: 1px solid #828282;
   font-size: 1em;
-  /* flex: 1; */
   border-radius: 10px;
   width: 100%;
   font-family: inherit;
@@ -72,7 +71,7 @@
 }
 
 .modal-button {
-  background-color: #ffd700;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
   color: #800000;
   border: none;
   padding: 12px 20px;
@@ -87,7 +86,8 @@
 }
 
 .modal-button:hover {
-  background-color: #e6c300;
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+
 }
 
 .modal-close {
@@ -123,5 +123,197 @@
   }
   .modal-title {
     font-size: 1.3em;
+  }
+} */
+
+
+
+.customization-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Main customization Box */
+.customization-container {
+  background-color: #fff;
+  padding: 55px 65px;
+  border-radius: 70px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* customization Title */
+.customization-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.8em;
+  color: #333;
+}
+
+/* Close Button */
+.customization-close {
+  position: absolute;
+  top: 25px;
+  right: 60px;
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.customization-close:hover {
+  color: #333;
+}
+
+/* Form Structure */
+.customization-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.customization-row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Inputs */
+.customizationinputs {
+  padding: 10px 12px;
+  border: 1px solid #828282;
+  font-size: 1em;
+  border-radius: 10px;
+  width: 100%;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.customizationinputs.fulls {
+  flex-basis: 100%;
+}
+
+.customization-textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  min-height: 100px;
+  resize: vertical;
+  width: 100%;
+  font-family: inherit;
+}
+
+/* Form Wrapper */
+.customization-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-shadow: 0px 1px 4px grey;
+  padding: 50px;
+  border-radius: 15px;
+  background-color: #eaefea;
+}
+
+/* Submit Button */
+.customization-button {
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  color: #800000;
+  border: 1px solid #800000;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.customization-button:hover {
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%);
+}
+
+/* Error Text */
+.customi-error-color {
+  color: red;
+  font-size: 15px;
+  font-family: system-ui;
+  min-height: 20px;
+}
+
+/* ========== Responsive Breakpoints ========== */
+
+@media (max-width: 768px) {
+  .customization-container {
+    padding: 40px 35px;
+    border-radius: 40px;
+  }
+
+  .customization-close {
+    right: 35px;
+    top: 20px;
+    font-size: 1.5em;
+  }
+
+  .customization-title {
+    font-size: 1.5em;
+  }
+
+  .customization-form {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .customization-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .customization-container {
+    padding: 30px 20px;
+    border-radius: 25px;
+  }
+
+  .customization-close {
+    right: 20px;
+    top: 15px;
+    font-size: 1.4em;
+  }
+
+  .customization-title {
+    font-size: 1.3em;
+  }
+
+  .customization-form {
+    padding: 20px;
+  }
+
+  .customization-button {
+    font-size: 1em;
+    padding: 10px 16px;
+  }
+
+  .customizationinputs,
+  .customization-textarea {
+    font-size: 0.95em;
+    padding: 10px;
   }
 }

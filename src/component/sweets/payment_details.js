@@ -145,13 +145,13 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
         }
 
         // Address: letters and numbers only
-      if (!address.trim()) {
-  newError.address = 'Address is required';
-} else if (!/^[a-zA-Z0-9\s,.\-/#@!()&]+$/.test(address)) {
-  newError.address = 'Only letters, numbers and some special characters allowed';
-} else if (address.length < 3) {
-  newError.address = 'Minimum 3 characters required';
-}
+        if (!address.trim()) {
+            newError.address = 'Address is required';
+        } else if (!/^[a-zA-Z0-9\s,.\-/#@!()&]+$/.test(address)) {
+            newError.address = 'Only letters, numbers and some special characters allowed';
+        } else if (address.length < 3) {
+            newError.address = 'Minimum 3 characters required';
+        }
 
 
         // Pincode: 6 digits only
@@ -190,17 +190,18 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
     };
 
     return (
-        <div className="modal-overlay" onClick={handleOnclose}>
-            <div className="modal-container" onClick={handleContainerClick}>
-                <h2 className="modal-title">Add Details</h2>
-                <form className="modal-form" onSubmit={handleSubmit}>
+        <div className="payment-model-overlay" onClick={handleOnclose}>
+            <div className="payment-model-container" onClick={handleContainerClick}>
+                <button onClick={handleOnclose} className="payment-model-close">✕</button>
+                <h2 className="payment-model-title">Add Details</h2>
+                <form className="payment-model-form" onSubmit={handleSubmit}>
 
                     {/* Name */}
                     <div>
                         <input
                             type="text"
                             placeholder="Name"
-                            className="modalinputs"
+                            className="payment-model-inputs"
                             value={name}
                             onChange={(e) => {
                                 const val = e.target.value;
@@ -213,32 +214,20 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                         <div className="customi-error-color">{error.name}</div>
                     </div>
 
-                    {/* Address */}
-                    {/* <input
-                        type="text"
-                        placeholder="Address"
-                        className="modalinputs"
-                        value={address}
-                        onChange={(e) => {
-                            const val = e.target.value;
-                            setAddress(val); // ✔️ Accepts all characters
-                            setError((prev) => ({ ...prev, address: '' }));
-                        }}
-                    /> */}
-                    {/* Address */}
-<div>
-  <input
-    type="text"
-    placeholder="Address"
-    className="modalinputs"
-    value={address}
-    onChange={(e) => {
-      setAddress(e.target.value);   // sab kuch allow
-      setError((prev) => ({ ...prev, address: '' }));
-    }}
-  />
-  <div className="customi-error-color">{error.address}</div>
-</div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Address"
+                            className="payment-model-inputs"
+                            value={address}
+                            onChange={(e) => {
+                                setAddress(e.target.value);   // sab kuch allow
+                                setError((prev) => ({ ...prev, address: '' }));
+                            }}
+                        />
+                        <div className="customi-error-color">{error.address}</div>
+                    </div>
 
 
 
@@ -249,7 +238,7 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                         <input
                             type="text"
                             placeholder="Mobile"
-                            className="modalinputs"
+                            className="payment-model-inputs"
                             value={mobile}
                             onChange={(e) => {
                                 const val = e.target.value;
@@ -267,7 +256,7 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                         <input
                             type="text"
                             placeholder="Pincode"
-                            className="modalinputs"
+                            className="payment-model-inputs"
                             value={pincode}
                             onChange={(e) => {
                                 const val = e.target.value;
@@ -280,9 +269,8 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
                         <div className="customi-error-color">{error.pincode}</div>
                     </div>
 
-                    <button type="submit" className="modal-button">Submit</button>
+                    <button type="submit" className="payment-model-button">Submit</button>
                 </form>
-                <button onClick={handleOnclose} className="modal-close">✕</button>
             </div>
         </div>
     );

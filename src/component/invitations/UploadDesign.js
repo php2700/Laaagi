@@ -50,7 +50,7 @@ export const
             else if (amount <= 0) {
                 newError.amount = 'Amount should be positive.'
             }
-                if (!mobile?.trim()) newError.mobile = 'mobile Number is required.';
+            if (!mobile?.trim()) newError.mobile = 'mobile Number is required.';
             else if (isNaN(mobile)) newError.mobile = 'mobile Number must be a number.';
             else if (mobile <= 0) {
                 newError.mobile = 'mobile Number should be positive.'
@@ -59,7 +59,7 @@ export const
 
             if (!category) newError.category = 'Category is required.';
 
-            if (!description ?.trim()) newError.description = 'Description is required.';
+            if (!description?.trim()) newError.description = 'Description is required.';
             else if (description.trim().length < 10) newError.description = 'Description must be at least 10 characters.';
 
             if (!designFile) {
@@ -240,21 +240,21 @@ export const
                             )}
                         </div>
 
-<div className="form-group">
-  <label htmlFor="amount">Amount:</label>
-  <input
-    type="text"
-    id="amount"
-    value={amount}
-    onChange={(e) => {
-      const value = e.target.value.replace(/\D/g, ""); // sirf digits allow
-      setAmount(value);
-      setError((prev) => ({ ...prev, amount: "" }));
-    }}
-    placeholder="Enter amount"
-  />
-  <div className="error">{error?.amount || ""}</div>
-</div>
+                        <div className="form-group">
+                            <label htmlFor="amount">Amount:</label>
+                            <input
+                                type="text"
+                                id="amount"
+                                value={amount}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\D/g, ""); // sirf digits allow
+                                    setAmount(value);
+                                    setError((prev) => ({ ...prev, amount: "" }));
+                                }}
+                                placeholder="Enter amount"
+                            />
+                            <div className="error">{error?.amount || ""}</div>
+                        </div>
 
 
                         <div className="form-group">
@@ -270,7 +270,7 @@ export const
                                 }}
                                 rows="3"
                             ></textarea>
-                            <div className="error">{error?.description|| ''}</div>
+                            <div className="error">{error?.description || ''}</div>
                         </div>
 
                         <button id="sub" type="submit" disabled={isLoading}>

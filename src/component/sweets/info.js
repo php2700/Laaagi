@@ -190,7 +190,7 @@ export const SweetsInfo = () => {
                         {sweetsInfo?.description}
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                    {/* <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
                         <input style={{
                             borderRadius: '5px', border: '1px solid black', height: '42px', padding: '10px 8px',
                             fontSize: '14px', fontSize: '16px',
@@ -207,7 +207,60 @@ export const SweetsInfo = () => {
                                 ))}
                             </select>
                         </div>
+                    </div> */}
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginTop: '10px',
+                        gap: '10px',
+                        //   flexWrap: 'wrap' 
+                    }}>
+                        <input
+                            style={{
+                                borderRadius: '5px',
+                                border: '1px solid black',
+                                height: '42px',
+                                padding: '10px 8px',
+                                fontSize: '16px',
+                                flex: '1 1 150px',
+                                minWidth: '120px',
+                                boxSizing: 'border-box',
+                                fontSize: '15px'
+                            }}
+                            type="text"
+                            placeholder="Enter quantity"
+                            value={sweetkg}
+                            onChange={(e) => {
+                                const sweet = e.target.value;
+                                if (/^\d*$/.test(sweet)) {
+                                    setSweetkg(sweet);
+                                }
+                            }}
+                        />
+                        <div className="sweets-info-drop-down" style={{ flex: '0 0 130px', minWidth: '100px' }}>
+                            <select
+                                style={{
+                                    border: '1px solid black',
+                                    width: '70%',
+                                    height: '42px',
+                                    borderRadius: '5px',
+                                    fontSize: '15px',
+                                    boxSizing: 'border-box',
+                                    padding: '6px 15px'
+                                }}
+                                className="sweets-info-select"
+                                value={unit}
+                                onChange={(e) => calculatePrice(e.target.value)}
+                            >
+                                {sweetsInKg?.map((ele, index) => (
+                                    <option key={index} value={ele}>
+                                        {ele}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
+
                     {error && <div style={{ color: 'red' }}>{error}</div>}
 
 

@@ -28,8 +28,7 @@ export const Decorations = () => {
             }
         })
             .then((res) => {
-                console.log(`Data for category: ${category}`, res.data); // <<--- YEH ADD KAREIN
-                // Specifically check what res.data.decorationData is for 'Birthday'
+                console.log(`Data for category: ${category}`, res.data);
                 if (category === 'Birthday') {
                     console.log('Birthday API response data:', res.data?.decorationData);
                 }
@@ -53,7 +52,7 @@ export const Decorations = () => {
     }
 
     useEffect(() => {
-        if (decorationDropDown == '') return
+        if (!decorationDropDown) return;
         setCategory(decorationDropDown);
     }, [decorationDropDown])
 
@@ -64,7 +63,6 @@ export const Decorations = () => {
             setDecorationDropDown('')
         }
     }
-
 
     return (
         <div className='decorations' >

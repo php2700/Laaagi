@@ -88,20 +88,20 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
 
 
   return (
-    <div className="modal-overlay" onClick={handleOnclose}>
+    <div className="customization-overlay" onClick={handleOnclose}>
       <div className="customization-container" onClick={handleContainerClick}>
-        <h2 className="modal-title">Get Customization Box</h2>
+        <h2 className="customization-title">Get Customization Box</h2>
         <form className="customization-form" onSubmit={handleSubmit}>
-          <div className="modal-row">
+          <div className="customization-row">
             <div>
-              <input type="text" placeholder="First Name" className="modalinputs" value={firstName} onChange={(e) => {
+              <input type="text" placeholder="First Name" className="customizationinputs" value={firstName} onChange={(e) => {
                 setFirstName(e.target.value)
                 setError((prev) => ({ ...prev, firstName: '' }))
               }} />
               <div className='customi-error-color'>{error?.firstName || ''}</div>
             </div>
             <div>
-              <input type="text" placeholder="Last Name" className="modalinputs" value={lastName} onChange={(e) => {
+              <input type="text" placeholder="Last Name" className="customizationinputs" value={lastName} onChange={(e) => {
                 setError((prev) => ({ ...prev, setError, lastName: '' }))
                 setLastName(e.target.value)
               }} />
@@ -109,7 +109,7 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
             </div>
           </div>
           <div>
-            <input type="text" placeholder="Phone Number" className="modalinputs full" value={mobile} onChange={(e) => {
+            <input type="text" placeholder="Phone Number" className="customizationinputs full" value={mobile} onChange={(e) => {
               setError((prev) => ({ ...prev, setError, mobile: '' }))
 
               const newValue = e.target.value;
@@ -121,16 +121,16 @@ const CustomizationModal = ({ isOpen, onClose, onFormSubmitSuccess, invitationId
             <div className='customi-error-color'>{error?.mobile || ''}</div>
           </div>
           <div>
-            <textarea placeholder="Your Message" className="modal-textarea" value={message} onChange={(e) => {
+            <textarea placeholder="Your Message" className="customization-textarea" value={message} onChange={(e) => {
               setError((prev) => ({ ...prev, setError, message: '' }))
               setMessage(e.target.value)
             }
             }></textarea>
-            <div className='customi-error-color'>{error?.message || ''}</div> :
+            <div className='customi-error-color'>{error?.message || ''}</div> 
           </div>
-          <button type="submit" className="modal-button">Get Customize</button>
+          <button type="submit" className="customization-button">Get Customize</button>
         </form>
-        <button onClick={handleOnclose} className="modal-close">✕</button>
+        <button onClick={handleOnclose} className="customization-close">✕</button>
       </div>
     </div>
   );
