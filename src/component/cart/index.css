@@ -185,15 +185,4 @@ tbody tr:hover {
     padding: 12px 6px;
   }
 
-  .search-input {
-    min-width: 200px;
-  }
-
-  .guest-list-header {
-    gap: 10px;
-  }
-
-  .add-guest-button {
-    white-space: nowrap;
-  }
 }

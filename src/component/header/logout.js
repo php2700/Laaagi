@@ -4,59 +4,86 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context';
 
 export const Logout = ({ open, handleClose }) => {
-    const context = useContext(AuthContext);
-    const setToken = context?.setToken;
-    const setUserData = context?.setStoreUserData;
+  const { setToken, setStoreUserData } = useContext(AuthContext) || {};
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-    const logoutUsers = () => {
-        localStorage.removeItem("_id")
-        localStorage.removeItem("token")
-        setUserData('')
-        setToken('')
-        handleClose()
-        navigate('/')
-    }
+  const logoutUsers = () => {
+    localStorage.removeItem("_id");
+    localStorage.removeItem("token");
+    setStoreUserData('');
+    setToken('');
+    handleClose();
+    navigate('/');
+  };
 
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        boxShadow: 24,
-        p: 4,
-        borderRadius: '8px'
-    };
-    return (
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="logout-modal-title"
+      aria-describedby="logout-modal-description"
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: {
+            xs: '85%',  
+            sm: 360,     
+            md: 400     
+          },
+          bgcolor: 'background.paper',
+          boxShadow: 24,
+          p: 4,
+          borderRadius: 2,
+        }}
+      >
+        <Typography
+          id="logout-modal-description"
+          sx={{
+            mt: 2,
+            mb: 3,
+            textAlign: 'center',
+            fontSize: {
+              xs: '1rem',
+              sm: '1.1rem'
+            }
+          }}
         >
-            <Box sx={style}>
-                <Typography id="modal-modal-description" sx={{ mt: 2, mb: 3, textAlign:'center'}}>
-                    Are you sure you want to Logout
-                </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        onClick={handleClose}
-                    >
-                        No
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => logoutUsers()}
-                    >
-                        Yes
-                    </Button>
-                </Box>
-            </Box>
-        </Modal>
-    )
-}
+          Are you sure you want to log out?
+        </Typography>
+
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: {
+              xs: 'column',
+              sm: 'row'
+            },
+            gap: 2
+          }}
+        >
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={handleClose}
+            fullWidth
+          >
+            No
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={logoutUsers}
+            fullWidth
+          >
+            Yes
+          </Button>
+        </Box>
+      </Box>
+    </Modal>
+  );
+};

@@ -117,7 +117,7 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             {/* <Route path="/invitation-detail" element={<Invitationhome />} /> */}
             <Route path="/invitation-detail/:_id/:url" element={<Invitationhome />} />
-            <Route path='best-seller' element={<BestSeller />} />
+            <Route path='/best-seller' element={<BestSeller />} />
 
 
             <Route path='/invitation-GuestList/:total' element={<PrivateRoute><GuestList /></PrivateRoute>} />

@@ -103,18 +103,18 @@ export const Model = ({ open, onClose, data }) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={handleClose}>
-            <div className='des-model' onClick={(e) => e.stopPropagation()}>
-                <div className='close-model'>
+        <div className="design-overlay" onClick={handleClose}>
+            <div className='des-design' onClick={(e) => e.stopPropagation()}>
+                <div className='close-design'>
                     <button onClick={handleClose}>X</button>
                 </div>
                 <div>
-                    <div className='model-text'>Get Quote with Designer
+                    <div className='design-text'>Get Quote with Designer
                     </div>
                 </div>
-                <div  >
-                    <form className='model-form' onSubmit={handleSubmit}>
-                        <div className='model-name'>
+                <div  className='design-form-model-container'>
+                    <form className='design-form' onSubmit={handleSubmit}>
+                        <div className='design-name'>
                             <div>
                                 <input type="text" placeholder="First Name*" value={name} onChange={(e) => {
                                     setName(e.target.value)
@@ -149,14 +149,14 @@ export const Model = ({ open, onClose, data }) => {
                             <div className='error-color'>{error?.mobile || ''}</div>
                         </div>
                         <div>
-                            <textarea className='model-desc' placeholder="Your Message" value={message} onChange={(e) => {
+                            <textarea className='design-desc' placeholder="Your Message" value={message} onChange={(e) => {
                                 setMessage(e.target.value)
                                 setError({ ...error, message: '' })
                             }} />
                             <div className='error-color'>{error?.message || ''}</div>
                         </div>
                         <div>
-                            <button className='model-button' type="submit">SEND MESSAGE</button>
+                            <button className='design-button' type="submit">SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>

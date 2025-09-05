@@ -118,20 +118,20 @@ export const Addadress = ({ open, onClose, userData }) => {
 
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-button" onClick={handleClose} aria-label="Close modal">
+    <div className="add-address-overlay" onClick={onClose}>
+      <div className="add-address-content" onClick={(e) => e.stopPropagation()}>
+        <button className="add-address-close-button" onClick={handleClose} aria-label="Close add-address">
           ×
         </button>
-        <div className="modal-header">
-          <img src={logoImage} alt="Laaagi Logo" className="modal-logo" />
-          <span className="modal-brand-name">Laaagi</span>
+        <div className="add-address-header">
+          <img src={logoImage} alt="Laaagi Logo" className="add-address-logo" />
+          <span className="add-address-brand-name">Laaagi</span>
         </div>
-        <h2 className="modal-title" id="titles">Add My Address</h2>
-        <form className="modal-form" onSubmit={handleSubmit}>
+        <h2 className="add-address-title" id="titles">Add My Address</h2>
+        <form className="add-address-form" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="modal-input"
+            className="add-address-input"
             placeholder="Pincode"
             value={pincode}
             onChange={(e) => {
@@ -142,7 +142,7 @@ export const Addadress = ({ open, onClose, userData }) => {
           <div style={{ color: 'red', minHeight: '19px' }}>{error.pincode || ''}</div>
 
           <textarea
-            className="modal-input-textarea"
+            className="add-address-input-textarea"
             placeholder="Enter Full Address"
             value={address}
             onChange={(e) => {
@@ -156,7 +156,7 @@ export const Addadress = ({ open, onClose, userData }) => {
           <div>OR</div>
           <textarea
             ref={inputRef}
-            className="modal-input-textarea"
+            className="add-address-input-textarea"
             placeholder="Google Address"
             value={googleAddress}
             onChange={(e) => {
@@ -166,7 +166,7 @@ export const Addadress = ({ open, onClose, userData }) => {
             }}
           ></textarea>
           {error.googleAddress && <div style={{ color: 'red' }}>{error.googleAddress}</div>}
-          <button type="submit" className="modal-submit-button">
+          <button type="submit" className="add-address-submit-button">
             Submit
           </button>
         </form>
