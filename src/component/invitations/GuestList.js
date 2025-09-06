@@ -1348,10 +1348,10 @@ export const GuestList = () => {
 
   const [totalbox, setTotalBox] = useState(0);
   const [totalGuest, setTotalGuest] = useState(0);
-  
+
   // FIX 2: "My Address" वाले बॉक्स के लिए शुरुआती वैल्यू "" की जगह 0 कर दी गई है।
   const [userBox, setUserBox] = useState(0);
-  
+
   const [isUserAddressChecked, setIsUserAddressChecked] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [searchText, setSearchText] = useState();

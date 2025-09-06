@@ -95,6 +95,8 @@ export const Invitationhome = () => {
   const [currentUrl, setCurrentUrl] = useState(localStorage.getItem('currentURL'))
   const targetRef = useRef(null);
   const [viewImg, setViewImg] = useState();
+  const [viewvideo, setViewVideo] = useState()
+  const [isViewImage, setIsViewImage] = useState(true)
 
   useEffect(() => {
     const scrollToNext = () => {
@@ -363,6 +365,7 @@ export const Invitationhome = () => {
   }, [lastURL]);
 
   const handleViewImg = (img) => {
+    setIsViewImage(true)
     setViewImg(img)
   }
 
@@ -402,6 +405,11 @@ export const Invitationhome = () => {
     })
   }
 
+  const handleVideo = (url) => {
+    setIsViewImage(false)
+    setViewVideo(url);
+  }
+
 
   return (
     <div className="invitation-details-container">
@@ -414,7 +422,21 @@ export const Invitationhome = () => {
 
       <div className="top-section">
         <div className="image-container">
-          <img src={`${process.env.REACT_APP_BASE_URL}uploads/${viewImg ? viewImg : invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" />
+
+          {isViewImage ? <img src={`${process.env.REACT_APP_BASE_URL}uploads/${viewImg ? viewImg : invitation?.image}`} alt={`${invitation?.image} Invitation Box`} className="invitation-image" /> :
+
+            <video
+              className="invitation-image" style={{ objectFit: 'contain' }}
+              controls
+            >
+              <source
+                src={`${process.env.REACT_APP_BASE_URL}uploads/${viewvideo}`}
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          }
+
         </div>
         <div className="invitation-description">
           <h2>
@@ -439,10 +461,29 @@ export const Invitationhome = () => {
       <div className='multipleImg-container'>
 
         {invitation?.videoFile && (
-          <div>
+          // <div>
+          //   <video onClick={() => { handleVideo(invitation?.videoFile) }}
+          //     style={{ height: '100px', width: '100px', objectFit: 'contain', borderRadius: '8px' }}
+
+          //   >
+          //     <source
+          //       src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`}
+          //       type="video/mp4"
+          //     />
+          //     Your browser does not support the video tag.
+          //   </video>
+          // </div>
+          <div style={{ position: 'relative', width: '100px', height: '100px' }}>
             <video
-              style={{ height: '100px', width: '100px', objectFit: 'contain', borderRadius: '8px' }}
-              controls
+              onClick={() => handleVideo(invitation?.videoFile)}
+              style={{
+                height: '100px',
+                width: '100px',
+                objectFit: 'contain',
+                borderRadius: '8px',
+                border: '2px solid #ccc', // Add border
+                cursor: 'pointer'
+              }}
             >
               <source
                 src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`}
@@ -450,13 +491,38 @@ export const Invitationhome = () => {
               />
               Your browser does not support the video tag.
             </video>
+
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                pointerEvents: 'none'
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="white"
+                stroke="black"
+                strokeWidth="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '50%' }}
+              >
+                <polygon points="9.5,7.5 16.5,12 9.5,16.5" />
+              </svg>
+            </div>
           </div>
         )}
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image02)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image02}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image03)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image03}`} alt={`${invitation?.image} Invitation Box`} />
         <img className='multipleImg' onClick={() => handleViewImg(invitation?.image04)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.image04}`} alt={`${invitation?.image} Invitation Box`} />
-        <img className='multipleImg' onClick={() => handleViewImg(invitation?.videoFile)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`} alt={`${invitation?.image} Invitation Boxss`} />
+        {/* <img className='multipleImg' onClick={() => handleViewImg(invitation?.videoFile)} src={`${process.env.REACT_APP_BASE_URL}uploads/${invitation?.videoFile}`} alt={`${invitation?.image} Invitation Boxss`} /> */}
 
       </div>
       <div className='select-size-header'>Select size of the box</div>
@@ -536,7 +602,7 @@ export const Invitationhome = () => {
 
       <div className='invitation-select-sweet-box-list' ref={targetRef}>
         <div className='invitation-box-select-header'>
-          <div id ="section">Sections</div>
+          <div id="section">Sections</div>
           <div className='invitation-names'>Image</div>
           <div >Sweets</div>
           <div className='invitation-names'>Price</div>
