@@ -99,8 +99,8 @@ export const Sweets = () => {
     }, [category, location.state?.filter, selectedPrice, search]);
 
 
-        useEffect(() => {
-        if (!sweetDropDown ) return
+    useEffect(() => {
+        if (!sweetDropDown) return
         setCategory(sweetDropDown);
     }, [sweetDropDown])
 
@@ -167,7 +167,7 @@ export const Sweets = () => {
     const handleFilter = (data) => {
         setSelectedPrice(data)
     }
-    
+
 
     return (
         <div className='sweets' >
