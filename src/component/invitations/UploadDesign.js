@@ -22,6 +22,7 @@ export const
         const [previewURL, setPreviewURL] = useState(null);
         const [message, setMessage] = useState('');
         const [isLoading, setIsLoading] = useState(false);
+        const [imageError, setImageError] = useState()
         const token = localStorage.getItem('token');
         const userId = localStorage.getItem("_id")
 
@@ -31,7 +32,7 @@ export const
                 setDesignFile(file);
                 const fileURL = URL.createObjectURL(file);
                 setPreviewURL(fileURL);
-                setMessage("")
+                setImageError("")
             }
         };
 
@@ -63,7 +64,7 @@ export const
             else if (description.trim().length < 10) newError.description = 'Description must be at least 10 characters.';
 
             if (!designFile) {
-                setMessage('Please upload a design file.');
+                setImageError('Please upload a design file.');
             }
 
             setError(newError);
@@ -194,7 +195,7 @@ export const
                                 onChange={handleFileChange}
                                 accept=".jpg,.jpeg,.png"
                             />
-                            <div className="error">{message || ''}</div>
+                            <div className="error">{imageError || ''}</div>
 
                             {previewURL && (
                                 <div style={{ marginTop: '10px', position: 'relative', display: 'inline-block' }}>
