@@ -100,12 +100,21 @@ export const Designers = () => {
                     {data?.map((ele) => {
                         let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
                         return (
+                            // <div className='designer-parent-content' onClick={() => handleModel(ele)}>
+                            //     <div className='designers-content-img' >
+                            //         <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                            //     </div>
+                            //     <div className='designers-name'>{name}</div>
+                            // </div>
                             <div className='designer-parent-content' onClick={() => handleModel(ele)}>
-                                <div className='designers-content-img' >
-                                    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                </div>
-                                <div className='designers-name'>{name}</div>
-                            </div>
+  <div className='designer-img-wrapper'>
+    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={name} />
+    <div className='designer-img-overlay'>
+      <div>{name}</div>
+    </div>
+  </div>
+</div>
+
                         )
                     })}
                 </div>

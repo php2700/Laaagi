@@ -176,3 +176,40 @@
     padding: 15px;
   }
 }
+.decoration-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.decoration-img-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.decoration-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.35); /* same as wedding/sweets */
+  color: #fff;
+  padding: 4px 6px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.decoration-img-wrapper:hover img {
+  transform: scale(1.2);
+}
+
+.decoration-img-wrapper:hover .decoration-img-overlay {
+  opacity: 1;
+}

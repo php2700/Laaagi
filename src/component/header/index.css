@@ -164,7 +164,9 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: #972a2a;
+  /* background: #972a2a; */
+  background-color: #fff;
+
   border-radius: 6px;
   padding: 10px;
   min-width: 250px;

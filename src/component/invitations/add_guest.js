@@ -151,14 +151,14 @@ export const Add_Guest = () => {
             //     newError.address = 'Invalid address.';
             // }
             if (
-        address &&
-        (
-            !/^[a-zA-Z0-9\s,./#@-]{3,}$/.test(address) || // invalid characters or too short
-            /^\d+$/.test(address.trim())                 // only numbers
-        )
-    ) {
-        newError.address = 'Invalid address. Must include letters.';
-    }
+                address &&
+                (
+                    !/^[a-zA-Z0-9\s,./#@-]{3,}$/.test(address) || // invalid characters or too short
+                    /^\d+$/.test(address.trim())                 // only numbers
+                )
+            ) {
+                newError.address = 'Invalid address. Must include letters.';
+            }
 
             if (pincode) {
                 if (!/^\d+$/.test(pincode)) {
@@ -192,9 +192,9 @@ export const Add_Guest = () => {
                 Authorization: `Bearer ${token}`
             }
         })).then((res) => {
-                toast.success("Guest added successfully!", {
-        position: "top-right"
-    });
+            toast.success("Guest added successfully!", {
+                position: "top-right"
+            });
             if (selectRadio == 'address_person') {
                 const linkWithToken = `${process.env.REACT_APP_URL}update-address-person?mobile=${mobile}`;
                 const message = `Hi please share your address for the invitation : ${linkWithToken}`;

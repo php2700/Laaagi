@@ -145,13 +145,29 @@ const PaymentDetailsModel = ({ isOpen, onClose, isAddress, isName, isPincode, is
         }
 
         // Address: letters and numbers only
+        // if (!address.trim()) {
+        //     newError.address = 'Address is required';
+        // } else if (!/^[a-zA-Z0-9\s,.\-/#@!()&]+$/.test(address)) {
+        //     newError.address = 'Only letters, numbers and some special characters allowed';
+        // } else if (address.length < 3) {
+        //     newError.address = 'Minimum 3 characters required';
+        // }
         if (!address.trim()) {
             newError.address = 'Address is required';
-        } else if (!/^[a-zA-Z0-9\s,.\-/#@!()&]+$/.test(address)) {
+        }
+        // Allow letters, numbers, spaces, and certain special characters
+        else if (!/^[a-zA-Z0-9\s,.\-/#@!()&]+$/.test(address)) {
             newError.address = 'Only letters, numbers and some special characters allowed';
-        } else if (address.length < 3) {
+        }
+        // Ensure address is at least 3 characters
+        else if (address.length < 3) {
             newError.address = 'Minimum 3 characters required';
         }
+        // Ensure address contains at least one letter (not just numbers)
+        else if (!/[a-zA-Z]/.test(address)) {
+            newError.address = 'Address must contain at least one letter';
+        }
+
 
 
         // Pincode: 6 digits only
