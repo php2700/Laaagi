@@ -147,9 +147,18 @@ export const Add_Guest = () => {
 
         // Optional: address and pincode (only if openAddress is true)
         if (openAddress) {
-            if (address && (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address) || address.length < 3)) {
-                newError.address = 'Invalid address.';
-            }
+            // if (address && (!/^[a-zA-Z0-9\s,./#@\-]*$/.test(address) || address.length < 3)) {
+            //     newError.address = 'Invalid address.';
+            // }
+            if (
+        address &&
+        (
+            !/^[a-zA-Z0-9\s,./#@-]{3,}$/.test(address) || // invalid characters or too short
+            /^\d+$/.test(address.trim())                 // only numbers
+        )
+    ) {
+        newError.address = 'Invalid address. Must include letters.';
+    }
 
             if (pincode) {
                 if (!/^\d+$/.test(pincode)) {
@@ -183,6 +192,9 @@ export const Add_Guest = () => {
                 Authorization: `Bearer ${token}`
             }
         })).then((res) => {
+                toast.success("Guest added successfully!", {
+        position: "top-right"
+    });
             if (selectRadio == 'address_person') {
                 const linkWithToken = `${process.env.REACT_APP_URL}update-address-person?mobile=${mobile}`;
                 const message = `Hi please share your address for the invitation : ${linkWithToken}`;
@@ -296,7 +308,7 @@ export const Add_Guest = () => {
                                     handleAddress(e.target.value)
                                     setError({ ...error, selectRadio: '' })
                                 }} />
-                                <span className="address-myself">Add Address by my self</span>
+                                <span className="address-myself">Add Address by myself</span>
                             </div>
                             <div>
                                 <input className="radio" type='radio' name='address' value='address_person' onChange={(e) => {

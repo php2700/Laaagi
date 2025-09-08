@@ -273,7 +273,7 @@ export const Footer = () => {
 
           {/* Right Section */}
           <div className='footer-right'>
-            <div className='footer-right-text'>2025, All rights reserved</div>
+            <div className='footer-right-text'>©2025, All rights reserved</div>
             <div className='footer-img-center'>
               <img src={payment} alt="payment methods" />
             </div>

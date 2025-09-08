@@ -13,7 +13,7 @@ const invitationHeader = [
     { name: 'Box', category: 'Invitation On Box' },
     { name: 'Wooden Box', category: 'Wooden Box' },
     { name: 'Glass Box', category: 'Glass Box' },
-    { name: 'miscellaneous ', category: 'Misc Invitation' },
+    { name: 'Miscellaneous ', category: 'Misc Invitation' },
 ]
 
 

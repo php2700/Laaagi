@@ -529,6 +529,344 @@
 //         </>
 //     )
 // }
+// import './index.css'
+// import planningImg from '../../assets/planning/planning.jpg'
+// import { useContext, useEffect, useState } from 'react'
+// import { AuthContext } from '../context'
+// import axios from 'axios'
+// import { toast } from 'react-toastify'
+// import { Navigate } from 'react-router-dom'
+// import downArrow from "../../assets/logo/down.png";
+// import { HeaderPlanning } from './heaader_planning'
+
+// export const PlanningTool = () => {
+//     const context = useContext(AuthContext);
+//     const logout = context?.logout;
+//     const token = context?.token || localStorage.getItem('token')
+//     const setToken = context?.setToken;
+//     const [data, setData] = useState([]) // Initialize with empty array
+//     const [checkedItems, setCheckedItems] = useState([]);
+//     const userId = localStorage.getItem("_id")
+//     const [shouldSave, setShouldSave] = useState(false);
+//     const [category, setCategory] = useState('')
+//     const [clearToaster, setClearToaster] = useState(false)
+//     const [eventData, setEventData] = useState({})
+//     const [planningId, setPlanningId] = useState();
+//     const [eventLoading, setEventLoading] = useState(false)
+
+//     const handleCheck = (data, idx, events) => {
+//         const isExist = checkedItems.includes(idx)
+//         if (isExist) {
+//             setCheckedItems(checkedItems.filter((ele) => (ele !== idx)))
+//         }
+//         else {
+//             setCheckedItems([...checkedItems, idx])
+//         }
+//     }
+
+//     const getPlanningData = () => {
+//         if (!userId || !token) {
+//             console.warn("User ID or Token missing, cannot fetch planning data.");
+//             return;
+//         }
+//         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//         })
+//             .then((res) => {
+//                 setData(res?.data?.planningData || []); // Ensure data is an array
+//             }).catch((error) => {
+//                 const message = error?.response?.data?.Message;
+//                 if (message === 'jwt expired') {
+//                     logout()
+//                 }
+//             })
+//     }
+
+//     const getcheckedEventData = () => {
+//         if (!userId || !token || !category) {
+//             return;
+//         }
+//         setEventLoading(true);
+//         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/event-list/${userId}`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//             params: {
+//                 category: category,
+//             }
+//         })
+//             .then((res) => {
+//                 setEventData(res?.data?.userCheckedEvent)
+//                 setCheckedItems(res.data?.userCheckedEvent[0]?.checked || []);
+//             })
+//             .catch((error) => {
+//                 const message = error?.response?.data?.Message;
+//                 if (message === 'jwt expired') {
+//                     logout()
+//                 }
+//             })
+//             .finally(() => {
+//                 setEventLoading(false)
+//             })
+//     }
+
+//     useEffect(() => {
+//         getcheckedEventData()
+//     }, [category])
+
+//     useEffect(() => {
+//         if (token)
+//             getPlanningData()
+//     }, [token, userId])
+
+//     // const handleSave = () => {
+//     //     if (!checkedItems || checkedItems.length === 0) {
+//     //         toast.error('Failed to save checklist. Please select at least one item.', {
+//     //             position: 'top-right'
+//     //         });
+//     //         return;
+//     //     }
+//     const handleSave = (actionType = "save") => {
+//         if (actionType === "save" && (!checkedItems || checkedItems.length === 0)) {
+//             toast.error('Failed to save checklist. Please select at least one item.', {
+//                 position: 'top-right'
+//             });
+//             return;
+//         }
+
+//         const sendEventData = {
+//             userId: userId,
+//             planningId: planningId,
+//             checked: checkedItems
+//         };
+
+//         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//         })
+//             .then((res) => {
+//                 if (clearToaster) {
+//                     toast.success('Data Clear Successfully!', {
+//                         position: 'top-right'
+//                     });
+//                     setClearToaster(false);
+//                 } else {
+//                     toast.success('Checklist Saved Successfully!', {
+//                         position: 'top-right'
+//                     });
+//                 }
+//             }).catch((error) => {
+//                 console.error("Error saving planning history:", error);
+//                 toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+//             });
+//     };
+
+//     useEffect(() => {
+//         if (shouldSave) {
+//             handleSave();
+//             setShouldSave(false);
+//         }
+//     }, [shouldSave, checkedItems]);
+
+//     const handleClear = () => {
+//         setClearToaster(true)
+//         setCheckedItems([]);
+//         setShouldSave(true);
+//     };
+
+//     const handleEvent = (eventData) => {
+//         if (category === eventData.category) {
+//             setCategory('');
+//             return;
+//         }
+//         setCheckedItems([])
+//         setPlanningId(eventData?._id)
+//         setCategory(eventData.category)
+//     }
+
+//     const handleHelp = (e, data) => {
+//         e.stopPropagation(); // Prevents accordion from toggling
+//         const sendEventData = {
+//             userId: userId,
+//             planningId: data?._id,
+//         }
+//         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-help`, sendEventData, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             },
+//         })
+//             .then((res) => {
+//                 if (res?.data)
+//                     toast.success('Request sent successfully!', {
+//                         position: 'top-right'
+//                     })
+//             }).catch((error) => {
+//                 console.error("Error saving planning history:", error);
+//                 toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+//             })
+//     }
+
+//     return (
+//         <>
+//             {token ? (
+//                 <div className="planning-page">
+//                     <div className='planning-img'>
+//                         <img src={planningImg} alt="Planning" />
+//                     </div>
+
+//                     {/* <div className='planning-container'>
+//                         <HeaderPlanning />
+//                         <ul className="planning-list">
+//                             {data?.map((item, idx) => (
+//                                 <li key={idx} className="planning-list-item">
+//                                     <div
+//                                         className="accordion-header"
+//                                         onClick={() => handleEvent(item)}
+//                                     >
+//                                         <div className="accordion-title" style={{ display: "flex", alignItems: "start", justifyContent: "space-between" }}>
+//                                             <span>{`${idx + 1}. ${item?.category}`}</span>
+
+//                                             <button
+//                                                 style={{
+//                                                     display: "inline-flex",   // sirf text ke hisaab se
+//                                                     backgroundColor: "#253d4e",
+//                                                     color: "#fff",
+//                                                     fontSize: "13px",
+//                                                     fontWeight: "500",
+//                                                     borderRadius: "6px",
+//                                                     padding: "4px 10px",
+//                                                     border: "none",
+//                                                     cursor: "pointer",
+//                                                     whiteSpace: "nowrap",     // text break na ho
+//                                                 }}
+//                                                 onClick={(e) => handleHelp(e, item)}
+//                                             >
+//                                                 Need Help?
+//                                             </button>
+//                                         </div>
+
+//                                         <img
+//                                             src={downArrow}
+//                                             alt="toggle"
+//                                             className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
+//                                         />
+//                                     </div>
+
+//                                     {category === item.category && (
+//                                         <div className="accordion-content">
+//                                             {eventLoading ? (
+//                                                 <div>Loading...</div>
+//                                             ) : eventData && eventData[0]?.description?.length > 0 ? (
+//                                                 eventData[0]?.description?.map((item1, index) => (
+//                                                     <label key={index} className='checkbox-container'>
+//                                                         <input
+//                                                             type='checkbox'
+//                                                             onChange={() => handleCheck(item1, index, item?.category)}
+//                                                             checked={checkedItems.includes(index)}
+//                                                         />
+//                                                         <span className="checkmark"></span>
+//                                                         <span>{item1}</span>
+//                                                     </label>
+//                                                 ))
+//                                             ) : (
+//                                                 <div className='no-items-message'>No items available for {category}.</div>
+//                                             )}
+//                                         </div>
+//                                     )}
+//                                 </li>
+//                             ))}
+//                         </ul>
+//                         <div className='button-group'>
+//                             <button className='btn btn-primary' onClick={handleSave}>Add Planning</button>
+//                             <button className='btn btn-secondary' onClick={handleClear}>Clear All</button>
+//                         </div>
+//                     </div> */}
+//                     <div className='planning-container'>
+//                         <HeaderPlanning />
+//                         <ul className="planning-list">
+//                             {data?.map((item, idx) => (
+//                                 <li key={idx} className="planning-list-item">
+//                                     <div
+//                                         className="accordion-header"
+//                                         style={{
+//                                             // display: "flex",
+//                                             // justifyContent: "space-between",
+//                                             // alignItems: "center",
+//                                             // width: "100%",
+//                                             // cursor: "pointer",
+//                                             // fontSize: "1.1rem",
+//                                         }}
+//                                         onClick={() => handleEvent(item)}
+//                                     >
+//                                         {/* Title - Pushed to the left */}
+//                                         <span style={{ marginRight: "auto", paddingRight: "10px" }}>{`${idx + 1}. ${item?.category}`}</span>
+
+//                                         {/* Button - In the middle of the right-aligned group */}
+//                                         <button className='handle-help'
+//                                             style={{
+//                                                 // backgroundColor: "#253d4e",
+//                                                 // color: "#fff",
+//                                                 // fontSize: "13px",
+//                                                 // fontWeight: "500",
+//                                                 // borderRadius: "6px",
+//                                                 // padding: "4px 10px",
+//                                                 // border: "none",
+//                                                 // cursor: "pointer",
+//                                                 // whiteSpace: "nowrap",
+//                                                 // marginRight: "70px" // Adds space between the button and the arrow
+//                                             }}
+//                                             onClick={(e) => handleHelp(e, item)}
+//                                         >
+//                                             Need Help?
+//                                         </button>
+
+//                                         {/* Arrow Icon - Pushed to the right */}
+//                                         <img
+//                                             src={downArrow}
+//                                             alt="toggle"
+//                                             className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
+//                                         />
+//                                     </div>
+
+//                                     {category === item.category && (
+//                                         <div className="accordion-content">
+//                                             {eventLoading ? (
+//                                                 <div>Loading...</div>
+//                                             ) : eventData && eventData[0]?.description?.length > 0 ? (
+//                                                 eventData[0]?.description?.map((item1, index) => (
+//                                                     <label key={index} className='checkbox-container'>
+//                                                         <input
+//                                                             type='checkbox'
+//                                                             onChange={() => handleCheck(item1, index, item?.category)}
+//                                                             checked={checkedItems.includes(index)}
+//                                                         />
+//                                                         <span className="checkmark"></span>
+//                                                         <span>{item1}</span>
+//                                                     </label>
+//                                                 ))
+//                                             ) : (
+//                                                 <div className='no-items-message'>No items available for {category}.</div>
+//                                             )}
+//                                         </div>
+//                                     )}
+//                                 </li>
+//                             ))}
+//                         </ul>
+//                         <div className='button-group'>
+//                             <button className='btn btn-primary' onClick={handleSave}>Add Planning</button>
+//                             <button className='btn btn-secondary' onClick={handleClear}>Clear All</button>
+//                         </div>
+//                     </div>
+//                 </div>
+//             ) : (
+//                 <Navigate to='/signup' />
+//             )}
+//         </>
+//     )
+// }
 import './index.css'
 import planningImg from '../../assets/planning/planning.jpg'
 import { useContext, useEffect, useState } from 'react'
@@ -536,95 +874,73 @@ import { AuthContext } from '../context'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { Navigate } from 'react-router-dom'
-import downArrow from "../../assets/logo/down.png";
+import downArrow from "../../assets/logo/down.png"
 import { HeaderPlanning } from './heaader_planning'
 
 export const PlanningTool = () => {
     const context = useContext(AuthContext);
     const logout = context?.logout;
-    const token = context?.token || localStorage.getItem('token')
+    const token = context?.token || localStorage.getItem('token');
     const setToken = context?.setToken;
-    const [data, setData] = useState([]) // Initialize with empty array
+    const [data, setData] = useState([]);
     const [checkedItems, setCheckedItems] = useState([]);
-    const userId = localStorage.getItem("_id")
-    const [shouldSave, setShouldSave] = useState(false);
-    const [category, setCategory] = useState('')
-    const [clearToaster, setClearToaster] = useState(false)
-    const [eventData, setEventData] = useState({})
+    const userId = localStorage.getItem("_id");
+    const [category, setCategory] = useState('');
+    const [eventData, setEventData] = useState({});
     const [planningId, setPlanningId] = useState();
-    const [eventLoading, setEventLoading] = useState(false)
+    const [eventLoading, setEventLoading] = useState(false);
 
-    const handleCheck = (data, idx, events) => {
-        const isExist = checkedItems.includes(idx)
+    const handleCheck = (data, idx) => {
+        const isExist = checkedItems.includes(idx);
         if (isExist) {
-            setCheckedItems(checkedItems.filter((ele) => (ele !== idx)))
+            setCheckedItems(checkedItems.filter((ele) => (ele !== idx)));
+        } else {
+            setCheckedItems([...checkedItems, idx]);
         }
-        else {
-            setCheckedItems([...checkedItems, idx])
-        }
-    }
+    };
 
     const getPlanningData = () => {
-        if (!userId || !token) {
-            console.warn("User ID or Token missing, cannot fetch planning data.");
-            return;
-        }
+        if (!userId || !token) return;
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
+            headers: { Authorization: `Bearer ${token}` },
         })
-            .then((res) => {
-                setData(res?.data?.planningData || []); // Ensure data is an array
-            }).catch((error) => {
-                const message = error?.response?.data?.Message;
-                if (message === 'jwt expired') {
-                    logout()
-                }
-            })
-    }
+        .then((res) => {
+            setData(res?.data?.planningData || []);
+        })
+        .catch((error) => {
+            if (error?.response?.data?.Message === 'jwt expired') logout();
+        });
+    };
 
     const getcheckedEventData = () => {
-        if (!userId || !token || !category) {
-            return;
-        }
+        if (!userId || !token || !category) return;
         setEventLoading(true);
         axios.get(`${process.env.REACT_APP_BASE_URL}api/user/event-list/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-            params: {
-                category: category,
-            }
+            headers: { Authorization: `Bearer ${token}` },
+            params: { category },
         })
-            .then((res) => {
-                setEventData(res?.data?.userCheckedEvent)
-                setCheckedItems(res.data?.userCheckedEvent[0]?.checked || []);
-            })
-            .catch((error) => {
-                const message = error?.response?.data?.Message;
-                if (message === 'jwt expired') {
-                    logout()
-                }
-            })
-            .finally(() => {
-                setEventLoading(false)
-            })
-    }
+        .then((res) => {
+            setEventData(res?.data?.userCheckedEvent);
+            setCheckedItems(res.data?.userCheckedEvent[0]?.checked || []);
+        })
+        .catch((error) => {
+            if (error?.response?.data?.Message === 'jwt expired') logout();
+        })
+        .finally(() => setEventLoading(false));
+    };
 
     useEffect(() => {
-        getcheckedEventData()
-    }, [category])
+        getcheckedEventData();
+    }, [category]);
 
     useEffect(() => {
-        if (token)
-            getPlanningData()
-    }, [token, userId])
+        if (token) getPlanningData();
+    }, [token, userId]);
 
-    const handleSave = () => {
-        if (!checkedItems || checkedItems.length === 0) {
+    const handleSave = (actionType = "save") => {
+        if (actionType === "save" && (!checkedItems || checkedItems.length === 0)) {
             toast.error('Failed to save checklist. Please select at least one item.', {
-                position: 'top-right'
+                position: 'top-right',
             });
             return;
         }
@@ -636,38 +952,25 @@ export const PlanningTool = () => {
         };
 
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
+            headers: { Authorization: `Bearer ${token}` },
         })
-            .then((res) => {
-                if (clearToaster) {
-                    toast.success('Data Clear Successfully!', {
-                        position: 'top-right'
-                    });
-                    setClearToaster(false);
-                } else {
-                    toast.success('Checklist Saved Successfully!', {
-                        position: 'top-right'
-                    });
-                }
-            }).catch((error) => {
-                console.error("Error saving planning history:", error);
-                toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
-            });
+        .then((res) => {
+            toast.success(
+                actionType === "clear"
+                    ? 'Checklist cleared successfully!'
+                    : 'Checklist saved successfully!',
+                { position: 'top-right' }
+            );
+        })
+        .catch((error) => {
+            console.error("Error saving planning history:", error);
+            toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+        });
     };
 
-    useEffect(() => {
-        if (shouldSave) {
-            handleSave();
-            setShouldSave(false);
-        }
-    }, [shouldSave, checkedItems]);
-
     const handleClear = () => {
-        setClearToaster(true)
         setCheckedItems([]);
-        setShouldSave(true);
+        handleSave("clear");
     };
 
     const handleEvent = (eventData) => {
@@ -675,188 +978,96 @@ export const PlanningTool = () => {
             setCategory('');
             return;
         }
-        setCheckedItems([])
-        setPlanningId(eventData?._id)
-        setCategory(eventData.category)
-    }
+        setCheckedItems([]);
+        setPlanningId(eventData?._id);
+        setCategory(eventData.category);
+    };
 
     const handleHelp = (e, data) => {
-        e.stopPropagation(); // Prevents accordion from toggling
+        e.stopPropagation();
         const sendEventData = {
             userId: userId,
             planningId: data?._id,
-        }
+        };
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-help`, sendEventData, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
+            headers: { Authorization: `Bearer ${token}` },
         })
-            .then((res) => {
-                if (res?.data)
-                    toast.success('Request sent successfully!', {
-                        position: 'top-right'
-                    })
-            }).catch((error) => {
-                console.error("Error saving planning history:", error);
-                toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
-            })
-    }
+        .then((res) => {
+            toast.success('Request sent successfully!', {
+                position: 'top-right'
+            });
+        })
+        .catch((error) => {
+            console.error("Error saving planning help:", error);
+            toast.error(error?.response?.data?.Message || 'Failed to send request.');
+        });
+    };
 
-    return (
-        <>
-            {token ? (
-                <div className="planning-page">
-                    <div className='planning-img'>
-                        <img src={planningImg} alt="Planning" />
-                    </div>
+    return token ? (
+        <div className="planning-page">
+            <div className='planning-img'>
+                <img src={planningImg} alt="Planning" />
+            </div>
 
-                    {/* <div className='planning-container'>
-                        <HeaderPlanning />
-                        <ul className="planning-list">
-                            {data?.map((item, idx) => (
-                                <li key={idx} className="planning-list-item">
-                                    <div
-                                        className="accordion-header"
-                                        onClick={() => handleEvent(item)}
-                                    >
-                                        <div className="accordion-title" style={{ display: "flex", alignItems: "start", justifyContent: "space-between" }}>
-                                            <span>{`${idx + 1}. ${item?.category}`}</span>
+            <div className='planning-container'>
+                <HeaderPlanning />
+                <ul className="planning-list">
+                    {data?.map((item, idx) => (
+                        <li key={idx} className="planning-list-item">
+                            <div
+                                className="accordion-header"
+                                onClick={() => handleEvent(item)}
+                            >
+                                <span style={{ marginRight: "auto", paddingRight: "10px" }}>{`${idx + 1}. ${item?.category}`}</span>
+                                <button
+                                    className='handle-help'
+                                    onClick={(e) => handleHelp(e, item)}
+                                >
+                                    Need Help?
+                                </button>
+                                <img
+                                    src={downArrow}
+                                    alt="toggle"
+                                    className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
+                                />
+                            </div>
 
-                                            <button
-                                                style={{
-                                                    display: "inline-flex",   // sirf text ke hisaab se
-                                                    backgroundColor: "#253d4e",
-                                                    color: "#fff",
-                                                    fontSize: "13px",
-                                                    fontWeight: "500",
-                                                    borderRadius: "6px",
-                                                    padding: "4px 10px",
-                                                    border: "none",
-                                                    cursor: "pointer",
-                                                    whiteSpace: "nowrap",     // text break na ho
-                                                }}
-                                                onClick={(e) => handleHelp(e, item)}
-                                            >
-                                                Need Help?
-                                            </button>
-                                        </div>
-
-                                        <img
-                                            src={downArrow}
-                                            alt="toggle"
-                                            className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
-                                        />
-                                    </div>
-
-                                    {category === item.category && (
-                                        <div className="accordion-content">
-                                            {eventLoading ? (
-                                                <div>Loading...</div>
-                                            ) : eventData && eventData[0]?.description?.length > 0 ? (
-                                                eventData[0]?.description?.map((item1, index) => (
-                                                    <label key={index} className='checkbox-container'>
-                                                        <input
-                                                            type='checkbox'
-                                                            onChange={() => handleCheck(item1, index, item?.category)}
-                                                            checked={checkedItems.includes(index)}
-                                                        />
-                                                        <span className="checkmark"></span>
-                                                        <span>{item1}</span>
-                                                    </label>
-                                                ))
-                                            ) : (
-                                                <div className='no-items-message'>No items available for {category}.</div>
-                                            )}
-                                        </div>
+                            {category === item.category && (
+                                <div className="accordion-content">
+                                    {eventLoading ? (
+                                        <div>Loading...</div>
+                                    ) : eventData && eventData[0]?.description?.length > 0 ? (
+                                        eventData[0]?.description?.map((item1, index) => (
+                                            <label key={index} className='checkbox-container'>
+                                                <input
+                                                    type='checkbox'
+                                                    onChange={() => handleCheck(item1, index)}
+                                                    checked={checkedItems.includes(index)}
+                                                />
+                                                <span className="checkmark"></span>
+                                                <span>{item1}</span>
+                                            </label>
+                                        ))
+                                    ) : (
+                                        <div className='no-items-message'>No items available for {category}.</div>
                                     )}
-                                </li>
-                            ))}
-                        </ul>
-                        <div className='button-group'>
-                            <button className='btn btn-primary' onClick={handleSave}>Add Planning</button>
-                            <button className='btn btn-secondary' onClick={handleClear}>Clear All</button>
-                        </div>
-                    </div> */}
-                    <div className='planning-container'>
-    <HeaderPlanning />
-    <ul className="planning-list">
-        {data?.map((item, idx) => (
-            <li key={idx} className="planning-list-item">
-                <div
-                    className="accordion-header"
-                    style={{
-                        // display: "flex",
-                        // justifyContent: "space-between",
-                        // alignItems: "center",
-                        // width: "100%",
-                        // cursor: "pointer",
-                        // fontSize: "1.1rem",
-                    }}
-                    onClick={() => handleEvent(item)}
-                >
-                    {/* Title - Pushed to the left */}
-                    <span style={{ marginRight: "auto", paddingRight: "10px" }}>{`${idx + 1}. ${item?.category}`}</span>
+                                </div>
+                            )}
+                        </li>
+                    ))}
+                </ul>
 
-                    {/* Button - In the middle of the right-aligned group */}
-                    <button  className='handle-help'
-                        style={{
-                            // backgroundColor: "#253d4e",
-                            // color: "#fff",
-                            // fontSize: "13px",
-                            // fontWeight: "500",
-                            // borderRadius: "6px",
-                            // padding: "4px 10px",
-                            // border: "none",
-                            // cursor: "pointer",
-                            // whiteSpace: "nowrap",
-                            // marginRight: "70px" // Adds space between the button and the arrow
-                        }}
-                        onClick={(e) => handleHelp(e, item)}
-                    >
-                        Need Help?
+                <div className='button-group'>
+                    <button className='btn btn-primary' onClick={() => handleSave("save")}>
+                        Add Planning
                     </button>
-
-                    {/* Arrow Icon - Pushed to the right */}
-                    <img
-                        src={downArrow}
-                        alt="toggle"
-                        className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
-                    />
+                    <button className='btn btn-secondary' onClick={handleClear}>
+                        Clear All
+                    </button>
                 </div>
-
-                {category === item.category && (
-                    <div className="accordion-content">
-                        {eventLoading ? (
-                            <div>Loading...</div>
-                        ) : eventData && eventData[0]?.description?.length > 0 ? (
-                            eventData[0]?.description?.map((item1, index) => (
-                                <label key={index} className='checkbox-container'>
-                                    <input
-                                        type='checkbox'
-                                        onChange={() => handleCheck(item1, index, item?.category)}
-                                        checked={checkedItems.includes(index)}
-                                    />
-                                    <span className="checkmark"></span>
-                                    <span>{item1}</span>
-                                </label>
-                            ))
-                        ) : (
-                            <div className='no-items-message'>No items available for {category}.</div>
-                        )}
-                    </div>
-                )}
-            </li>
-        ))}
-    </ul>
-    <div className='button-group'>
-        <button className='btn btn-primary' onClick={handleSave}>Add Planning</button>
-        <button className='btn btn-secondary' onClick={handleClear}>Clear All</button>
-    </div>
-</div>
-                </div>
-            ) : (
-                <Navigate to='/signup' />
-            )}
-        </>
-    )
-}
+            </div>
+        </div>
+    ) : (
+        <Navigate to='/signup' />
+    );
+};

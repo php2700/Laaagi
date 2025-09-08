@@ -279,7 +279,7 @@ export const ViewHistory = () => {
                 }
             </div>
 
-            <div className="table-wrapper">
+            {/* <div className="table-wrapper">
                 <table>
                     <thead>
                         <tr>
@@ -315,10 +315,42 @@ export const ViewHistory = () => {
                         }
                     </tbody>
                 </table>
+            </div> */}
+            <div className="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>MOBILE</th>
+                            <th>ADDRESS</th>
+                            <th>WEIGHT</th>
+                            <th>UNIT</th>
+                            <th>PINCODE</th>
+                            <th>PAYMENT_DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {invitation.guest?.map((ele, index) => (
+                            <tr key={index}>
+                                <td>{ele?.name}</td>
+                                <td>{ele?.mobile}</td>
+                                <td>{ele?.address}</td>
+                                <td>{(invitation?.weight / 1000)}</td>
+                                <td>kg</td>
+                                <td>{ele?.pincode}</td>
+                                <td>{invitation?.createdAt}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            <div className="pay-button-history">
+            <div className="total-amount-footer">
+                Total Amount : {invitation?.amount?.toLocaleString()} Rs. /-
+            </div>
+
+            {/* <div className="pay-button-history">
                 Total Amount : {invitation?.amount} Rs. /-
-            </div>
+            </div> */}
         </div>
     );
 };
