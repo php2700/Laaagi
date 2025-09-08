@@ -259,15 +259,26 @@ export const Sweets = () => {
                                     {data?.map((ele) => {
                                         let name = ele?.name[0]?.toUpperCase() + ele?.name.slice(1)?.toLowerCase();
                                         return (
+                                            // <div key={ele.id || ele.name} className='sweets-main-container'>
+                                            //     <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
+                                            //         <div className='sweets-img-div'>
+                                            //             <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+                                            //         </div>
+                                            //         <div className='sweets-name'>{name}</div>
+                                            //         {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
+                                            //     </div>
+                                            // </div>
                                             <div key={ele.id || ele.name} className='sweets-main-container'>
-                                                <div className='sweets-content-img' onClick={() => handleItemDetailNavigation(ele)}>
-                                                    <div className='sweets-img-div'>
-                                                        <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
-                                                    </div>
-                                                    <div className='sweets-name'>{name}</div>
-                                                    {ele?.amount !== undefined && <div className='sweets-price'>₹{ele?.amount}</div>}
-                                                </div>
+                                                <div className='sweets-img-div' onClick={() => handleItemDetailNavigation(ele)}>
+  <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+  <div className='sweets-img-overlay'>
+    <div>{name}</div>
+    <div>{ele?.amount !== undefined && `₹${ele.amount}`}</div>
+  </div>
+</div>
+
                                             </div>
+
                                         )
                                     })}
                                 </>}

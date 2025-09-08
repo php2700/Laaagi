@@ -137,15 +137,25 @@ export const Invitation = () => {
                         <div className='invitation-content-list'>
                             {
                                 data?.map((ele) => (
-                                    <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
-                                        <div className='invitation-content-main-img'>
-                                            <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
-                                        </div>
-                                        <div className='invitation-content-img-name' >
-                                            <div >{ele?.name}</div>
-                                            <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
-                                        </div>
-                                    </div>
+                                    // <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)} >
+                                    //     <div className='invitation-content-main-img'>
+                                    //         <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} />
+                                    //     </div>
+                                    //     <div className='invitation-content-img-name' >
+                                    //         <div >{ele?.name}</div>
+                                    //         <div className='invitation-payment'><span>(Rs. {ele?.price} /- )</span></div>
+                                    //     </div>
+                                    // </div>
+                                    <div className='invitation-content-img' onClick={() => handleInvitationImg(ele)}>
+  <div className='invitation-img-wrapper'>
+    <img src={`${process.env.REACT_APP_BASE_URL}uploads/${ele?.image}`} alt={ele?.name} />
+    <div className='invitation-img-overlay'>
+      <div>{ele?.name}</div>
+      <div>(Rs. {ele?.price} /-)</div>
+    </div>
+  </div>
+</div>
+
                                 ))}
                         </div>
                         :
