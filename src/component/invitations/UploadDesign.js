@@ -51,10 +51,10 @@ export const
             else if (amount <= 0) {
                 newError.amount = 'Amount should be positive.'
             }
-            if (!mobile?.trim()) newError.mobile = 'mobile Number is required.';
-            else if (isNaN(mobile)) newError.mobile = 'mobile Number must be a number.';
+            if (!mobile?.trim()) newError.mobile = 'Mobile Number is required.';
+            else if (isNaN(mobile)) newError.mobile = 'Mobile Number must be a number.';
             else if (mobile <= 0) {
-                newError.mobile = 'mobile Number should be positive.'
+                newError.mobile = 'Mobile Number should be positive.'
             }
 
 

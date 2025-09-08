@@ -33,7 +33,7 @@ export const Model = ({ open, onClose, data }) => {
         }
         if (!email) {
             newError.email = 'Email is required.'
-        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        } else if  (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) {
             newError.email = 'Email not valid.'
         }
 
