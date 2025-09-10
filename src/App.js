@@ -48,7 +48,7 @@ import { ViewHistory } from './component/invitations/viewHistory';
 import { ViewSweetHistory } from './component/sweets/sweet-history';
 import { BestSeller } from './component/Best_seller/list';
 import { PrivacyPolicy } from './component/privacy-policy';
-import { DemoVideo } from './component/demo';
+// import { DemoVideo } from './component/demo';
 import { LoginDemoVideo } from './component/demo/login-demo';
 import { Cart } from './component/cart';
 import { CartHome } from './component/invitations/cart.detail';
@@ -80,7 +80,7 @@ function App() {
         {/* <BrowserRouter> */}
         <LastUrl />
         <Header />
-        <DemoVideo />
+        {/* <DemoVideo /> */}
         <div className='app-content'>
           <Routes>
             <Route index path='/' element={<Dashboard />} />
