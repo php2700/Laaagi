@@ -1,12 +1,22 @@
+/* 
 
-
-:root {
+ :root {
   --font-family-base: serif;
   background-color: #fff5f5;
 }
 
 * {
   font-family: 'Inter', var(--font-family-base);
+}  */
+
+
+:root {
+  --font-family-base: "Times New Roman", Times, serif;
+  background-color: #fff5f5;
+}
+
+* {
+  font-family: var(--font-family-base);
 }
 
 
