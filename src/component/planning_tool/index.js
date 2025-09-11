@@ -869,7 +869,6 @@
 // }
 
 
-
 import './index.css';
 import planningImg from '../../assets/planning/planning.jpg';
 import { useContext, useEffect, useState } from 'react';
