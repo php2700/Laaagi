@@ -262,7 +262,7 @@ export const Header = () => {
                                         <Link to='/planning-tool' onClick={() => setIsUserDropdownOpen(false)}>Planning Tool</Link>
                                         <Link to='/payment-history' onClick={() => setIsUserDropdownOpen(false)}>Payment History</Link>
                                         <Link to='/saved-cart-list' onClick={() => setIsUserDropdownOpen(false)}>Save For Later</Link>
-                                        <Link to='/sample-demo' onClick={() => setIsUserDropdownOpen(false)}>Demo</Link>
+                                        {/* <Link to='/sample-demo' onClick={() => setIsUserDropdownOpen(false)}>Demo</Link> */}
                                         <button id="Logout " onClick={() => { setOpenLogoutModal(true); setIsUserDropdownOpen(false); }}>Logout</button>
                                     </div>
                                 )}
@@ -291,11 +291,11 @@ export const Header = () => {
                         style={{
                             color: isHoveringInvitation ? '#ffd700' : '#8B0000',
                             textDecoration: isHoveringInvitation ? 'underline' : 'none',
-                        
+
                         }}>Invitations</NavLink>
                     {!isMobile && (
                         <div className="dropdown">
-                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation on Box') }} > Box</NavLink>
+                            <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation On Box') }} > Box</NavLink>
                             {/* <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Invitation') }} >Only Invitation</NavLink> */}
                             <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Wooden Box') }} > Wooden Box</NavLink>
                             <NavLink to="/invitation" onClick={() => { setInvitationDropdown('Glass Box') }}> Glass Box</NavLink>
