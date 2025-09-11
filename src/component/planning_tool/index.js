@@ -867,120 +867,206 @@
 //         </>
 //     )
 // }
-import './index.css'
-import planningImg from '../../assets/planning/planning.jpg'
-import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../context'
-import axios from 'axios'
-import { toast } from 'react-toastify'
-import { Navigate } from 'react-router-dom'
-import downArrow from "../../assets/logo/down.png"
-import { HeaderPlanning } from './heaader_planning'
+
+
+
+import './index.css';
+import planningImg from '../../assets/planning/planning.jpg';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../context';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
+import downArrow from '../../assets/logo/down.png';
+import { HeaderPlanning } from './heaader_planning';
 
 export const PlanningTool = () => {
     const context = useContext(AuthContext);
     const logout = context?.logout;
     const token = context?.token || localStorage.getItem('token');
-    const setToken = context?.setToken;
     const [data, setData] = useState([]);
-    const [checkedItems, setCheckedItems] = useState([]);
-    const userId = localStorage.getItem("_id");
+    const [planning, setPlanning] = useState([]);
+    const userId = localStorage.getItem('_id');
     const [category, setCategory] = useState('');
     const [eventData, setEventData] = useState({});
     const [planningId, setPlanningId] = useState();
     const [eventLoading, setEventLoading] = useState(false);
 
-    const handleCheck = (data, idx) => {
-        const isExist = checkedItems.includes(idx);
-        if (isExist) {
-            setCheckedItems(checkedItems.filter((ele) => (ele !== idx)));
-        } else {
-            setCheckedItems([...checkedItems, idx]);
-        }
+    const handleCheck = (planningId, idx) => {
+        setPlanning((prev) => {
+            const existing = prev.find((d) => d.planningId === planningId);
+
+            let newData;
+            if (existing) {
+                let updatedChecked;
+                if (existing.checked.includes(idx)) {
+                    updatedChecked = existing.checked.filter((item) => item !== idx);
+                } else {
+                    updatedChecked = [...existing.checked, idx];
+                }
+
+                // Keep the planningId with an empty checked array instead of removing it
+                newData = prev.map((d) =>
+                    d.planningId === planningId ? { ...d, checked: updatedChecked } : d
+                );
+            } else {
+                newData = [...prev, { planningId, checked: [idx] }];
+            }
+
+            return newData;
+        });
     };
 
     const getPlanningData = () => {
         if (!userId || !token) return;
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list`, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-            setData(res?.data?.planningData || []);
-        })
-        .catch((error) => {
-            if (error?.response?.data?.Message === 'jwt expired') logout();
-        });
+        axios
+            .get(`${process.env.REACT_APP_BASE_URL}api/user/planning_list`, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((res) => {
+                const planningData = res?.data?.planningData || [];
+                setData(planningData);
+                setPlanning(
+                    planningData.map((item) => ({
+                        planningId: item._id,
+                        checked: [],
+                    }))
+                );
+            })
+            .catch((error) => {
+                if (error?.response?.data?.Message === 'jwt expired') logout();
+            });
     };
 
     const getcheckedEventData = () => {
-        if (!userId || !token || !category) return;
+        if (!userId || !token || !category || !planningId) return;
+
+        // Check if we already have eventData for this planningId
+        if (eventData[planningId]) {
+            setEventLoading(false);
+            return;
+        }
+
         setEventLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}api/user/event-list/${userId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-            params: { category },
-        })
-        .then((res) => {
-            setEventData(res?.data?.userCheckedEvent);
-            setCheckedItems(res.data?.userCheckedEvent[0]?.checked || []);
-        })
-        .catch((error) => {
-            if (error?.response?.data?.Message === 'jwt expired') logout();
-        })
-        .finally(() => setEventLoading(false));
+        axios
+            .get(`${process.env.REACT_APP_BASE_URL}api/user/event-list/${userId}`, {
+                headers: { Authorization: `Bearer ${token}` },
+                params: { category },
+            })
+            .then((res) => {
+                const fetchedData = res?.data?.userCheckedEvent || [{}];
+                const checked = fetchedData[0]?.checked || [];
+
+                // Store eventData for this planningId
+                setEventData((prev) => ({
+                    ...prev,
+                    [planningId]: fetchedData[0] || {},
+                }));
+
+                // Initialize or update planning state for this planningId
+                setPlanning((prev) => {
+                    const existing = prev.find((d) => d.planningId === planningId);
+                    if (existing) {
+                        // Merge existing checked items with API data, avoiding duplicates
+                        const mergedChecked = [...new Set([...existing.checked, ...checked])];
+                        return prev.map((d) =>
+                            d.planningId === planningId ? { ...d, checked: mergedChecked } : d
+                        );
+                    }
+                    return [...prev, { planningId, checked }];
+                });
+            })
+            .catch((error) => {
+                if (error?.response?.data?.Message === 'jwt expired') logout();
+            })
+            .finally(() => setEventLoading(false));
     };
 
     useEffect(() => {
         getcheckedEventData();
-    }, [category]);
+    }, [category, planningId]);
 
     useEffect(() => {
         if (token) getPlanningData();
     }, [token, userId]);
 
-    const handleSave = (actionType = "save") => {
-        if (actionType === "save" && (!checkedItems || checkedItems.length === 0)) {
-            toast.error('Failed to save checklist. Please select at least one item.', {
-                position: 'top-right',
-            });
-            return;
-        }
+    const handleSave = (actionType = 'save') => {
+        const currentPlanning = planning.find((p) => p.planningId === planningId);
+        const checkedItems = currentPlanning?.checked || [];
+
+        // if (actionType === 'save' && checkedItems.length === 0) {
+        //   toast.error('Failed to save checklist. Please select at least one item.', {
+        //     position: 'top-right',
+        //   });
+        //   return;
+        // }
 
         const sendEventData = {
             userId: userId,
-            planningId: planningId,
-            checked: checkedItems
+            planning: planning,
         };
 
-        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-            toast.success(
-                actionType === "clear"
-                    ? 'Checklist cleared successfully!'
-                    : 'Checklist saved successfully!',
-                { position: 'top-right' }
-            );
-        })
-        .catch((error) => {
-            console.error("Error saving planning history:", error);
-            toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
-        });
+        console.log(sendEventData, "SendeventData")
+        axios
+            .post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-history`, sendEventData, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((res) => {
+                toast.success(
+                    actionType === 'clear'
+                        ? 'Checklist cleared successfully!'
+                        : 'Checklist saved successfully!',
+                    { position: 'top-right' }
+                );
+            })
+            .catch((error) => {
+                console.error('Error saving planning history:', error);
+                toast.error(error?.response?.data?.Message || 'Failed to save checklist.');
+            });
     };
 
-    const handleClear = () => {
-        setCheckedItems([]);
-        handleSave("clear");
+    const handleClear = async () => {
+
+        setPlanning((prev) =>
+            prev.map((p) => ({
+                ...p,
+                checked: [],
+            }))
+        );
+
+        const sendEventData = {
+            userId: userId,
+            planning: planning.map((p) => ({
+                ...p,
+                checked: [],
+            })),
+        };
+
+        try {
+            await axios.post(
+                `${process.env.REACT_APP_BASE_URL}api/user/clear-planning-history`,
+                sendEventData,
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            toast.success('Checklist cleared successfully!', {
+                position: 'top-right',
+            });
+        } catch (error) {
+            console.error('Error clearing planning history:', error);
+            toast.error(error?.response?.data?.Message || 'Failed to clear checklist.');
+        }
     };
 
     const handleEvent = (eventData) => {
         if (category === eventData.category) {
             setCategory('');
-            return;
+            setPlanningId(null);
+        } else {
+            setPlanningId(eventData?._id);
+            setCategory(eventData.category);
         }
-        setCheckedItems([]);
-        setPlanningId(eventData?._id);
-        setCategory(eventData.category);
     };
 
     const handleHelp = (e, data) => {
@@ -989,27 +1075,28 @@ export const PlanningTool = () => {
             userId: userId,
             planningId: data?._id,
         };
-        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-help`, sendEventData, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-            toast.success('Request sent successfully!', {
-                position: 'top-right'
+        axios
+            .post(`${process.env.REACT_APP_BASE_URL}api/user/add-planning-help`, sendEventData, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((res) => {
+                toast.success('Request sent successfully!', {
+                    position: 'top-right',
+                });
+            })
+            .catch((error) => {
+                console.error('Error saving planning help:', error);
+                toast.error(error?.response?.data?.Message || 'Failed to send request.');
             });
-        })
-        .catch((error) => {
-            console.error("Error saving planning help:", error);
-            toast.error(error?.response?.data?.Message || 'Failed to send request.');
-        });
     };
 
     return token ? (
         <div className="planning-page">
-            <div className='planning-img'>
+            <div className="planning-img">
                 <img src={planningImg} alt="Planning" />
             </div>
 
-            <div className='planning-container'>
+            <div className="planning-container">
                 <HeaderPlanning />
                 <ul className="planning-list">
                     {data?.map((item, idx) => (
@@ -1018,9 +1105,11 @@ export const PlanningTool = () => {
                                 className="accordion-header"
                                 onClick={() => handleEvent(item)}
                             >
-                                <span style={{ marginRight: "auto", paddingRight: "10px" }}>{`${idx + 1}. ${item?.category}`}</span>
+                                <span style={{ marginRight: 'auto', paddingRight: '10px' }}>
+                                    {`${idx + 1}. ${item?.category}`}
+                                </span>
                                 <button
-                                    className='handle-help'
+                                    className="handle-help"
                                     onClick={(e) => handleHelp(e, item)}
                                 >
                                     Need Help?
@@ -1028,7 +1117,7 @@ export const PlanningTool = () => {
                                 <img
                                     src={downArrow}
                                     alt="toggle"
-                                    className={`accordion-icon ${category === item.category ? "rotate" : ""}`}
+                                    className={`accordion-icon ${category === item.category ? 'rotate' : ''}`}
                                 />
                             </div>
 
@@ -1036,20 +1125,29 @@ export const PlanningTool = () => {
                                 <div className="accordion-content">
                                     {eventLoading ? (
                                         <div>Loading...</div>
-                                    ) : eventData && eventData[0]?.description?.length > 0 ? (
-                                        eventData[0]?.description?.map((item1, index) => (
-                                            <label key={index} className='checkbox-container'>
-                                                <input
-                                                    type='checkbox'
-                                                    onChange={() => handleCheck(item1, index)}
-                                                    checked={checkedItems.includes(index)}
-                                                />
-                                                <span className="checkmark"></span>
-                                                <span>{item1}</span>
-                                            </label>
-                                        ))
+                                    ) : eventData[item._id]?.description?.length > 0 ? (
+                                        eventData[item._id]?.description?.map((item1, index) => {
+                                            const currentPlanning = planning.find(
+                                                (p) => p.planningId === item._id
+                                            );
+                                            const isChecked = currentPlanning?.checked?.includes(index) || false;
+
+                                            return (
+                                                <label key={index} className="checkbox-container">
+                                                    <input
+                                                        type="checkbox"
+                                                        onChange={() => handleCheck(item._id, index)}
+                                                        checked={isChecked}
+                                                    />
+                                                    <span className="checkmark"></span>
+                                                    <span>{item1}</span>
+                                                </label>
+                                            );
+                                        })
                                     ) : (
-                                        <div className='no-items-message'>No items available for {category}.</div>
+                                        <div className="no-items-message">
+                                            No items available for {category}.
+                                        </div>
                                     )}
                                 </div>
                             )}
@@ -1057,17 +1155,17 @@ export const PlanningTool = () => {
                     ))}
                 </ul>
 
-                <div className='button-group'>
-                    <button className='btn btn-primary' onClick={() => handleSave("save")}>
+                <div className="button-group">
+                    <button className="btn btn-primary" onClick={() => handleSave('save')}>
                         Add Planning
                     </button>
-                    <button className='btn btn-secondary' onClick={handleClear}>
+                    <button className="btn btn-secondary" onClick={handleClear}>
                         Clear All
                     </button>
                 </div>
             </div>
         </div>
     ) : (
-        <Navigate to='/signup' />
+        <Navigate to="/signup" />
     );
 };
