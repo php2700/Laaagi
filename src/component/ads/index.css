@@ -34,6 +34,13 @@
   width: 100%;
 }
 
+.hiw-step {
+  width: 20%;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
 @media (max-width: 850px) {
   /* .ads-first-row-img {
     height: 350px;
@@ -51,6 +58,12 @@
   /* .ads-second-row-img {
     height: 340px;
   } */
+   .hiw-step {
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform .3s ease;
+    width: 42%;
+}
 }
 
 @media (max-width: 600px) {
@@ -113,12 +126,7 @@
   gap: 30px;
 }
 
-.hiw-step {
-  width: 20%;
-  padding: 20px;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
+
 
 
 

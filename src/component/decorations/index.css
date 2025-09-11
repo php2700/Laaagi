@@ -36,19 +36,19 @@
 }
 
 .decorations-content-img {
-  box-shadow: 0 2px 5px rgba(117, 65, 65, 0.3);
+  /* box-shadow: 0 2px 5px rgba(117, 65, 65, 0.3); */
   border-radius: 10px 10px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: calc((100% - 60px) / 3);
-  background-color: #fff;
+  /* background-color: #fff; */
   text-decoration: none;
 }
 
 .decorations-content-img:hover {
   cursor: pointer;
-  border: 1px solid #777;
+  /* border: 1px solid #777; */
 }
 
 .decoration-img-wrapper {
@@ -149,8 +149,23 @@
   font-size: 18px;
   border-radius: 4px;
 }
+.decoration-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.35); 
+  color: #fff;
+  padding: 4px 6px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px #000;
+}
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .decorations-header {
     margin: 20px 0;
     gap: 8px;
@@ -160,6 +175,12 @@
     flex-wrap: nowrap;
     white-space: nowrap;
   }
+
+  .decoration-img-overlay {
+
+  opacity: 1;
+
+}
 
   .decorations-header div {
     flex-shrink: 0;
@@ -190,12 +211,12 @@
   transition: transform 0.5s ease;
 }
 
-.decoration-img-overlay {
+/* .decoration-img-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.35); /* same as wedding/sweets */
+  background: rgba(0, 0, 0, 0.35); 
   color: #fff;
   padding: 4px 6px;
   text-align: center;
@@ -204,7 +225,7 @@
   font-weight: 700;
   font-size: 16px;
   text-shadow: 1px 1px 2px #000;
-}
+} */
 
 .decoration-img-wrapper:hover img {
   transform: scale(1.2);
