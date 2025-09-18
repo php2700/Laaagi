@@ -1,4 +1,6 @@
-import ads from "../../assets/contact-us/ads.png"
+// import ads from "../../assets/contact-us/ads.png"
+import ads from "../../assets/contact-us/ads.jpg"
+
 import './index.css'
 import locationIcon from "../../assets/contact-us/address.png"
 import mobileIcon from "../../assets/contact-us/mobile.png"
