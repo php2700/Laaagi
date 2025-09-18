@@ -16,7 +16,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 // import Loading from "../Loding.js"
 import { Lodings } from "../loder/Loding.js"
-import { Myannimation } from "../annimation/homeannimation.js"
+import { Adsanimation, Myannimation } from "../annimation/homeannimation.js"
 const BannerSection = () => <div style={{ height: '100vh', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h1>Hero Section</h1></div>;
 const AboutSection = () => <div style={{ height: '80vh', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>About Us Section</h2></div>;
 const WeddingSpecialSection = () => <div style={{ height: '80vh', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Our Services</h2></div>;
@@ -83,8 +83,9 @@ export const Dashboard = () => {
         <Myannimation />
 
       </Myannimation> */}
-
+      <Myannimation direction="up">
       <Best_seller />
+      </Myannimation>
 
       <Myannimation direction="up">
         {token && <Recent_view />}
@@ -95,9 +96,9 @@ export const Dashboard = () => {
       <Myannimation direction="up">
         <InvitationBox />
       </Myannimation>
-      <Myannimation direction="up">
+      <Adsanimation direction="up">
         <Ads />
-      </Myannimation>
+      </Adsanimation>
       <Myannimation direction="up">
         <About ref={aboutRef} />
       </Myannimation>
@@ -109,7 +110,7 @@ export const Dashboard = () => {
       </Myannimation> */}
       {/* <GuestList/> */}
       <a
-        href="https://wa.me/9827479905"
+        href="https://wa.me/8699991906"
         target="_blank"
         rel="noopener noreferrer"
         style={{
