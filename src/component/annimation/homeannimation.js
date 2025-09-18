@@ -48,13 +48,57 @@ import "./Homeannimations.css";
 // };
 
 
-// agar package install hai
+
 
 export const Myannimation = ({ children, direction = "up" }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 0.4,
+  });
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      x: direction === "right" ? -100 : direction === "left" ? 100 : 0,
+      y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: .7, ease: "easeOut" },
+    },
+  };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+      console.log("✅ Animate hua:", children?.type?.name || "Anonymous");
+    }
+  }, [inView, controls, children]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ width: "100%" }}
+      variants={variants}
+      initial="hidden"
+      animate={controls}
+    >
+      <div style={{ width: "100%" }}>{children}</div> {/* ✅ force wrapper */}
+    </motion.div>
+  );
+};
+
+
+
+
+export const Adsanimation = ({ children, direction = "up" }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
   });
 
   const variants = {

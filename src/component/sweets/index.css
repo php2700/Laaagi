@@ -238,7 +238,10 @@
   object-fit: cover;
   display: block;
   border-radius: 10px;
-}
+  aspect-ratio: inherit;
+  /* added aspect ratio for full image
+      */
+ }
 
 .main-container-sweet {
   display: flex;
