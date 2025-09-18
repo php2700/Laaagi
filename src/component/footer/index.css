@@ -340,6 +340,7 @@
   .footer-right {
     justify-content: space-between;
     padding: 0 8px;
+    gap: 8px;
   }
 
   .whole-footer {
