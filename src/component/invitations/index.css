@@ -100,13 +100,13 @@
 
 .invitation-content-img {
   width: calc((100% - 60px) / 3);
-  box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5);
+  /* box-shadow: 0 2px 3px rgba(117, 65, 65, 0.5); */
   border-radius: 10px 10px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 /* .invitation-content-img :hover {
@@ -306,9 +306,9 @@
 
 .invitation-content-img:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); */
   cursor: pointer;
-  border: 1px solid #777;
+  /* border: 1px solid #777; */
 
 }
 
